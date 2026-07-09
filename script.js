@@ -424,4 +424,91 @@ if(footer){
 
 footer.innerHTML=`© ${new Date().getFullYear()} Aayush Singh. All Rights Reserved.`;
 
+}/* =======================================================
+   INTERACTIVE LOGIC FOR CHAT WIDGET, NOTIFICATIONS & REVIEW
+======================================================= */
+
+// Toast Controller Engine
+function triggerSystemToast(alertMessage) {
+    const toastBox = document.getElementById("alertNotificationBox");
+    const toastText = document.getElementById("notificationText");
+    if(!toastBox || !toastText) return;
+
+    toastText.innerText = alertMessage;
+    toastBox.style.bottom = "30px";
+    
+    setTimeout(() => {
+        toastBox.style.bottom = "-100px";
+    }, 4000);
+}
+
+// Global Welcome Setup
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        triggerSystemToast("Welcome! Learning Hub & Live Chat variables loaded. 🚀");
+    }, 2500);
+});
+
+// Chatbox Drawer Mechanics
+const chatBadge = document.getElementById("chatBadge");
+const chatWidget = document.getElementById("chatWidget");
+const chatHeader = document.getElementById("chatHeader");
+
+if(chatBadge && chatWidget && chatHeader) {
+    chatBadge.addEventListener("click", () => {
+        chatWidget.classList.add("active");
+    });
+    
+    chatHeader.addEventListener("click", () => {
+        chatWidget.classList.remove("active");
+    });
+}
+
+// Send Message Handler
+const sendChatBtn = document.getElementById("sendChatBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
+
+function sendClientMessage() {
+    if(!chatInput || chatInput.value.trim() === "") return;
+    
+    // User bubble
+    const userText = chatInput.value;
+    const userBubble = document.createElement("div");
+    userBubble.className = "chat-msg user";
+    userBubble.innerText = userText;
+    chatBody.appendChild(userBubble);
+    
+    chatInput.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+    
+    // Trigger notification
+    triggerSystemToast("New notification: Message sent to Ayush!");
+
+    // Simulated response loop
+    setTimeout(() => {
+        const botBubble = document.createElement("div");
+        botBubble.className = "chat-msg bot";
+        botBubble.innerText = "Received! Your ping logs have been buffered. I will connect back soon. ⚡";
+        chatBody.appendChild(botBubble);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }, 1200);
+}
+
+if(sendChatBtn && chatInput) {
+    sendChatBtn.addEventListener("click", sendClientMessage);
+    chatInput.addEventListener("keypress", (e) => {
+        if(e.key === 'Enter') sendClientMessage();
+    });
+}
+
+// Review Feedback Processor
+const reviewForm = document.getElementById("portfolioFeedbackForm");
+if(reviewForm) {
+    reviewForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const clientName = document.getElementById("feedbackName").value;
+        triggerSystemToast(`Notification: Review submitted by ${clientName}! ✨`);
+        reviewForm.reset();
+    });
 }
