@@ -527,4 +527,17 @@ if(reviewForm) {
         triggerSystemToast(`Notification: Review submitted by ${clientName}! ✨`);
         reviewForm.reset();
     });
-}
+}// New Reveal handler matching your existing portfolio pattern
+const newElementsReveal = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            entry.target.classList.add("animate-show");
+        }
+    });
+}, { threshold: 0.1 });
+
+// Targets both container cards
+document.querySelectorAll(".hub-card, .feedback-container").forEach(el => {
+    newElementsReveal.observe(el);
+});
