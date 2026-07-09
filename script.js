@@ -267,41 +267,62 @@ theme.onclick=()=>{
 document.body.classList.toggle("light");
 
 };/*=========================
-COUNTER ANIMATION (CRASH PROOF)
+CRASH-PROOF COUNTER WITH OBSERVER
 =========================*/
-const counters = document.querySelectorAll(".achievement-card h1");
-const speed = 100; // thoda fast smooth calculation ke liye
+const startCounterAnimation = () => {
+    const counters = document.querySelectorAll(".achievement-card h1");
+    const speed = 150; 
 
-counters.forEach(counter => {
-    // Agar text me data-target setting nahi save hai, toh use pehle backup kar lo
-    if (!counter.getAttribute("data-target")) {
-        counter.setAttribute("data-target", counter.innerText);
-    }
+    counters.forEach(counter => {
+        // Asli value ko data-target attribute me safe save kar lo
+        if (!counter.getAttribute("data-target")) {
+            counter.setAttribute("data-target", counter.innerText);
+            counter.innerText = "0"; // Start from zero
+        }
 
-    const update = () => {
         const targetString = counter.getAttribute("data-target");
         const targetValue = parseFloat(targetString);
-        let current = +counter.getAttribute("data-count") || 0;
-        const increment = targetValue / speed;
+        let current = 0;
+        counter.setAttribute("data-count", current);
 
-        if (current < targetValue) {
-            current += increment;
-            counter.setAttribute("data-count", current);
+        const update = () => {
+            let currentCount = +counter.getAttribute("data-count");
+            const increment = targetValue / speed;
 
-            if (targetString.includes("%")) {
-                counter.innerText = current.toFixed(2) + "%";
-            } else if (targetString.includes("+")) {
-                counter.innerText = Math.ceil(current) + "+";
+            if (currentCount < targetValue) {
+                currentCount += increment;
+                counter.setAttribute("data-count", currentCount);
+
+                if (targetString.includes("%")) {
+                    counter.innerText = currentCount.toFixed(2) + "%";
+                } else if (targetString.includes("+")) {
+                    counter.innerText = Math.ceil(currentCount) + "+";
+                } else {
+                    counter.innerText = Math.ceil(currentCount);
+                }
+                requestAnimationFrame(update);
             } else {
-                counter.innerText = Math.ceil(current);
+                counter.innerText = targetString; // Sahi stop window parse
             }
-            requestAnimationFrame(update);
-        } else {
-            counter.innerText = targetString; // Final standard value parse
-        }
-    };
-    update();
-});/*=========================
+        };
+        update();
+    });
+};
+
+// Naya separate observer jo loop ko crash nahi hone dega
+const achievementSection = document.querySelector(".achievements");
+if (achievementSection) {
+    const achievementObserver = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounterAnimation();
+                observerInstance.unobserve(entry.target); // Ek baar chalne ke baad band!
+            }
+        });
+    }, { threshold: 0.2 });
+
+    achievementObserver.observe(achievementSection);
+}/*=========================
 PARALLAX IMAGE
 =========================*/
 
