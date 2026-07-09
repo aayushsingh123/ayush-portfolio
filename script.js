@@ -267,57 +267,40 @@ theme.onclick=()=>{
 document.body.classList.toggle("light");
 
 };/*=========================
-COUNTER ANIMATION
+COUNTER ANIMATION (CRASH PROOF)
 =========================*/
+const counters = document.querySelectorAll(".achievement-card h1");
+const speed = 100; // thoda fast smooth calculation ke liye
 
-const counters=document.querySelectorAll(".achievement-card h1");
+counters.forEach(counter => {
+    // Agar text me data-target setting nahi save hai, toh use pehle backup kar lo
+    if (!counter.getAttribute("data-target")) {
+        counter.setAttribute("data-target", counter.innerText);
+    }
 
-const speed=200;
+    const update = () => {
+        const targetString = counter.getAttribute("data-target");
+        const targetValue = parseFloat(targetString);
+        let current = +counter.getAttribute("data-count") || 0;
+        const increment = targetValue / speed;
 
-counters.forEach(counter=>{
+        if (current < targetValue) {
+            current += increment;
+            counter.setAttribute("data-count", current);
 
-const update=()=>{
-
-const target=counter.innerText;
-
-const value=parseFloat(target);
-
-let current=+counter.getAttribute("data-count")||0;
-
-const increment=value/speed;
-
-if(current<value){
-
-current+=increment;
-
-counter.setAttribute("data-count",current);
-
-if(target.includes("%")){
-
-counter.innerText=current.toFixed(2)+"%";
-
-}else if(target.includes("+")){
-
-counter.innerText=Math.ceil(current)+"+";
-
-}else{
-
-counter.innerText=Math.ceil(current);
-
-}
-
-requestAnimationFrame(update);
-
-}else{
-
-counter.innerText=target;
-
-}
-
-};
-
-update();
-
+            if (targetString.includes("%")) {
+                counter.innerText = current.toFixed(2) + "%";
+            } else if (targetString.includes("+")) {
+                counter.innerText = Math.ceil(current) + "+";
+            } else {
+                counter.innerText = Math.ceil(current);
+            }
+            requestAnimationFrame(update);
+        } else {
+            counter.innerText = targetString; // Final standard value parse
+        }
+    };
+    update();
 });/*=========================
 PARALLAX IMAGE
 =========================*/
