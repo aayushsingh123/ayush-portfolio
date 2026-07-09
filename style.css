@@ -2532,4 +2532,11 @@ box-shadow:
     margin: 3px 0 0 0;
     font-size: 14px;
     color: #cbd5e1;
+}/* Reveal state for the components */
+.feedback-container.animate-show, 
+.hub-card.animate-show,
+.feedback-container.show,
+.hub-card.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
