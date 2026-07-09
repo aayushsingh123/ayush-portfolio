@@ -425,7 +425,7 @@ if(footer){
 footer.innerHTML=`© ${new Date().getFullYear()} Aayush Singh. All Rights Reserved.`;
 
 }/* =======================================================
-   INTERACTIVE LOGIC FOR CHAT WIDGET, NOTIFICATIONS & REVIEW
+   ANIMATED INTERACTIVE LOGIC FOR NEW SECTIONS
 ======================================================= */
 
 // Toast Controller Engine
@@ -442,14 +442,28 @@ function triggerSystemToast(alertMessage) {
     }, 4000);
 }
 
-// Global Welcome Setup
+// Custom Scroll Reveal for New Components (Matching user style.js pattern)
+const newElementsReveal = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("animate-show");
+        }
+    });
+}, { threshold: 0.15 });
+
+// Applying the reveal handler
+document.querySelectorAll(".hub-card, .feedback-container").forEach(el => {
+    newElementsReveal.observe(el);
+});
+
+// Global Welcome Alert Trigger
 window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        triggerSystemToast("Welcome! Learning Hub & Live Chat variables loaded. 🚀");
+        triggerSystemToast("Welcome! Learning Hub features are loaded completely. 🚀");
     }, 2500);
 });
 
-// Chatbox Drawer Mechanics
+// Chatbox Drawer Elastic Mechanics
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -459,7 +473,8 @@ if(chatBadge && chatWidget && chatHeader) {
         chatWidget.classList.add("active");
     });
     
-    chatHeader.addEventListener("click", () => {
+    chatHeader.addEventListener("click", (e) => {
+        e.stopPropagation();
         chatWidget.classList.remove("active");
     });
 }
@@ -472,7 +487,6 @@ const chatBody = document.getElementById("chatBody");
 function sendClientMessage() {
     if(!chatInput || chatInput.value.trim() === "") return;
     
-    // User bubble
     const userText = chatInput.value;
     const userBubble = document.createElement("div");
     userBubble.className = "chat-msg user";
@@ -482,14 +496,12 @@ function sendClientMessage() {
     chatInput.value = "";
     chatBody.scrollTop = chatBody.scrollHeight;
     
-    // Trigger notification
-    triggerSystemToast("New notification: Message sent to Ayush!");
+    triggerSystemToast("Notification: Message buffered to backup!");
 
-    // Simulated response loop
     setTimeout(() => {
         const botBubble = document.createElement("div");
         botBubble.className = "chat-msg bot";
-        botBubble.innerText = "Received! Your ping logs have been buffered. I will connect back soon. ⚡";
+        botBubble.innerText = "Received! Your message logs have been saved. I will get back to you soon. ⚡";
         chatBody.appendChild(botBubble);
         chatBody.scrollTop = chatBody.scrollHeight;
     }, 1200);
