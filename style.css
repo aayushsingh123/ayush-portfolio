@@ -16,6 +16,7 @@
     --text-main: #ffffff;
     --text-muted: #CBD5E1;
     --accent-glow: #4cc9ff;
+    --sm-footer-dark: #0a0e1a;
 }
 
 body.light {
@@ -25,6 +26,7 @@ body.light {
     --text-main: #0f172a;
     --text-muted: #475569;
     --accent-glow: #2563eb;
+    --sm-footer-dark: #f1f5f9;
 }
 
 body {
@@ -180,10 +182,10 @@ nav ul li a:hover{
 .ai-btn:hover { background: #4cc9ff; color: #000; box-shadow: 0 0 25px #4cc9ff; }
 
 /* Sections Mapping Rules */
-.about, .skills, .experience, .projects, .achievements, .contact, footer, nav, .section-title h2, .timeline-content h3, .news-sidebar h3 {
+.about, .skills, .experience, .projects, .achievements, .contact, footer, nav, .section-title h2, .timeline-content h3, .news-sidebar h3, #cyber-vault-section h2 {
     color: var(--text-main) !important;
 }
-.about p, .timeline-content p, .project-content p, .contact-card p, .left p, .section-title p, .news-card p {
+.about p, .timeline-content p, .project-content p, .contact-card p, .left p, .section-title p, .news-card p, #cyber-vault-section p {
     color: var(--text-muted) !important;
 }
 .info-card, .skill-card, .timeline-content, .project-card, .achievement-card, .contact-card, .dashboard-main-panel, .news-sidebar, .hub-card {
@@ -322,7 +324,6 @@ nav ul li a:hover{
 .contact-card a{ display:inline-block; padding:14px 30px; background:#2563eb; border-radius:40px; text-decoration:none; color:white; transition:.3s; }
 .quote{ padding:140px 20px; text-align:center; }
 .quote h2{ font-size:48px; background:linear-gradient(90deg,#00d4ff,#2563eb,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; }
-footer{ padding:70px 20px; text-align:center; background:#020617; margin-top:100px; }
 
 /* Scroll Top Rules */
 #top{ position:fixed; right:30px; bottom:30px; width:55px; height:55px; border-radius:50%; background:#2563eb; display:flex; justify-content:center; align-items:center; cursor:pointer; font-size:20px; transition:.35s; z-index:998; }
@@ -373,4 +374,261 @@ footer{ padding:70px 20px; text-align:center; background:#020617; margin-top:100
 }
 #swaggerSandboxBox input:focus {
     outline: none;
+}
+
+/* ========================================================
+   NEW EXTENSION SUITE CLASSES: DROPDOWN & SIMILARWEB GLOBAL FOOTER
+======================================================== */
+
+/* Cyber Security Vault Component Rules */
+.cyber-dropdown-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: rgba(5, 8, 22, 0.6);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+.cyber-dropdown-header {
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.3s ease;
+}
+.cyber-dropdown-header:hover {
+    background: rgba(76, 201, 255, 0.05);
+}
+.cyber-dropdown-header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent-glow);
+}
+#cyberChevronIcon {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--text-muted);
+}
+#cyberChevronIcon.rotate-active {
+    transform: rotate(180deg);
+    color: var(--accent-glow);
+}
+.cyber-dropdown-content {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+    transition: max-height 0.5s cubic-bezier(1, 0, 0, 1), opacity 0.4s ease, visibility 0.4s;
+}
+.cyber-dropdown-content.open {
+    max-height: 800px;
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Live Graphic Movement Padlock Background Rules */
+.cyber-animated-bg-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('image_419fed.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 1;
+    animation: liveGraphicPulse 8s infinite ease-in-out alternate;
+}
+@keyframes liveGraphicPulse {
+    0% { transform: scale(1); filter: hue-rotate(0deg) brightness(0.8); }
+    100% { transform: scale(1.08); filter: hue-rotate(15deg) brightness(1.2); box-shadow: inset 0 0 50px rgba(0,212,255,0.3); }
+}
+.cyber-matrix-grid-overlay {
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(5,8,22,0.85), rgba(5,8,22,0.92));
+    position: absolute; top: 0; left: 0;
+}
+
+/* Data Matrix Cards Grid Rules */
+.cyber-info-grid-matrix {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+.cyber-info-card-item {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    padding: 22px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.cyber-info-card-item:hover {
+    border-color: var(--accent-glow);
+    transform: translateY(-4px);
+    background: rgba(5,8,22,0.8);
+    box-shadow: 0 5px 15px rgba(76,201,255,0.15);
+}
+.cyber-info-card-item span {
+    display: block;
+    color: var(--accent-glow);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-family: monospace;
+}
+.cyber-info-card-item p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* Similarweb Corporate Global Footer Structure Styles */
+.sm-footer-global-container {
+    background: var(--sm-footer-dark);
+    padding: 80px 5% 30px 5%;
+    border-top: 1px solid var(--border-color);
+    margin-top: 120px;
+    position: relative;
+    z-index: 10;
+}
+.sm-footer-grid-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(6, 1fr);
+    gap: 40px;
+}
+@media (max-width: 1200px) {
+    .sm-footer-grid-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .sm-footer-grid-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+.sm-footer-columnbrand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.sm-brand-logo-text {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.5px;
+}
+.sm-brand-follow-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.sm-brand-social-row {
+    display: flex;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+.sm-brand-social-row a {
+    color: var(--text-muted);
+    transition: color 0.25s;
+}
+.sm-brand-social-row a:hover {
+    color: var(--accent-glow);
+}
+.sm-brand-address-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    opacity: 0.7;
+}
+.sm-footer-ext-button {
+    background: #2563eb;
+    color: white !important;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    transition: transform 0.25s, background 0.25s;
+}
+.sm-footer-ext-button:hover {
+    transform: translateY(-2px);
+    background: #1d4ed8;
+}
+
+.sm-footer-nav-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.sm-footer-nav-column h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+.sm-footer-nav-column a {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+}
+.sm-footer-nav-column a:hover {
+    color: var(--accent-glow);
+    padding-left: 2px;
+}
+
+/* Lower Port Sub-Bar Module Styles (Image 2 Mirror) */
+.sm-footer-lower-bar-wrapper {
+    max-width: 1400px;
+    margin: 60px auto 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.sm-lower-left-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.sm-lower-left-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.sm-lower-left-links a:hover {
+    color: var(--accent-glow);
+}
+.sm-lang-selector-trigger {
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.sm-lower-right-copyright {
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
