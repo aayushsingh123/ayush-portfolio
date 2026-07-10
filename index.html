@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Combined Einstein Serif Font (Playfair Display) + Clean Corporate Font (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -16,7 +15,7 @@
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
-            <h1 class="font-classic">WELCOME TO AYUSH PORTFOLIO</h1>
+            <h1>WELCOME TO AYUSH PORTFOLIO</h1>
             <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
@@ -28,7 +27,7 @@
 
     <header>
         <nav>
-            <div class="logo font-classic italic">AS</div>
+            <div class="logo">AS</div>
             <ul id="navMenu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -54,198 +53,197 @@
         </nav>
     </header>
 
-    <section class="hero-classic" id="home">
-        <div class="hero-wrapper">
-            <div class="left">
-                <h4 class="font-classic italic">Hello 👋 I'm</h4>
-                <h1 class="font-classic font-bold text-headline">Ayush Singh</h1>
-                <h2 id="typing" style="margin-top: 10px; margin-bottom: 25px; min-height: 45px; color: var(--accent-glow);"></h2>
-                <p style="margin-bottom: 20px;" class="editorial-p">I am a Backend Software Engineer specializing in Java and enterprise application development. My expertise includes Java, Spring Boot, REST APIs, Microservices, SQL, Oracle Database, Redis, and Message Queues. I enjoy designing scalable, secure, and high-performance backend systems that are reliable and easy to maintain.</p>
-                <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.8; margin-bottom: 30px;">I follow modern software engineering practices including clean code, SOLID principles, design patterns, Git, CI/CD, code reviews, automated testing, and Agile development. I actively use AI-assisted development tools to improve productivity, accelerate debugging, enhance code quality, and streamline the software development lifecycle.</p>
-                <div class="buttons">
-                    <a href="#projects" class="btn-classic">Explore Masterpieces</a>
-                </div>
-                <div class="social">
-                    <a href="https://github.com/aayushsingh123" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ayushsinghtech/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:aayushs821@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.youtube.com/@thestorm1521" target="_blank"><i class="fab fa-youtube"></i></a>
-                </div>
+    <section class="hero" id="home">
+        <div class="left">
+            <h4>Hello 👋 I'm</h4>
+            <h1>Ayush Singh</h1>
+            <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px; min-height: 45px;"></h2>
+            <p style="margin-bottom: 15px;">I am a Backend Software Engineer specializing in Java and enterprise application development. My expertise includes Java, Spring Boot, REST APIs, Microservices, SQL, Oracle Database, Redis, and Message Queues. I enjoy designing scalable, secure, and high-performance backend systems that are reliable and easy to maintain.</p>
+            <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.7;">I follow modern software engineering practices including clean code, SOLID principles, design patterns, Git, CI/CD, code reviews, automated testing, and Agile development. I actively use AI-assisted development tools to improve productivity, accelerate debugging, enhance code quality, and streamline the software development lifecycle.</p>
+            <div class="buttons">
+                <a href="#projects" class="btn">View Projects</a>
             </div>
-            <div class="right">
-                <div class="image-frame">
-                    <img src="profile.jpeg" alt="Ayush Profile">
-                </div>
+            <div class="social">
+                <a href="https://github.com/aayushsingh123" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ayushsinghtech/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:aayushs821@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@thestorm1521" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
+        <div class="right">
+            <img src="profile.jpeg" alt="Ayush Profile">
+        </div>
+        <div class="hero-blur blur1"></div>
+        <div class="hero-blur blur2"></div>
+        <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
-    <section class="about section-spacing" id="about">
+    <section class="about" id="about">
         <div class="section-title">
-            <h2 class="font-classic font-bold">About Me</h2>
-            <p class="font-classic italic font-sub">The Engineering Blueprint</p>
+            <h2>About Me</h2>
+            <p>Who I Am</p>
         </div>
         <div class="about-container">
-            <div class="about-image"><div class="image-frame"><img src="profile.jpeg" alt="Aayush Singh"></div></div>
+            <div class="about-image"><img src="profile.jpeg" alt="Aayush Singh"></div>
             <div class="about-content">
-                <h3 class="font-classic italic">Java Backend Engineer</h3>
-                <p class="editorial-p">I have strong knowledge of authentication and authorization, session management, API design, database development, caching, asynchronous messaging, performance optimization, and software architecture. I also have experience in production support, debugging, root cause analysis, release management, and troubleshooting complex backend systems.</p>
-                <p style="font-size: 1rem; margin-bottom: 35px; line-height: 1.8;">I am passionate about continuous learning, backend engineering, distributed systems, and building software that is scalable, maintainable, and delivers real business value.</p>
+                <h3>Java Backend Engineer</h3>
+                <p>I have strong knowledge of authentication and authorization, session management, API design, database development, caching, asynchronous messaging, performance optimization, and software architecture. I also have experience in production support, debugging, root cause analysis, release management, and troubleshooting complex backend systems.</p>
+                <p style="font-size: 1rem; margin-bottom: 25px;">I am passionate about continuous learning, backend engineering, distributed systems, and building software that is scalable, maintainable, and delivers real business value.</p>
                 <div class="about-info">
-                    <div class="info-card"><h4 class="font-classic font-bold">Experience</h4><span>5+ Years</span></div>
-                    <div class="info-card"><h4 class="font-classic font-bold">Projects</h4><span>Enterprise Apps</span></div>
-                    <div class="info-card"><h4 class="font-classic font-bold">Current Role</h4><span>Software Developer</span></div>
+                    <div class="info-card"><h4>Experience</h4><span>5+ Years</span></div>
+                    <div class="info-card"><h4>Projects</h4><span>Enterprise Apps</span></div>
+                    <div class="info-card"><h4>Current Role</h4><span>Software Developer</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="skills section-spacing" id="skills">
+    <section class="skills" id="skills">
         <div class="section-title">
-            <h2 class="font-classic font-bold">Technical Craftsmanship</h2>
-            <p class="font-classic italic font-sub">Technologies I Work With</p>
+            <h2>Technical Skills</h2>
+            <p>Technologies I Work With</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-card"><i class="fab fa-java"></i>  <h3 class="font-classic">Java</h3><div class="progress"><span style="width:95%"></span></div><p>95%</p></div>
-            <div class="skill-card"><i class="fas fa-leaf"></i><h3 class="font-classic">Spring Boot</h3><div class="progress"><span style="width:92%"></span></div><p>92%</p></div>
-            <div class="skill-card"><i class="fas fa-network-wired"></i><h3 class="font-classic">Microservices</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
-            <div class="skill-card"><i class="fas fa-database"></i><h3 class="font-classic">SQL</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
+            <div class="skill-card"><i class="fab fa-java"></i>  <h3>Java</h3><div class="progress"><span style="width:95%"></span></div><p>95%</p></div>
+            <div class="skill-card"><i class="fas fa-leaf"></i>...<h3>Spring Boot</h3><div class="progress"><span style="width:92%"></span></div><p>92%</p></div>
+            <div class="skill-card"><i class="fas fa-network-wired"></i><h3>Microservices</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
+            <div class="skill-card"><i class="fas fa-database"></i><h3>SQL</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
         </div>
     </section>
 
-    <section class="experience section-spacing" id="experience">
-        <div class="section-title"><h2 class="font-classic font-bold">Chronology</h2><p class="font-classic italic font-sub">Professional Journey</p></div>
+    <section class="experience" id="experience">
+        <div class="section-title"><h2>Experience</h2><p>Professional Journey</p></div>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="font-classic italic">Nov 2021 - Present</span>
-                    <h3 class="font-classic font-bold">Senior Software Developer</h3>
-                    <p class="editorial-p">Developing secure, scalable backend systems using Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Authentication solutions.</p>
+                    <span>Nov 2021 - Present</span>
+                    <h3>Senior Software Developer</h3>
+                    <p>Developing secure, scalable backend systems using Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Authentication solutions.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="font-classic italic">Core Expertise</span>
-                    <h3 class="font-classic font-bold">Backend Engineering</h3>
-                    <p class="editorial-p">REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p>
+                    <span>Core Expertise</span>
+                    <h3>Backend Engineering</h3>
+                    <p>REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="font-classic italic">Operational Excellence</span>
-                    <h3 class="font-classic font-bold">Production Support & Optimization</h3>
-                    <p class="editorial-p">Resolved critical production incidents, identified architectural bottlenecks, performed root cause analysis, and ensured seamless release management for complex enterprise systems.</p>
+                    <span>Operational Excellence</span>
+                    <h3>Production Support & Optimization</h3>
+                    <p>Resolved critical production incidents, identified architectural bottlenecks, performed root cause analysis, and ensured seamless release management for complex enterprise systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="achievements section-spacing" id="achievements">
-        <div class="section-title"><h2 class="font-classic font-bold">Empirical Results</h2><p class="font-classic italic font-sub">Highlights of My Journey</p></div>
+    <section class="achievements" id="achievements">
+        <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
         <div class="achievement-grid">
-            <div class="achievement-card"><h1 data-target="5" class="font-classic">5+</h1><span>Years Experience</span></div>
-            <div class="achievement-card"><h1 data-target="30" class="font-classic">30+</h1><span>Enterprise Projects</span></div>
-            <div class="achievement-card"><h1 data-target="100" class="font-classic">100+</h1><span>Production Releases</span></div>
-            <div class="achievement-card"><h1 data-target="99.99" class="font-classic">99.99%</h1><span>Application Availability</span></div>
+            <div class="achievement-card"><h1 data-target="5">5+</h1><span>Years Experience</span></div>
+            <div class="achievement-card"><h1 data-target="30">30+</h1><span>Enterprise Projects</span></div>
+            <div class="achievement-card"><h1 data-target="100">100+</h1><span>Production Releases</span></div>
+            <div class="achievement-card"><h1 data-target="99.99">99.99%</h1><span>Application Availability</span></div>
         </div>
     </section>
 
-    <section class="projects section-spacing" id="projects">
-        <div class="section-title"><h2 class="font-classic font-bold">Selected Works</h2><p class="font-classic italic font-sub">Some Enterprise Work Workspaces</p></div>
+    <section class="projects" id="projects">
+        <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
             <!-- Project Card 1 -->
-            <div class="project-card-classic">
-                <div class="project-image-classic"><i class="fas fa-shield-alt"></i></div>
-                <div class="project-content-classic">
-                    <h3 class="font-classic font-bold">Authentication Platform</h3>
-                    <p class="editorial-p">Designed secure login, session management and modules for enterprise apps.</p>
-                    <div class="tags-classic"><span>Java</span><span>Spring</span><span>Security</span></div>
-                    <div class="project-buttons-classic"><a href="#" class="btn-sandbox-classic" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/auth/verify');">Open Sandbox</a></div>
+            <div class="project-card">
+                <div class="project-image"><i class="fas fa-shield-alt"></i></div>
+                <div class="project-content">
+                    <h3>Authentication Platform</h3>
+                    <p>Designed secure login, session management and modules for enterprise apps.</p>
+                    <div class="tags"><span>Java</span><span>Spring</span><span>Security</span></div>
+                    <div class="project-buttons"><a href="#" class="btn-api-sandbox" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/auth/verify');">API Sandbox</a></div>
                 </div>
             </div>
             <!-- Project Card 2 -->
-            <div class="project-card-classic">
-                <div class="project-image-classic"><i class="fas fa-exchange-alt"></i></div>
-                <div class="project-content-classic">
-                    <h3 class="font-classic font-bold">Data Processing Pipeline</h3>
-                    <p class="editorial-p">Engineered an optimized computational engine in Spring Tool Suite to process structured array stream sequences efficiently.</p>
-                    <div class="tags-classic"><span>Java</span><span>Spring Boot</span><span>Algorithms</span></div>
-                    <div class="project-buttons-classic"><a href="#" class="btn-sandbox-classic" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/array/optimize');">Open Sandbox</a></div>
+            <div class="project-card">
+                <div class="project-image"><i class="fas fa-exchange-alt"></i></div>
+                <div class="project-content">
+                    <h3>Data Processing Pipeline</h3>
+                    <p>Engineered an optimized computational engine in Spring Tool Suite to process structured array stream sequences efficiently.</p>
+                    <div class="tags"><span>Java</span><span>Spring Boot</span><span>Algorithms</span></div>
+                    <div class="project-buttons"><a href="#" class="btn-api-sandbox" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/array/optimize');">API Sandbox</a></div>
                 </div>
             </div>
         </div>
         
-        <!-- Interactive API Sandbox Panel UI -->
-        <div id="swaggerSandboxBox" class="sandbox-classic-container">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+        <!-- Interactive Mock API Sandbox Panel UI Element -->
+        <div id="swaggerSandboxBox" style="max-width: 800px; margin: 40px auto 0 auto; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-glow); border-radius: 20px; padding: 25px; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <span style="font-family: monospace; color: var(--accent-glow); font-size: 0.9rem;"><i class="fas fa-code-branch"></i> OpenAPI Mock Sandbox v3.0.0</span>
                 <span style="cursor: pointer; color: #ef4444;" onclick="document.getElementById('swaggerSandboxBox').style.display='none'"><i class="fas fa-times"></i></span>
             </div>
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                <span class="sandbox-badge-classic">POST</span>
-                <input type="text" id="sandboxUrlInput" readonly style="flex: 1; background: transparent; border: none; color: #fff; font-family: monospace; font-size: 0.85rem;">
-                <button onclick="executeSandboxApiRequest()" class="sandbox-execute-btn">Execute</button>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; align-items: center;">
+                <span style="background: #10b981; color: white; padding: 6px 14px; font-family: monospace; font-size: 0.8rem; font-weight: bold; border-radius: 30px;">POST</span>
+                <input type="text" id="sandboxUrlInput" readonly style="flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); color: #fff; font-family: monospace; font-size: 0.85rem; padding: 8px 12px; border-radius: 8px;">
+                <button onclick="executeSandboxApiRequest()" style="background: var(--accent-glow); border: none; color: #000; font-weight: bold; padding: 8px 20px; border-radius: 30px; cursor: pointer; transition: 0.3s;">Execute</button>
             </div>
-            <pre id="sandboxResponseOutput"></pre>
+            <pre id="sandboxResponseOutput" style="background: rgba(0,0,0,0.7); padding: 15px; border-radius: 12px; color: #00ffcc; font-family: monospace; font-size: 0.85rem; overflow-x: auto; white-space: pre-wrap; max-height: 200px; border-left: 4px solid #10b981; margin-top: 15px;"></pre>
         </div>
     </section>
 
-    <section id="learning-hub" class="learning-hub-section section-spacing">
+    <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
-                <h2 class="font-classic font-bold text-white">The Codex</h2>
-                <p class="font-classic italic font-sub text-white-muted">AI semantic query filters mapped contextually across production logs.</p>
+                <h2>Learning Hub & Sandboxes</h2>
+                <p>AI semantic query filters mapped contextually across production logs.</p>
                 <div class="search-box-wrapper" style="margin-top:25px; display:flex; justify-content:center;">
-                    <input type="text" id="semanticHubSearch" placeholder="Type context keywords (e.g. 'GC', 'Kafka', 'JWT')..." style="width: 100%; max-width: 500px; padding: 12px 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: 4px; color:#fff; text-align:center;">
+                    <input type="text" id="semanticHubSearch" placeholder="Type context keywords (e.g. 'GC', 'Kafka', 'JWT')..." style="width: 100%; max-width: 500px; padding: 12px 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: 30px; color:#fff; text-align:center;">
                 </div>
             </div>
             <div class="learning-grid" id="learningGridHub">
-                <div class="hub-card-classic hub-java" data-keywords="java gc jvm garbage collection thread concurrency">
-                    <div><h3 class="font-classic font-bold">☕ Java Core Docs</h3><p class="editorial-p">Deep dives into JVM internals, Multi-threading concurrency models, and memory profiling.</p></div>
-                    <a href="https://docs.oracle.com/en/java/" target="_blank" class="hub-link-classic">Access Sandbox Note →</a>
+                <div class="hub-card hub-java" data-keywords="java gc jvm garbage collection thread concurrency">
+                    <div><h3>☕ Java Core Docs</h3><p>Deep dives into JVM internals, Multi-threading concurrency models, and memory profiling.</p></div>
+                    <a href="https://docs.oracle.com/en/java/" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
-                <div class="hub-card-classic hub-spring" data-keywords="spring boot jwt security oauth microservice kafka redis">
-                    <div><h3 class="font-classic font-bold">🌱 Spring Boot Modules</h3><p class="editorial-p">Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p></div>
-                    <a href="https://spring.io/docs" target="_blank" class="hub-link-classic">Access Sandbox Note →</a>
+                <div class="hub-card hub-spring" data-keywords="spring boot jwt security oauth microservice kafka redis">
+                    <div><h3>🌱 Spring Boot Modules</h3><p>Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p></div>
+                    <a href="https://spring.io/docs" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
-                <div class="hub-card-classic hub-system" data-keywords="system design architecture hld lld scalability balance">
-                    <div><h3 class="font-classic font-bold">🏗 Architecture Base</h3><p class="editorial-p">Scalability blueprints, rate-limiters deployment pipelines, and zero-downtime release rules.</p></div>
-                    <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="hub-link-classic">Access Sandbox Note →</a>
+                <div class="hub-card hub-system" data-keywords="system design architecture hld lld scalability balance">
+                    <div><h3>🏗 Architecture Base</h3><p>Scalability blueprints, rate-limiters deployment pipelines, and zero-downtime release rules.</p></div>
+                    <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="live-dashboard" class="section-spacing" style="padding: 120px 9%;">
+    <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
-            <h2 class="font-classic font-bold">Live Telemetry Dashboard</h2>
-            <p class="font-classic italic font-sub">Real-time metrics, wellness configs, and universal logs tracking</p>
+            <h2>Live Multi-Hub Node Engine</h2>
+            <p>Real-time metrics, wellness configs, and universal logs tracking</p>
         </div>
         
         <div class="dashboard-grid">
-            <div class="dashboard-main-panel-classic">
-                <div class="hub-nav-tabs-classic">
-                    <button class="tab-btn-classic active" onclick="switchDashboardTab('tech-knowledge')">💡 Deep Tech Knowledge</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('meditation')">🧘 Zen Meditation</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('health')">❤️ Health Analytics</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('music-hub')">🎵 Music Engine</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('novel-hub')">📚 Novel Library</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('ai-hub')">🤖 AI Toolkits</button>
-                    <button class="tab-btn-classic" onclick="switchDashboardTab('ai-compiler-hub')">⚡ AI Code Optimizer</button>
+            <div class="dashboard-main-panel">
+                <div class="hub-nav-tabs">
+                    <button class="tab-btn active" onclick="switchDashboardTab('tech-knowledge')">💡 Deep Tech Knowledge</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('meditation')">🧘 Zen Meditation</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('health')">❤️ Health Analytics</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('music-hub')">🎵 Music Engine</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('novel-hub')">📚 Novel Library</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('ai-hub')">🤖 AI Toolkits</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('ai-compiler-hub')">⚡ AI Code Optimizer</button>
                 </div>
 
                 <div id="tech-knowledge" class="hub-content-panel active">
-                    <h3 class="font-classic italic">Advanced Core Blueprint (A to Z Architecture)</h3>
-                    <p style="margin-bottom: 15px;" class="editorial-p"><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads minimize latency across request networks.</p>
+                    <h3>Advanced Core Blueprint (A to Z Architecture)</h3>
+                    <p style="margin-bottom: 15px;"><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads minimize latency across request networks.</p>
                     <p><strong>IT Links Hub:</strong> <a href="https://www.baeldung.com/" target="_blank" class="dashboard-inline-link">Baeldung System Docs Portal</a> • <a href="https://leetcode.com/" target="_blank" class="dashboard-inline-link">DSA Engine Platform</a></p>
                 </div>
 
                 <div id="meditation" class="hub-content-panel">
-                    <h3 class="font-classic italic">Breathing Rhythm Optimizer</h3>
-                    <p class="editorial-p">Follow the expanding guided pulse circle engine to log cardiac coherence.</p>
+                    <h3>Breathing Rhythm Optimizer</h3>
+                    <p>Follow the expanding guided pulse circle engine to log cardiac coherence.</p>
                     <div class="breath-container">
                         <div class="breath-circle" id="breathTxt">Inhale</div>
                         <p style="margin-top: 20px; color: #4cc9ff; font-weight: 500;">Cycle Active</p>
@@ -253,7 +251,7 @@
                 </div>
 
                 <div id="health" class="hub-content-panel">
-                    <h3 class="font-classic italic">Vitals Analytics Matrix</h3>
+                    <h3>Vitals Analytics Matrix</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px;">
                         <div class="health-data-item"><span>Heart Rate Avg</span><h2 style="color: #ef4444; margin-top: 5px;">72 BPM</h2></div>
                         <div class="health-data-item"><span>Hydration Index</span><h2 style="color: #3b82f6; margin-top: 5px;">2.4 Liters</h2></div>
@@ -261,10 +259,10 @@
                 </div>
 
                 <div id="music-hub" class="hub-content-panel">
-                    <h3 class="font-classic italic">Music Playground Engine</h3>
-                    <p class="editorial-p">Stream background beats. Frequency ripples auto-render below on activation:</p>
+                    <h3>Music Playground Engine</h3>
+                    <p>Stream background beats. Frequency ripples auto-render below on activation:</p>
                     <div class="audio-wave-canvas-box" style="margin: 15px 0;">
-                        <canvas id="musicWaveCanvas" width="400" height="40" style="width:100%; background:rgba(0,0,0,0.3); border-radius:4px; border:1px dashed var(--border-color);"></canvas>
+                        <canvas id="musicWaveCanvas" width="400" height="40" style="width:100%; background:rgba(0,0,0,0.3); border-radius:8px; border:1px dashed var(--border-color);"></canvas>
                     </div>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://open.spotify.com" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-spotify"></i> Spotify Gateway</a>
@@ -273,8 +271,8 @@
                 </div>
 
                 <div id="novel-hub" class="hub-content-panel">
-                    <h3 class="font-classic italic">The Creative Novel Library</h3>
-                    <p class="editorial-p">Access universal literature spaces to balance logic processing with narrative streams:</p>
+                    <h3>The Creative Novel Library</h3>
+                    <p>Access universal literature spaces to balance logic processing with narrative streams:</p>
                     <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://www.gutenberg.org/" target="_blank" class="hub-link-btn"><i class="fas fa-book-open"></i> Project Gutenberg Open Shelf</a>
                         <a href="https://archive.org/details/books" target="_blank" class="hub-link-btn"><i class="fas fa-archive"></i> Internet Archive Books</a>
@@ -282,8 +280,8 @@
                 </div>
 
                 <div id="ai-hub" class="hub-content-panel">
-                    <h3 class="font-classic italic">AI Tools & Tech Ecosystem</h3>
-                    <p class="editorial-p">Engineered prompts compiler and system helpers linked directly for production scaling:</p>
+                    <h3>AI Tools & Tech Ecosystem</h3>
+                    <p>Engineered prompts compiler and system helpers linked directly for production scaling:</p>
                     <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://chatgpt.com/" target="_blank" class="hub-link-btn"><i class="fas fa-robot"></i> ChatGPT Matrix</a>
                         <a href="https://github.com/features/copilot" target="_blank" class="hub-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
@@ -291,34 +289,34 @@
                 </div>
 
                 <div id="ai-compiler-hub" class="hub-content-panel">
-                    <h3 class="font-classic italic">Interactive Code Optimizer Console</h3>
+                    <h3>Interactive Code Optimizer Console</h3>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Paste computational sub-optimal arrays loops blocks to re-index pipelines complexity models.</p>
-                    <textarea id="aiInputCodeArea" rows="4" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-color); color:#00ffcc; font-family:monospace; padding:10px; border-radius:4px;" placeholder="for(int i=0; i<n; i++) { for(int j=0; j<n; j++) { ... } }"></textarea>
+                    <textarea id="aiInputCodeArea" rows="4" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-color); color:#00ffcc; font-family:monospace; padding:10px; border-radius:8px;" placeholder="for(int i=0; i<n; i++) { for(int j=0; j<n; j++) { ... } }"></textarea>
                     <div style="display:flex; gap:10px; margin-top:10px;">
                         <button class="btn style-submit-btn" style="padding:10px;" onclick="compileAndOptimizeClientCode()">RUN MATRIX OPTIMIZATION COMPILER ⚡</button>
                     </div>
-                    <div id="aiCompilerResponseOutput" style="margin-top:15px; padding:12px; background:rgba(0,0,0,0.7); border-radius:4px; border-left:3px solid #00ffcc; font-family:monospace; font-size:0.85rem; display:none; white-space:pre-wrap;"></div>
+                    <div id="aiCompilerResponseOutput" style="margin-top:15px; padding:12px; background:rgba(0,0,0,0.7); border-radius:8px; border-left:3px solid #00ffcc; font-family:monospace; font-size:0.85rem; display:none; white-space:pre-wrap;"></div>
                 </div>
             </div>
 
-            <div class="news-sidebar-classic">
-                <h3 class="font-classic font-bold"><i class="fas fa-newspaper"></i> Live Ticker Logs</h3>
+            <div class="news-sidebar">
+                <h3><i class="fas fa-globe"></i> Desh Videsh Live Ticker</h3>
                 <div id="liveNewsWrapper"></div>
             </div>
         </div>
     </section>
 
-    <section id="feedback-section" class="feedback-section section-spacing">
+    <section id="feedback-section" class="feedback-section">
         <div class="section-title">
-            <h2 class="font-classic font-bold">Correspondence</h2>
-            <p class="font-classic italic font-sub">Valued feedback and technical recognition from industry peers and leadership</p>
+            <h2>Professional Endorsements</h2>
+            <p>Valued feedback and technical recognition from industry peers and leadership</p>
         </div>
         <div class="feedback-container">
-            <div class="cyber-form-wrapper-classic">
+            <div class="cyber-form-wrapper">
                 <form id="portfolioFeedbackForm">
                     <div class="form-group">
-                        <label class="font-classic italic">Designation / Role</label>
-                        <select id="feedbackDesignation" style="width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white; font-family: 'Poppins'; margin-bottom: 15px;">
+                        <label>Designation / Role</label>
+                        <select id="feedbackDesignation" style="width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; font-family: 'Poppins'; margin-bottom: 15px;">
                             <option value="Tech Lead">Tech Lead</option>
                             <option value="Project Manager">Project Manager</option>
                             <option value="DevOps Engineer">DevOps Engineer</option>
@@ -326,42 +324,42 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="font-classic italic">Your Name</label>
-                        <input type="text" id="feedbackName" required style="border-radius: 4px;">
+                        <label>Your Name</label>
+                        <input type="text" id="feedbackName" required>
                     </div>
                     <div class="form-group">
-                        <label class="font-classic italic">Review / Feedback</label>
-                        <textarea id="feedbackMessage" rows="4" required placeholder="Share your thoughts on collaboration, delivery, or technical execution..." style="border-radius: 4px;"></textarea>
+                        <label>Review / Feedback</label>
+                        <textarea id="feedbackMessage" rows="4" required placeholder="Share your thoughts on collaboration, delivery, or technical execution..."></textarea>
                     </div>
-                    <button type="submit" class="btn-classic-submit">Submit Evaluation ⚡</button>
+                    <button type="submit" class="btn style-submit-btn">Submit Feedback ⚡</button>
                 </form>
             </div>
             
             <div class="live-reviews-board" style="margin-top: 40px;">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem;" class="font-classic font-bold"><i class="fas fa-comments"></i> Peer Feedback Stack</h3>
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;"><i class="fas fa-comments"></i> Peer Feedback Stack</h3>
                 <div id="reviewsContainerStack">
-                    <div class="review-compiled-card-classic">
-                        <h4 class="font-classic font-bold"><i class="fas fa-user-shield"></i> Tech Lead</h4>
-                        <p style="margin-top: 8px;" class="editorial-p">"Ayush demonstrates strong expertise in core Java and Spring systems, consistently delivering optimized, scalable backend solutions. He takes full ownership of tasks and drives development with excellent technical proficiency."</p>
+                    <div class="review-compiled-card">
+                        <h4><i class="fas fa-user-shield"></i> Tech Lead</h4>
+                        <p style="margin-top: 8px;">"Ayush demonstrates strong expertise in core Java and Spring systems, consistently delivering optimized, scalable backend solutions. He takes full ownership of tasks and drives development with excellent technical proficiency."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact section-spacing" id="contact">
-        <div class="section-title"><h2 class="font-classic font-bold">Connect</h2><p class="font-classic italic font-sub">Open loop connection ports verified</p></div>
+    <section class="contact" id="contact">
+        <div class="section-title"><h2>Let's Connect</h2><p>Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
-            <div class="contact-card-classic"><i class="fas fa-envelope"></i><h3 class="font-classic">Email</h3><p>aayushs821@gmail.com</p><a href="mailto:aayushs821@gmail.com" class="btn-sandbox-classic">Send Email</a></div>
-            <div class="contact-card-classic"><i class="fab fa-github"></i><h3 class="font-classic">GitHub</h3><p>github.com/aayushsingh123</p><a href="https://github.com/aayushsingh123" target="_blank" class="btn-sandbox-classic">Visit GitHub</a></div>
-            <div class="contact-card-classic"><i class="fab fa-youtube"></i><h3 class="font-classic">YouTube</h3><p>@thestorm1521</p><a href="https://www.youtube.com/@thestorm1521" target="_blank" class="btn-sandbox-classic">Watch Channel</a></div>
+            <div class="contact-card"><i class="fas fa-envelope"></i><h3>Email</h3><p>aayushs821@gmail.com</p><a href="mailto:aayushs821@gmail.com">Send Email</a></div>
+            <div class="contact-card"><i class="fab fa-github"></i><h3>GitHub</h3><p>github.com/aayushsingh123</p><a href="https://github.com/aayushsingh123" target="_blank">Visit GitHub</a></div>
+            <div class="contact-card"><i class="fab fa-youtube"></i><h3>YouTube</h3><p>@thestorm1521</p><a href="https://www.youtube.com/@thestorm1521" target="_blank">Watch Channel</a></div>
         </div>
     </section>
 
-    <footer class="footer-classic">
-        <h2 class="font-classic font-bold italic">Ayush Singh</h2>
-        <p class="font-classic">Java Backend Engineer</p>
-        <p style="margin-top: 15px; opacity: 0.6; font-size: 0.85rem;">© 2026 All Rights Reserved // Classic Tech Mesh</p>
+    <footer>
+        <h2>Ayush Singh</h2>
+        <p>Java Backend Engineer</p>
+        <p>© 2026 All Rights Reserved</p>
     </footer>
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
@@ -369,7 +367,7 @@
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
-            <span class="font-classic">Ayush's Assistant Chat</span>
+            <span>Ayush's Assistant Chat</span>
             <i class="fas fa-chevron-down" style="margin-left: auto; cursor: pointer;"></i>
         </div>
         <div class="chat-body" id="chatBody">
@@ -385,7 +383,7 @@
     <div id="alertNotificationBox" class="toast-box">
         <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
         <div>
-            <h4 class="toast-title font-classic">System Update</h4>
+            <h4 class="toast-title">System Update</h4>
             <p id="notificationText" class="toast-desc">Configuration sync protocol finalized.</p>
         </div>
     </div>
