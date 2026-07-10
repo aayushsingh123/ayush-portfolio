@@ -52,8 +52,8 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
         setTimeout(() => {
             triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
             startCounterAnimation();
-            renderLiveNewsFeed(); 
-            initVoiceCommandGateway(); // Instantiates Voice processing vector
+            initLiveNewsTickerSystem(); // Renders the automatic ticking news block
+            initVoiceCommandGateway(); 
         }, 600);
     });
 }
@@ -124,7 +124,7 @@ window.addEventListener("scroll", () => {
     if(progressNode) progressNode.style.width = scrolled + "%";
 });
 
-// Theme Toggle Engine (Dark/Light Core Connection Fixed)
+// Theme Toggle Engine
 const themeToggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
@@ -163,7 +163,7 @@ if(semanticHubSearch) {
 
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & AI OPTMIZER PARSERS
+   4. DASHBOARD TERMINAL & TICKER CHANGER LOGIC
 ======================================================= */
 
 // Universal Dashboard Multi-Tab Panel Switch Mechanics with Animations Trigger
@@ -199,27 +199,36 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// Actual 2026 Real-time Desh Videsh Tech News Renderer
-function renderLiveNewsFeed() {
+// Dynamic Automated Scrolling News Ticker Matrix (Solves the static simple feel issue)
+function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if(!wrapper) return;
 
-    const newsData2026 = [
-        { tag: "Global Tech", title: "OpenAI Debuts GPT-5.6 & ChatGPT Work Workspace", desc: "Integrates Codex processing natively across enterprise dynamic platform pipelines." },
-        { tag: "National India", title: "BSNL Launches Satellite Phone Node Networks", desc: "Delivers resilient backup links in regions detached from classic cellular fields." },
-        { tag: "Hardware Infrastructure", title: "Meta to Launch Custom AI Chips Production in September", desc: "Aims to expand cluster limits to 14 gigawatts to maximize execution loops." }
+    const rotatingFeeds = [
+        { tag: "Global Tech", title: "OpenAI Releases GPT-5.6 Execution Context", desc: "Native token pipelines stream architectural logic rules instantly." },
+        { tag: "National Infrastructure", title: "BSNL Live Satellite Nodes Deployed Across Clusters", desc: "Establishes secure telemetry backup links for critical grid operations." },
+        { tag: "Silicon Matrix", title: "Meta Finalizes 14GW Custom Compute Architecture", desc: "Hardware accelerators scale cluster loop speeds to absolute peak efficiency." },
+        { tag: "Open Source Nodes", title: "Spring Framework 7.0 Alpha Commits Verified", desc: "Integrates direct native compile strategies for Java 25 paradigms." }
     ];
 
-    wrapper.innerHTML = ""; 
+    let currentIndex = 0;
 
-    newsData2026.forEach((item, index) => {
-        setTimeout(() => {
-            const card = document.createElement("div");
-            card.className = "news-card";
-            card.innerHTML = `<span class="news-tag">${item.tag}</span><h4>${item.title}</h4><p>${item.desc}</p>`;
-            wrapper.appendChild(card);
-        }, index * 250); 
-    });
+    function renderActiveTickerCard() {
+        wrapper.innerHTML = "";
+        const item = rotatingFeeds[currentIndex];
+
+        const card = document.createElement("div");
+        card.className = "news-card fade-in";
+        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px;'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
+        
+        wrapper.appendChild(card);
+
+        // Cycle loops safely
+        currentIndex = (currentIndex + 1) % rotatingFeeds.length;
+    }
+
+    renderActiveTickerCard();
+    setInterval(renderActiveTickerCard, 4500); // Ticks smoothly every 4.5 seconds with animations
 }
 
 // AI Custom Mock Code Complexity Optimizer Algorithm Compiler
@@ -238,11 +247,10 @@ function compileAndOptimizeClientCode() {
     outputBox.innerText = "[Compiling Optimization Matrix Model... Please Wait]";
 
     setTimeout(() => {
-        // Mock Evaluation matrix parsing signature profiles
         if(rawCode.includes("for") && (rawCode.match(/for/g) || []).length > 1) {
-            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Input Pattern Detected: Nested O(n^2) Loops.\n// Refactored Solution Complexities: Reduced to O(n) Hash Alignment Matrix.\n\npublic List<Integer> optimizePipeline(int[] data) {\n    Map<Integer, Integer> map = new HashMap<>();\n    // Virtual thread loop architecture optimized smoothly\n    for(int val : data) {\n        map.put(val, map.getOrDefault(val, 0) + 1);\n    }\n    return new ArrayList<>(map.keySet());\n}`;
+            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Input Pattern Detected: Nested O(n^2) Loops.\n// Refactored Solution Complexities: Reduced to O(n) Hash Alignment Matrix.\n\npublic List<Integer> optimizePipeline(int[] data) {\n    Map<Integer, Integer> map = new HashMap<>();\n    for(int val : data) {\n        map.put(val, map.getOrDefault(val, 0) + 1);\n    }\n    return new ArrayList<>(map.keySet());\n}`;
         } else {
-            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Complexity Analysis: Execution pipeline is stable at O(n) or O(1).\n// Optimization Advice: Integrated G1GC garbage thresholds verified cleanly.\n\nSystem.out.println("Pipeline optimal execution track confirmed.");`;
+            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Complexity Analysis: Execution pipeline is stable at O(n) or O(1).\n// Optimization Advice: Integrated G1GC garbage thresholds verified cleanly.`;
         }
         triggerSystemToast("Code compiled & array indices optimized!");
     }, 1100);
@@ -284,7 +292,12 @@ function initVoiceCommandGateway() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-        if(voiceBtn) voiceBtn.style.display = "none";
+        // Fallback structural override handler
+        if(voiceBtn) {
+            voiceBtn.addEventListener("click", () => {
+                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
+            });
+        }
         return;
     }
 
@@ -304,7 +317,6 @@ function initVoiceCommandGateway() {
         const command = event.results[0][0].transcript.toLowerCase();
         triggerSystemToast(`Voice Command Input: "${command}"`);
 
-        // Router commands dictionary setups
         if (command.includes("skill")) {
             window.location.href = "#skills";
         } else if (command.includes("experience")) {
@@ -356,7 +368,7 @@ if(reviewForm && reviewsContainerStack) {
     });
 }
 
-// Chatbox Interface Widgets Drawer Mechanics
+// Chatbox Interface Widgets Mechanics
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
