@@ -540,4 +540,47 @@ const newElementsReveal = new IntersectionObserver((entries) => {
 // Targets both container cards
 document.querySelectorAll(".hub-card, .feedback-container").forEach(el => {
     newElementsReveal.observe(el);
-});
+});/* =======================================================
+   THEME LOGIC, DASHBOARD NAVIGATION & ACTIVE HUBS RUNTIME
+======================================================= */
+
+// Theme Switching Toggle Trigger Engine
+const toggleBtnNode = document.getElementById("themeToggle");
+if(toggleBtnNode) {
+    toggleBtnNode.addEventListener("click", () => {
+        document.body.classList.toggle("light-theme");
+        const currentStatus = document.body.classList.contains("light-theme") ? "Light Mode Active" : "Dark Mode Active";
+        triggerSystemToast(`Theme Engine: Config changed to ${currentStatus}`);
+    });
+}
+
+// Live Terminal Dashboard Tabs Navigator Controller
+function switchDashboardTab(tabId) {
+    document.querySelectorAll(".hub-content-panel").forEach(panel => {
+        panel.classList.remove("active");
+    });
+    
+    // Manage active visual tab configurations
+    const activeBtn = event.currentTarget;
+    if(activeBtn && activeBtn.parentElement) {
+        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
+    }
+    
+    const targetedPanel = document.getElementById(tabId);
+    if(targetedPanel) targetedPanel.classList.add("active");
+    if(activeBtn) activeBtn.classList.add("active");
+}
+
+// Interactive Guided Meditation Circle Rhythms Engine
+const breathTxtNode = document.getElementById("breathTxt");
+if(breathTxtNode) {
+    setInterval(() => {
+        if(breathTxtNode.innerText === "Inhale") {
+            breathTxtNode.innerText = "Exhale";
+        } else {
+            breathTxtNode.innerText = "Inhale";
+        }
+    }, 4000);
+}
