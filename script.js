@@ -205,10 +205,10 @@ function initLiveNewsTickerSystem() {
     if(!wrapper) return;
 
     const rotatingFeeds = [
-        { tag: "Global Tech", title: "OpenAI Releases GPT-5.6 Execution Context", desc: "Native token pipelines stream architectural logic rules instantly." },
-        { tag: "National Infrastructure", title: "BSNL Live Satellite Nodes Deployed Across Clusters", desc: "Establishes secure telemetry backup links for critical grid operations." },
-        { tag: "Silicon Matrix", title: "Meta Finalizes 14GW Custom Compute Architecture", desc: "Hardware accelerators scale cluster loop speeds to absolute peak efficiency." },
-        { tag: "Open Source Nodes", title: "Spring Framework 7.0 Alpha Commits Verified", desc: "Integrates direct native compile strategies for Java 25 paradigms." }
+        { tag: "System Boot", title: "Initializing Java 21 Runtime Environment", desc: "Virtual Threads mappings configured safely across active application clusters." },
+        { tag: "Compliance", title: "Corporate Governance & Transparency Audited", desc: "Anti-bribery constraints and core code validation routines verified perfectly." },
+        { tag: "Logic Stream", title: "Array Manipulation Bottlenecks Eliminated", desc: "Naively nested loop layers fully optimized down to predictable linear architectures." },
+        { tag: "Dev Pipeline", title: "AI-Velocity Prototyping Active", desc: "Amazon Q and Kiro frameworks accelerations integrated into active workspace." }
     ];
 
     let currentIndex = 0;
@@ -218,17 +218,64 @@ function initLiveNewsTickerSystem() {
         const item = rotatingFeeds[currentIndex];
 
         const card = document.createElement("div");
-        card.className = "news-card fade-in";
-        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px;'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
+        card.className = "news-card ";
+        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px; color: var(--text-main);'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
         
         wrapper.appendChild(card);
-
-        // Cycle loops safely
         currentIndex = (currentIndex + 1) % rotatingFeeds.length;
     }
 
     renderActiveTickerCard();
-    setInterval(renderActiveTickerCard, 4500); // Ticks smoothly every 4.5 seconds with animations
+    setInterval(renderActiveTickerCard, 4500); 
+}
+
+// Dynamic Mock OpenAPI Documentation Playground Execution Logic
+let currentActiveMockEndpoint = "";
+function simulateSwaggerSandbox(endpoint) {
+    const box = document.getElementById("swaggerSandboxBox");
+    const input = document.getElementById("sandboxUrlInput");
+    const output = document.getElementById("sandboxResponseOutput");
+    if(!box || !input || !output) return;
+
+    currentActiveMockEndpoint = endpoint;
+    input.value = "https://api.ayushsingh.tech" + endpoint;
+    output.innerText = "// Click 'Execute' to fire mock compilation requests to the backend architecture logic node.";
+    box.style.display = "block";
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function executeSandboxApiRequest() {
+    const output = document.getElementById("sandboxResponseOutput");
+    if(!output) return;
+
+    output.innerText = "{ \"status\": \"Firing mock payload layers...\", \"timestamp\": " + Date.now() + " }";
+
+    setTimeout(() => {
+        if(currentActiveMockEndpoint.includes("auth")) {
+            output.innerText = JSON.stringify({
+                status: 200,
+                message: "Authentication Authorization Token Generated",
+                data: {
+                    token_type: "Bearer",
+                    access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.portfolioMockTokenNode...",
+                    expires_in: 3600,
+                    compliance_check: "PASSED (Zero Risks Cleared)"
+                }
+            }, null, 4);
+        } else {
+            output.innerText = JSON.stringify({
+                status: 200,
+                execution_scope: "Subarray Logic Node Optimizer",
+                algorithm_metrics: {
+                    input_complexity: "O(n^3) Brute Loop",
+                    optimized_complexity: "O(n^2) Hash Index Matrix",
+                    latency_reduction: "45% Faster",
+                    governance_safety: "100% Structural Stability Secured"
+                }
+            }, null, 4);
+        }
+        triggerSystemToast("OpenAPI Request Executed Successfully!");
+    }, 900);
 }
 
 // AI Custom Mock Code Complexity Optimizer Algorithm Compiler
@@ -292,7 +339,6 @@ function initVoiceCommandGateway() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-        // Fallback structural override handler
         if(voiceBtn) {
             voiceBtn.addEventListener("click", () => {
                 triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
@@ -357,10 +403,13 @@ if(reviewForm && reviewsContainerStack) {
         e.preventDefault();
         const clientName = document.getElementById("feedbackName").value;
         const clientReview = document.getElementById("feedbackMessage").value;
+        const designation = document.getElementById("feedbackDesignation").value;
         
         const reviewCard = document.createElement("div");
         reviewCard.className = "review-compiled-card";
-        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName}</h4><p>${clientReview}</p>`;
+        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
+                                <span style="font-size: 0.75rem; color: var(--accent-glow); text-transform: uppercase; font-weight: bold; display: block; margin-bottom: 5px;">[SUBMITTED EXTERNAL REVIEW NODE]</span>
+                                <p>${clientReview}</p>`;
         
         reviewsContainerStack.prepend(reviewCard);
         triggerSystemToast(`Success: Review compiled for ${clientName}! ✨`);
