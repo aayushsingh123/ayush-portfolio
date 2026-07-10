@@ -12,11 +12,11 @@
 </head>
 <body>
 
-    <!-- 🚀 CINEMATIC WELCOME OVERLAY LAYER -->
+    <!-- 🚀 CINEMATIC AI WELCOME OVERLAY LAYER -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
-            <h1>WELCOME TO AYUSH PORTFOLIO</h1>
+            <h1>WELCOME TO PORTFOLIO</h1>
             <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
@@ -31,7 +31,7 @@
     <header>
         <nav>
             <div class="logo">AS</div>
-            <ul>
+            <ul id="navMenu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -42,9 +42,15 @@
                 <li><a href="#feedback-section">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <!-- Theme Toggle Interactive Button -->
-            <div class="theme-toggle" id="themeToggle">
-                <i class="fas fa-adjust" id="themeIcon"></i>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- Voice Activation Command Button -->
+                <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <!-- Theme Toggle Interactive Button -->
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-adjust" id="themeIcon"></i>
+                </div>
             </div>
             <div class="menu-btn" id="menuBtn">
                 <span></span><span></span><span></span>
@@ -120,7 +126,6 @@
                 <div class="timeline-content">
                     <span>Nov 2021 - Present</span>
                     <h3>Senior Software Developer</h3>
-                    <h4></h4>
                     <p>Developing secure, scalable backend systems using Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Authentication solutions.</p>
                 </div>
             </div>
@@ -130,14 +135,6 @@
                     <span>Core Expertise</span>
                     <h3>Backend Engineering</h3>
                     <p>REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span>Achievements</span>
-                    <h3>Production Support</h3>
-                    <p>Resolved critical production incidents, bottlenecks and contributed to enterprise applications.</p>
                 </div>
             </div>
         </div>
@@ -156,7 +153,7 @@
 
     <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
-        <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work</p></div>
+        <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
             <div class="project-card">
                 <div class="project-image"><i class="fas fa-shield-alt"></i></div>
@@ -165,23 +162,27 @@
         </div>
     </section>
 
-    <!-- LEARNING HUB SECTION -->
+    <!-- LEARNING HUB SECTION (WITH LIVE CONTEXT COGNITIVE SEARCH) -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
-                <h2>Learning Hub</h2>
-                <p>A curated space of my technical expertise, continuous learning, and engineered notes.</p>
+                <h2>Learning Hub & Sandboxes</h2>
+                <p>AI semantic query filters mapped contextually across production logs.</p>
+                <!-- Semantic Input Node -->
+                <div class="search-box-wrapper" style="margin-top:25px; display:flex; justify-content:center;">
+                    <input type="text" id="semanticHubSearch" placeholder="Type context keywords (e.g. 'GC', 'Kafka', 'JWT')..." style="width: 100%; max-width: 500px; padding: 12px 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: 30px; color:#fff; text-align:center;">
+                </div>
             </div>
-            <div class="learning-grid">
-                <div class="hub-card hub-java">
+            <div class="learning-grid" id="learningGridHub">
+                <div class="hub-card hub-java" data-keywords="java gc jvm garbage collection thread concurrency">
                     <div><h3>☕ Java Core Docs</h3><p>Deep dives into JVM internals, Multi-threading concurrency models, and memory profiling.</p></div>
                     <a href="https://docs.oracle.com/en/java/" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
-                <div class="hub-card hub-spring">
-                    <div><h3>🌱 Spring Boot Modules</h3><p>Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p></div>
+                <div class="hub-card hub-spring" data-keywords="spring boot jwt security oauth microservice kafka redis">
+                    <div><h3>🌱 Spring Boot Modules</h3><p>Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p>  </div>
                     <a href="https://spring.io/docs" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
-                <div class="hub-card hub-system">
+                <div class="hub-card hub-system" data-keywords="system design architecture hld lld scalability balance">
                     <div><h3>🏗 Architecture Base</h3><p>Scalability blueprints, rate-limiters deployment pipelines, and zero-downtime release rules.</p></div>
                     <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
@@ -192,7 +193,7 @@
     <!-- LIVE TERMINAL DASHBOARD NODE -->
     <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
-            <h2>Live Multi-Hub Node</h2>
+            <h2>Live Multi-Hub Node Engine</h2>
             <p>Real-time metrics, wellness configs, and universal logs tracking</p>
         </div>
         
@@ -205,6 +206,7 @@
                     <button class="tab-btn" onclick="switchDashboardTab('music-hub')">🎵 Music Engine</button>
                     <button class="tab-btn" onclick="switchDashboardTab('novel-hub')">📚 Novel Library</button>
                     <button class="tab-btn" onclick="switchDashboardTab('ai-hub')">🤖 AI Toolkits</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('ai-compiler-hub')">⚡ AI Code Optimizer</button>
                 </div>
 
                 <div id="tech-knowledge" class="hub-content-panel active">
@@ -232,10 +234,14 @@
 
                 <div id="music-hub" class="hub-content-panel">
                     <h3>Music Playground Engine</h3>
-                    <p>Stream real-time background beats while reading deep architecture matrix maps:</p>
-                    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="https://open.spotify.com" target="_blank" class="hub-link-btn"><i class="fab fa-spotify"></i> Spotify Gateway</a>
-                        <a href="https://music.youtube.com/" target="_blank" class="hub-link-btn"><i class="fab fa-youtube"></i> YouTube Music</a>
+                    <p>Stream background beats. Frequency ripples auto-render below on activation:</p>
+                    <!-- Audio Wave Animation Canvas -->
+                    <div class="audio-wave-canvas-box" style="margin: 15px 0;">
+                        <canvas id="musicWaveCanvas" width="400" height="40" style="width:100%; background:rgba(0,0,0,0.3); border-radius:8px; border:1px dashed var(--border-color);"></canvas>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="https://open.spotify.com" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-spotify"></i> Spotify Gateway</a>
+                        <a href="https://music.youtube.com/" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-youtube"></i> YouTube Music</a>
                     </div>
                 </div>
 
@@ -256,14 +262,21 @@
                         <a href="https://github.com/features/copilot" target="_blank" class="hub-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
                     </div>
                 </div>
+
+                <!-- NEW: ADVANCED INTERACTIVE AI CODE OPTIMIZER CORE -->
+                <div id="ai-compiler-hub" class="hub-content-panel">
+                    <h3>Interactive Code Optimizer Console</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Paste computational sub-optimal arrays loops blocks to re-index pipelines complexity models.</p>
+                    <textarea id="aiInputCodeArea" rows="4" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-color); color:#00ffcc; font-family:monospace; padding:10px; border-radius:8px;" placeholder="for(int i=0; i<n; i++) { for(int j=0; j<n; j++) { ... } }"></textarea>
+                    <button class="btn style-submit-btn" style="margin-top:10px; padding:10px;" onclick="compileAndOptimizeClientCode()">RUN MATRIX OPTIMIZATION COMPILER ⚡</button>
+                    <div id="aiCompilerResponseOutput" style="margin-top:15px; padding:12px; background:rgba(0,0,0,0.7); border-radius:8px; border-left:3px solid #00ffcc; font-family:monospace; font-size:0.85rem; display:none; white-space:pre-wrap;"></div>
+                </div>
             </div>
 
-            <!-- Desh Videsh Sidebar Feed (Dymamically Triggered Script Updates) -->
+            <!-- Desh Videsh Sidebar Feed -->
             <div class="news-sidebar">
                 <h3><i class="fas fa-globe"></i> Desh Videsh Live News</h3>
-                <div id="liveNewsWrapper">
-                    <!-- JavaScript will automatically pipe actual 2026 headlines continuously here -->
-                </div>
+                <div id="liveNewsWrapper"></div>
             </div>
         </div>
     </section>
