@@ -12,19 +12,22 @@
 </head>
 <body>
 
+    <!-- 🚀 CINEMATIC WELCOME OVERLAY LAYER -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
-            <h1>WELCOME TO AYUSH PORTFOLIO</h1>
+            <h1>WELCOME TO PORTFOLIO</h1>
             <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
     </div>
 
+    <!-- SCROLL PROGRESS BAR -->
     <div id="progressBar"></div>
 
     <div class="aurora"></div>
 
+    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="logo">AS</div>
@@ -40,9 +43,11 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- Voice Activation Command Button -->
                 <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
                     <i class="fas fa-microphone"></i>
                 </div>
+                <!-- Theme Toggle Interactive Button -->
                 <div class="theme-toggle" id="themeToggle">
                     <i class="fas fa-adjust" id="themeIcon"></i>
                 </div>
@@ -53,12 +58,14 @@
         </nav>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="left">
             <h4>Hello 👋 I'm</h4>
             <h1>Ayush Singh</h1>
             <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px; min-height: 45px;"></h2>
-            <p>Senior Java Backend Engineer with 5+ years of experience in Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Distributed Systems.</p>
+            <p style="margin-bottom: 15px;">I am a Backend Software Engineer specializing in Java and enterprise application development. My expertise includes Java, Spring Boot, REST APIs, Microservices, SQL, Oracle Database, Redis, and Message Queues. I enjoy designing scalable, secure, and high-performance backend systems that are reliable and easy to maintain.</p>
+            <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.7;">I follow modern software engineering practices including clean code, SOLID principles, design patterns, Git, CI/CD, code reviews, automated testing, and Agile development. I actively use AI-assisted development tools to improve productivity, accelerate debugging, enhance code quality, and streamline the software development lifecycle.</p>
             <div class="buttons">
                 <a href="#projects" class="btn">View Projects</a>
             </div>
@@ -77,6 +84,7 @@
         <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-title">
             <h2>About Me</h2>
@@ -86,7 +94,8 @@
             <div class="about-image"><img src="profile.jpeg" alt="Aayush Singh"></div>
             <div class="about-content">
                 <h3>Java Backend Engineer</h3>
-                <p>I'm <strong>Ayush Singh</strong>, a passionate Java Backend Engineer with 5+ years of experience in designing secure, scalable and distributed backend systems.</p>
+                <p>I have strong knowledge of authentication and authorization, session management, API design, database development, caching, asynchronous messaging, performance optimization, and software architecture. I also have experience in production support, debugging, root cause analysis, release management, and troubleshooting complex backend systems.</p>
+                <p style="font-size: 1rem; margin-bottom: 25px;">I am passionate about continuous learning, backend engineering, distributed systems, and building software that is scalable, maintainable, and delivers real business value.</p>
                 <div class="about-info">
                     <div class="info-card"><h4>Experience</h4><span>5+ Years</span></div>
                     <div class="info-card"><h4>Projects</h4><span>Enterprise Apps</span></div>
@@ -96,6 +105,7 @@
         </div>
     </section>
 
+    <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
@@ -109,6 +119,7 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE SECTION -->
     <section class="experience" id="experience">
         <div class="section-title"><h2>Experience</h2><p>Professional Journey</p></div>
         <div class="timeline">
@@ -128,9 +139,18 @@
                     <p>REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p>
                 </div>
             </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span>Achievements</span>
+                    <h3>Production Support</h3>
+                    <p>Resolved critical production incidents, bottlenecks and contributed to enterprise applications.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- ACHIEVEMENTS COUNTER -->
     <section class="achievements" id="achievements">
         <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
         <div class="achievement-grid">
@@ -141,6 +161,7 @@
         </div>
     </section>
 
+    <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
         <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
@@ -151,6 +172,7 @@
         </div>
     </section>
 
+    <!-- LEARNING HUB SECTION -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
@@ -177,6 +199,7 @@
         </div>
     </section>
 
+    <!-- LIVE TERMINAL DASHBOARD NODE -->
     <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
             <h2>Live Multi-Hub Node Engine</h2>
@@ -257,14 +280,17 @@
                 </div>
             </div>
 
+            <!-- Desh Videsh Sidebar Feed -->
             <div class="news-sidebar">
                 <h3><i class="fas fa-globe"></i> Desh Videsh Live Ticker</h3>
                 <div id="liveNewsWrapper">
-                    </div>
+                    <!-- JavaScript will continuously loop actual live nodes dynamically here -->
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- WEBSITE FEEDBACK SECTION -->
     <section id="feedback-section" class="feedback-section">
         <div class="section-title">
             <h2>Website Feedback</h2>
@@ -292,6 +318,7 @@
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
         <div class="section-title"><h2>Let's Connect</h2><p>Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
@@ -309,6 +336,7 @@
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
 
+    <!-- FLOATING CHAT WIDGET SYSTEM -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -325,6 +353,7 @@
     </div>
     <div class="chat-badge" id="chatBadge"><i class="fas fa-comments"></i></div>
 
+    <!-- POP ALERT SYSTEM NOTIFICATIONS TOAST -->
     <div id="alertNotificationBox" class="toast-box">
         <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
         <div>
