@@ -12,18 +12,10 @@
 </head>
 <body>
 
-    <!-- SCROLL PROGRESS -->
     <div id="progressBar"></div>
-
-    <!-- LOADER -->
-    <div id="loader">
-        <div class="loader-circle"></div>
-        <h2>Loading Portfolio...</h2>
-    </div>
 
     <div class="aurora"></div>
 
-    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="logo">AS</div>
@@ -34,11 +26,12 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#learning-hub">Learning Hub</a></li>
+                <li><a href="#live-dashboard">Live Terminal</a></li>
                 <li><a href="#feedback-section">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
+            <div class="theme-toggle" id="themeToggle" style="cursor: pointer; font-size: 1.3rem; margin-left: 15px;">
+                <i class="fas fa-adjust" style="color: var(--accent-glow);"></i>
             </div>
             <div class="menu-btn" id="menuBtn">
                 <span></span><span></span><span></span>
@@ -46,242 +39,192 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="left">
             <h4>Hello 👋 I'm</h4>
             <h1>Ayush Singh</h1>
-            <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px;"></h2>
-            <p>Senior Java Backend Engineer with 5+ years of experience in Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Distributed Systems.</p>
+            <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px; color: var(--accent-glow);"></h2>
+            <p style="color: var(--text-muted);">Senior Java Backend Engineer with 5+ years of experience in Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Distributed Systems.</p>
             <div class="buttons">
-                
-                <a href="#projects" class="btn2">View Projects</a>
+                <a href="#projects" class="btn" style="background: var(--accent-grad);">View Projects</a>
             </div>
             <div class="social">
                 <a href="https://github.com/aayushsingh123" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/ayushsinghtech/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="mailto:aayushs821@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@thestorm1521" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
         <div class="right">
-            <img src="profile.jpeg">
+            <img src="profile.jpeg" style="border-color: var(--border-color);">
         </div>
         <div class="hero-blur blur1"></div>
         <div class="hero-blur blur2"></div>
-        <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
+        <div class="scroll-down" style="color: var(--accent-glow);"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-title">
             <h2>About Me</h2>
-            <p>Who I Am</p>
+            <p style="color: var(--text-muted);">Who I Am</p>
         </div>
         <div class="about-container">
             <div class="about-image"><img src="profile.jpeg" alt="Aayush Singh"></div>
             <div class="about-content">
-                <h3> Java Backend Engineer</h3>
-                <p>I'm <strong>Ayush Singh</strong>, a passionate Java Backend Engineer with 5+ years of experience in designing secure, scalable and distributed backend systems.</p>
-                <p>I specialize in Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Authentication Systems.</p>
+                <h3 style="color: var(--text-main);">Java Backend Engineer</h3>
+                <p style="color: var(--text-muted);">I'm <strong>Ayush Singh</strong>, a passionate Java Backend Engineer with 5+ years of experience in designing secure, scalable and distributed backend systems.</p>
                 <div class="about-info">
-                    <div class="info-card"><h4>Experience</h4><span>5+ Years</span></div>
-                    <div class="info-card"><h4>Projects</h4><span>Enterprise Applications</span></div>
-                    <div class="info-card"><h4>Current Role</h4><span> Software Developer</span></div>
+                    <div class="info-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h4 style="color: var(--accent-glow);">Experience</h4><span style="color: var(--text-main);">5+ Years</span></div>
+                    <div class="info-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h4 style="color: var(--accent-glow);">Projects</h4><span style="color: var(--text-main);">Enterprise Apps</span></div>
+                    <div class="info-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h4 style="color: var(--accent-glow);">Current Role</h4><span style="color: var(--text-main);">Software Developer</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
-            <p>Technologies I Work With</p>
+            <p style="color: var(--text-muted);">Technologies I Work With</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-card"><i class="fab fa-java"></i><h3>Java</h3><div class="progress"><span style="width:95%"></span></div><p>95%</p></div>
-            <div class="skill-card"><i class="fas fa-leaf"></i><h3>Spring Boot</h3><div class="progress"><span style="width:92%"></span></div><p>92%</p></div>
-            <div class="skill-card"><i class="fas fa-network-wired"></i><h3>Microservices</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
-            <div class="skill-card"><i class="fas fa-database"></i><h3>SQL</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
-            <div class="skill-card"><i class="fas fa-bolt"></i><h3>Kafka</h3><div class="progress"><span style="width:88%"></span></div><p>88%</p></div>
-            <div class="skill-card"><i class="fas fa-memory"></i><h3>Redis</h3><div class="progress"><span style="width:86%"></span></div><p>86%</p></div>
-            <div class="skill-card"><i class="fab fa-docker"></i><h3>Docker</h3><div class="progress"><span style="width:85%"></span></div><p>85%</p></div>
-            <div class="skill-card"><i class="fas fa-cloud"></i><h3>Kubernetes</h3><div class="progress"><span style="width:82%"></span></div><p>82%</p></div>
+            <div class="skill-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fab fa-java" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">Java</h3><div class="progress"><span style="width:95%; background: var(--accent-grad);"></span></div><p style="color: var(--accent-glow);">95%</p></div>
+            <div class="skill-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fas fa-leaf" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">Spring Boot</h3><div class="progress"><span style="width:92%; background: var(--accent-grad);"></span></div><p style="color: var(--accent-glow);">92%</p></div>
+            <div class="skill-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fas fa-network-wired" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">Microservices</h3><div class="progress"><span style="width:90%; background: var(--accent-grad);"></span></div><p style="color: var(--accent-glow);">90%</p></div>
+            <div class="skill-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fas fa-database" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">SQL</h3><div class="progress"><span style="width:90%; background: var(--accent-grad);"></span></div><p style="color: var(--accent-glow);">90%</p></div>
         </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="services">
-        <div class="section-title">
-            <h2>What I Do</h2>
-            <p>Backend Engineering Expertise</p>
-        </div>
-        <div class="service-grid">
-            <div class="service-card"><i class="fas fa-server"></i><h3>Backend Development</h3><p>Java, Spring Boot, REST APIs, Secure Authentication and Enterprise Systems.</p></div>
-            <div class="service-card"><i class="fas fa-layer-group"></i><h3>Microservices</h3><p>Scalable distributed applications using Kafka, Redis and Kubernetes.</p></div>
-            <div class="service-card"><i class="fas fa-chart-line"></i><h3>Performance</h3><p>Optimization, Production Support and Monitoring.</p></div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
     <section class="experience" id="experience">
-        <div class="section-title">
-            <h2>Experience</h2>
-            <p>Professional Journey</p>
-        </div>
+        <div class="section-title"><h2>Experience</h2><p style="color: var(--text-muted);">Professional Journey</p></div>
         <div class="timeline">
-            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><span>Nov 2021 - Present</span><h3>Senior Software Developer</h3><h4></h4><p>Developing secure, scalable backend systems using Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Authentication solutions.</p></div></div>
-            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><span>Core Expertise</span><h3>Backend Engineering</h3><p>REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p></div></div>
-            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><span>Achievements</span><h3>Production Support</h3><p>Resolved critical production incidents, bottlenecks and contributed to enterprise applications.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot" style="background: var(--accent-glow); box-shadow: 0 0 20px var(--accent-glow);"></div><div class="timeline-content" style="background: var(--bg-secondary); border-color: var(--border-color);"><span style="color: var(--accent-glow);">Nov 2021 - Present</span><h3 style="color: var(--text-main);">Senior Software Developer</h3><p style="color: var(--text-muted);">Developing secure, scalable distributed server systems.</p></div></div>
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS COUNTER -->
     <section class="achievements" id="achievements">
-        <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
+        <div class="section-title"><h2>Achievements</h2><p style="color: var(--text-muted);">Highlights of My Journey</p></div>
         <div class="achievement-grid">
-            <div class="achievement-card"><h1>5+</h1><span>Years Experience</span></div>
-            <div class="achievement-card"><h1>30+</h1><span>Enterprise Projects</span></div>
-            <div class="achievement-card"><h1>100+</h1><span>Production Releases</span></div>
-            <div class="achievement-card"><h1>99.99%</h1><span>Application Availability</span></div>
+            <div class="achievement-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h1 style="color: var(--accent-glow);">5+</h1><span style="color: var(--text-muted);">Years Experience</span></div>
+            <div class="achievement-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h1 style="color: var(--accent-glow);">30+</h1><span style="color: var(--text-muted);">Enterprise Projects</span></div>
+            <div class="achievement-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h1 style="color: var(--accent-glow);">100+</h1><span style="color: var(--text-muted);">Production Releases</span></div>
+            <div class="achievement-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><h1 style="color: var(--accent-glow);">99.99%</h1><span style="color: var(--text-muted);">Application Availability</span></div>
         </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
-        <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work</p></div>
+        <div class="section-title"><h2>Featured Projects</h2><p style="color: var(--text-muted);">Some Enterprise Work</p></div>
         <div class="project-grid">
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-shield-alt"></i></div>
-                <div class="project-content"><h3>Authentication Platform</h3><p>Designed secure login, session management and modules for enterprise apps.</p><div class="tags"><span>Java</span><span>Spring</span><span>Security</span></div><div class="project-buttons"><a href="#">Live</a><a href="https://github.com/aayushsingh123" target="_blank">GitHub</a></div></div>
-            </div>
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-server"></i></div>
-                <div class="project-content"><h3>Distributed Backend</h3><p>Built scalable backend APIs with Kafka, Redis, Docker and Kubernetes.</p><div class="tags"><span>Kafka</span><span>Redis</span><span>Docker</span></div><div class="project-buttons"><a href="#">Live</a><a href="https://github.com/aayushsingh123" target="_blank">GitHub</a></div></div>
-            </div>
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-chart-line"></i></div>
-                <div class="project-content"><h3>Production Support</h3><p>Worked on infrastructure monitoring, debugging and performance optimization.</p><div class="tags"><span>Datadog</span><span>Linux</span><span>SQL</span></div><div class="project-buttons"><a href="#">Live</a><a href="https://github.com/aayushsingh123" target="_blank">GitHub</a></div></div>
+            <div class="project-card" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <div class="project-image" style="background: var(--accent-grad);"><i class="fas fa-shield-alt"></i></div>
+                <div class="project-content"><h3 style="color: var(--text-main);">Authentication Platform</h3><p style="color: var(--text-muted);">Secure login architecture rules setup.</p><div class="project-buttons"><a href="#" style="background: var(--accent-glow);">Live</a></div></div>
             </div>
         </div>
     </section>
 
-    <!-- LEARNING HUB SECTION -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <div class="section-title">
-                <h2>Learning Hub</h2>
-                <p>A curated space of my technical expertise, continuous learning, and engineered notes.</p>
-            </div>
+            <div class="section-title"><h2>Learning Hub</h2><p style="color: var(--text-muted);">Engineered technical notes storage.</p></div>
             <div class="learning-grid">
-                <div class="hub-card hub-java">
-                    <div><h3>☕ Java Core</h3><p>Java 8/11/17/21, Collections, Multithreading, JVM, Memory Management, GC, Exceptions, Streams</p></div>
-                    <a href="https://docs.oracle.com/en/java/" target="_blank" class="hub-link">Read Docs →</a>
-                </div>
-                <div class="hub-card hub-spring">
-                    <div><h3>🌱 Spring Boot</h3><p>Spring Core, Spring Boot, Spring Security, JWT, OAuth2, REST APIs, JPA, Hibernate, Validation</p></div>
-                    <a href="https://spring.io/docs" target="_blank" class="hub-link">Read Docs →</a>
-                </div>
-                <div class="hub-card hub-system">
-                    <div><h3>🏗 System Design</h3><p>LLD, HLD, Scalability, Load Balancers, API Gateway, Redis Caching, Kafka, CAP, Sharding, Microservices</p></div>
-                    <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="hub-link">Read Docs →</a>
+                <div class="hub-card hub-java" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                    <div><h3 style="color: var(--text-main);">Java Core</h3><p style="color: var(--text-muted);">JVM, Garbage Collection algorithms, Multithreading deep engine paradigms.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CERTIFICATES -->
-    <section class="certificates" id="certificates">
-        <div class="section-title"><h2>Certificates</h2><p>Professional Learning</p></div>
-        <div class="certificate-grid">
-            <div class="certificate-card"><i class="fas fa-award"></i><h3>Java Development</h3><p>Advanced Java & Spring Boot</p></div>
-            <div class="certificate-card"><i class="fas fa-cloud"></i><h3>Cloud & DevOps</h3><p>Docker • Kubernetes</p></div>
-            <div class="certificate-card"><i class="fas fa-database"></i><h3>Database</h3><p>SQL • Redis • Performance</p></div>
+    <section id="live-dashboard" style="padding: 120px 9%;">
+        <div class="section-title">
+            <h2>Live Multi-Hub Node</h2>
+            <p style="color: var(--text-muted);">Real-time metrics, wellness configs, and universal logs tracking</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 35px; border-radius: 20px;">
+                <div class="hub-nav-tabs">
+                    <button class="tab-btn active" onclick="switchDashboardTab('tech-knowledge')">💡 Deep Tech Knowledge</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('meditation')">🧘 Zen Meditation</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('health')">❤️ Health Analytics</button>
+                </div>
+
+                <div id="tech-knowledge" class="hub-content-panel active">
+                    <h3 style="color: var(--accent-glow); margin-bottom: 15px;">Advanced Core Blueprint (A to Z Architecture)</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;"><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads (Project Loom) minimize context-switching latency across heavy dynamic request networks.</p>
+                    <p style="color: var(--text-muted); line-height: 1.8; margin-top: 15px;"><strong>Garbage Collection Topology:</strong> ZGC configuration preserves execution pipelines with sub-millisecond pauses, maintaining an elite service availability layer.</p>
+                </div>
+
+                <div id="meditation" class="hub-content-panel">
+                    <h3 style="color: var(--accent-glow); margin-bottom: 5px;">Breathing Rhythm Optimizer</h3>
+                    <p style="color: var(--text-muted);">Follow the expanding pulse engine loop to sync heart rates and mental clarity logs.</p>
+                    <div class="breath-container">
+                        <div class="breath-circle" id="breathTxt">Inhale</div>
+                        <p style="margin-top: 20px; color: var(--accent-glow); font-weight: 500;">Rhythm State: Guided Cycle Active</p>
+                    </div>
+                </div>
+
+                <div id="health" class="hub-content-panel">
+                    <h3 style="color: var(--accent-glow); margin-bottom: 15px;">Static Vitals Engine Matrix</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">Heart Rate Avg</span>
+                            <h2 style="color: #ef4444; margin-top: 5px;">72 BPM</h2>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">Hydration Index</span>
+                            <h2 style="color: #3b82f6; margin-top: 5px;">2.4 Liters</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-sidebar">
+                <h3 style="color: var(--text-main); font-size: 1.25rem; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                    <i class="fas fa-globe" style="color: var(--accent-glow); margin-right: 8px;"></i> Desh Videsh Feed
+                </h3>
+                <div id="liveNewsWrapper">
+                    <div class="news-card">
+                        <span class="news-tag">Global Markets</span>
+                        <h4 style="margin: 5px 0; font-size: 0.95rem; color: var(--text-main);">Distributed Clouds See High Scale Demand Projections</h4>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Infrastructure frameworks transition rapidly to absolute zero trust protocols.</p>
+                    </div>
+                    <div class="news-card">
+                        <span class="news-tag">National Logs</span>
+                        <h4 style="margin: 5px 0; font-size: 0.95rem; color: var(--text-main);">Digital Infrastructure Nodes Expand Across Tier-2 Clusters</h4>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">High latency network architectures get completely swapped with advanced fiber lanes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- GITHUB PROFILE & LIVE STATS -->
-    <section class="github">
-        <div class="section-title"><h2>GitHub Profile</h2><p>Open Source Journey</p></div>
-        <div class="github-card">
-            <h3>@aayushsingh123</h3>
-            <p>Explore production-ready microservices, code architectures, and optimization repositories.</p>
-            <a href="https://github.com/aayushsingh123" target="_blank">Visit Profile</a>
-        </div>
-    </section>
-
-    <section class="github-stats" id="github-stats">
-        <div class="stats-grid">
-            <div class="stat-box"><h1 id="repoCount">0</h1><p>Repositories</p></div>
-            <div class="stat-box"><h1 id="followers">0</h1><p>Followers</p></div>
-            <div class="stat-box"><h1 id="following">0</h1><p>Following</p></div>
-            <div class="stat-box"><h1>100+</h1><p>Backend Commits</p></div>
-        </div>
-    </section>
-
-    <section class="contribution">
-        <div class="contribution-card"><img src="https://ghchart.rshah.org/4cc9ff/aayushsingh123" alt="GitHub Contribution"></div>
-    </section>
-
-    <!-- TECH STACK GRID -->
-    <section class="tech-stack">
-        <div class="section-title"><h2>Technology Stack</h2><p>Tools I Use Daily</p></div>
-        <div class="tech-grid">
-            <div class="tech"><i class="fab fa-java"></i>Java</div>
-            <div class="tech"><i class="fas fa-leaf"></i>Spring Boot</div>
-            <div class="tech"><i class="fas fa-network-wired"></i>Microservices</div>
-            <div class="tech"><i class="fas fa-database"></i>MySQL</div>
-            <div class="tech"><i class="fas fa-bolt"></i>Kafka</div>
-            <div class="tech"><i class="fas fa-memory"></i>Redis</div>
-            <div class="tech"><i class="fab fa-docker"></i>Docker</div>
-            <div class="tech"><i class="fas fa-cloud"></i>Kubernetes</div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS & ARTICLES -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-title"><h2>Testimonials</h2><p>What People Say</p></div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card"><img src="https://i.pravatar.cc/100?img=15"><h3>Team Lead</h3><span>Senior Engineering Manager</span><p>"Aayush consistently delivers high-quality backend solutions and resolves production issues efficiently."</p></div>
-            <div class="testimonial-card"><img src="https://i.pravatar.cc/100?img=22"><h3>Product Owner</h3><span>Enterprise Team</span><p>"Very reliable engineer with strong ownership and excellent debugging skills."</p></div>
-        </div>
-    </section>
-
-    <section class="blog">
-        <div class="section-title"><h2>Latest Articles</h2><p>Sharing Knowledge</p></div>
-        <div class="blog-grid">
-            <div class="blog-card"><h3>Java Performance Optimization</h3><p>Best practices to improve Java backend performance in enterprise applications.</p><a href="#">Read More →</a></div>
-            <div class="blog-card"><h3>Microservices Design</h3><p>Building scalable applications using Spring Boot and Kafka.</p><a href="#">Read More →</a></div>
-        </div>
-    </section>
-
-    <!-- BEAUTIFUL FEEDBACK FORM SECTION -->
     <section id="feedback-section" class="feedback-section">
         <div class="section-title">
             <h2>Website Feedback</h2>
-            <p>Let me know your thoughts or suggestions</p>
+            <p style="color: var(--text-muted);">Submit parameters to compile client reviews matrix</p>
         </div>
-        <div class="feedback-container">
-            <form id="portfolioFeedbackForm">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="feedbackName" required>
-                </div>
-                <div class="form-group">
-                    <label>Your Feedback</label>
-                    <textarea id="feedbackMessage" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn style-submit-btn">Submit Review ✨</button>
-            </form>
+        <div class="feedback-container" style="background: transparent; border: none; box-shadow: none; max-width: 700px;">
+            <div class="cyber-form-wrapper">
+                <form id="portfolioFeedbackForm">
+                    <div class="form-group">
+                        <label style="color: var(--accent-glow);">Developer/Visitor Identity Name</label>
+                        <input type="text" id="feedbackName" required style="border-radius: 4px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="form-group">
+                        <label style="color: var(--accent-glow);">Review Metadata / Text Buffer</label>
+                        <textarea id="feedbackMessage" rows="4" required style="border-radius: 4px; background: rgba(0,0,0,0.2);"></textarea>
+                    </div>
+                    <button type="submit" class="btn style-submit-btn" style="background: var(--accent-grad); border-radius: 4px;">Initialize Review Protocol ⚡</button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
-        <div class="section-title"><h2>Let's Connect</h2><p>I'm always open to discussing new opportunities.</p></div>
+        <div class="section-title"><h2>Let's Connect</h2><p style="color: var(--text-muted);">Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
-            <div class="contact-card"><i class="fas fa-envelope"></i><h3>Email</h3><p>aayushs821@gmail.com</p><a href="mailto:aayushs821@gmail.com">Send Email</a></div>
-            <div class="contact-card"><i class="fab fa-github"></i><h3>GitHub</h3><p>github.com/aayushsingh123</p><a href="https://github.com/aayushsingh123" target="_blank">Visit GitHub</a></div>
+            <div class="contact-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fas fa-envelope" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">Email</h3><p style="color: var(--text-muted);">aayushs821@gmail.com</p><a href="mailto:aayushs821@gmail.com">Send Email</a></div>
+            <div class="contact-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fab fa-github" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">GitHub</h3><p style="color: var(--text-muted);">github.com/aayushsingh123</p><a href="https://github.com/aayushsingh123" target="_blank">Visit GitHub</a></div>
+            <div class="contact-card" style="background: var(--bg-secondary); border-color: var(--border-color);"><i class="fab fa-youtube" style="color: var(--accent-glow);"></i><h3 style="color: var(--text-main);">YouTube</h3><p style="color: var(--text-muted);">@thestorm1521</p><a href="https://www.youtube.com/@thestorm1521" target="_blank">Watch Channel</a></div>
         </div>
     </section>
 
@@ -291,14 +234,13 @@
     </section>
 
     <footer>
-        <h2>Ayush Singh</h2>
-        <p> Java Backend Engineer</p>
+        <h2 style="color: var(--accent-glow);">Ayush Singh</h2>
+        <p>Java Backend Engineer</p>
         <p>© 2026 All Rights Reserved</p>
     </footer>
 
-    <div id="top"><i class="fas fa-arrow-up"></i></div>
+    <div id="top" style="background: var(--accent-glow);"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- FLOATING CHAT BOX WIDGET -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -310,21 +252,19 @@
         </div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Type message...">
-            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+            <button id="sendChatBtn" style="background: var(--accent-glow);"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
     <div class="chat-badge" id="chatBadge"><i class="fas fa-comments"></i></div>
 
-    <!-- DYNAMIC SYSTEM TOAST ALERT -->
     <div id="alertNotificationBox" class="toast-box">
-        <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
+        <div class="toast-icon-wrapper"><i class="fas fa-bell" style="color: var(--accent-glow);"></i></div>
         <div>
             <h4 class="toast-title">System Update</h4>
             <p id="notificationText" class="toast-desc">System configurations synced successfully.</p>
         </div>
     </div>
 
-    <!-- CORE SCRIPT LINK -->
     <script src="script.js"></script>
 </body>
 </html>
