@@ -12,7 +12,6 @@
 </head>
 <body>
 
-    <!-- 🚀 CINEMATIC AI WELCOME OVERLAY LAYER -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
@@ -22,12 +21,10 @@
         </div>
     </div>
 
-    <!-- SCROLL PROGRESS BAR -->
     <div id="progressBar"></div>
 
     <div class="aurora"></div>
 
-    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="logo">AS</div>
@@ -43,11 +40,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
-                <!-- Voice Activation Command Button -->
                 <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
                     <i class="fas fa-microphone"></i>
                 </div>
-                <!-- Theme Toggle Interactive Button -->
                 <div class="theme-toggle" id="themeToggle">
                     <i class="fas fa-adjust" id="themeIcon"></i>
                 </div>
@@ -58,7 +53,6 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="left">
             <h4>Hello 👋 I'm</h4>
@@ -83,7 +77,6 @@
         <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-title">
             <h2>About Me</h2>
@@ -103,7 +96,6 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
@@ -117,7 +109,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION -->
     <section class="experience" id="experience">
         <div class="section-title"><h2>Experience</h2><p>Professional Journey</p></div>
         <div class="timeline">
@@ -140,7 +131,6 @@
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS COUNTER -->
     <section class="achievements" id="achievements">
         <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
         <div class="achievement-grid">
@@ -151,7 +141,6 @@
         </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
         <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
@@ -162,13 +151,11 @@
         </div>
     </section>
 
-    <!-- LEARNING HUB SECTION (WITH LIVE CONTEXT COGNITIVE SEARCH) -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
                 <h2>Learning Hub & Sandboxes</h2>
                 <p>AI semantic query filters mapped contextually across production logs.</p>
-                <!-- Semantic Input Node -->
                 <div class="search-box-wrapper" style="margin-top:25px; display:flex; justify-content:center;">
                     <input type="text" id="semanticHubSearch" placeholder="Type context keywords (e.g. 'GC', 'Kafka', 'JWT')..." style="width: 100%; max-width: 500px; padding: 12px 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: 30px; color:#fff; text-align:center;">
                 </div>
@@ -179,7 +166,7 @@
                     <a href="https://docs.oracle.com/en/java/" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
                 <div class="hub-card hub-spring" data-keywords="spring boot jwt security oauth microservice kafka redis">
-                    <div><h3>🌱 Spring Boot Modules</h3><p>Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p>  </div>
+                    <div><h3>🌱 Spring Boot Modules</h3><p>Enterprise Microservices integration templates using Kafka event brokers and Redis clustering.</p></div>
                     <a href="https://spring.io/docs" target="_blank" class="hub-link">Access Sandbox Note →</a>
                 </div>
                 <div class="hub-card hub-system" data-keywords="system design architecture hld lld scalability balance">
@@ -190,7 +177,6 @@
         </div>
     </section>
 
-    <!-- LIVE TERMINAL DASHBOARD NODE -->
     <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
             <h2>Live Multi-Hub Node Engine</h2>
@@ -235,13 +221,12 @@
                 <div id="music-hub" class="hub-content-panel">
                     <h3>Music Playground Engine</h3>
                     <p>Stream background beats. Frequency ripples auto-render below on activation:</p>
-                    <!-- Audio Wave Animation Canvas -->
                     <div class="audio-wave-canvas-box" style="margin: 15px 0;">
                         <canvas id="musicWaveCanvas" width="400" height="40" style="width:100%; background:rgba(0,0,0,0.3); border-radius:8px; border:1px dashed var(--border-color);"></canvas>
                     </div>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://open.spotify.com" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-spotify"></i> Spotify Gateway</a>
-                        <a href="https://music.youtube.com/" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-youtube"></i> YouTube Music</a>
+                        <a href="https://music.youtube.com" target="_blank" class="hub-link-btn" onclick="activateWaveTrackAnimation()"><i class="fab fa-youtube"></i> YouTube Music</a>
                     </div>
                 </div>
 
@@ -263,7 +248,6 @@
                     </div>
                 </div>
 
-                <!-- NEW: ADVANCED INTERACTIVE AI CODE OPTIMIZER CORE -->
                 <div id="ai-compiler-hub" class="hub-content-panel">
                     <h3>Interactive Code Optimizer Console</h3>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Paste computational sub-optimal arrays loops blocks to re-index pipelines complexity models.</p>
@@ -273,15 +257,14 @@
                 </div>
             </div>
 
-            <!-- Desh Videsh Sidebar Feed -->
             <div class="news-sidebar">
-                <h3><i class="fas fa-globe"></i> Desh Videsh Live News</h3>
-                <div id="liveNewsWrapper"></div>
+                <h3><i class="fas fa-globe"></i> Desh Videsh Live Ticker</h3>
+                <div id="liveNewsWrapper">
+                    </div>
             </div>
         </div>
     </section>
 
-    <!-- WEBSITE FEEDBACK SECTION -->
     <section id="feedback-section" class="feedback-section">
         <div class="section-title">
             <h2>Website Feedback</h2>
@@ -309,7 +292,6 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
         <div class="section-title"><h2>Let's Connect</h2><p>Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
@@ -327,7 +309,6 @@
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- FLOATING CHAT WIDGET SYSTEM -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -344,7 +325,6 @@
     </div>
     <div class="chat-badge" id="chatBadge"><i class="fas fa-comments"></i></div>
 
-    <!-- POP ALERT SYSTEM NOTIFICATIONS TOAST -->
     <div id="alertNotificationBox" class="toast-box">
         <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
         <div>
