@@ -350,3 +350,32 @@ footer{ padding:70px 20px; text-align:center; background:#020617; margin-top:100
 .toast-title { margin: 0; font-size: 16px; color: #4cc9ff; font-weight: 600; }
 .toast-desc { margin: 3px 0 0 0; font-size: 14px; }
 #progressBar { position: fixed; top: 0; left: 0; height: 4px; background: #4cc9ff; width: 0%; z-index: 999999; }
+/* ========================================================
+   ADD THIS AT THE VERY BOTTOM OF YOUR CURRENT STYLE.CSS FILE
+   (No existing classes or colors will be disrupted)
+======================================================== */
+
+.btn-api-doc {
+    display: inline-block;
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--accent-glow);
+    color: var(--accent-glow);
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-api-doc:hover {
+    background: var(--accent-glow);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+#swaggerSandboxBox input:focus {
+    outline: none;
+}
