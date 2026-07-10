@@ -354,7 +354,7 @@ nav ul li a:hover{
 }
 
 /* ========================================================
-   CYBER SEC COMPONENT MODULE STYLES
+   CYBER SEC COMPONENT MODULE STYLES (WITH FIXED ./ RESOURCE LINK)
 ======================================================== */
 .cyber-dropdown-wrapper {
     max-width: 900px;
@@ -410,7 +410,8 @@ nav ul li a:hover{
 .cyber-animated-bg-container {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('image_419fed.png');
+    /* FIXED PATH WITH GRAPHIC DOT MATRIX POINTER */
+    background-image: url('./image_419fed.png');
     background-size: cover;
     background-position: center;
     opacity: 0.25;
@@ -482,7 +483,7 @@ nav ul li a:hover{
 .sm-brand-social-row a:hover { color: var(--accent-glow); }
 .sm-brand-address-text { font-size: 0.8rem; line-height: 1.5; opacity: 0.7; }
 .sm-footer-ext-button {
-    background: #2563eb; color: white !important; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; width: max-content; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.25s;
+    background: #2563eb; color: white !important; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; display: inline-flex; align-flex: center; gap: 8px; width: max-content; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.25s;
 }
 .sm-footer-ext-button:hover { transform: translateY(-2px); background: #1d4ed8; }
 
