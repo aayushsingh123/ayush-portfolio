@@ -2545,7 +2545,7 @@ box-shadow:
     visibility: hidden !important;
 }
 /* =========================================
-   THEME ENVIRONMENT ROOT MECHANICS & HUBS CSS
+   FIXES FOR COUNTER BOXES & THEME ENGINES
 ========================================= */
 :root {
     --bg-primary: #050816;
@@ -2556,7 +2556,7 @@ box-shadow:
     --accent-glow: #4cc9ff;
 }
 
-body.light-theme {
+body.light {
     --bg-primary: #f8fafc;
     --bg-secondary: rgba(0, 0, 0, 0.04);
     --border-color: rgba(0, 0, 0, 0.1);
@@ -2568,131 +2568,111 @@ body.light-theme {
 body {
     background: var(--bg-primary) !important;
     color: var(--text-main) !important;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* UI Structure Alignment Sync Rules */
-.about, .skills, .experience, .projects, .achievements, .contact, footer, nav, .section-title h2, .timeline-content h3, .live-reviews-board h3 {
-    color: var(--text-main) !important;
+/* Fix navbar column overlap layout issue */
+nav {
+    padding: 22px 5% !important;
 }
-.about p, .timeline-content p, .project-content p, .contact-card p, .left p, .section-title p {
-    color: var(--text-muted) !important;
+nav ul {
+    gap: 20px !important;
 }
-.info-card, .skill-card, .timeline-content, .project-card, .achievement-card, .contact-card, .hub-card, .dashboard-main-panel, .news-sidebar {
+
+/* Fix screenshot counter box background mismatch */
+.achievement-card {
     background: var(--bg-secondary) !important;
     border: 1px solid var(--border-color) !important;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Cyber Form Styles Setup */
-.cyber-form-wrapper {
-    background: var(--bg-secondary);
-    border: 2px dashed var(--border-color);
-    padding: 40px;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-.cyber-form-wrapper:hover {
-    border-color: var(--accent-glow);
-    box-shadow: 0 0 20px rgba(76, 201, 255, 0.2);
-}
-
-/* Multi-Hub Dashboard Grid Mechanics */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    margin-top: 50px;
-}
-.dashboard-main-panel {
-    padding: 35px; 
-    border-radius: 20px;
-}
-@media (max-width: 900px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
-}
-
-.hub-nav-tabs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    flex-wrap: wrap;
-}
-.tab-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: 'Poppins';
-    transition: 0.3s;
-    border-radius: 8px;
-}
-.tab-btn.active, .tab-btn:hover {
-    color: var(--accent-glow);
-    background: var(--bg-secondary);
-}
-.hub-content-panel {
-    display: none;
-    min-height: 200px;
-}
-.hub-content-panel.active { display: block; }
-
-/* Interactive Breathing Engine Animation */
-.breath-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-}
-.breath-circle {
-    width: 120px;
-    height: 120px;
-    background: rgba(76, 201, 255, 0.1);
-    border: 4px solid var(--accent-glow);
-    border-radius: 50%;
+/* AI Gate Overlay styling */
+#aiEntranceOverlay {
+    position: fixed;
+    top:0; left:0; width:100%; height:100vh;
+    background: #02020a;
+    z-index: 999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    animation: breatheAnimation 8s infinite ease-in-out;
+    transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
-@keyframes breatheAnimation {
-    0%, 100% { transform: scale(1); background: rgba(76, 201, 255, 0.1); }
-    50% { transform: scale(1.3); background: rgba(0, 212, 255, 0.25); }
+#aiEntranceOverlay.terminate {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
-
-.health-data-item {
-    background: rgba(0,0,0,0.2); 
-    padding: 15px; 
-    border-radius: 10px; 
+.ai-box {
     text-align: center;
-}
-
-/* Live News Sidebar Columns */
-.news-sidebar {
+    padding: 40px;
+    border: 1px solid rgba(76, 201, 255, 0.3);
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 20px;
-    max-height: 450px;
-    overflow-y: auto;
+    position: relative;
 }
-.news-sidebar h3 { margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
-.news-card { border-bottom: 1px solid var(--border-color); padding: 12px 0; }
-.news-card:last-child { border: none; }
-.news-tag { font-size: 0.75rem; color: var(--accent-glow); text-transform: uppercase; font-weight: 700; }
-.news-card h4 { margin: 5px 0; font-size: 0.95rem; }
-.news-card p { margin: 0; font-size: 0.8rem; }
+.ai-scanner {
+    width: 100%; height: 2px;
+    background: #4cc9ff;
+    position: absolute; top:0; left:0;
+    animation: scanningLine 3s infinite linear;
+    box-shadow: 0 0 15px #4cc9ff;
+}
+@keyframes scanningLine {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+}
+.ai-btn {
+    margin-top: 25px;
+    background: transparent;
+    border: 1px solid #4cc9ff;
+    color: #4cc9ff;
+    padding: 14px 28px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+.ai-btn:hover {
+    background: #4cc9ff;
+    color: #000;
+    box-shadow: 0 0 25px #4cc9ff;
+}
 
-/* Dynamic Submitted Reviews Cards Stack */
+/* Dashboard inline link configuration */
+.dashboard-inline-link {
+    color: var(--accent-glow);
+    text-decoration: underline;
+    font-weight: 500;
+}
+.hub-link-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+.hub-link-btn:hover {
+    border-color: var(--accent-glow);
+    color: var(--accent-glow);
+    transform: translateY(-3px);
+}
+.live-reviews-board h3 { color: var(--text-main); }
 .review-compiled-card {
     background: var(--bg-secondary);
     border-left: 4px solid var(--accent-glow);
     padding: 15px 20px;
     border-radius: 8px;
     margin-bottom: 15px;
+    text-align: left;
 }
-.review-compiled-card h4 { color: var(--text-main); margin-bottom: 5px; }
-.review-compiled-card p { color: var(--text-muted); font-size: 0.9rem; }
