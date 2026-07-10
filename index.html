@@ -12,22 +12,19 @@
 </head>
 <body>
 
-    <!-- 🚀 CINEMATIC WELCOME OVERLAY LAYER -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
-            <h1>WELCOME TO PORTFOLIO</h1>
+            <h1>WELCOME TO AYUSH PORTFOLIO</h1>
             <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
     </div>
 
-    <!-- SCROLL PROGRESS BAR -->
     <div id="progressBar"></div>
 
     <div class="aurora"></div>
 
-    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="logo">AS</div>
@@ -43,11 +40,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
-                <!-- Voice Activation Command Button -->
                 <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
                     <i class="fas fa-microphone"></i>
                 </div>
-                <!-- Theme Toggle Interactive Button -->
                 <div class="theme-toggle" id="themeToggle">
                     <i class="fas fa-adjust" id="themeIcon"></i>
                 </div>
@@ -58,7 +53,6 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="left">
             <h4>Hello 👋 I'm</h4>
@@ -84,7 +78,6 @@
         <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-title">
             <h2>About Me</h2>
@@ -105,21 +98,19 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
             <p>Technologies I Work With</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-card"><i class="fab fa-java"></i><h3>Java</h3><div class="progress"><span style="width:95%"></span></div><p>95%</p></div>
+            <div class="skill-card"><i class="fab fa-java"></i>  <h3>Java</h3><div class="progress"><span style="width:95%"></span></div><p>95%</p></div>
             <div class="skill-card"><i class="fas fa-leaf"></i><h3>Spring Boot</h3><div class="progress"><span style="width:92%"></span></div><p>92%</p></div>
             <div class="skill-card"><i class="fas fa-network-wired"></i><h3>Microservices</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
             <div class="skill-card"><i class="fas fa-database"></i><h3>SQL</h3><div class="progress"><span style="width:90%"></span></div><p>90%</p></div>
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION -->
     <section class="experience" id="experience">
         <div class="section-title"><h2>Experience</h2><p>Professional Journey</p></div>
         <div class="timeline">
@@ -142,15 +133,14 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span>Achievements</span>
-                    <h3>Production Support</h3>
-                    <p>Resolved critical production incidents, bottlenecks and contributed to enterprise applications.</p>
+                    <span>Operational Excellence</span>
+                    <h3>Production Support & Optimization</h3>
+                    <p>Resolved critical production incidents, identified architectural bottlenecks, performed root cause analysis, and ensured seamless release management for complex enterprise systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS COUNTER -->
     <section class="achievements" id="achievements">
         <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
         <div class="achievement-grid">
@@ -161,7 +151,6 @@
         </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
         <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
@@ -172,7 +161,6 @@
         </div>
     </section>
 
-    <!-- LEARNING HUB SECTION -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
@@ -199,7 +187,6 @@
         </div>
     </section>
 
-    <!-- LIVE TERMINAL DASHBOARD NODE -->
     <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
             <h2>Live Multi-Hub Node Engine</h2>
@@ -275,22 +262,21 @@
                     <h3>Interactive Code Optimizer Console</h3>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Paste computational sub-optimal arrays loops blocks to re-index pipelines complexity models.</p>
                     <textarea id="aiInputCodeArea" rows="4" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-color); color:#00ffcc; font-family:monospace; padding:10px; border-radius:8px;" placeholder="for(int i=0; i<n; i++) { for(int j=0; j<n; j++) { ... } }"></textarea>
-                    <button class="btn style-submit-btn" style="margin-top:10px; padding:10px;" onclick="compileAndOptimizeClientCode()">RUN MATRIX OPTIMIZATION COMPILER ⚡</button>
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <button class="btn style-submit-btn" style="padding:10px;" onclick="compileAndOptimizeClientCode()">RUN MATRIX OPTIMIZATION COMPILER ⚡</button>
+                    </div>
                     <div id="aiCompilerResponseOutput" style="margin-top:15px; padding:12px; background:rgba(0,0,0,0.7); border-radius:8px; border-left:3px solid #00ffcc; font-family:monospace; font-size:0.85rem; display:none; white-space:pre-wrap;"></div>
                 </div>
             </div>
 
-            <!-- Desh Videsh Sidebar Feed -->
             <div class="news-sidebar">
                 <h3><i class="fas fa-globe"></i> Desh Videsh Live Ticker</h3>
                 <div id="liveNewsWrapper">
-                    <!-- JavaScript will continuously loop actual live nodes dynamically here -->
-                </div>
+                    </div>
             </div>
         </div>
     </section>
 
-    <!-- WEBSITE FEEDBACK SECTION -->
     <section id="feedback-section" class="feedback-section">
         <div class="section-title">
             <h2>Website Feedback</h2>
@@ -318,7 +304,6 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
         <div class="section-title"><h2>Let's Connect</h2><p>Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
@@ -336,7 +321,6 @@
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- FLOATING CHAT WIDGET SYSTEM -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -353,7 +337,6 @@
     </div>
     <div class="chat-badge" id="chatBadge"><i class="fas fa-comments"></i></div>
 
-    <!-- POP ALERT SYSTEM NOTIFICATIONS TOAST -->
     <div id="alertNotificationBox" class="toast-box">
         <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
         <div>
