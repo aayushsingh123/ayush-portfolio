@@ -584,4 +584,146 @@ if(breathTxtNode) {
             breathTxtNode.innerText = "Inhale";
         }
     }, 4000);
+}/* =======================================================
+   REVIEWS LOGIC, SYSTEM CHATBOX, LIGHT SWITCH & LIVE TABS
+======================================================= */
+
+// Core Alert System Toast Trigger Configuration
+function triggerSystemToast(alertMessage) {
+    const toastBox = document.getElementById("alertNotificationBox");
+    const toastText = document.getElementById("notificationText");
+    if(!toastBox || !toastText) return;
+
+    toastText.innerText = alertMessage;
+    toastBox.style.bottom = "30px";
+    
+    setTimeout(() => {
+        toastBox.style.bottom = "-100px";
+    }, 4000);
+}
+
+// Light / Dark Theme Environment Logic Fix
+const themeToggleBtn = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+if(themeToggleBtn && themeIcon) {
+    themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light-theme");
+        const isLight = document.body.classList.contains("light-theme");
+        
+        // Sync icon graphics instantly
+        if(isLight) {
+            themeIcon.className = "fas fa-sun";
+            triggerSystemToast("Environment: Light Mode Enabled");
+        } else {
+            themeIcon.className = "fas fa-adjust";
+            triggerSystemToast("Environment: Dark Mode Enabled");
+        }
+    });
+}
+
+// Interactive Live Dashboard Multi-Tab Panel Switch Controller
+function switchDashboardTab(tabId) {
+    document.querySelectorAll(".hub-content-panel").forEach(panel => {
+        panel.classList.remove("active");
+    });
+    
+    const activeBtn = event.currentTarget;
+    if(activeBtn && activeBtn.parentElement) {
+        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
+    }
+    
+    const targetedPanel = document.getElementById(tabId);
+    if(targetedPanel) targetedPanel.classList.add("active");
+    if(activeBtn) activeBtn.classList.add("active");
+}
+
+// Guided Breath Sync Loop Core Counter
+const breathTxtNode = document.getElementById("breathTxt");
+if(breathTxtNode) {
+    setInterval(() => {
+        breathTxtNode.innerText = (breathTxtNode.innerText === "Inhale") ? "Exhale" : "Inhale";
+    }, 4000);
+}
+
+// Chatbox Interface Widgets Drawer Mechanics
+const chatBadge = document.getElementById("chatBadge");
+const chatWidget = document.getElementById("chatWidget");
+const chatHeader = document.getElementById("chatHeader");
+
+if(chatBadge && chatWidget && chatHeader) {
+    chatBadge.addEventListener("click", () => {
+        chatWidget.classList.add("active");
+        chatWidget.style.bottom = "110px";
+        chatWidget.style.opacity = "1";
+    });
+    
+    chatHeader.addEventListener("click", (e) => {
+        e.stopPropagation();
+        chatWidget.classList.remove("active");
+        chatWidget.style.bottom = "-500px";
+        chatWidget.style.opacity = "0";
+    });
+}
+
+// Send Message Chat System Framework
+const sendChatBtn = document.getElementById("sendChatBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
+
+function sendClientMessage() {
+    if(!chatInput || chatInput.value.trim() === "") return;
+    
+    const userText = chatInput.value;
+    const userBubble = document.createElement("div");
+    userBubble.className = "chat-msg user";
+    userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
+    userBubble.innerText = userText;
+    chatBody.appendChild(userBubble);
+    
+    chatInput.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+    
+    triggerSystemToast("Notification: Message buffered to chat backup!");
+
+    setTimeout(() => {
+        const botBubble = document.createElement("div");
+        botBubble.className = "chat-msg bot";
+        botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
+        botBubble.innerText = "Received! Your message logs have been saved. Ayush will get back to you soon. ⚡";
+        chatBody.appendChild(botBubble);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }, 1200);
+}
+
+if(sendChatBtn && chatInput) {
+    sendChatBtn.addEventListener("click", sendClientMessage);
+    chatInput.addEventListener("keypress", (e) => {
+        if(e.key === 'Enter') sendClientMessage();
+    });
+}
+
+// Real-time Feedback Dynamic Compilation Protocol
+const reviewForm = document.getElementById("portfolioFeedbackForm");
+const reviewsContainerStack = document.getElementById("reviewsContainerStack");
+
+if(reviewForm && reviewsContainerStack) {
+    reviewForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const clientName = document.getElementById("feedbackName").value;
+        const clientReview = document.getElementById("feedbackMessage").value;
+        
+        // Generate a clean custom card layout instantly inside the view array
+        const reviewCard = document.createElement("div");
+        reviewCard.className = "review-compiled-card";
+        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName}</h4><p>${clientReview}</p>`;
+        
+        reviewsContainerStack.prepend(reviewCard); // Top stack placement
+        triggerSystemToast(`Success: Review compiled for ${clientName}! ✨`);
+        
+        reviewForm.reset();
+    });
 }
