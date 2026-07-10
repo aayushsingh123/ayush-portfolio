@@ -542,9 +542,9 @@ document.querySelectorAll(".hub-card, .feedback-container").forEach(el => {
     newElementsReveal.observe(el);
 });/* =======================================================
    THEME LOGIC, DASHBOARD NAVIGATION & ACTIVE HUBS RUNTIME
-======================================================= */
+================================================------- */
 
-// Theme Switching Toggle Trigger Engine
+// Theme Switching Toggle Trigger Engine Fixed
 const toggleBtnNode = document.getElementById("themeToggle");
 if(toggleBtnNode) {
     toggleBtnNode.addEventListener("click", () => {
@@ -560,7 +560,7 @@ function switchDashboardTab(tabId) {
         panel.classList.remove("active");
     });
     
-    // Manage active visual tab configurations
+    // Manage active visual tab configurations safely
     const activeBtn = event.currentTarget;
     if(activeBtn && activeBtn.parentElement) {
         activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
