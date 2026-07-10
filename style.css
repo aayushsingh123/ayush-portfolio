@@ -56,7 +56,7 @@ body {
     100% { transform:translate(80px,-30px) scale(1); }
 }
 
-/* Navbar Flex Setup - Space fixes applied */
+/* Navbar Flex Setup */
 nav{
     position:fixed;
     top:0;
@@ -96,14 +96,13 @@ nav ul li a:hover{
     color:#4cc9ff;
 }
 
-/* Theme Toggle Trigger Styles */
 .theme-toggle {
     cursor: pointer;
     font-size: 22px;
     color: var(--accent-glow);
 }
 
-/* Voice Indicator Processing Pulse Glow Style */
+/* Voice Button Pulsing Style */
 #voiceCommandBtn {
     cursor: pointer;
     font-size: 19px;
@@ -153,11 +152,7 @@ nav ul li a:hover{
     max-width: 90%;
     width: 480px;
 }
-.ai-box h1 {
-    font-size: 24px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
+.ai-box h1 { font-size: 24px; letter-spacing: 1px; margin-bottom: 10px; }
 .ai-scanner {
     width: 100%; height: 2px;
     background: #4cc9ff;
@@ -182,13 +177,9 @@ nav ul li a:hover{
     transition: 0.3s;
     letter-spacing: 1px;
 }
-.ai-btn:hover {
-    background: #4cc9ff;
-    color: #000;
-    box-shadow: 0 0 25px #4cc9ff;
-}
+.ai-btn:hover { background: #4cc9ff; color: #000; box-shadow: 0 0 25px #4cc9ff; }
 
-/* Sections Global Structure */
+/* Sections Mapping Rules */
 .about, .skills, .experience, .projects, .achievements, .contact, footer, nav, .section-title h2, .timeline-content h3, .news-sidebar h3 {
     color: var(--text-main) !important;
 }
@@ -273,54 +264,17 @@ nav ul li a:hover{
 .hub-card h3 { font-size: 24px; margin-bottom: 15px; }
 .hub-link { color: #4cc9ff; text-decoration: none; font-size: 16px; margin-top: 25px; font-weight: 600; }
 
-/* Live Terminal Dashboard Layouts - Theme Fix & Glow Animations */
+/* Live Terminal Dashboard Layouts */
 .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 50px; }
 .dashboard-main-panel { padding: 35px; border-radius: 20px; position: relative; }
 @media (max-width: 900px) { .dashboard-grid { grid-template-columns: 1fr; } }
+.hub-nav-tabs { display: flex; gap: 12px; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; flex-wrap: wrap; }
+.tab-btn { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; cursor: pointer; font-weight: 500; border-radius: 8px; font-family: 'Poppins'; font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; gap: 6px; }
+.tab-btn.active, .tab-btn:hover { color: var(--accent-glow); background: rgba(76, 201, 255, 0.08); border-color: var(--accent-glow); box-shadow: 0 0 15px rgba(76, 201, 255, 0.15); }
 
-.hub-nav-tabs { 
-    display: flex; 
-    gap: 12px; 
-    margin-bottom: 25px; 
-    border-bottom: 1px solid var(--border-color); 
-    padding-bottom: 15px; 
-    flex-wrap: wrap; 
-}
-.tab-btn { 
-    background: rgba(255, 255, 255, 0.02); 
-    border: 1px solid var(--border-color); 
-    color: var(--text-muted); 
-    padding: 10px 18px; 
-    cursor: pointer; 
-    font-weight: 500; 
-    border-radius: 8px; 
-    font-family: 'Poppins';
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.tab-btn.active, .tab-btn:hover { 
-    color: var(--accent-glow); 
-    background: rgba(76, 201, 255, 0.08); 
-    border-color: var(--accent-glow);
-    box-shadow: 0 0 15px rgba(76, 201, 255, 0.15);
-}
-
-/* Tab Switching Fade Animation Specs */
-.hub-content-panel { 
-    display: none; 
-    min-height: 200px; 
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.hub-content-panel.active { 
-    display: block; 
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Tab Switching Animations */
+.hub-content-panel { display: none; min-height: 200px; opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.hub-content-panel.active { display: block; opacity: 1; transform: translateY(0); }
 
 /* Breath Optimizer animation module */
 .breath-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 30px; }
@@ -328,25 +282,17 @@ nav ul li a:hover{
 @keyframes breatheAnimation { 0%, 100% { transform: scale(1); background: rgba(76, 201, 255, 0.1); } 50% { transform: scale(1.3); background: rgba(0, 212, 255, 0.25); } }
 .health-data-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; text-align: center; }
 
-/* Sidebar layout grid specs - News Dynamic Fade Animation Added */
+/* Sidebar layout grid specs - Dynamic Ticker Animation */
 .news-sidebar { border-radius: 16px; padding: 20px; max-height: 450px; overflow-y: auto; }
 .news-sidebar h3 { margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
 .news-card { 
     border-bottom: 1px solid var(--border-color); 
     padding: 12px 0; 
-    animation: newsSlideIn 0.6s ease-out forwards;
-    opacity: 0;
-    transform: translateX(15px);
+    transition: all 0.5s ease-in-out;
 }
-.news-card:last-child { border: none; }
+.news-card.fade-out { opacity: 0; transform: translateY(-10px); }
+.news-card.fade-in { opacity: 1; transform: translateY(0); }
 .news-tag { font-size: 0.75rem; color: var(--accent-glow); text-transform: uppercase; font-weight: 700; }
-
-@keyframes newsSlideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
 /* Multi-hub dynamic anchor tags layout */
 .dashboard-inline-link { color: var(--accent-glow); text-decoration: underline; font-weight: 500; }
