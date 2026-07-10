@@ -541,26 +541,27 @@ const newElementsReveal = new IntersectionObserver((entries) => {
 document.querySelectorAll(".hub-card, .feedback-container").forEach(el => {
     newElementsReveal.observe(el);
 });/* =======================================================
-   THEME LOGIC, DASHBOARD NAVIGATION & ACTIVE HUBS RUNTIME
-================================================------- */
+   ANIMATIONS TRIGGER SYSTEMS FOR THEME SWITCH & LIVE TABS
+======================================================= */
 
-// Theme Switching Toggle Trigger Engine Fixed
+// Theme Environment Runtime Configuration Engine
 const toggleBtnNode = document.getElementById("themeToggle");
 if(toggleBtnNode) {
     toggleBtnNode.addEventListener("click", () => {
         document.body.classList.toggle("light-theme");
         const currentStatus = document.body.classList.contains("light-theme") ? "Light Mode Active" : "Dark Mode Active";
-        triggerSystemToast(`Theme Engine: Config changed to ${currentStatus}`);
+        if(typeof triggerSystemToast === "function") {
+            triggerSystemToast(`Theme Engine: Config changed to ${currentStatus}`);
+        }
     });
 }
 
-// Live Terminal Dashboard Tabs Navigator Controller
+// Universal Dashboard Multi-Tab Panel Switch Mechanics
 function switchDashboardTab(tabId) {
     document.querySelectorAll(".hub-content-panel").forEach(panel => {
         panel.classList.remove("active");
     });
     
-    // Manage active visual tab configurations safely
     const activeBtn = event.currentTarget;
     if(activeBtn && activeBtn.parentElement) {
         activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
@@ -573,7 +574,7 @@ function switchDashboardTab(tabId) {
     if(activeBtn) activeBtn.classList.add("active");
 }
 
-// Interactive Guided Meditation Circle Rhythms Engine
+// Guided Breath Sync Dynamic Controller loop
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
     setInterval(() => {
