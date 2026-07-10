@@ -113,6 +113,15 @@ document.querySelectorAll("section").forEach(sec => {
     revealObserver.observe(sec);
 });
 
+// Scroll Progress Bar Tracker Module
+window.addEventListener("scroll", () => {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    const progressNode = document.getElementById("progressBar");
+    if(progressNode) progressNode.style.width = scrolled + "%";
+});
+
 // Theme Toggle Engine (Dark/Light Core Connection Fixed)
 const themeToggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
