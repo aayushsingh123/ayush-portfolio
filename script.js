@@ -144,7 +144,7 @@ const semanticHubSearch = document.getElementById("semanticHubSearch");
 if(semanticHubSearch) {
     semanticHubSearch.addEventListener("input", (e) => {
         const query = e.target.value.toLowerCase().trim();
-        const cards = document.querySelectorAll("#learningGridHub .hub-card-classic");
+        const cards = document.querySelectorAll("#learningGridHub .hub-card");
         
         cards.forEach(card => {
             const keywords = card.getAttribute("data-keywords") || "";
@@ -176,7 +176,7 @@ function switchDashboardTab(tabId) {
     
     const activeBtn = event.currentTarget;
     if(activeBtn && activeBtn.parentElement) {
-        activeBtn.parentElement.querySelectorAll(".tab-btn-classic").forEach(btn => {
+        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
             btn.classList.remove("active");
         });
     }
@@ -219,7 +219,7 @@ function initLiveNewsTickerSystem() {
 
         const card = document.createElement("div");
         card.className = "news-card fade-in";
-        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px;' class='font-classic'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
+        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px;'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
         
         wrapper.appendChild(card);
         currentIndex = (currentIndex + 1) % rotatingFeeds.length;
@@ -405,9 +405,9 @@ if(reviewForm && reviewsContainerStack) {
         const designation = document.getElementById("feedbackDesignation").value;
         
         const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card-classic";
-        reviewCard.innerHTML = `<h4 class='font-classic font-bold'><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
-                                <p style="margin-top: 8px;" class='editorial-p'>${clientReview}</p>`;
+        reviewCard.className = "review-compiled-card";
+        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
+                                <p style="margin-top: 8px;">${clientReview}</p>`;
         
         reviewsContainerStack.prepend(reviewCard);
         triggerSystemToast(`Success: Feedback submitted for ${clientName}! ✨`);
@@ -426,7 +426,7 @@ if(chatBadge && chatWidget && chatHeader) {
         chatWidget.style.bottom = "110px";
         chatWidget.style.opacity = "1";
     });
-    chatWidget.querySelector(".chat-header .fa-chevron-down").addEventListener("click", (e) => {
+    chatHeader.addEventListener("click", (e) => {
         e.stopPropagation();
         chatWidget.classList.remove("active");
         chatWidget.style.bottom = "-500px";
@@ -446,7 +446,7 @@ if(sendChatBtn && chatInput && chatBody) {
         const userText = chatInput.value;
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 4px; margin-bottom: 8px;";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
@@ -457,7 +457,7 @@ if(sendChatBtn && chatInput && chatBody) {
         setTimeout(() => {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
-            botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 4px; margin-bottom: 8px;";
+            botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
             botBubble.innerText = "Received! Your message logs have been saved. Ayush will get back to you soon. ⚡";
             chatBody.appendChild(botBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
