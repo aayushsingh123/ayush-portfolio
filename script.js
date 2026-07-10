@@ -50,7 +50,7 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
     initializeAiSystemBtn.addEventListener("click", () => {
         aiEntranceOverlay.classList.add("terminate");
         setTimeout(() => {
-            triggerSystemToast("AI Core Shell Synced. Welcome To Ayush Portfolio Matrix! ⚡");
+            triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
             startCounterAnimation();
         }, 600);
     });
@@ -142,15 +142,24 @@ if(themeToggleBtn) {
    4. DASHBOARD TERMINAL & INTERACTIONS
 ======================================================= */
 
-// Universal Dashboard Multi-Tab Panel Switch Mechanics
+// Universal Dashboard Multi-Tab Panel Switch Mechanics with Animations Trigger
 function switchDashboardTab(tabId) {
-    document.querySelectorAll(".hub-content-panel").forEach(panel => panel.classList.remove("active"));
+    document.querySelectorAll(".hub-content-panel").forEach(panel => {
+        panel.classList.remove("active");
+    });
+    
+    // Manage active visual tab configurations smoothly
     const activeBtn = event.currentTarget;
     if(activeBtn && activeBtn.parentElement) {
-        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
     }
+    
     const targetPanel = document.getElementById(tabId);
-    if(targetPanel) targetPanel.classList.add("active");
+    if(targetPanel) {
+        targetPanel.classList.add("active");
+    }
     if(activeBtn) activeBtn.classList.add("active");
 }
 
