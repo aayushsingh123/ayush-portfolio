@@ -2,7 +2,6 @@
    1. GLOBAL SYSTEM CONFIGURATIONS (MUST BE ON TOP)
 ======================================================= */
 
-// Global System Toast Notifier
 function triggerSystemToast(msg) {
     const box = document.getElementById("alertNotificationBox");
     const txt = document.getElementById("notificationText");
@@ -12,7 +11,6 @@ function triggerSystemToast(msg) {
     setTimeout(() => { box.style.bottom = "-100px"; }, 4000);
 }
 
-// Crash-Proof Counter System Animation Loop
 function startCounterAnimation() {
     const counters = document.querySelectorAll(".achievement-card h1");
     counters.forEach(counter => {
@@ -52,7 +50,7 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
         setTimeout(() => {
             triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
             startCounterAnimation();
-            initLiveNewsTickerSystem(); // Renders the automatic ticking news block
+            initLiveNewsTickerSystem(); 
             initVoiceCommandGateway(); 
         }, 600);
     });
@@ -63,7 +61,6 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
    3. CORE UI ANIMATIONS & INTELLIGENT ROUTERS
 ======================================================= */
 
-// Typing Animation Engine
 const words = ["Senior Java Backend Engineer", "Spring Boot Developer", "Microservices Architect", "Kafka & Redis Enthusiast", "Problem Solver"];
 let wordIndex = 0, charIndex = 0, isDeleting = false;
 const typing = document.getElementById("typing");
@@ -89,7 +86,6 @@ function typeEffect() {
 }
 typeEffect();
 
-// Sticky Navbar Configurations
 const stickyNav = document.querySelector("nav");
 window.addEventListener("scroll", () => {
     if (!stickyNav) return;
@@ -102,7 +98,6 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Scroll Reveal Observer Engine
 const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -115,7 +110,6 @@ document.querySelectorAll("section").forEach(sec => {
     revealObserver.observe(sec);
 });
 
-// Scroll Progress Bar Tracker Module
 window.addEventListener("scroll", () => {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -124,7 +118,6 @@ window.addEventListener("scroll", () => {
     if(progressNode) progressNode.style.width = scrolled + "%";
 });
 
-// Theme Toggle Engine
 const themeToggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
@@ -139,7 +132,6 @@ if(themeToggleBtn) {
     });
 }
 
-// AI Semantic Context Filter Logic for Learning Hub Cards
 const semanticHubSearch = document.getElementById("semanticHubSearch");
 if(semanticHubSearch) {
     semanticHubSearch.addEventListener("input", (e) => {
@@ -166,7 +158,6 @@ if(semanticHubSearch) {
    4. DASHBOARD TERMINAL & TICKER CHANGER LOGIC
 ======================================================= */
 
-// Universal Dashboard Multi-Tab Panel Switch Mechanics with Animations Trigger
 function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
     panels.forEach(panel => {
@@ -191,7 +182,6 @@ function switchDashboardTab(tabId) {
     if(activeBtn) activeBtn.classList.add("active");
 }
 
-// Guided Breath Sync Dynamic Controller loop
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
     setInterval(() => {
@@ -199,7 +189,6 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// Dynamic Automated Scrolling News Ticker Matrix
 function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if(!wrapper) return;
@@ -229,7 +218,6 @@ function initLiveNewsTickerSystem() {
     setInterval(renderActiveTickerCard, 4500); 
 }
 
-// Dynamic Mock API Sandbox Execution Logic
 let currentActiveMockEndpoint = "";
 function simulateSwaggerSandbox(endpoint) {
     const box = document.getElementById("swaggerSandboxBox");
@@ -277,7 +265,6 @@ function executeSandboxApiRequest() {
     }, 900);
 }
 
-// AI Custom Mock Code Complexity Optimizer Algorithm Compiler
 function compileAndOptimizeClientCode() {
     const rawCode = document.getElementById("aiInputCodeArea").value;
     const outputBox = document.getElementById("aiCompilerResponseOutput");
@@ -294,15 +281,14 @@ function compileAndOptimizeClientCode() {
 
     setTimeout(() => {
         if(rawCode.includes("for") && (rawCode.match(/for/g) || []).length > 1) {
-            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Input Pattern Detected: Nested O(n^2) Loops.\n// Refactored Solution Complexities: Reduced to O(n) Hash Alignment Matrix.\n\npublic List<Integer> optimizePipeline(int[] data) {\n    Map<Integer, Integer> map = new HashMap<>();\n    for(int val : data) {\n        map.put(val, map.getOrDefault(val, 0) + 1);\n    }\n    return new ArrayList<>(map.keySet());\n}`;
+            outputBox.innerText = `// AI System Optimization Node Result:\n// Input Pattern Detected: Nested O(n^2) Loops.\n// Refactored Solution Complexities: Reduced to O(n) Hash Alignment Matrix.\n\npublic List<Integer> optimizePipeline(int[] data) {\n    Map<Integer, Integer> map = new HashMap<>();\n    for(int val : data) {\n        map.put(val, map.getOrDefault(val, 0) + 1);\n    }\n    return new ArrayList<>(map.keySet());\n}`;
         } else {
-            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Complexity Analysis: Execution pipeline is stable at O(n) or O(1).\n// Optimization Advice: Integrated G1GC garbage thresholds verified cleanly.`;
+            outputBox.innerText = `// AI System Optimization Node Result:\n// Complexity Analysis: Execution pipeline is stable at O(n) or O(1).\n// Optimization Advice: Integrated G1GC garbage thresholds verified cleanly.`;
         }
         triggerSystemToast("Code compiled & array indices optimized!");
     }, 1100);
 }
 
-// Canvas Based Music Wave Visualizer Track Simulation Loop
 let waveAnimId = null;
 function activateWaveTrackAnimation() {
     const canvas = document.getElementById("musicWaveCanvas");
@@ -332,7 +318,6 @@ function activateWaveTrackAnimation() {
     drawWave();
 }
 
-// AI Voice Command API Gateway Configuration Engine
 function initVoiceCommandGateway() {
     const voiceBtn = document.getElementById("voiceCommandBtn");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -340,7 +325,7 @@ function initVoiceCommandGateway() {
     if (!SpeechRecognition) {
         if(voiceBtn) {
             voiceBtn.addEventListener("click", () => {
-                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
+                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API loops.");
             });
         }
         return;
@@ -393,7 +378,6 @@ function initVoiceCommandGateway() {
    5. REVIEWS, CHATBOX & FOOTER UTILITIES
 ======================================================= */
 
-// NEW FUNCTION: Interactive Dropdown Panel Framework Router
 function toggleCyberSecurityPanel() {
     const content = document.getElementById("cyberDropdownContentPane");
     const icon = document.getElementById("cyberChevronIcon");
@@ -401,15 +385,8 @@ function toggleCyberSecurityPanel() {
     
     content.classList.toggle("open");
     icon.classList.toggle("rotate-active");
-    
-    if(content.classList.contains("open")) {
-        triggerSystemToast("Secure Encryption Vault: Opened Successfully 🔒");
-    } else {
-        triggerSystemToast("Secure Encryption Vault: Isolated");
-    }
 }
 
-// Real-time Feedback Dynamic Submission Compiler
 const reviewForm = document.getElementById("portfolioFeedbackForm");
 const reviewsContainerStack = document.getElementById("reviewsContainerStack");
 
@@ -431,7 +408,7 @@ if(reviewForm && reviewsContainerStack) {
     });
 }
 
-// Chatbox Interface Widgets Mechanics
+// Fixed Interactive AI Chatbox Action Mappings
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -439,18 +416,13 @@ const chatHeader = document.getElementById("chatHeader");
 if(chatBadge && chatWidget && chatHeader) {
     chatBadge.addEventListener("click", () => {
         chatWidget.classList.add("active");
-        chatWidget.style.bottom = "110px";
-        chatWidget.style.opacity = "1";
     });
-    chatHeader.addEventListener("click", (e) => {
+    chatHeader.querySelector(".fa-chevron-down").addEventListener("click", (e) => {
         e.stopPropagation();
         chatWidget.classList.remove("active");
-        chatWidget.style.bottom = "-500px";
-        chatWidget.style.opacity = "0";
     });
 }
 
-// Send Message Chat System Framework
 const sendChatBtn = document.getElementById("sendChatBtn");
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
@@ -462,22 +434,20 @@ if(sendChatBtn && chatInput && chatBody) {
         const userText = chatInput.value;
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
         chatInput.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
-        triggerSystemToast("Message buffered to safe chat storage!");
 
         setTimeout(() => {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
-            botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
-            botBubble.innerText = "Received! Your message logs have been saved. Ayush will get back to you soon. ⚡";
+            botBubble.innerText = "Compiling response context layer... Ayush's core pipeline has buffered your log successfully. ⚡";
             chatBody.appendChild(botBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1200);
+        }, 1000);
     };
 
     sendChatBtn.addEventListener("click", sendClientMessage);
@@ -486,7 +456,6 @@ if(sendChatBtn && chatInput && chatBody) {
     });
 }
 
-// Back To Top Navigation Rule
 const backToTopBtn = document.getElementById("top");
 if(backToTopBtn) {
     backToTopBtn.onclick = () => {
