@@ -52,14 +52,15 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
         setTimeout(() => {
             triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
             startCounterAnimation();
-            renderLiveNewsFeed(); // Renders news feed when overlay collapses
+            renderLiveNewsFeed(); 
+            initVoiceCommandGateway(); // Instantiates Voice processing vector
         }, 600);
     });
 }
 
 
 /* =======================================================
-   3. CORE UI ANIMATIONS & EFFECTS
+   3. CORE UI ANIMATIONS & INTELLIGENT ROUTERS
 ======================================================= */
 
 // Typing Animation Engine
@@ -138,9 +139,31 @@ if(themeToggleBtn) {
     });
 }
 
+// AI Semantic Context Filter Logic for Learning Hub Cards
+const semanticHubSearch = document.getElementById("semanticHubSearch");
+if(semanticHubSearch) {
+    semanticHubSearch.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const cards = document.querySelectorAll("#learningGridHub .hub-card");
+        
+        cards.forEach(card => {
+            const keywords = card.getAttribute("data-keywords") || "";
+            if(query === "" || keywords.includes(query)) {
+                card.style.display = "flex";
+                card.style.opacity = "1";
+                card.style.transform = "scale(1)";
+            } else {
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.9)";
+                setTimeout(() => { if(semanticHubSearch.value !== "") card.style.display = "none"; }, 300);
+            }
+        });
+    });
+}
+
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & INTERACTIONS
+   4. DASHBOARD TERMINAL & AI OPTMIZER PARSERS
 ======================================================= */
 
 // Universal Dashboard Multi-Tab Panel Switch Mechanics with Animations Trigger
@@ -148,7 +171,7 @@ function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
     panels.forEach(panel => {
         panel.classList.remove("active");
-        panel.style.display = "none"; // Hide panel cleanly first
+        panel.style.display = "none"; 
     });
     
     const activeBtn = event.currentTarget;
@@ -160,9 +183,9 @@ function switchDashboardTab(tabId) {
     
     const targetPanel = document.getElementById(tabId);
     if(targetPanel) {
-        targetPanel.style.display = "block"; // Instantly bind blocks
+        targetPanel.style.display = "block"; 
         setTimeout(() => {
-            targetPanel.classList.add("active"); // Trigger layout fade opacity
+            targetPanel.classList.add("active"); 
         }, 10);
     }
     if(activeBtn) activeBtn.classList.add("active");
@@ -176,19 +199,18 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// Actual 2026 Real-time Desh Videsh Tech News Renderer Logic Configuration
+// Actual 2026 Real-time Desh Videsh Tech News Renderer
 function renderLiveNewsFeed() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if(!wrapper) return;
 
-    // Actual re-verified news data arrays mapping 2026 pipelines
     const newsData2026 = [
         { tag: "Global Tech", title: "OpenAI Debuts GPT-5.6 & ChatGPT Work Workspace", desc: "Integrates Codex processing natively across enterprise dynamic platform pipelines." },
         { tag: "National India", title: "BSNL Launches Satellite Phone Node Networks", desc: "Delivers resilient backup links in regions detached from classic cellular fields." },
         { tag: "Hardware Infrastructure", title: "Meta to Launch Custom AI Chips Production in September", desc: "Aims to expand cluster limits to 14 gigawatts to maximize execution loops." }
     ];
 
-    wrapper.innerHTML = ""; // Flushes blank rows safely
+    wrapper.innerHTML = ""; 
 
     newsData2026.forEach((item, index) => {
         setTimeout(() => {
@@ -196,9 +218,123 @@ function renderLiveNewsFeed() {
             card.className = "news-card";
             card.innerHTML = `<span class="news-tag">${item.tag}</span><h4>${item.title}</h4><p>${item.desc}</p>`;
             wrapper.appendChild(card);
-        }, index * 250); // Fluid sequence stagger stack entry
+        }, index * 250); 
     });
 }
+
+// AI Custom Mock Code Complexity Optimizer Algorithm Compiler
+function compileAndOptimizeClientCode() {
+    const rawCode = document.getElementById("aiInputCodeArea").value;
+    const outputBox = document.getElementById("aiCompilerResponseOutput");
+    if(!outputBox) return;
+
+    if(rawCode.trim() === "") {
+        outputBox.style.display = "block";
+        outputBox.innerText = "Error: Input code block cannot be empty.";
+        return;
+    }
+
+    outputBox.style.display = "block";
+    outputBox.innerText = "[Compiling Optimization Matrix Model... Please Wait]";
+
+    setTimeout(() => {
+        // Mock Evaluation matrix parsing signature profiles
+        if(rawCode.includes("for") && (rawCode.match(/for/g) || []).length > 1) {
+            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Input Pattern Detected: Nested O(n^2) Loops.\n// Refactored Solution Complexities: Reduced to O(n) Hash Alignment Matrix.\n\npublic List<Integer> optimizePipeline(int[] data) {\n    Map<Integer, Integer> map = new HashMap<>();\n    // Virtual thread loop architecture optimized smoothly\n    for(int val : data) {\n        map.put(val, map.getOrDefault(val, 0) + 1);\n    }\n    return new ArrayList<>(map.keySet());\n}`;
+        } else {
+            outputBox.innerText = `// AI System Optimization Optimization Node Result:\n// Complexity Analysis: Execution pipeline is stable at O(n) or O(1).\n// Optimization Advice: Integrated G1GC garbage thresholds verified cleanly.\n\nSystem.out.println("Pipeline optimal execution track confirmed.");`;
+        }
+        triggerSystemToast("Code compiled & array indices optimized!");
+    }, 1100);
+}
+
+// Canvas Based Music Wave Visualizer Track Simulation Loop
+let waveAnimId = null;
+function activateWaveTrackAnimation() {
+    const canvas = document.getElementById("musicWaveCanvas");
+    if(!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if(!ctx) return;
+
+    if(waveAnimId) cancelAnimationFrame(waveAnimId);
+    triggerSystemToast("Audio Frequency Loop Sync Active! 🎵");
+
+    let count = 0;
+    function drawWave() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = document.body.classList.contains("light") ? "#2563eb" : "#4cc9ff";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        for (let i = 0; i < canvas.width; i++) {
+            const y = canvas.height / 2 + Math.sin(i * 0.05 + count) * 8 * Math.sin(i * 0.01);
+            if (i === 0) ctx.moveTo(i, y);
+            else ctx.lineTo(i, y);
+        }
+        ctx.stroke();
+        count += 0.15;
+        waveAnimId = requestAnimationFrame(drawWave);
+    }
+    drawWave();
+}
+
+// AI Voice Command API Gateway Configuration Engine
+function initVoiceCommandGateway() {
+    const voiceBtn = document.getElementById("voiceCommandBtn");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        if(voiceBtn) voiceBtn.style.display = "none";
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+
+    if(voiceBtn) {
+        voiceBtn.addEventListener("click", () => {
+            voiceBtn.classList.add("listening-active");
+            triggerSystemToast("AI Voice Node Active: Speak Command...");
+            recognition.start();
+        });
+    }
+
+    recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript.toLowerCase();
+        triggerSystemToast(`Voice Command Input: "${command}"`);
+
+        // Router commands dictionary setups
+        if (command.includes("skill")) {
+            window.location.href = "#skills";
+        } else if (command.includes("experience")) {
+            window.location.href = "#experience";
+        } else if (command.includes("project")) {
+            window.location.href = "#projects";
+        } else if (command.includes("about")) {
+            window.location.href = "#about";
+        } else if (command.includes("contact") || command.includes("email")) {
+            window.location.href = "#contact";
+        } else if (command.includes("light")) {
+            document.body.classList.add("light");
+            if(themeIcon) themeIcon.className = "fas fa-sun";
+        } else if (command.includes("dark")) {
+            document.body.classList.remove("light");
+            if(themeIcon) themeIcon.className = "fas fa-adjust";
+        } else {
+            triggerSystemToast("Error: Unknown target voice configuration router.");
+        }
+    };
+
+    recognition.onend = () => {
+        if(voiceBtn) voiceBtn.classList.remove("listening-active");
+    };
+}
+
+
+/* =======================================================
+   5. REVIEWS, CHATBOX & FOOTER UTILITIES
+======================================================= */
 
 // Real-time Feedback Dynamic Submission Compiler
 const reviewForm = document.getElementById("portfolioFeedbackForm");
@@ -219,11 +355,6 @@ if(reviewForm && reviewsContainerStack) {
         reviewForm.reset();
     });
 }
-
-
-/* =======================================================
-   5. CHATBOX & FOOTER UTILITIES
-======================================================= */
 
 // Chatbox Interface Widgets Drawer Mechanics
 const chatBadge = document.getElementById("chatBadge");
