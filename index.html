@@ -12,19 +12,22 @@
 </head>
 <body>
 
+    <!-- 🚀 CINEMATIC AI WELCOME OVERLAY LAYER (INLINE BYPASS TO PREVENT FREEZE) -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
             <h1>SYSTEM OVERRIDE DETECTED</h1>
             <p>Initialize Matrix Node Environment for Ayush Singh's Portfolio?</p>
-            <button id="initializeAiSystemBtn" class="ai-btn">WELCOME TO AYUSH PORTFOLIO ⚡</button>
+            <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">WELCOME TO AYUSH PORTFOLIO ⚡</button>
         </div>
     </div>
 
+    <!-- SCROLL PROGRESS BAR -->
     <div id="progressBar"></div>
 
     <div class="aurora"></div>
 
+    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="logo">AS</div>
@@ -39,6 +42,7 @@
                 <li><a href="#feedback-section">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <!-- Theme Toggle Interactive Button -->
             <div class="theme-toggle" id="themeToggle">
                 <i class="fas fa-adjust" id="themeIcon"></i>
             </div>
@@ -48,11 +52,12 @@
         </nav>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="left">
             <h4>Hello 👋 I'm</h4>
             <h1>Ayush Singh</h1>
-            <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px;"></h2>
+            <h2 id="typing" style="margin-top: 10px; margin-bottom: 20px; min-height: 45px;"></h2>
             <p>Senior Java Backend Engineer with 5+ years of experience in Java, Spring Boot, Microservices, Kafka, Redis, Kubernetes and Distributed Systems.</p>
             <div class="buttons">
                 <a href="#projects" class="btn">View Projects</a>
@@ -72,6 +77,7 @@
         <div class="scroll-down"><i class="fas fa-angle-double-down"></i></div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-title">
             <h2>About Me</h2>
@@ -91,6 +97,7 @@
         </div>
     </section>
 
+    <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
@@ -104,6 +111,7 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE SECTION -->
     <section class="experience" id="experience">
         <div class="section-title"><h2>Experience</h2><p>Professional Journey</p></div>
         <div class="timeline">
@@ -124,19 +132,29 @@
                     <p>REST APIs • Spring Boot • Java 21 • Kafka • Redis • Docker • Kubernetes • SQL</p>
                 </div>
             </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span>Achievements</span>
+                    <h3>Production Support</h3>
+                    <p>Resolved critical production incidents, bottlenecks and contributed to enterprise applications.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- ACHIEVEMENTS COUNTER -->
     <section class="achievements" id="achievements">
         <div class="section-title"><h2>Achievements</h2><p>Highlights of My Journey</p></div>
         <div class="achievement-grid">
-            <div class="achievement-card"><h1 data-target="5">0</h1><span>Years Experience</span></div>
-            <div class="achievement-card"><h1 data-target="30">0</h1><span>Enterprise Projects</span></div>
-            <div class="achievement-card"><h1 data-target="100">0</h1><span>Production Releases</span></div>
-            <div class="achievement-card"><h1 data-target="99.99">0</h1><span>Application Availability</span></div>
+            <div class="achievement-card"><h1 data-target="5">5+</h1><span>Years Experience</span></div>
+            <div class="achievement-card"><h1 data-target="30">30+</h1><span>Enterprise Projects</span></div>
+            <div class="achievement-card"><h1 data-target="100">100+</h1><span>Production Releases</span></div>
+            <div class="achievement-card"><h1 data-target="99.99">99.99%</h1><span>Application Availability</span></div>
         </div>
     </section>
 
+    <!-- FEATURED PROJECTS -->
     <section class="projects" id="projects">
         <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work</p></div>
         <div class="project-grid">
@@ -147,6 +165,7 @@
         </div>
     </section>
 
+    <!-- LEARNING HUB SECTION -->
     <section id="learning-hub" class="learning-hub-section">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section-title">
@@ -170,6 +189,7 @@
         </div>
     </section>
 
+    <!-- LIVE TERMINAL DASHBOARD NODE -->
     <section id="live-dashboard" style="padding: 120px 9%;">
         <div class="section-title">
             <h2>Live Multi-Hub Node</h2>
@@ -184,13 +204,13 @@
                     <button class="tab-btn" onclick="switchDashboardTab('health')">❤️ Health Analytics</button>
                     <button class="tab-btn" onclick="switchDashboardTab('music-hub')">🎵 Music Engine</button>
                     <button class="tab-btn" onclick="switchDashboardTab('novel-hub')">📚 Novel Library</button>
-                    <button class="tab-btn" onclick="switchDashboardTab('ai-hub')">🤖 AI & IT Toolkits</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('ai-hub')">🤖 AI Toolkits</button>
                 </div>
 
                 <div id="tech-knowledge" class="hub-content-panel active">
                     <h3>Advanced Core Blueprint (A to Z Architecture)</h3>
-                    <p><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads minimize latency across request networks.</p>
-                    <p style="margin-top: 15px;"><strong>IT Infrastructure Logs:</strong> <a href="https://www.baeldung.com/" target="_blank" class="dashboard-inline-link">Baeldung System Docs Portal</a> • <a href="https://leetcode.com/" target="_blank" class="dashboard-inline-link">DSA Engine Platform</a></p>
+                    <p style="margin-bottom: 15px;"><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads minimize latency across request networks.</p>
+                    <p><strong>IT Links Hub:</strong> <a href="https://www.baeldung.com/" target="_blank" class="dashboard-inline-link">Baeldung System Docs Portal</a> • <a href="https://leetcode.com/" target="_blank" class="dashboard-inline-link">DSA Engine Platform</a></p>
                 </div>
 
                 <div id="meditation" class="hub-content-panel">
@@ -213,7 +233,7 @@
                 <div id="music-hub" class="hub-content-panel">
                     <h3>Music Playground Engine</h3>
                     <p>Stream real-time background beats while reading deep architecture matrix maps:</p>
-                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://open.spotify.com/" target="_blank" class="hub-link-btn"><i class="fab fa-spotify"></i> Spotify Gateway</a>
                         <a href="https://music.youtube.com/" target="_blank" class="hub-link-btn"><i class="fab fa-youtube"></i> YouTube Music</a>
                     </div>
@@ -222,7 +242,7 @@
                 <div id="novel-hub" class="hub-content-panel">
                     <h3>The Creative Novel Library</h3>
                     <p>Access universal literature spaces to balance logic processing with narrative streams:</p>
-                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://www.gutenberg.org/" target="_blank" class="hub-link-btn"><i class="fas fa-book-open"></i> Project Gutenberg Open Shelf</a>
                         <a href="https://archive.org/details/books" target="_blank" class="hub-link-btn"><i class="fas fa-archive"></i> Internet Archive Books</a>
                     </div>
@@ -231,13 +251,14 @@
                 <div id="ai-hub" class="hub-content-panel">
                     <h3>AI Tools & Tech Ecosystem</h3>
                     <p>Engineered prompts compiler and system helpers linked directly for production scaling:</p>
-                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://chatgpt.com/" target="_blank" class="hub-link-btn"><i class="fas fa-robot"></i> ChatGPT Matrix</a>
                         <a href="https://github.com/features/copilot" target="_blank" class="hub-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Desh Videsh Sidebar Feed -->
             <div class="news-sidebar">
                 <h3><i class="fas fa-globe"></i> Desh Videsh Live News</h3>
                 <div id="liveNewsWrapper">
@@ -246,11 +267,17 @@
                         <h4>Distributed Computing Core Projections Climb Higher</h4>
                         <p>Enterprise infrastructures migrate fully to zero trust protocols.</p>
                     </div>
+                    <div class="news-card">
+                        <span class="news-tag">National Tech</span>
+                        <h4>Digital Server Infrastructure Expands Across Major Hubs</h4>
+                        <p>High latency network blocks are actively replaced with custom fiber routing.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- WEBSITE FEEDBACK SECTION -->
     <section id="feedback-section" class="feedback-section">
         <div class="section-title">
             <h2>Website Feedback</h2>
@@ -272,12 +299,13 @@
             </div>
             
             <div class="live-reviews-board" style="margin-top: 40px;">
-                <h3 style="margin-bottom: 20px;"><i class="fas fa-comments"></i> Compiled Live Reviews Stack</h3>
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;"><i class="fas fa-comments"></i> Compiled Live Reviews Stack</h3>
                 <div id="reviewsContainerStack"></div>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
         <div class="section-title"><h2>Let's Connect</h2><p>Open loop connection ports verified</p></div>
         <div class="contact-wrapper">
@@ -295,6 +323,7 @@
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
 
+    <!-- FLOATING CHAT WIDGET SYSTEM -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -311,6 +340,7 @@
     </div>
     <div class="chat-badge" id="chatBadge"><i class="fas fa-comments"></i></div>
 
+    <!-- POP ALERT SYSTEM NOTIFICATIONS TOAST -->
     <div id="alertNotificationBox" class="toast-box">
         <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
         <div>
