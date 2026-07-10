@@ -325,7 +325,7 @@ function initVoiceCommandGateway() {
     if (!SpeechRecognition) {
         if(voiceBtn) {
             voiceBtn.addEventListener("click", () => {
-                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API loops.");
+                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
             });
         }
         return;
@@ -408,7 +408,6 @@ if(reviewForm && reviewsContainerStack) {
     });
 }
 
-// Fixed Interactive AI Chatbox Action Mappings
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
