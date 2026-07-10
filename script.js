@@ -585,148 +585,19 @@ if(breathTxtNode) {
         }
     }, 4000);
 }/* =======================================================
-   REVIEWS LOGIC, SYSTEM CHATBOX, LIGHT SWITCH & LIVE TABS
+   CORE MANAGEMENT TERMINAL SHILL LOGIC ENGINE
 ======================================================= */
 
-// Core Alert System Toast Trigger Configuration
-function triggerSystemToast(alertMessage) {
-    const toastBox = document.getElementById("alertNotificationBox");
-    const toastText = document.getElementById("notificationText");
-    if(!toastBox || !toastText) return;
-
-    toastText.innerText = alertMessage;
-    toastBox.style.bottom = "30px";
-    
-    setTimeout(() => {
-        toastBox.style.bottom = "-100px";
-    }, 4000);
+// Global System Toast Notifier
+function triggerSystemToast(msg) {
+    const box = document.getElementById("alertNotificationBox");
+    const txt = document.getElementById("notificationText");
+    if(!box || !txt) return;
+    txt.innerText = msg;
+    box.style.bottom = "30px";
+    setTimeout(() => { box.style.bottom = "-100px"; }, 4000);
 }
 
-// Light / Dark Theme Environment Logic Fix
-const themeToggleBtn = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-
-if(themeToggleBtn && themeIcon) {
-    themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light-theme");
-        const isLight = document.body.classList.contains("light-theme");
-        
-        // Sync icon graphics instantly
-        if(isLight) {
-            themeIcon.className = "fas fa-sun";
-            triggerSystemToast("Environment: Light Mode Enabled");
-        } else {
-            themeIcon.className = "fas fa-adjust";
-            triggerSystemToast("Environment: Dark Mode Enabled");
-        }
-    });
-}
-
-// Interactive Live Dashboard Multi-Tab Panel Switch Controller
-function switchDashboardTab(tabId) {
-    document.querySelectorAll(".hub-content-panel").forEach(panel => {
-        panel.classList.remove("active");
-    });
-    
-    const activeBtn = event.currentTarget;
-    if(activeBtn && activeBtn.parentElement) {
-        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
-            btn.classList.remove("active");
-        });
-    }
-    
-    const targetedPanel = document.getElementById(tabId);
-    if(targetedPanel) targetedPanel.classList.add("active");
-    if(activeBtn) activeBtn.classList.add("active");
-}
-
-// Guided Breath Sync Loop Core Counter
-const breathTxtNode = document.getElementById("breathTxt");
-if(breathTxtNode) {
-    setInterval(() => {
-        breathTxtNode.innerText = (breathTxtNode.innerText === "Inhale") ? "Exhale" : "Inhale";
-    }, 4000);
-}
-
-// Chatbox Interface Widgets Drawer Mechanics
-const chatBadge = document.getElementById("chatBadge");
-const chatWidget = document.getElementById("chatWidget");
-const chatHeader = document.getElementById("chatHeader");
-
-if(chatBadge && chatWidget && chatHeader) {
-    chatBadge.addEventListener("click", () => {
-        chatWidget.classList.add("active");
-        chatWidget.style.bottom = "110px";
-        chatWidget.style.opacity = "1";
-    });
-    
-    chatHeader.addEventListener("click", (e) => {
-        e.stopPropagation();
-        chatWidget.classList.remove("active");
-        chatWidget.style.bottom = "-500px";
-        chatWidget.style.opacity = "0";
-    });
-}
-
-// Send Message Chat System Framework
-const sendChatBtn = document.getElementById("sendChatBtn");
-const chatInput = document.getElementById("chatInput");
-const chatBody = document.getElementById("chatBody");
-
-function sendClientMessage() {
-    if(!chatInput || chatInput.value.trim() === "") return;
-    
-    const userText = chatInput.value;
-    const userBubble = document.createElement("div");
-    userBubble.className = "chat-msg user";
-    userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
-    userBubble.innerText = userText;
-    chatBody.appendChild(userBubble);
-    
-    chatInput.value = "";
-    chatBody.scrollTop = chatBody.scrollHeight;
-    
-    triggerSystemToast("Notification: Message buffered to chat backup!");
-
-    setTimeout(() => {
-        const botBubble = document.createElement("div");
-        botBubble.className = "chat-msg bot";
-        botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
-        botBubble.innerText = "Received! Your message logs have been saved. Ayush will get back to you soon. ⚡";
-        chatBody.appendChild(botBubble);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }, 1200);
-}
-
-if(sendChatBtn && chatInput) {
-    sendChatBtn.addEventListener("click", sendClientMessage);
-    chatInput.addEventListener("keypress", (e) => {
-        if(e.key === 'Enter') sendClientMessage();
-    });
-}
-
-// Real-time Feedback Dynamic Compilation Protocol
-const reviewForm = document.getElementById("portfolioFeedbackForm");
-const reviewsContainerStack = document.getElementById("reviewsContainerStack");
-
-if(reviewForm && reviewsContainerStack) {
-    reviewForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const clientName = document.getElementById("feedbackName").value;
-        const clientReview = document.getElementById("feedbackMessage").value;
-        
-        // Generate a clean custom card layout instantly inside the view array
-        const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card";
-        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName}</h4><p>${clientReview}</p>`;
-        
-        reviewsContainerStack.prepend(reviewCard); // Top stack placement
-        triggerSystemToast(`Success: Review compiled for ${clientName}! ✨`);
-        
-        reviewForm.reset();
-    });
-}
 // AI System Overlay Initiation Module
 const aiEntranceOverlay = document.getElementById("aiEntranceOverlay");
 const initializeAiSystemBtn = document.getElementById("initializeAiSystemBtn");
@@ -737,7 +608,7 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
         setTimeout(() => {
             triggerSystemToast("AI Core Shell Synced. Welcome To Ayush Portfolio Matrix! ⚡");
             startCounterAnimation();
-        }, 800);
+        }, 600);
     });
 }
 
@@ -768,18 +639,31 @@ function typeEffect() {
 typeEffect();
 
 // Sticky Navbar Configurations
-const nav = document.querySelector("nav");
+const stickyNav = document.querySelector("nav");
 window.addEventListener("scroll", () => {
     if (window.scrollY > 80) {
-        nav.style.background = "rgba(5, 8, 22, 0.9)";
-        nav.style.boxShadow = "0 5px 20px rgba(0,0,0,.35)";
+        stickyNav.style.background = "rgba(5, 8, 22, 0.95)";
+        stickyNav.style.boxShadow = "0 5px 20px rgba(0,0,0,.35)";
     } else {
-        nav.style.background = "rgba(255,255,255,.05)";
-        nav.style.boxShadow = "none";
+        stickyNav.style.background = "rgba(255,255,255,.05)";
+        stickyNav.style.boxShadow = "none";
     }
 });
 
-// Theme Management Engine (Working Perfectly)
+// Scroll Reveal Observer Engine
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+});
+document.querySelectorAll("section").forEach(sec => {
+    sec.classList.add("hidden");
+    revealObserver.observe(sec);
+});
+
+// Theme Toggle Engine (Dark/Light Core Connection Fixed)
 const themeToggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
@@ -794,13 +678,13 @@ if(themeToggleBtn) {
     });
 }
 
-// Crash-Proof Separate Counter Logic (Resolves the blue background box freezing issue)
+// Crash-Proof Counter System Animation Loop
 function startCounterAnimation() {
     const counters = document.querySelectorAll(".achievement-card h1");
     counters.forEach(counter => {
         const targetValue = parseFloat(counter.getAttribute("data-target"));
         let current = 0;
-        const speed = 100;
+        const speed = 120;
         const increment = targetValue / speed;
 
         const update = () => {
@@ -820,7 +704,7 @@ function startCounterAnimation() {
     });
 }
 
-// Universal Tab Switcher Logic
+// Universal Dashboard Multi-Tab Panel Switch Mechanics
 function switchDashboardTab(tabId) {
     document.querySelectorAll(".hub-content-panel").forEach(panel => panel.classList.remove("active"));
     const activeBtn = event.currentTarget;
@@ -832,7 +716,7 @@ function switchDashboardTab(tabId) {
     if(activeBtn) activeBtn.classList.add("active");
 }
 
-// Guided Breath Circle Node Simulation
+// Guided Breath Sync Dynamic Controller loop
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
     setInterval(() => {
@@ -840,7 +724,7 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// Feedback Processing & Stack Display
+// Real-time Feedback Dynamic Submission Compiler
 const reviewForm = document.getElementById("portfolioFeedbackForm");
 const reviewsContainerStack = document.getElementById("reviewsContainerStack");
 
@@ -855,12 +739,12 @@ if(reviewForm && reviewsContainerStack) {
         reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName}</h4><p>${clientReview}</p>`;
         
         reviewsContainerStack.prepend(reviewCard);
-        triggerSystemToast(`Success: Review added for ${clientName}! ✨`);
+        triggerSystemToast(`Success: Review compiled for ${clientName}! ✨`);
         reviewForm.reset();
     });
 }
 
-// Chatbot Interface Drawer Mechanics
+// Chatbox Interface Widgets Drawer Mechanics
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -879,12 +763,46 @@ if(chatBadge && chatWidget && chatHeader) {
     });
 }
 
-// Core Toast Notifier
-function triggerSystemToast(msg) {
-    const box = document.getElementById("alertNotificationBox");
-    const txt = document.getElementById("notificationText");
-    if(!box || !txt) return;
-    txt.innerText = msg;
-    box.style.bottom = "30px";
-    setTimeout(() => { box.style.bottom = "-100px"; }, 4000);
+// Send Message Chat System Framework
+const sendChatBtn = document.getElementById("sendChatBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
+
+if(sendChatBtn && chatInput && chatBody) {
+    const sendClientMessage = () => {
+        if(chatInput.value.trim() === "") return;
+        
+        const userText = chatInput.value;
+        const userBubble = document.createElement("div");
+        userBubble.className = "chat-msg user";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
+        userBubble.innerText = userText;
+        chatBody.appendChild(userBubble);
+        
+        chatInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+        triggerSystemToast("Message buffered to safe chat storage!");
+
+        setTimeout(() => {
+            const botBubble = document.createElement("div");
+            botBubble.className = "chat-msg bot";
+            botBubble.style.cssText = "background: rgba(255,255,255,0.05); color: #cbd5e1; align-self: flex-start; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px;";
+            botBubble.innerText = "Received! Your message logs have been saved. Ayush will get back to you soon. ⚡";
+            chatBody.appendChild(botBubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1200);
+    };
+
+    sendChatBtn.addEventListener("click", sendClientMessage);
+    chatInput.addEventListener("keypress", (e) => {
+        if(e.key === 'Enter') sendClientMessage();
+    });
+}
+
+// Back To Top Navigation Rule
+const backToTopBtn = document.getElementById("top");
+if(backToTopBtn) {
+    backToTopBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 }
