@@ -393,6 +393,22 @@ function initVoiceCommandGateway() {
    5. REVIEWS, CHATBOX & FOOTER UTILITIES
 ======================================================= */
 
+// NEW FUNCTION: Interactive Dropdown Panel Framework Router
+function toggleCyberSecurityPanel() {
+    const content = document.getElementById("cyberDropdownContentPane");
+    const icon = document.getElementById("cyberChevronIcon");
+    if(!content || !icon) return;
+    
+    content.classList.toggle("open");
+    icon.classList.toggle("rotate-active");
+    
+    if(content.classList.contains("open")) {
+        triggerSystemToast("Secure Encryption Vault: Opened Successfully 🔒");
+    } else {
+        triggerSystemToast("Secure Encryption Vault: Isolated");
+    }
+}
+
 // Real-time Feedback Dynamic Submission Compiler
 const reviewForm = document.getElementById("portfolioFeedbackForm");
 const reviewsContainerStack = document.getElementById("reviewsContainerStack");
