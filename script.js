@@ -199,7 +199,7 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// Dynamic Automated Scrolling News Ticker Matrix (Solves the static simple feel issue)
+// Dynamic Automated Scrolling News Ticker Matrix
 function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if(!wrapper) return;
@@ -218,7 +218,7 @@ function initLiveNewsTickerSystem() {
         const item = rotatingFeeds[currentIndex];
 
         const card = document.createElement("div");
-        card.className = "news-card ";
+        card.className = "news-card";
         card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px; color: var(--text-main);'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
         
         wrapper.appendChild(card);
@@ -341,7 +341,7 @@ function initVoiceCommandGateway() {
     if (!SpeechRecognition) {
         if(voiceBtn) {
             voiceBtn.addEventListener("click", () => {
-                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
+                triggerSystemToast("Fallback: Please use HTTPS proxies to open WebSpeech API loops.");
             });
         }
         return;
