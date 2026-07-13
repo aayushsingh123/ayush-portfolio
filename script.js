@@ -375,7 +375,86 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. REVIEWS, CHATBOX & FOOTER UTILITIES
+   5. NEW FEATURES HARD LOGIC PARSERS
+======================================================= */
+
+// FEATURE: JSON JWT Token Claims Matrix Decoder
+function loadMockEnterpriseJwtString() {
+    document.getElementById("jwtRawInputArea").value = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaEBzaW5naC50ZWNoIiwibmFtZSI6IkF5dXNoIFNpbmdoIiwicm9sZXMiOlsiUk9MRV9TRU5JT1JfREVWIl0sImV4cCI6MTc4OTk5OTk5OX0.mockSignatureNode";
+    triggerSystemToast("Mock JWT loaded into active matrix block!");
+}
+
+function handleClientJwtDecoding() {
+    const input = document.getElementById("jwtRawInputArea").value.trim();
+    const headBlock = document.getElementById("jwtHeaderOutputBlock");
+    const payBlock = document.getElementById("jwtPayloadOutputBlock");
+    if(!headBlock || !payBlock) return;
+
+    if(!input || !input.includes(".")) {
+        triggerSystemToast("Error: Invalid structured token payload sequence.");
+        return;
+    }
+
+    const segments = input.split(".");
+    try {
+        // Safe base64 string decoding mapping
+        const headerDecoded = atob(segments[0].replace(/-/g, '+').replace(/_/g, '/'));
+        const payloadDecoded = atob(segments[1].replace(/-/g, '+').replace(/_/g, '/'));
+        
+        headBlock.innerText = JSON.stringify(JSON.parse(headerDecoded), null, 2);
+        payBlock.innerText = JSON.stringify(JSON.parse(payloadDecoded), null, 2);
+        triggerSystemToast("JWT Tokens decrypted and mapped successfully!");
+    } catch(err) {
+        headBlock.innerText = "{\n  \"error\": \"Malformed Header Segment\"\n}";
+        payBlock.innerText = "{\n  \"error\": \"Payload Base64 Decoding Aborted\"\n}";
+    }
+}
+
+// FEATURE: Asymmetric API Key Encryption Emulator Matrix
+function emulateAsymmetricRsaCipher() {
+    const txt = document.getElementById("asymmetricRawTextInput").value;
+    const out = document.getElementById("asymmetricCipherOutputBlock");
+    if(!out) return;
+
+    if(!txt.trim()) {
+        triggerSystemToast("Error: Encryption payload layer buffer empty.");
+        return;
+    }
+
+    out.style.display = "block";
+    out.innerText = "[Initializing Cryptographic RSA Handshake...]";
+
+    setTimeout(() => {
+        // Simulate public key cipher layer string output
+        let scrambled = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv" + btoa(txt).substring(0, 45) + "...[Encrypted Client Segment]";
+        out.innerText = "-----BEGIN RSA ENCRYPTED CIPHER BLOCK-----\n" + scrambled + "\n-----END RSA CIPHER BLOCK-----";
+        triggerSystemToast("Asymmetric key cipher layer successfully compiled.");
+    }, 800);
+}
+
+// FEATURE: Interactive REST Global Exception Mapper Simulator Console
+function emulateRestGlobalException(statusCode) {
+    const out = document.getElementById("restExceptionJsonConsoleBlock");
+    if(!out) return;
+
+    out.style.display = "block";
+    
+    let mockErrorObject = {
+        timestamp: new Date().toISOString(),
+        status: statusCode,
+        error: statusCode === 404 ? "Not Found" : statusCode === 500 ? "Internal Server Error" : "Unauthorized",
+        exception: statusCode === 404 ? "com.ayush.tech.exception.EntityNotFoundException" : statusCode === 500 ? "java.lang.NullPointerException" : "org.springframework.security.authentication.BadCredentialsException",
+        message: statusCode === 404 ? "Requested database asset log matching ID index not found." : statusCode === 500 ? "Cannot invoke method because service layer data stream reference pipeline is null." : "Authentication handshake rejected: JWT signature payload validation failed.",
+        path: "/api/v1/enterprise/resource/node"
+    };
+
+    out.innerText = JSON.stringify(mockErrorObject, null, 2);
+    triggerSystemToast(`@ControllerAdvice Intercepted Status Code: ${statusCode}`);
+}
+
+
+/* =======================================================
+   6. REVIEWS, CHATBOX & FOOTER UTILITIES
 ======================================================= */
 
 function toggleCyberSecurityPanel() {
