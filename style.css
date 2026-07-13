@@ -354,7 +354,7 @@ nav ul li a:hover{
 }
 
 /* ========================================================
-   CYBER SEC COMPONENT MODULE STYLES (WITH FIXED ./ RESOURCE LINK)
+   CYBER SEC COMPONENT MODULE STYLES
 ======================================================== */
 .cyber-dropdown-wrapper {
     max-width: 900px;
@@ -410,7 +410,6 @@ nav ul li a:hover{
 .cyber-animated-bg-container {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* FIXED PATH WITH GRAPHIC DOT MATRIX POINTER */
     background-image: url('./image_419fed.png');
     background-size: cover;
     background-position: center;
@@ -483,7 +482,7 @@ nav ul li a:hover{
 .sm-brand-social-row a:hover { color: var(--accent-glow); }
 .sm-brand-address-text { font-size: 0.8rem; line-height: 1.5; opacity: 0.7; }
 .sm-footer-ext-button {
-    background: #2563eb; color: white !important; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; display: inline-flex; align-flex: center; gap: 8px; width: max-content; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.25s;
+    background: #2563eb; color: white !important; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; width: max-content; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.25s;
 }
 .sm-footer-ext-button:hover { transform: translateY(-2px); background: #1d4ed8; }
 
@@ -501,41 +500,119 @@ nav ul li a:hover{
 .sm-lang-selector-trigger { color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
 /* ========================================================
-   ADVANCED INTERACTIVE ROBOT CHAT COMPONENT
+   ADVANCED INTERACTIVE ROBOT CHAT COMPONENT (FIXED SUITE)
 ======================================================== */
 .chat-badge-pulse {
-    position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-glow); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: .35s; background: #000; overflow: visible;
+    position: fixed; 
+    bottom: 30px; 
+    left: 30px; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    border: 2px solid var(--accent-glow); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    z-index: 9999; 
+    transition: .35s; 
+    background: #000; 
+    overflow: hidden;
     animation: chatBadgePulseGlow 2s infinite ease-in-out;
 }
+
 @keyframes chatBadgePulseGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(76, 201, 255, 0.4); transform: scale(1); }
     50% { box-shadow: 0 0 15px 4px rgba(76, 201, 255, 0.6); transform: scale(1.05); }
 }
+
 .badge-online-glow {
-    position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; background: #10b981; border-radius: 50%; border: 2px solid #000;
+    position: absolute; 
+    top: 2px; 
+    right: 2px; 
+    width: 12px; 
+    height: 12px; 
+    background: #10b981; 
+    border-radius: 50%; 
+    border: 2px solid #000;
+    z-index: 10;
 }
 
 .chat-widget {
-    position: fixed; bottom: -600px; left: 30px; width: 340px; height: 450px; background: rgba(5, 8, 22, 0.98); backdrop-filter: blur(25px); border: 1px solid var(--accent-glow); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; z-index: 10000; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: fixed; 
+    bottom: -600px; 
+    left: 30px; 
+    width: 340px; 
+    height: 450px; 
+    background: rgba(5, 8, 22, 0.98); 
+    backdrop-filter: blur(25px); 
+    border: 1px solid var(--accent-glow); 
+    border-radius: 16px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    z-index: 10000; 
+    opacity: 0; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.chat-widget.active { bottom: 110px; opacity: 1; }
+
+.chat-widget.active { 
+    bottom: 110px; 
+    opacity: 1; 
+}
 
 .chat-robot-avatar-container {
-    display: flex; flex-direction: column; align-items: center; margin: 10px auto; position: relative; width: 85px; height: 85px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 10px auto; 
+    position: relative; 
+    width: 85px; 
+    height: 85px;
 }
+
 .chat-robot-img-mesh {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid var(--accent-glow); position: relative; z-index: 2;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 2px solid var(--accent-glow); 
+    position: relative; 
+    z-index: 2;
     animation: floatingRobotMesh 3s infinite ease-in-out;
 }
+
 @keyframes floatingRobotMesh {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
+
 .chat-ping-ring {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 2px solid var(--accent-glow); opacity: 0.4; z-index: 1;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%; 
+    border: 2px solid var(--accent-glow); 
+    opacity: 0.4; 
+    z-index: 1;
     animation: ringExpansion 2s infinite linear;
 }
+
 @keyframes ringExpansion {
     0% { transform: scale(0.9); opacity: 0.6; }
     100% { transform: scale(1.3); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .chat-widget {
+        width: 300px;
+        height: 400px;
+        left: 15px;
+    }
+    .chat-badge-pulse {
+        left: 15px;
+    }
 }
