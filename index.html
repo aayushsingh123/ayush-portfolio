@@ -16,7 +16,6 @@
         <div class="ai-box">
             <div class="ai-scanner"></div>
             <h1>WELCOME TO AYUSH PORTFOLIO</h1>
-            <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
     </div>
@@ -30,7 +29,6 @@
             <div class="logo">AS</div>
             <ul id="navMenu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -38,6 +36,7 @@
                 <li><a href="#live-dashboard">Live Terminal</a></li>
                 <li><a href="#cyber-vault-section">Cyber Security</a></li>
                 <li><a href="#feedback-section">Reviews</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -153,19 +152,20 @@
     </section>
 
     <section class="projects" id="projects">
-        <div class="section-title"><h2>Featured Projects</h2><p>Some Enterprise Work Workspaces</p></div>
+        <div class="section-title"><h2>Featured Projects & Emulators</h2><p>Some Enterprise Work Workspaces</p></div>
         <div class="project-grid">
-            <!-- Project Card 1 -->
             <div class="project-card">
                 <div class="project-image"><i class="fas fa-shield-alt"></i></div>
                 <div class="project-content">
                     <h3>Authentication Platform</h3>
                     <p>Designed secure login, session management and modules for enterprise apps.</p>
                     <div class="tags"><span>Java</span><span>Spring</span><span>Security</span></div>
-                    <div class="project-buttons"><a href="#" class="btn-api-sandbox" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/auth/verify');">API Sandbox</a></div>
+                    <div class="project-buttons" style="display:flex; gap:10px;">
+                        <a href="#" class="btn-api-sandbox" onclick="event.preventDefault(); simulateSwaggerSandbox('/api/v1/auth/verify');">API Sandbox</a>
+                        <a href="#" class="btn-api-sandbox" style="border-color:#a855f7; color:#a855f7;" onclick="event.preventDefault(); document.getElementById('jwtDecoderSection').style.display='block';">JWT Tool</a>
+                    </div>
                 </div>
             </div>
-            <!-- Project Card 2 -->
             <div class="project-card">
                 <div class="project-image"><i class="fas fa-exchange-alt"></i></div>
                 <div class="project-content">
@@ -177,7 +177,30 @@
             </div>
         </div>
         
-        <!-- Interactive Mock API Sandbox Panel UI Element -->
+        <!-- NEW COMPONENT: Interactive JWT Token Decoder Panel -->
+        <div id="jwtDecoderSection" style="max-width: 800px; margin: 30px auto 0 auto; background: rgba(10,10,25,0.85); border: 1px solid #a855f7; border-radius: 16px; padding: 25px; display: none; box-shadow: 0 0 20px rgba(168,85,247,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span style="font-family: monospace; color: #a855f7; font-weight: bold;"><i class="fas fa-key"></i> Enterprise JWT Token Decoder Matrix</span>
+                <span style="cursor: pointer; color: #ef4444;" onclick="document.getElementById('jwtDecoderSection').style.display='none'"><i class="fas fa-times"></i></span>
+            </div>
+            <textarea id="jwtRawInputArea" rows="3" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(168,85,247,0.3); color:#fff; font-family:monospace; padding:12px; border-radius:8px; margin-bottom:15px; font-size:0.85rem;" placeholder="Paste standard Bearer JWT Token string layers here..."></textarea>
+            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                <button onclick="handleClientJwtDecoding()" style="background:#a855f7; border:none; color:white; font-weight:bold; padding:8px 20px; border-radius:30px; cursor:pointer;">Decode Claims Matrix</button>
+                <button onclick="loadMockEnterpriseJwtString()" style="background:transparent; border:1px dashed #a855f7; color:#a855f7; padding:8px 15px; border-radius:30px; cursor:pointer;">Load Mock Production Token</button>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                <div>
+                    <span style="font-size:0.8rem; color:#a855f7; font-family:monospace;">📄 JWT HEADER</span>
+                    <pre id="jwtHeaderOutputBlock" style="background:rgba(0,0,0,0.4); padding:10px; border-radius:6px; color:#cbd5e1; font-family:monospace; font-size:0.8rem; margin-top:5px; border-left:2px solid #a855f7; min-height:80px; overflow-x:auto;"></pre>
+                </div>
+                <div>
+                    <span style="font-size:0.8rem; color:#22c55e; font-family:monospace;">📦 JWT PAYLOAD CLAIMS</span>
+                    <pre id="jwtPayloadOutputBlock" style="background:rgba(0,0,0,0.4); padding:10px; border-radius:6px; color:#cbd5e1; font-family:monospace; font-size:0.8rem; margin-top:5px; border-left:2px solid #22c55e; min-height:80px; overflow-x:auto;"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swagger API Box -->
         <div id="swaggerSandboxBox" style="max-width: 800px; margin: 40px auto 0 auto; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-glow); border-radius: 20px; padding: 25px; display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <span style="font-family: monospace; color: var(--accent-glow); font-size: 0.9rem;"><i class="fas fa-code-branch"></i> OpenAPI Mock Sandbox v3.0.0</span>
@@ -212,6 +235,17 @@
                 <div class="cyber-animated-bg-container">
                     <div class="cyber-matrix-grid-overlay"></div>
                 </div>
+                
+                <!-- NEW COMPONENT: Asymmetric API Key Encryption Emulator Panel -->
+                <div style="position:relative; z-index:5; padding:30px 40px 10px 40px; border-bottom:1px dashed var(--border-color); background:rgba(0,0,0,0.3);">
+                    <h4 style="color:var(--accent-glow); font-size:1rem; font-family:monospace; margin-bottom:10px;"><i class="fas fa-user-lock"></i> Live Asymmetric RSA Encryption Matrix Core</h4>
+                    <div style="display:flex; gap:12px; max-width:650px;">
+                        <input type="text" id="asymmetricRawTextInput" placeholder="Type raw server request layer token..." style="flex:1; background:rgba(0,0,0,0.5); border:1px solid var(--border-color); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.9rem;">
+                        <button onclick="emulateAsymmetricRsaCipher()" style="background:var(--accent-glow); border:none; color:#000; font-weight:bold; padding:0 22px; border-radius:8px; cursor:pointer;">Cipher Text 🔒</button>
+                    </div>
+                    <pre id="asymmetricCipherOutputBlock" style="margin-top:12px; background:rgba(0,0,0,0.6); padding:10px; border-radius:6px; color:#10b981; font-family:monospace; font-size:0.75rem; white-space:pre-wrap; display:none; max-height:75px; overflow-y:auto; word-break:break-all;"></pre>
+                </div>
+
                 <div class="cyber-info-grid-matrix">
                     <div class="cyber-info-card-item"><span>[A] Asymmetric Encryption</span><p>Implementing secure RSA key handshakes across remote enterprise servers network gates.</p></div>
                     <div class="cyber-info-card-item"><span>[B] Brute-Force Shielding</span><p>Rate-limiting API layers and tracking failed token authentication request states thresholds.</p></div>
@@ -260,6 +294,8 @@
             <div class="dashboard-main-panel">
                 <div class="hub-nav-tabs">
                     <button class="tab-btn active" onclick="switchDashboardTab('tech-knowledge')">💡 Deep Tech Knowledge</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('spring-actuator-hub')">⚙️ Spring Actuator Health</button>
+                    <button class="tab-btn" onclick="switchDashboardTab('rest-exception-hub')">🛑 Rest Global Exceptions</button>
                     <button class="tab-btn" onclick="switchDashboardTab('meditation')">🧘 Zen Meditation</button>
                     <button class="tab-btn" onclick="switchDashboardTab('health')">❤️ Health Analytics</button>
                     <button class="tab-btn" onclick="switchDashboardTab('music-hub')">🎵 Music Engine</button>
@@ -272,6 +308,39 @@
                     <h3>Advanced Core Blueprint (A to Z Architecture)</h3>
                     <p style="margin-bottom: 15px;"><strong>Concurrency Model:</strong> Distributed nodes sync states via cluster locks. Java 21 Virtual Threads minimize latency across request networks.</p>
                     <p><strong>IT Links Hub:</strong> <a href="https://www.baeldung.com/" target="_blank" class="dashboard-inline-link">Baeldung System Docs Portal</a> • <a href="https://leetcode.com/" target="_blank" class="dashboard-inline-link">DSA Engine Platform</a></p>
+                </div>
+
+                <!-- NEW COMPONENT: Spring Boot Actuator Core Health Widget Tab -->
+                <div id="spring-actuator-hub" class="hub-content-panel">
+                    <h3>Spring Boot Actuator Monitoring Terminal</h3>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:15px;">Live tracking endpoints telemetry scraped directly from native context pools.</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:15px;">
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border:1px solid var(--border-color); border-radius:8px;">
+                            <span style="font-size:0.75rem; opacity:0.7; display:block;">Database Connection</span>
+                            <span style="color:#10b981; font-weight:bold; font-size:0.95rem;"><i class="fas fa-circle" style="font-size:8px;"></i> UP (Oracle 19c)</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border:1px solid var(--border-color); border-radius:8px;">
+                            <span style="font-size:0.75rem; opacity:0.7; display:block;">Disk Space Allocation</span>
+                            <span style="color:#4cc9ff; font-weight:bold; font-size:0.95rem;">94.2 GB FREE</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border:1px solid var(--border-color); border-radius:8px;">
+                            <span style="font-size:0.75rem; opacity:0.7; display:block;">G1GC Stop-World Latency</span>
+                            <span style="color:#eab308; font-weight:bold; font-size:0.95rem;"><i class="fas fa-bolt"></i> 12.4 ms</span>
+                        </div>
+                    </div>
+                    <pre style="background:rgba(0,0,0,0.6); padding:12px; border-radius:8px; font-family:monospace; font-size:0.8rem; color:#22c55e; border-left:3px solid #10b981;">{ "status": "UP", "components": { "db": { "status": "UP", "details": { "database": "Oracle Enterprise", "validationQuery": "isValid()" } }, "diskSpace": { "status": "UP", "details": { "total": 512110190592, "free": 101152012288 } } } }</pre>
+                </div>
+
+                <!-- NEW COMPONENT: Interactive REST Exception Mapper Simulator Tab -->
+                <div id="rest-exception-hub" class="hub-content-panel">
+                    <h3>Global REST Exception Mapping Router</h3>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:15px;">Simulate standard Spring Boot @ControllerAdvice HTTP error response patterns handling model layers.</p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+                        <button onclick="emulateRestGlobalException(404)" style="background:rgba(239,68,68,0.1); border:1px solid #ef4444; color:#ef4444; padding:6px 14px; border-radius:30px; cursor:pointer; font-weight:500; font-size:0.8rem;">Trigger 404 EntityNotFoundException</button>
+                        <button onclick="emulateRestGlobalException(500)" style="background:rgba(239,68,68,0.1); border:1px solid #f97316; color:#f97316; padding:6px 14px; border-radius:30px; cursor:pointer; font-weight:500; font-size:0.8rem;">Trigger 500 NullPointerException</button>
+                        <button onclick="emulateRestGlobalException(401)" style="background:rgba(234,179,8,0.1); border:1px solid #eab308; color:#eab308; padding:6px 14px; border-radius:30px; cursor:pointer; font-weight:500; font-size:0.8rem;">Trigger 401 BadCredentialsException</button>
+                    </div>
+                    <pre id="restExceptionJsonConsoleBlock" style="background:rgba(0,0,0,0.6); padding:12px; border-radius:8px; font-family:monospace; font-size:0.8rem; color:#ef4444; border-left:3px solid #ef4444; display:none; white-space:pre-wrap; max-height:160px; overflow-y:auto;"></pre>
                 </div>
 
                 <div id="meditation" class="hub-content-panel">
@@ -480,7 +549,7 @@
         </div>
         <div class="chat-body" id="chatBody">
             <div class="chat-robot-avatar-container">
-                <i class="fas fa-robot chat-robot-icon-mesh"></i>
+                <div class="chat-robot-fallback-mesh-face"></div>
                 <div class="chat-ping-ring"></div>
             </div>
             <div class="chat-msg bot">System Initialization Complete. I am Ayush's virtual matrix node. Drop a message or query below!</div>
@@ -493,7 +562,7 @@
     
     <!-- Pulse Animated Chat Trigger Badge -->
     <div class="chat-badge-pulse" id="chatBadge">
-        <i class="fas fa-comments" style="font-size: 24px; color: var(--accent-glow);"></i>
+        <div class="chat-badge-fallback-inner-icon"></div>
         <div class="badge-online-glow"></div>
     </div>
 
