@@ -354,7 +354,7 @@ nav ul li a:hover{
 }
 
 /* ========================================================
-   CYBER SEC COMPONENT MODULE STYLES
+   CYBER SEC COMPONENT MODULE STYLES (WITH PATH STABILITY)
 ======================================================== */
 .cyber-dropdown-wrapper {
     max-width: 900px;
@@ -410,7 +410,7 @@ nav ul li a:hover{
 .cyber-animated-bg-container {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('./image_419fed.png');
+    background-image: url('image_419fed.png');
     background-size: cover;
     background-position: center;
     opacity: 0.25;
@@ -500,7 +500,7 @@ nav ul li a:hover{
 .sm-lang-selector-trigger { color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
 /* ========================================================
-   ADVANCED INTERACTIVE ROBOT CHAT COMPONENT (FIXED SUITE)
+   ADVANCED INTERACTIVE ROBOT CHAT GRID MESH SUITE
 ======================================================== */
 .chat-badge-pulse {
     position: fixed; 
@@ -517,13 +517,36 @@ nav ul li a:hover{
     z-index: 9999; 
     transition: .35s; 
     background: #000; 
-    overflow: hidden;
+    overflow: visible;
     animation: chatBadgePulseGlow 2s infinite ease-in-out;
 }
 
 @keyframes chatBadgePulseGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(76, 201, 255, 0.4); transform: scale(1); }
     50% { box-shadow: 0 0 15px 4px rgba(76, 201, 255, 0.6); transform: scale(1.05); }
+}
+
+/* Fallback Pure CSS Vector Rendering for Robot Icon Trigger */
+.chat-badge-fallback-inner-icon {
+    width: 28px;
+    height: 24px;
+    background: #4cc9ff;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 0 10px #4cc9ff;
+}
+.chat-badge-fallback-inner-icon::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 4px; width: 6px; height: 6px;
+    background: #000; border-radius: 50%;
+    box-shadow: 12px 0 #000;
+}
+.chat-badge-fallback-inner-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 8px; width: 12px; height: 3px;
+    background: #000; border-radius: 2px;
 }
 
 .badge-online-glow {
@@ -566,21 +589,37 @@ nav ul li a:hover{
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    margin: 10px auto; 
+    margin: 15px auto; 
     position: relative; 
     width: 85px; 
     height: 85px;
 }
 
-.chat-robot-img-mesh {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    border-radius: 50%; 
-    border: 2px solid var(--accent-glow); 
-    position: relative; 
-    z-index: 2;
+/* Fallback Pure CSS Vector Mesh for Robot Face inside Chat Panel */
+.chat-robot-fallback-mesh-face {
+    width: 70px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e3a8a, #0284c7);
+    border: 2px solid #4cc9ff;
+    border-radius: 16px;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 0 15px rgba(76,201,255,0.4);
     animation: floatingRobotMesh 3s infinite ease-in-out;
+}
+.chat-robot-fallback-mesh-face::before {
+    content: '';
+    position: absolute;
+    top: 18px; left: 14px; width: 10px; height: 10px;
+    background: #4cc9ff; border-radius: 50%;
+    box-shadow: 28px 0 #4cc9ff, 0 0 10px #4cc9ff, 28px 0 10px #4cc9ff;
+}
+.chat-robot-fallback-mesh-face::after {
+    content: '';
+    position: absolute;
+    bottom: 12px; left: 22px; width: 22px; height: 4px;
+    background: #4cc9ff; border-radius: 4px;
+    box-shadow: 0 0 5px #4cc9ff;
 }
 
 @keyframes floatingRobotMesh {
@@ -590,11 +629,11 @@ nav ul li a:hover{
 
 .chat-ping-ring {
     position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    border-radius: 50%; 
+    top: -5px; 
+    left: 5px; 
+    width: 75px; 
+    height: 70px; 
+    border-radius: 16px; 
     border: 2px solid var(--accent-glow); 
     opacity: 0.4; 
     z-index: 1;
@@ -607,12 +646,6 @@ nav ul li a:hover{
 }
 
 @media (max-width: 768px) {
-    .chat-widget {
-        width: 300px;
-        height: 400px;
-        left: 15px;
-    }
-    .chat-badge-pulse {
-        left: 15px;
-    }
+    .chat-widget { width: 300px; height: 400px; left: 15px; }
+    .chat-badge-pulse { left: 15px; }
 }
