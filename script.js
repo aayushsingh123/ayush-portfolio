@@ -325,7 +325,7 @@ function initVoiceCommandGateway() {
     if (!SpeechRecognition) {
         if(voiceBtn) {
             voiceBtn.addEventListener("click", () => {
-                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API APIs loops.");
+                triggerSystemToast("Fallback: Please use HTTPS local proxies to open WebSpeech API loops.");
             });
         }
         return;
