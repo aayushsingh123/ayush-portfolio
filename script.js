@@ -86,14 +86,14 @@ function typeEffect() {
 }
 typeEffect();
 
-const stickyNav = document.querySelector("nav");
+const stickyNav = document.querySelector(".cyber-navbar");
 window.addEventListener("scroll", () => {
     if (!stickyNav) return;
     if (window.scrollY > 80) {
-        stickyNav.style.background = "rgba(5, 8, 22, 0.95)";
-        stickyNav.style.boxShadow = "0 5px 20px rgba(0,0,0,.35)";
+        stickyNav.style.background = "rgba(4, 10, 24, 0.95)";
+        stickyNav.style.boxShadow = "0 4px 30px rgba(0, 240, 255, 0.15)";
     } else {
-        stickyNav.style.background = "rgba(255,255,255,.05)";
+        stickyNav.style.background = "rgba(255,255,255,.02)";
         stickyNav.style.boxShadow = "none";
     }
 });
@@ -302,7 +302,7 @@ function activateWaveTrackAnimation() {
     let count = 0;
     function drawWave() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = document.body.classList.contains("light") ? "#2563eb" : "#4cc9ff";
+        ctx.strokeStyle = document.body.classList.contains("light") ? "#2563eb" : "#00f0ff";
         ctx.lineWidth = 2;
         ctx.beginPath();
         
@@ -378,7 +378,6 @@ function initVoiceCommandGateway() {
    5. NEW FEATURES HARD LOGIC PARSERS
 ======================================================= */
 
-// FEATURE: JSON JWT Token Claims Matrix Decoder
 function loadMockEnterpriseJwtString() {
     document.getElementById("jwtRawInputArea").value = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaEBzaW5naC50ZWNoIiwibmFtZSI6IkF5dXNoIFNpbmdoIiwicm9sZXMiOlsiUk9MRV9TRU5JT1JfREVWIl0sImV4cCI6MTc4OTk5OTk5OX0.mockSignatureNode";
     triggerSystemToast("Mock JWT loaded into active matrix block!");
@@ -397,7 +396,6 @@ function handleClientJwtDecoding() {
 
     const segments = input.split(".");
     try {
-        // Safe base64 string decoding mapping
         const headerDecoded = atob(segments[0].replace(/-/g, '+').replace(/_/g, '/'));
         const payloadDecoded = atob(segments[1].replace(/-/g, '+').replace(/_/g, '/'));
         
@@ -410,7 +408,6 @@ function handleClientJwtDecoding() {
     }
 }
 
-// FEATURE: Asymmetric API Key Encryption Emulator Matrix
 function emulateAsymmetricRsaCipher() {
     const txt = document.getElementById("asymmetricRawTextInput").value;
     const out = document.getElementById("asymmetricCipherOutputBlock");
@@ -425,14 +422,12 @@ function emulateAsymmetricRsaCipher() {
     out.innerText = "[Initializing Cryptographic RSA Handshake...]";
 
     setTimeout(() => {
-        // Simulate public key cipher layer string output
         let scrambled = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv" + btoa(txt).substring(0, 45) + "...[Encrypted Client Segment]";
         out.innerText = "-----BEGIN RSA ENCRYPTED CIPHER BLOCK-----\n" + scrambled + "\n-----END RSA CIPHER BLOCK-----";
         triggerSystemToast("Asymmetric key cipher layer successfully compiled.");
     }, 800);
 }
 
-// FEATURE: Interactive REST Global Exception Mapper Simulator Console
 function emulateRestGlobalException(statusCode) {
     const out = document.getElementById("restExceptionJsonConsoleBlock");
     if(!out) return;
@@ -477,9 +472,9 @@ if(reviewForm && reviewsContainerStack) {
         const designation = document.getElementById("feedbackDesignation").value;
         
         const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card";
+        reviewCard.className = "review-compiled-card cyber-glass-card";
         reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
-                                <p style="margin-top: 8px;">${clientReview}</p>`;
+                                <p style="margin-top: 8px;" class="cyber-desc-p">${clientReview}</p>`;
         
         reviewsContainerStack.prepend(reviewCard);
         triggerSystemToast(`Success: Feedback submitted for ${clientName}! ✨`);
@@ -512,7 +507,7 @@ if(sendChatBtn && chatInput && chatBody) {
         const userText = chatInput.value;
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
+        userBubble.style.cssText = "background: #00f0ff; color: #000; font-weight:600; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
