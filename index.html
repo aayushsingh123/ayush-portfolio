@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="right">
-            <img src="profile.jpeg" alt="Ayush Profile">
+            <img src="./profile.jpeg" alt="Ayush Profile">
         </div>
         <div class="hero-blur blur1"></div>
         <div class="hero-blur blur2"></div>
@@ -85,7 +85,7 @@
             <p>Who I Am</p>
         </div>
         <div class="about-container">
-            <div class="about-image"><img src="profile.jpeg" alt="Aayush Singh"></div>
+            <div class="about-image"><img src="./profile.jpeg" alt="Aayush Singh"></div>
             <div class="about-content">
                 <h3>Java Backend Engineer</h3>
                 <p>I have strong knowledge of authentication and authorization, session management, API design, database development, caching, asynchronous messaging, performance optimization, and software architecture. I also have experience in production support, debugging, root cause analysis, release management, and troubleshooting complex backend systems.</p>
@@ -189,8 +189,8 @@
         </div>
     </section>
 
-    <!-- Clean Corporate Cyber Dropdown Component Integration -->
-    <section id="cyber-vault-section" style="padding: 120px 9%; position: relative;">
+    <!-- Cyber Security Section with Background Pointer Fix -->
+    <section id="cyber-vault-section" style="padding: 120px 9%; position: relative; overflow: hidden;">
         <div class="section-title">
             <h2>Cyber Security Ledger</h2>
             <p>Interactive A to Z Corporate Protection Blueprints</p>
@@ -206,7 +206,9 @@
             </div>
             
             <div class="cyber-dropdown-content" id="cyberDropdownContentPane">
-                <div class="cyber-animated-bg-container"></div>
+                <div class="cyber-animated-bg-container">
+                    <div class="cyber-matrix-grid-overlay"></div>
+                </div>
                 <div class="cyber-info-grid-matrix">
                     <div class="cyber-info-card-item"><span>[A] Asymmetric Encryption</span><p>Implementing secure RSA key handshakes across remote enterprise servers network gates.</p></div>
                     <div class="cyber-info-card-item"><span>[B] Brute-Force Shielding</span><p>Rate-limiting API layers and tracking failed token authentication request states thresholds.</p></div>
@@ -312,7 +314,7 @@
                     <p>Engineered prompts compiler and system helpers linked directly for production scaling:</p>
                     <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://chatgpt.com/" target="_blank" class="hub-link-btn"><i class="fas fa-robot"></i> ChatGPT Matrix</a>
-                        <a href="https://github.com/features/copilot" target="_blank" class="hub-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
+                        <a href="https://github.com/features/copilot" target="_blank" class="hud-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
                     </div>
                 </div>
 
@@ -328,7 +330,7 @@
             </div>
 
             <div class="news-sidebar">
-                <h3><i class="fas fa-globe"></i> Live Ticker Logs</h3>
+                <h3><i class="fas fa-globe"></i> Desh Videsh Live Ticker</h3>
                 <div id="liveNewsWrapper"></div>
             </div>
         </div>
@@ -384,7 +386,7 @@
         </div>
     </section>
 
-    <!-- PERFECT RE-ALIGNMENT OF THE SIMILARWEB CORPORATE FOOTER STRUCTURAL LAYOUT -->
+    <!-- RE-ALIGNMENT OF THE SIMILARWEB CORPORATE FOOTER STRUCTURAL LAYOUT -->
     <footer class="sm-footer-global-container">
         <div class="sm-footer-grid-wrapper">
             <div class="sm-footer-columnbrand">
@@ -486,9 +488,7 @@
         </div>
     </footer>
 
-    <div id="top"><i class="fas fa-arrow-up"></i></div>
-
-    <!-- PURE CSS EMBEDDED CHAT NODE WITH NO BROKEN PATH IMAGE FALLOUTS -->
+    <!-- EMBEDDED DYNAMIC GLOWING CUTE CHATBOT AVATAR NODE -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -507,17 +507,10 @@
             <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
+    
     <div class="chat-badge-pulse" id="chatBadge">
         <div class="chat-badge-fallback-inner-icon"></div>
         <div class="badge-online-glow"></div>
-    </div>
-
-    <div id="alertNotificationBox" class="toast-box">
-        <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
-        <div>
-            <h4 class="toast-title">System Update</h4>
-            <p id="notificationText" class="toast-desc">Configuration sync protocol finalized.</p>
-        </div>
     </div>
 
     <script src="script.js"></script>
