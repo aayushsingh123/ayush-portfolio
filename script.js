@@ -184,11 +184,8 @@ function switchDashboardTab(tabId) {
 
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
-    let mockSequenceValues = ["370", "73%", "ONLINE", "SYS_OK"];
-    let tickerIterator = 0;
     setInterval(() => {
-        tickerIterator = (tickerIterator + 1) % mockSequenceValues.length;
-        breathTxtNode.innerText = mockSequenceValues[tickerIterator];
+        breathTxtNode.innerText = (breathTxtNode.innerText === "Inhale") ? "Exhale" : "Inhale";
     }, 4000);
 }
 
