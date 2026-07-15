@@ -500,7 +500,7 @@ nav ul li a:hover{
 .sm-lang-selector-trigger { color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
 /* ========================================================
-   ADVANCED INTERACTIVE ROBOT CHAT COMPONENT
+   ADVANCED INTERACTIVE ROBOT CHAT COMPONENT (CUTE ROBOT FIX)
 ======================================================== */
 .chat-badge-pulse {
     position: fixed; 
@@ -517,7 +517,7 @@ nav ul li a:hover{
     z-index: 9999; 
     transition: .35s; 
     background: #000; 
-    overflow: visible;
+    overflow: hidden;
     animation: chatBadgePulseGlow 2s infinite ease-in-out;
 }
 
@@ -529,7 +529,7 @@ nav ul li a:hover{
 .chat-badge-fallback-inner-icon {
     width: 28px;
     height: 24px;
-    background: #4cc9ff;
+    background: linear-gradient(135deg, #0284c7, #00d4ff);
     border-radius: 6px;
     position: relative;
     box-shadow: 0 0 10px #4cc9ff;
@@ -538,14 +538,15 @@ nav ul li a:hover{
     content: '';
     position: absolute;
     top: 6px; left: 4px; width: 6px; height: 6px;
-    background: #000; border-radius: 50%;
-    box-shadow: 12px 0 #000;
+    background: #fff; border-radius: 50%;
+    box-shadow: 12px 0 #fff;
 }
 .chat-badge-fallback-inner-icon::after {
     content: '';
     position: absolute;
-    bottom: 4px; left: 8px; width: 12px; height: 3px;
-    background: #000; border-radius: 2px;
+    bottom: 4px; left: 8px; width: 12px; height: 4px;
+    border-bottom: 2px solid #fff;
+    border-radius: 50%;
 }
 
 .badge-online-glow {
@@ -594,30 +595,42 @@ nav ul li a:hover{
     height: 85px;
 }
 
+/* UPGRADED: Dynamic Cute Smiling Robot Face Mesh */
 .chat-robot-fallback-mesh-face {
-    width: 70px;
-    height: 60px;
-    background: linear-gradient(135deg, #1e3a8a, #0284c7);
+    width: 75px;
+    height: 65px;
+    background: linear-gradient(135deg, #091e3a, #0284c7);
     border: 2px solid #4cc9ff;
-    border-radius: 16px;
+    border-radius: 18px;
     position: relative;
     z-index: 5;
-    box-shadow: 0 0 15px rgba(76,201,255,0.4);
+    box-shadow: 0 0 20px rgba(76,201,255,0.5);
     animation: floatingRobotMesh 3s infinite ease-in-out;
 }
+
+/* Neon Glowing Eyes with Live Blink Cycle Animation */
 .chat-robot-fallback-mesh-face::before {
     content: '';
     position: absolute;
-    top: 18px; left: 14px; width: 10px; height: 10px;
+    top: 20px; left: 16px; width: 10px; height: 10px;
     background: #4cc9ff; border-radius: 50%;
-    box-shadow: 28px 0 #4cc9ff, 0 0 10px #4cc9ff, 28px 0 10px #4cc9ff;
+    box-shadow: 28px 0 #4cc9ff, 0 0 12px #4cc9ff, 28px 0 12px #4cc9ff;
+    animation: robotEyeBlinkCycle 4s infinite linear;
 }
+
+/* Upgraded Cute Curved Neon Glowing Smile */
 .chat-robot-fallback-mesh-face::after {
     content: '';
     position: absolute;
-    bottom: 12px; left: 22px; width: 22px; height: 4px;
-    background: #4cc9ff; border-radius: 4px;
-    box-shadow: 0 0 5px #4cc9ff;
+    bottom: 14px; left: 24px; width: 24px; height: 10px;
+    border-bottom: 3px solid #4cc9ff;
+    border-radius: 0 0 15px 15px; /* Creates perfect curved smile outline */
+    box-shadow: 0 3px 10px rgba(76,201,255,0.6);
+}
+
+@keyframes robotEyeBlinkCycle {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); } /* Simulates natural organic blink */
 }
 
 @keyframes floatingRobotMesh {
@@ -631,7 +644,7 @@ nav ul li a:hover{
     left: 5px; 
     width: 75px; 
     height: 70px; 
-    border-radius: 16px; 
+    border-radius: 18px; 
     border: 2px solid var(--accent-glow); 
     opacity: 0.4; 
     z-index: 1;
