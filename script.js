@@ -12,7 +12,7 @@ function triggerSystemToast(msg) {
 }
 
 function startCounterAnimation() {
-    const counters = document.querySelectorAll(".achievement-card h1");
+    const counters = document.querySelectorAll(".hud-metric-counter-card h1");
     counters.forEach(counter => {
         const targetValue = parseFloat(counter.getAttribute("data-target"));
         if (isNaN(targetValue)) return;
@@ -86,14 +86,14 @@ function typeEffect() {
 }
 typeEffect();
 
-const stickyNav = document.querySelector(".cyber-navbar");
+const stickyNav = document.querySelector(".hud-top-nav-bar");
 window.addEventListener("scroll", () => {
     if (!stickyNav) return;
     if (window.scrollY > 80) {
-        stickyNav.style.background = "rgba(4, 10, 24, 0.95)";
+        stickyNav.style.background = "rgba(4, 12, 36, 0.98)";
         stickyNav.style.boxShadow = "0 4px 30px rgba(0, 240, 255, 0.15)";
     } else {
-        stickyNav.style.background = "rgba(255,255,255,.02)";
+        stickyNav.style.background = "rgba(255, 255, 255, 0.02)";
         stickyNav.style.boxShadow = "none";
     }
 });
@@ -182,10 +182,14 @@ function switchDashboardTab(tabId) {
     if(activeBtn) activeBtn.classList.add("active");
 }
 
+// Screenshot Mirror: Expanding ring values emulation mapping (73% / 370)
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
+    let mockValues = ["370", "73%", "SYS_OK", "ING_UP"];
+    let cycleCounter = 0;
     setInterval(() => {
-        breathTxtNode.innerText = (breathTxtNode.innerText === "Inhale") ? "Exhale" : "Inhale";
+        cycleCounter = (cycleCounter + 1) % mockValues.length;
+        breathTxtNode.innerText = mockValues[cycleCounter];
     }, 4000);
 }
 
@@ -375,7 +379,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. NEW FEATURES HARD LOGIC PARSERS
+   5. ADVANCED INTEGRATED TELEMETRY EMULATORS
 ======================================================= */
 
 function loadMockEnterpriseJwtString() {
