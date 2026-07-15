@@ -36,7 +36,7 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Original Aurora Background Layer */
+/* Original Aurora Animation Layer */
 .aurora{
     position:fixed;
     width:100%;
@@ -178,7 +178,7 @@ nav ul li a:hover{
 }
 .ai-btn:hover { background: #4cc9ff; color: #000; box-shadow: 0 0 25px #4cc9ff; }
 
-/* Original Components Styling Definitions */
+/* Original Standard Cards Component Specifications */
 .about, .skills, .experience, .projects, .achievements, .contact, nav, .section-title h2, .timeline-content h3, .news-sidebar h3, #cyber-vault-section h2 {
     color: var(--text-main) !important;
 }
@@ -266,9 +266,17 @@ nav ul li a:hover{
 .hub-content-panel { display: none; min-height: 200px; opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
 .hub-content-panel.active { display: block; opacity: 1; transform: translateY(0); }
 
+/* Circle Metric Layout view */
 .breath-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 30px; }
-.breath-circle { width: 120px; height: 120px; background: rgba(76, 201, 255, 0.1); border: 4px solid var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; animation: breatheAnimation 8s infinite ease-in-out; }
-@keyframes breatheAnimation { 0%, 100% { transform: scale(1); background: rgba(76, 201, 255, 0.1); } 50% { transform: scale(1.3); background: rgba(0, 212, 255, 0.25); } }
+.cyber-screenshot-circle-metric {
+    width: 130px; height: 130px; border-radius: 50%; background: rgba(0, 240, 255, 0.03); border: 2px dashed var(--accent-glow); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 20px rgba(0,240,255,0.1); animation: rotationPulsingCircle 5s infinite linear;
+}
+@keyframes rotationPulsingCircle { 0% { transform: scale(1); } 50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(0,240,255,0.25); } 100% { transform: scale(1); } }
+
+.circle-inner-value {
+    font-size: 2.2rem; font-weight: bold; color: var(--accent-glow); text-shadow: 0 0 12px var(--accent-glow); font-family: monospace;
+}
+
 .health-data-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; text-align: center; }
 
 .news-sidebar { border-radius: 16px; padding: 20px; max-height: 450px; overflow-y: auto; }
@@ -335,7 +343,7 @@ nav ul li a:hover{
 }
 
 /* ========================================================
-   CYBER SEC SYSTEM COMPONENT DESIGN MAPS
+   CYBER SEC DROPDOWN CONTAINER SUITE
 ======================================================== */
 .cyber-dropdown-wrapper {
     max-width: 900px;
@@ -388,6 +396,25 @@ nav ul li a:hover{
     visibility: visible;
     border-top: 1px solid var(--border-color);
 }
+.cyber-animated-bg-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('./image_419fed.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.22;
+    z-index: 1;
+    animation: liveGraphicPulse 8s infinite ease-in-out alternate;
+}
+@keyframes liveGraphicPulse {
+    0% { transform: scale(1); filter: hue-rotate(0deg) brightness(0.8); }
+    100% { transform: scale(1.08); filter: hue-rotate(15deg) brightness(1.2); }
+}
+.cyber-matrix-grid-overlay {
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(5,8,22,0.85), rgba(5,8,22,0.92));
+    position: absolute; top: 0; left: 0;
+}
 .cyber-info-grid-matrix {
     position: relative;
     z-index: 2;
@@ -416,7 +443,7 @@ nav ul li a:hover{
 }
 
 /* ========================================================
-   SIMILARWEB COMPACT FOOTER SYSTEM LAYOUT CLASS BLOCKS
+   SIMILARWEB COMPACT FOOTER CLASS PACKAGES
 ======================================================== */
 .sm-footer-global-container {
     background: var(--sm-footer-dark);
@@ -462,37 +489,158 @@ nav ul li a:hover{
 .sm-lang-selector-trigger { color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
 /* ========================================================
-   SAFE VECTOR CHATBOT LAYOUT SPECIFICATIONS
+   FUTURISTIC FLOATING VEKTOR ROBOT CHAT COMPONENT
 ======================================================== */
 .chat-badge-pulse {
-    position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-glow); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: .35s; background: #000; overflow: visible;
+    position: fixed; 
+    bottom: 30px; 
+    left: 30px; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    border: 2px solid var(--accent-glow); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    z-index: 9999; 
+    transition: .35s; 
+    background: #000; 
+    overflow: visible;
     animation: chatBadgePulseGlow 2s infinite ease-in-out;
 }
+
 @keyframes chatBadgePulseGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(76, 201, 255, 0.4); transform: scale(1); }
     50% { box-shadow: 0 0 15px 4px rgba(76, 201, 255, 0.6); transform: scale(1.05); }
 }
+
 .chat-badge-fallback-inner-icon {
-    width: 28px; height: 24px; background: linear-gradient(135deg, #0284c7, #00d4ff); border-radius: 6px; position: relative; box-shadow: 0 0 10px #4cc9ff;
+    width: 28px;
+    height: 24px;
+    background: linear-gradient(135deg, #0284c7, #00d4ff);
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 0 10px #4cc9ff;
 }
-.chat-badge-fallback-inner-icon::before { content: ''; position: absolute; top: 6px; left: 4px; width: 6px; height: 6px; background: #fff; border-radius: 50%; box-shadow: 12px 0 #fff; }
-.chat-badge-fallback-inner-icon::after { content: ''; position: absolute; bottom: 4px; left: 8px; width: 12px; height: 4px; border-bottom: 2px solid #fff; border-radius: 50%; }
-.badge-online-glow { position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; background: #10b981; border-radius: 50%; border: 2px solid #000; z-index: 10; }
+.chat-badge-fallback-inner-icon::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 4px; width: 6px; height: 6px;
+    background: #fff; border-radius: 50%;
+    box-shadow: 12px 0 #fff;
+}
+.chat-badge-fallback-inner-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 8px; width: 12px; height: 4px;
+    border-bottom: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.badge-online-glow {
+    position: absolute; 
+    top: 2px; 
+    right: 2px; 
+    width: 12px; 
+    height: 12px; 
+    background: #10b981; 
+    border-radius: 50%; 
+    border: 2px solid #000;
+    z-index: 10;
+}
 
 .chat-widget {
-    position: fixed; bottom: -600px; left: 30px; width: 340px; height: 450px; background: rgba(5, 8, 22, 0.98); backdrop-filter: blur(25px); border: 1px solid var(--accent-glow); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; z-index: 10000; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: fixed; 
+    bottom: -600px; 
+    left: 30px; 
+    width: 340px; 
+    height: 450px; 
+    background: rgba(5, 8, 22, 0.98); 
+    backdrop-filter: blur(25px); 
+    border: 1px solid var(--accent-glow); 
+    border-radius: 16px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    z-index: 10000; 
+    opacity: 0; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.chat-widget.active { bottom: 110px; opacity: 1; }
 
-.chat-robot-avatar-container { display: flex; flex-direction: column; align-items: center; margin: 15px auto; position: relative; width: 85px; height: 85px; }
-.chat-robot-fallback-mesh-face { width: 75px; height: 65px; background: linear-gradient(135deg, #091e3a, #0284c7); border: 2px solid #4cc9ff; border-radius: 18px; position: relative; z-index: 5; box-shadow: 0 0 20px rgba(76,201,255,0.5); animation: floatingRobotMesh 3s infinite ease-in-out; }
-.chat-robot-fallback-mesh-face::before { content: ''; position: absolute; top: 20px; left: 16px; width: 10px; height: 10px; background: #4cc9ff; border-radius: 50%; box-shadow: 28px 0 #4cc9ff, 0 0 12px #4cc9ff, 28px 0 12px #4cc9ff; animation: robotEyeBlinkCycle 4s infinite linear; }
-.chat-robot-fallback-mesh-face::after { content: ''; position: absolute; bottom: 14px; left: 24px; width: 24px; height: 10px; border-bottom: 3px solid #4cc9ff; border-radius: 0 0 15px 15px; box-shadow: 0 3px 10px rgba(76,201,255,0.6); }
+.chat-widget.active { 
+    bottom: 110px; 
+    opacity: 1; 
+}
 
-@keyframes robotEyeBlinkCycle { 0%, 45%, 55%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
-@keyframes floatingRobotMesh { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-.chat-ping-ring { position: absolute; top: -5px; left: 5px; width: 75px; height: 70px; border-radius: 18px; border: 2px solid var(--accent-glow); opacity: 0.4; z-index: 1; animation: ringExpansion 2s infinite linear; }
-@keyframes ringExpansion { 0% { transform: scale(0.9); opacity: 0.6; } 100% { transform: scale(1.3); opacity: 0; } }
+.chat-robot-avatar-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 15px auto; 
+    position: relative; 
+    width: 85px; 
+    height: 85px;
+}
+
+.chat-robot-fallback-mesh-face {
+    width: 75px;
+    height: 65px;
+    background: linear-gradient(135deg, #091e3a, #0284c7);
+    border: 2px solid #4cc9ff;
+    border-radius: 18px;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 0 20px rgba(76,201,255,0.5);
+    animation: floatingRobotMesh 3s infinite ease-in-out;
+}
+
+.chat-robot-fallback-mesh-face::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 16px; width: 10px; height: 10px;
+    background: #4cc9ff; border-radius: 50%;
+    box-shadow: 28px 0 #4cc9ff, 0 0 12px #4cc9ff, 28px 0 12px #4cc9ff;
+    animation: robotEyeBlinkCycle 4s infinite linear;
+}
+
+.chat-robot-fallback-mesh-face::after {
+    content: '';
+    position: absolute;
+    bottom: 14px; left: 24px; width: 24px; height: 10px;
+    border-bottom: 3px solid #4cc9ff;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 3px 10px rgba(76,201,255,0.6);
+}
+
+@keyframes robotEyeBlinkCycle {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes floatingRobotMesh {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.chat-ping-ring {
+    position: absolute; 
+    top: -5px; 
+    left: 5px; 
+    width: 75px; 
+    height: 70px; 
+    border-radius: 18px; 
+    border: 2px solid var(--accent-glow); 
+    opacity: 0.4; 
+    z-index: 1;
+    animation: ringExpansion 2s infinite linear;
+}
+
+@keyframes ringExpansion {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
 
 @media (max-width: 768px) {
     .chat-widget { width: 300px; height: 400px; left: 15px; }
