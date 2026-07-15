@@ -12,7 +12,7 @@ function triggerSystemToast(msg) {
 }
 
 function startCounterAnimation() {
-    const counters = document.querySelectorAll(".hud-metric-counter-card h1");
+    const counters = document.querySelectorAll(".achievement-card h1");
     counters.forEach(counter => {
         const targetValue = parseFloat(counter.getAttribute("data-target"));
         if (isNaN(targetValue)) return;
@@ -86,14 +86,14 @@ function typeEffect() {
 }
 typeEffect();
 
-const stickyNav = document.querySelector(".hud-top-nav-bar");
+const stickyNav = document.querySelector("nav");
 window.addEventListener("scroll", () => {
     if (!stickyNav) return;
     if (window.scrollY > 80) {
-        stickyNav.style.background = "rgba(4, 12, 36, 0.98)";
-        stickyNav.style.boxShadow = "0 4px 30px rgba(0, 240, 255, 0.15)";
+        stickyNav.style.background = "rgba(5, 8, 22, 0.95)";
+        stickyNav.style.boxShadow = "0 5px 20px rgba(0,0,0,.35)";
     } else {
-        stickyNav.style.background = "rgba(255, 255, 255, 0.02)";
+        stickyNav.style.background = "rgba(255,255,255,.05)";
         stickyNav.style.boxShadow = "none";
     }
 });
@@ -182,14 +182,13 @@ function switchDashboardTab(tabId) {
     if(activeBtn) activeBtn.classList.add("active");
 }
 
-// Screenshot Mirror: Expanding ring values emulation mapping (73% / 370)
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
-    let mockValues = ["370", "73%", "SYS_OK", "ING_UP"];
-    let cycleCounter = 0;
+    let mockSequenceValues = ["370", "73%", "ONLINE", "SYS_OK"];
+    let tickerIterator = 0;
     setInterval(() => {
-        cycleCounter = (cycleCounter + 1) % mockValues.length;
-        breathTxtNode.innerText = mockValues[cycleCounter];
+        tickerIterator = (tickerIterator + 1) % mockSequenceValues.length;
+        breathTxtNode.innerText = mockSequenceValues[tickerIterator];
     }, 4000);
 }
 
@@ -306,7 +305,7 @@ function activateWaveTrackAnimation() {
     let count = 0;
     function drawWave() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = document.body.classList.contains("light") ? "#2563eb" : "#00f0ff";
+        ctx.strokeStyle = document.body.classList.contains("light") ? "#2563eb" : "#4cc9ff";
         ctx.lineWidth = 2;
         ctx.beginPath();
         
@@ -379,81 +378,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. ADVANCED INTEGRATED TELEMETRY EMULATORS
-======================================================= */
-
-function loadMockEnterpriseJwtString() {
-    document.getElementById("jwtRawInputArea").value = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJheXVzaEBzaW5naC50ZWNoIiwibmFtZSI6IkF5dXNoIFNpbmdoIiwicm9sZXMiOlsiUk9MRV9TRU5JT1JfREVWIl0sImV4cCI6MTc4OTk5OTk5OX0.mockSignatureNode";
-    triggerSystemToast("Mock JWT loaded into active matrix block!");
-}
-
-function handleClientJwtDecoding() {
-    const input = document.getElementById("jwtRawInputArea").value.trim();
-    const headBlock = document.getElementById("jwtHeaderOutputBlock");
-    const payBlock = document.getElementById("jwtPayloadOutputBlock");
-    if(!headBlock || !payBlock) return;
-
-    if(!input || !input.includes(".")) {
-        triggerSystemToast("Error: Invalid structured token payload sequence.");
-        return;
-    }
-
-    const segments = input.split(".");
-    try {
-        const headerDecoded = atob(segments[0].replace(/-/g, '+').replace(/_/g, '/'));
-        const payloadDecoded = atob(segments[1].replace(/-/g, '+').replace(/_/g, '/'));
-        
-        headBlock.innerText = JSON.stringify(JSON.parse(headerDecoded), null, 2);
-        payBlock.innerText = JSON.stringify(JSON.parse(payloadDecoded), null, 2);
-        triggerSystemToast("JWT Tokens decrypted and mapped successfully!");
-    } catch(err) {
-        headBlock.innerText = "{\n  \"error\": \"Malformed Header Segment\"\n}";
-        payBlock.innerText = "{\n  \"error\": \"Payload Base64 Decoding Aborted\"\n}";
-    }
-}
-
-function emulateAsymmetricRsaCipher() {
-    const txt = document.getElementById("asymmetricRawTextInput").value;
-    const out = document.getElementById("asymmetricCipherOutputBlock");
-    if(!out) return;
-
-    if(!txt.trim()) {
-        triggerSystemToast("Error: Encryption payload layer buffer empty.");
-        return;
-    }
-
-    out.style.display = "block";
-    out.innerText = "[Initializing Cryptographic RSA Handshake...]";
-
-    setTimeout(() => {
-        let scrambled = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv" + btoa(txt).substring(0, 45) + "...[Encrypted Client Segment]";
-        out.innerText = "-----BEGIN RSA ENCRYPTED CIPHER BLOCK-----\n" + scrambled + "\n-----END RSA CIPHER BLOCK-----";
-        triggerSystemToast("Asymmetric key cipher layer successfully compiled.");
-    }, 800);
-}
-
-function emulateRestGlobalException(statusCode) {
-    const out = document.getElementById("restExceptionJsonConsoleBlock");
-    if(!out) return;
-
-    out.style.display = "block";
-    
-    let mockErrorObject = {
-        timestamp: new Date().toISOString(),
-        status: statusCode,
-        error: statusCode === 404 ? "Not Found" : statusCode === 500 ? "Internal Server Error" : "Unauthorized",
-        exception: statusCode === 404 ? "com.ayush.tech.exception.EntityNotFoundException" : statusCode === 500 ? "java.lang.NullPointerException" : "org.springframework.security.authentication.BadCredentialsException",
-        message: statusCode === 404 ? "Requested database asset log matching ID index not found." : statusCode === 500 ? "Cannot invoke method because service layer data stream reference pipeline is null." : "Authentication handshake rejected: JWT signature payload validation failed.",
-        path: "/api/v1/enterprise/resource/node"
-    };
-
-    out.innerText = JSON.stringify(mockErrorObject, null, 2);
-    triggerSystemToast(`@ControllerAdvice Intercepted Status Code: ${statusCode}`);
-}
-
-
-/* =======================================================
-   6. REVIEWS, CHATBOX & FOOTER UTILITIES
+   5. REVIEWS, CHATBOX & FOOTER UTILITIES
 ======================================================= */
 
 function toggleCyberSecurityPanel() {
@@ -476,9 +401,9 @@ if(reviewForm && reviewsContainerStack) {
         const designation = document.getElementById("feedbackDesignation").value;
         
         const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card cyber-glass-card";
+        reviewCard.className = "review-compiled-card";
         reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
-                                <p style="margin-top: 8px;" class="cyber-desc-p">${clientReview}</p>`;
+                                <p style="margin-top: 8px;">${clientReview}</p>`;
         
         reviewsContainerStack.prepend(reviewCard);
         triggerSystemToast(`Success: Feedback submitted for ${clientName}! ✨`);
@@ -511,7 +436,7 @@ if(sendChatBtn && chatInput && chatBody) {
         const userText = chatInput.value;
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #00f0ff; color: #000; font-weight:600; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
