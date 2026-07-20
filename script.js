@@ -370,7 +370,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. REVIEWS, CHATBOX & FOOTER UTILITIES
+   5. NATURAL & FRIENDLY CONVERSATIONAL CHATBOT ENGINE
 ======================================================= */
 
 function toggleCyberSecurityPanel() {
@@ -420,12 +420,29 @@ if(chatBadge && chatWidget && chatHeader) {
 const sendChatBtn = document.getElementById("sendChatBtn");
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
+let awaitingUserEmail = false;
+
+function triggerQuickChatAction(type) {
+    if(!chatBody) return;
+    const botBubble = document.createElement("div");
+    botBubble.className = "chat-msg bot";
+
+    if(type === 'skills') {
+        botBubble.innerHTML = "Ayush specializes in <b>Java 21, Spring Boot, Microservices, Kafka, Redis, and SQL</b>. Check the Skills section above for more details!";
+    } else if(type === 'projects') {
+        botBubble.innerHTML = "Ayush has built enterprise Authentication Platforms & Data Processing Engines. You can test them in the <b>Projects</b> section!";
+    } else if(type === 'contact') {
+        botBubble.innerHTML = "You can reach Ayush directly via email at <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a> 📧";
+    }
+    chatBody.appendChild(botBubble);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
 
 if(sendChatBtn && chatInput && chatBody) {
     const sendClientMessage = () => {
         if(chatInput.value.trim() === "") return;
         
-        const userText = chatInput.value;
+        const userText = chatInput.value.trim();
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
         userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
@@ -438,10 +455,36 @@ if(sendChatBtn && chatInput && chatBody) {
         setTimeout(() => {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
-            botBubble.innerText = "Compiling response context layer... Ayush's core pipeline has buffered your log successfully. ⚡";
+            const lowerMsg = userText.toLowerCase();
+
+            if (awaitingUserEmail) {
+                awaitingUserEmail = false;
+                botBubble.innerText = "Thanks! I've noted down your contact info. Ayush will connect with you soon! 😊";
+            }
+            else if (lowerMsg.includes("hi") || lowerMsg.includes("hello") || lowerMsg.includes("hey")) {
+                botBubble.innerText = "Hello! 👋 Thanks for reaching out. How can I help you with Ayush's profile today?";
+            }
+            else if (lowerMsg.includes("skill") || lowerMsg.includes("java") || lowerMsg.includes("spring") || lowerMsg.includes("stack")) {
+                botBubble.innerText = "Ayush has 5+ years of experience specializing in Java 21, Spring Boot, Microservices, Kafka, Redis, and SQL optimization! 🚀";
+            }
+            else if (lowerMsg.includes("experience") || lowerMsg.includes("work") || lowerMsg.includes("job") || lowerMsg.includes("role")) {
+                botBubble.innerText = "Ayush is currently a Senior Software Developer working on scalable enterprise backend applications. Check out the Experience timeline above!";
+            }
+            else if (lowerMsg.includes("contact") || lowerMsg.includes("email") || lowerMsg.includes("hire") || lowerMsg.includes("reach") || lowerMsg.includes("call")) {
+                botBubble.innerText = "You can email Ayush directly at aayushs821@gmail.com. Or please leave your Email ID here, and he will get in touch with you!";
+                awaitingUserEmail = true;
+            }
+            else if (lowerMsg.includes("project") || lowerMsg.includes("auth") || lowerMsg.includes("sandbox")) {
+                botBubble.innerText = "Ayush has built Auth Platforms and Data Pipelines. Feel free to test out the OpenAPI Sandboxes in the Projects section! 🛠️";
+            }
+            else {
+                botBubble.innerText = "Thanks for your message! If you want to connect directly, please leave your Email ID or drop a message to aayushs821@gmail.com ✉️";
+                awaitingUserEmail = true;
+            }
+
             chatBody.appendChild(botBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1000);
+        }, 750);
     };
 
     sendChatBtn.addEventListener("click", sendClientMessage);
