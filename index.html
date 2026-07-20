@@ -40,7 +40,7 @@
                     <a href="#about">About <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#about"><i class="fas fa-user"></i> Who I Am</a></li>
-                        <li><a href="#about"><i class="fas fa-bullseye"></i> Core Philosophy</a></li>
+                        <li><a href="#about"><i class="fas fa-bullseye"></i> Core Values</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-item">
@@ -57,14 +57,14 @@
                     <ul class="dropdown-menu">
                         <li><a href="#experience"><i class="fas fa-briefcase"></i> Senior Developer</a></li>
                         <li><a href="#experience"><i class="fas fa-layer-group"></i> Backend Stack</a></li>
-                        <li><a href="#experience"><i class="fas fa-bug"></i> Production Support</a></li>
+                        <li><a href="#experience"><i class="fas fa-bug"></i> Support Logs</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-item">
                     <a href="#projects">Projects <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#projects"><i class="fas fa-shield-alt"></i> Auth Platform</a></li>
-                        <li><a href="#projects"><i class="fas fa-exchange-alt"></i> Data Processing</a></li>
+                        <li><a href="#projects"><i class="fas fa-exchange-alt"></i> Data Pipeline</a></li>
                         <li><a href="#projects" onclick="simulateSwaggerSandbox('/api/v1/auth/verify');"><i class="fas fa-code-branch"></i> API Sandbox</a></li>
                     </ul>
                 </li>
@@ -462,7 +462,7 @@
     <footer class="sm-footer-global-container">
         <div class="sm-footer-grid-wrapper">
             <div class="sm-footer-columnbrand">
-                <div class="sm-brand-logo-text"><i class="fas fa-layer-group"></i> Ayush Singh</div>
+                <div class="sm-brand-logo-text"><i class="fas fa-layer-group"></i> Ayush Singh </div>
                 <p class="sm-brand-follow-label">Follow us on:</p>
                 <div class="sm-brand-social-row">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -472,7 +472,7 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-weixin"></i></a>
                 </div>
-                <p class="sm-brand-address-text"><i class="fas fa-map-marker-alt"></i> Hyderabad </p>
+                <p class="sm-brand-address-text"><i class="fas fa-map-marker-alt"></i>Hyderabad </p>
                 <a href="#" class="sm-footer-ext-button"><i class="fas fa-puzzle-piece"></i> Get our free extension</a>
             </div>
             
@@ -555,13 +555,14 @@
                 <a href="#">Manage Cookies</a>
             </div>
             <div class="sm-lower-right-copyright">
-                © Ayush SIngh 2026 All Rights Reserved
+                © Similarweb LTD 2026 All Rights Reserved
             </div>
         </div>
     </footer>
 
     <div id="top"><i class="fas fa-arrow-up"></i></div>
 
+    <!-- AI CHATBOT WITH NATURAL OPENING MESSAGE & ACTION BUTTONS -->
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -573,10 +574,15 @@
                 <div class="chat-robot-fallback-mesh-face"></div>
                 <div class="chat-ping-ring"></div>
             </div>
-            <div class="chat-msg bot">System Initialization Complete. I am Ayush's virtual matrix node. Drop a message or query below!</div>
+            <div class="chat-msg bot">Hi there! 👋 I am Ayush's AI Assistant. How can I help you today?</div>
+            <div class="chat-action-pills" id="chatActionPills">
+                <button onclick="triggerQuickChatAction('skills')"><i class="fas fa-code"></i> Skills</button>
+                <button onclick="triggerQuickChatAction('projects')"><i class="fas fa-folder-open"></i> Projects</button>
+                <button onclick="triggerQuickChatAction('contact')"><i class="fas fa-envelope"></i> Contact</button>
+            </div>
         </div>
         <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="Type message...">
+            <input type="text" id="chatInput" placeholder="Ask a question or leave a message...">
             <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
