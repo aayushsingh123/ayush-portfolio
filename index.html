@@ -16,6 +16,7 @@
         <div class="ai-box">
             <div class="ai-scanner"></div>
             <h1>WELCOME TO AYUSH PORTFOLIO</h1>
+            <p>Initialize Interactive Matrix Node for Ayush Singh?</p>
             <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
         </div>
     </div>
@@ -28,16 +29,87 @@
         <nav>
             <div class="logo">AS</div>
             <ul id="navMenu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#learning-hub">Learning Hub</a></li>
-                <li><a href="#live-dashboard">Live Terminal</a></li>
-                <li><a href="#cyber-vault-section">Cyber Security</a></li>
-                <li><a href="#feedback-section">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown-item">
+                    <a href="#home">Home <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#home"><i class="fas fa-terminal"></i> Main Matrix</a></li>
+                        <li><a href="#achievements"><i class="fas fa-trophy"></i> Highlights</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#about">About <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about"><i class="fas fa-user"></i> Who I Am</a></li>
+                        <li><a href="#about"><i class="fas fa-bullseye"></i> Core Philosophy</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#skills">Skills <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#skills"><i class="fab fa-java"></i> Java Engine</a></li>
+                        <li><a href="#skills"><i class="fas fa-leaf"></i> Spring Boot</a></li>
+                        <li><a href="#skills"><i class="fas fa-network-wired"></i> Microservices</a></li>
+                        <li><a href="#skills"><i class="fas fa-database"></i> SQL & Tuning</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#experience">Experience <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#experience"><i class="fas fa-briefcase"></i> Senior Developer</a></li>
+                        <li><a href="#experience"><i class="fas fa-layer-group"></i> Backend Stack</a></li>
+                        <li><a href="#experience"><i class="fas fa-bug"></i> Production Support</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#projects">Projects <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#projects"><i class="fas fa-shield-alt"></i> Auth Platform</a></li>
+                        <li><a href="#projects"><i class="fas fa-exchange-alt"></i> Data Processing</a></li>
+                        <li><a href="#projects" onclick="simulateSwaggerSandbox('/api/v1/auth/verify');"><i class="fas fa-code-branch"></i> API Sandbox</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#learning-hub">Learning Hub <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#learning-hub"><i class="fas fa-book"></i> Java Core Docs</a></li>
+                        <li><a href="#learning-hub"><i class="fas fa-cubes"></i> Spring Modules</a></li>
+                        <li><a href="#learning-hub"><i class="fas fa-sitemap"></i> System Design</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#live-dashboard">Live Terminal <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('tech-knowledge');"><i class="fas fa-brain"></i> Deep Knowledge</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('meditation');"><i class="fas fa-spa"></i> Zen Meditation</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('health');"><i class="fas fa-heartbeat"></i> Health Vitals</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('music-hub');"><i class="fas fa-music"></i> Music Engine</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('novel-hub');"><i class="fas fa-book-open"></i> Novel Library</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('ai-hub');"><i class="fas fa-robot"></i> AI Toolkits</a></li>
+                        <li><a href="#live-dashboard" onclick="switchDashboardTab('ai-compiler-hub');"><i class="fas fa-bolt"></i> Code Optimizer</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#cyber-vault-section">Cyber Security <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#cyber-vault-section" onclick="toggleCyberSecurityPanel();"><i class="fas fa-lock"></i> Compliance Sandbox</a></li>
+                        <li><a href="#cyber-vault-section"><i class="fas fa-key"></i> Cryptography A-Z</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#feedback-section">Reviews <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#feedback-section"><i class="fas fa-comments"></i> Peer Feedback</a></li>
+                        <li><a href="#feedback-section"><i class="fas fa-pen"></i> Submit Review</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#contact">Contact <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="mailto:aayushs821@gmail.com"><i class="fas fa-envelope"></i> Send Email</a></li>
+                        <li><a href="https://github.com/aayushsingh123" target="_blank"><i class="fab fa-github"></i> GitHub Node</a></li>
+                        <li><a href="https://www.youtube.com/@thestorm1521" target="_blank"><i class="fab fa-youtube"></i> YouTube Node</a></li>
+                    </ul>
+                </li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
                 <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
@@ -188,7 +260,6 @@
         </div>
     </section>
 
-    <!-- Cyber Security Section with Background Pointer Fix -->
     <section id="cyber-vault-section" style="padding: 120px 9%; position: relative; overflow: hidden;">
         <div class="section-title">
             <h2>Cyber Security Ledger</h2>
@@ -274,7 +345,9 @@
                     <h3>Breathing Rhythm Optimizer</h3>
                     <p>Follow the expanding guided pulse circle engine to log cardiac coherence.</p>
                     <div class="breath-container">
-                        <div class="breath-circle" id="breathTxt">Inhale</div>
+                        <div class="cyber-screenshot-circle-metric">
+                            <div class="circle-inner-value" id="breathTxt">370</div>
+                        </div>
                         <p style="margin-top: 20px; color: #4cc9ff; font-weight: 500;">Cycle Active</p>
                     </div>
                 </div>
@@ -313,7 +386,7 @@
                     <p>Engineered prompts compiler and system helpers linked directly for production scaling:</p>
                     <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="https://chatgpt.com/" target="_blank" class="hub-link-btn"><i class="fas fa-robot"></i> ChatGPT Matrix</a>
-                        <a href="https://github.com/features/copilot" target="_blank" class="hud-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
+                        <a href="https://github.com/features/copilot" target="_blank" class="hub-link-btn"><i class="fab fa-github-alt"></i> GitHub Copilot API</a>
                     </div>
                 </div>
 
@@ -385,11 +458,11 @@
         </div>
     </section>
 
-    <!-- RE-ALIGNMENT OF THE SIMILARWEB CORPORATE FOOTER STRUCTURAL LAYOUT -->
+    <!-- SIMILARWEB FOOTER -->
     <footer class="sm-footer-global-container">
         <div class="sm-footer-grid-wrapper">
             <div class="sm-footer-columnbrand">
-                <div class="sm-brand-logo-text"><i class="fas fa-layer-group"></i> Ayush Portfolio</div>
+                <div class="sm-brand-logo-text"><i class="fas fa-layer-group"></i> similarweb</div>
                 <p class="sm-brand-follow-label">Follow us on:</p>
                 <div class="sm-brand-social-row">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -399,7 +472,7 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-weixin"></i></a>
                 </div>
-                <p class="sm-brand-address-text"><i class="fas fa-map-marker-alt"></i> Hyderabad, India </p>
+                <p class="sm-brand-address-text"><i class="fas fa-map-marker-alt"></i> 6 E 32nd St, New York, NY 10016, 8 Floor</p>
                 <a href="#" class="sm-footer-ext-button"><i class="fas fa-puzzle-piece"></i> Get our free extension</a>
             </div>
             
@@ -482,12 +555,13 @@
                 <a href="#">Manage Cookies</a>
             </div>
             <div class="sm-lower-right-copyright">
-                Ayush Singh 2026 All Rights Reserved
+                © Similarweb LTD 2026 All Rights Reserved
             </div>
         </div>
     </footer>
 
-    <!-- EMBEDDED DYNAMIC GLOWING CUTE CHATBOT AVATAR NODE -->
+    <div id="top"><i class="fas fa-arrow-up"></i></div>
+
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header" id="chatHeader">
             <div class="chat-status-dot"></div>
@@ -510,6 +584,14 @@
     <div class="chat-badge-pulse" id="chatBadge">
         <div class="chat-badge-fallback-inner-icon"></div>
         <div class="badge-online-glow"></div>
+    </div>
+
+    <div id="alertNotificationBox" class="toast-box">
+        <div class="toast-icon-wrapper"><i class="fas fa-bell"></i></div>
+        <div>
+            <h4 class="toast-title">System Update</h4>
+            <p id="notificationText" class="toast-desc">Configuration sync protocol finalized.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
