@@ -165,13 +165,6 @@ function switchDashboardTab(tabId) {
         panel.style.display = "none"; 
     });
     
-    const activeBtn = event.currentTarget;
-    if(activeBtn && activeBtn.parentElement) {
-        activeBtn.parentElement.querySelectorAll(".tab-btn").forEach(btn => {
-            btn.classList.remove("active");
-        });
-    }
-    
     const targetPanel = document.getElementById(tabId);
     if(targetPanel) {
         targetPanel.style.display = "block"; 
@@ -179,13 +172,15 @@ function switchDashboardTab(tabId) {
             targetPanel.classList.add("active"); 
         }, 10);
     }
-    if(activeBtn) activeBtn.classList.add("active");
 }
 
 const breathTxtNode = document.getElementById("breathTxt");
 if(breathTxtNode) {
+    let mockValues = ["370", "73%", "ONLINE", "SYS_OK"];
+    let idx = 0;
     setInterval(() => {
-        breathTxtNode.innerText = (breathTxtNode.innerText === "Inhale") ? "Exhale" : "Inhale";
+        idx = (idx + 1) % mockValues.length;
+        breathTxtNode.innerText = mockValues[idx];
     }, 4000);
 }
 
@@ -375,7 +370,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   6. REVIEWS, CHATBOX & FOOTER UTILITIES
+   5. REVIEWS, CHATBOX & FOOTER UTILITIES
 ======================================================= */
 
 function toggleCyberSecurityPanel() {
@@ -398,8 +393,7 @@ if(reviewForm && reviewsContainerStack) {
         const designation = document.getElementById("feedbackDesignation").value;
         
         const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card hud-glassmorphism-card-base";
-        reviewCard.style.textAlign = "left";
+        reviewCard.className = "review-compiled-card";
         reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
                                 <p style="margin-top: 8px;">${clientReview}</p>`;
         
@@ -434,7 +428,7 @@ if(sendChatBtn && chatInput && chatBody) {
         const userText = chatInput.value;
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #00f0ff; color: #030814; font-weight:600; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; font-family:'Share Tech Mono';";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
