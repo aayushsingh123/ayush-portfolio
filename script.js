@@ -1,5 +1,5 @@
 /* =======================================================
-   1. GLOBAL SYSTEM CONFIGURATIONS (MUST BE ON TOP)
+   1. GLOBAL SYSTEM CONFIGURATIONS
 ======================================================= */
 
 function triggerSystemToast(msg) {
@@ -39,7 +39,7 @@ function startCounterAnimation() {
 
 
 /* =======================================================
-   2. AI SYSTEM OVERLAY INITIATION MODULE
+   2. AI SYSTEM OVERLAY
 ======================================================= */
 const aiEntranceOverlay = document.getElementById("aiEntranceOverlay");
 const initializeAiSystemBtn = document.getElementById("initializeAiSystemBtn");
@@ -58,7 +58,7 @@ if(initializeAiSystemBtn && aiEntranceOverlay) {
 
 
 /* =======================================================
-   3. CORE UI ANIMATIONS & INTELLIGENT ROUTERS
+   3. CORE UI ANIMATIONS & TYPING EFFECT
 ======================================================= */
 
 const words = ["Senior Java Backend Engineer", "Spring Boot Developer", "Microservices Architect", "Kafka & Redis Enthusiast", "Problem Solver"];
@@ -155,7 +155,7 @@ if(semanticHubSearch) {
 
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & TICKER CHANGER LOGIC
+   4. DASHBOARD TERMINAL & UTILITIES
 ======================================================= */
 
 function switchDashboardTab(tabId) {
