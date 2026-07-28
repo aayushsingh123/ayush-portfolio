@@ -725,3 +725,40 @@ nav ul li.dropdown-item > a:hover {
 .chat-footer button:hover {
     background: #1d4ed8;
 }
+/* ========================================================
+   STYLISH MULTI-LANGUAGE DROPDOWN BOX
+======================================================== */
+.sm-lang-select-box {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.sm-lang-select-box:hover, .sm-lang-select-box:focus {
+    border-color: var(--accent-glow);
+    background: rgba(76, 201, 255, 0.1);
+    box-shadow: 0 0 12px rgba(76, 201, 255, 0.2);
+}
+
+.sm-lang-select-box option {
+    background: #050816;
+    color: #ffffff;
+    padding: 10px;
+}
+
+/* Hide Google Translate top banner bar */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
