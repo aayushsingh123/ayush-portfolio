@@ -342,7 +342,7 @@ function changePortfolioLanguage(langCode) {
 }
 
 /* =======================================================
-   7. LIVE BACKGROUND CYBER SECURITY CANVAS (TRUE FULL PAGE HEIGHT)
+   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (CENTER LOCKED)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -351,78 +351,121 @@ function startCyberCanvas() {
 
     let width, height;
 
-    // Full Document Height Calculation
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        // Entire scrollable page height
-        height = canvas.height = Math.max(
-            document.body.scrollHeight, 
-            document.body.offsetHeight, 
-            document.documentElement.clientHeight, 
-            document.documentElement.scrollHeight, 
-            document.documentElement.offsetHeight
-        );
+        height = canvas.height = window.innerHeight;
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("load", resizeCanvas);
     resizeCanvas();
 
+    // Fast-moving Network Particles
+    const particleCount = 40;
     const particles = [];
     const circuitStreams = [];
 
-    const orangeColor = "rgba(255, 140, 0, ";
-    const cyanColor = "rgba(76, 201, 255, ";
+    const orangeColor = "rgba(255, 75, 40, ";
+    const cyanColor = "rgba(0, 220, 255, ";
 
-    // Density scaled according to total page height
-    const totalNodes = Math.floor(height / 80);
-    for (let i = 0; i < totalNodes; i++) {
+    for (let i = 0; i < particleCount; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 1.2,
-            vy: (Math.random() - 0.5) * 1.2,
+            vx: (Math.random() - 0.5) * 2.5, // Faster speed
+            vy: (Math.random() - 0.5) * 2.5,
             radius: Math.random() * 2 + 1,
-            isOrange: Math.random() > 0.5
+            isOrange: Math.random() > 0.4
         });
     }
 
-    const totalRays = Math.floor(height / 150);
-    for (let i = 0; i < totalRays; i++) {
+    // High-speed Laser Circuits
+    for (let i = 0; i < 20; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            length: Math.random() * 120 + 60,
-            speed: Math.random() * 2.5 + 1.2,
+            length: Math.random() * 140 + 70,
+            speed: Math.random() * 5 + 3, // Fast flow
             isOrange: Math.random() > 0.5,
             horizontal: Math.random() > 0.5
         });
     }
 
-    let lockPulse = 0;
+    let rotAngle = 0;
 
-    function drawHologramPadlock(centerX, centerY, scale, alpha) {
+    // Draw Futuristic Shield Padlock HUD Emblem (Perfect Center)
+    function drawCyberShieldEmblem(centerX, centerY, scale) {
         ctx.save();
         ctx.translate(centerX, centerY);
-        ctx.strokeStyle = cyanColor + (alpha * 0.5) + ")";
-        ctx.lineWidth = 2;
-        ctx.shadowColor = "#4cc9ff";
-        ctx.shadowBlur = 12;
 
+        // 1. Outer Rotating Tech HUD Rings
+        ctx.save();
+        ctx.rotate(rotAngle);
+        ctx.lineWidth = 1.5;
+        
+        // Outer Arc Ring
+        ctx.strokeStyle = cyanColor + "0.4)";
         ctx.beginPath();
-        ctx.arc(0, -20 * scale, 30 * scale, Math.PI, 0, false);
-        ctx.lineTo(30 * scale, 10 * scale);
-        ctx.lineTo(-30 * scale, 10 * scale);
+        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 1.5);
         ctx.stroke();
 
-        ctx.fillStyle = "rgba(5, 12, 30, " + (alpha * 0.7) + ")";
-        ctx.strokeStyle = orangeColor + (alpha * 0.7) + ")";
-        ctx.fillRect(-45 * scale, 0, 90 * scale, 70 * scale);
-        ctx.strokeRect(-45 * scale, 0, 90 * scale, 70 * scale);
-
+        ctx.strokeStyle = orangeColor + "0.5)";
         ctx.beginPath();
-        ctx.fillStyle = orangeColor + (alpha * 0.9) + ")";
-        ctx.arc(0, 25 * scale, 7 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 125 * scale, Math.PI, Math.PI * 1.8);
+        ctx.stroke();
+        ctx.restore();
+
+        // 2. Counter-Rotating Inner HUD Ring
+        ctx.save();
+        ctx.rotate(-rotAngle * 1.5);
+        ctx.strokeStyle = cyanColor + "0.6)";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([12 * scale, 8 * scale]);
+        ctx.beginPath();
+        ctx.arc(0, 0, 90 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // 3. Center Shield Blueprint
+        ctx.beginPath();
+        ctx.moveTo(0, -60 * scale);
+        ctx.bezierCurveTo(45 * scale, -60 * scale, 55 * scale, -20 * scale, 50 * scale, 20 * scale);
+        ctx.bezierCurveTo(40 * scale, 55 * scale, 0 * scale, 75 * scale, 0 * scale, 75 * scale);
+        ctx.bezierCurveTo(0 * scale, 75 * scale, -40 * scale, 55 * scale, -50 * scale, 20 * scale);
+        ctx.bezierCurveTo(-55 * scale, -20 * scale, -45 * scale, -60 * scale, 0, -60 * scale);
+        ctx.closePath();
+        ctx.fillStyle = "rgba(5, 20, 45, 0.6)";
+        ctx.fill();
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = cyanColor + "0.95)";
+        ctx.stroke();
+
+        // 4. Padlock Inside Shield
+        ctx.strokeStyle = orangeColor + "0.9)";
+        ctx.lineWidth = 2;
+
+        // Lock Shackle
+        ctx.beginPath();
+        ctx.arc(0, -12 * scale, 16 * scale, Math.PI, 0, false);
+        ctx.lineTo(16 * scale, 5 * scale);
+        ctx.lineTo(-16 * scale, 5 * scale);
+        ctx.stroke();
+
+        // Lock Body
+        ctx.fillStyle = "rgba(10, 15, 30, 0.85)";
+        ctx.fillRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
+        ctx.strokeRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
+
+        // Keyhole
+        ctx.fillStyle = cyanColor + "1)";
+        ctx.beginPath();
+        ctx.arc(0, 18 * scale, 4 * scale, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(-2.5 * scale, 20 * scale);
+        ctx.lineTo(2.5 * scale, 20 * scale);
+        ctx.lineTo(3.5 * scale, 32 * scale);
+        ctx.lineTo(-3.5 * scale, 32 * scale);
+        ctx.closePath();
         ctx.fill();
 
         ctx.restore();
@@ -431,22 +474,21 @@ function startCyberCanvas() {
     function renderCyberFrame() {
         ctx.clearRect(0, 0, width, height);
 
-        lockPulse += 0.02;
-        const pulseAlpha = Math.sin(lockPulse) * 0.2 + 0.4;
+        rotAngle += 0.025; // Speeded up HUD rotation
 
-        // Render Padlock Hologram in Hero & Footer centers
-        drawHologramPadlock(width / 2, window.innerHeight / 2, 1, pulseAlpha);
-        drawHologramPadlock(width / 2, height - (window.innerHeight / 2), 1, pulseAlpha);
+        // Lock Emblem always fixed at exact center of screen viewport
+        const centerScale = Math.min(width, height) / 700;
+        drawCyberShieldEmblem(width / 2, height / 2, Math.max(centerScale, 0.65));
 
-        // Draw connections
+        // Network Mesh Connections
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < 140) {
-                    const lineAlpha = (1 - dist / 140) * 0.35;
+                if (dist < 130) {
+                    const lineAlpha = (1 - dist / 130) * 0.35;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -459,6 +501,7 @@ function startCyberCanvas() {
             }
         }
 
+        // Particle Movement Update
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -468,14 +511,15 @@ function startCyberCanvas() {
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.isOrange ? orangeColor + "0.9)" : cyanColor + "0.9)";
+            ctx.fillStyle = p.isOrange ? orangeColor + "0.85)" : cyanColor + "0.85)";
             ctx.fill();
         });
 
+        // Fast Circuit Laser Streams Movement
         circuitStreams.forEach(stream => {
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.7)" : cyanColor + "0.7)";
+            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.75)" : cyanColor + "0.75)";
 
             if (stream.horizontal) {
                 ctx.moveTo(stream.x, stream.y);
