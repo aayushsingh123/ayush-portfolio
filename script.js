@@ -39,21 +39,44 @@ function startCounterAnimation() {
 
 
 /* =======================================================
-   2. AI SYSTEM OVERLAY
+   2. SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
 ======================================================= */
-const aiEntranceOverlay = document.getElementById("aiEntranceOverlay");
-const initializeAiSystemBtn = document.getElementById("initializeAiSystemBtn");
+function triggerMatrixAccess(type) {
+    if (type === 'auth') {
+        const overlay = document.getElementById("aiEntranceOverlay");
+        if (overlay) overlay.style.display = "none";
+        toggleAuthModal(true);
+    } else {
+        let hologram = document.getElementById("matrixGreetingHologram");
+        if (!hologram) {
+            hologram = document.createElement("div");
+            hologram.id = "matrixGreetingHologram";
+            document.body.appendChild(hologram);
+        }
 
-if(initializeAiSystemBtn && aiEntranceOverlay) {
-    initializeAiSystemBtn.addEventListener("click", () => {
-        aiEntranceOverlay.classList.add("terminate");
-        setTimeout(() => {
-            triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
-            startCounterAnimation();
-            initLiveNewsTickerSystem(); 
-            initVoiceCommandGateway(); 
-        }, 600);
-    });
+        hologram.innerHTML = `
+            <div class="greeting-icon-pulse"><i class="fas fa-bolt"></i></div>
+            <h2>GUEST ACCESS GRANTED</h2>
+            <p>Thanks for visiting! Skipping authentication matrix. Initializing full portfolio dashboard...</p>
+            <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO 🚀</button>
+        `;
+        hologram.classList.add("active-greeting");
+    }
+}
+
+function closeGreetingAndEnterPortfolio() {
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.remove("active-greeting");
+
+    const overlay = document.getElementById("aiEntranceOverlay");
+    if (overlay) overlay.classList.add("terminate");
+
+    setTimeout(() => {
+        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
+        startCounterAnimation();
+        initLiveNewsTickerSystem(); 
+        initVoiceCommandGateway(); 
+    }, 600);
 }
 
 
@@ -155,7 +178,7 @@ if(semanticHubSearch) {
 
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & LIVE TICKER ENGINE
+   4. DASHBOARD TERMINAL & AUTOMATIC LIVE NEWS API ENGINE
 ======================================================= */
 
 function switchDashboardTab(tabId) {
@@ -184,40 +207,47 @@ if(breathTxtNode) {
     }, 4000);
 }
 
+// AUTOMATIC REAL-TIME LIVE NEWS FETCHER FROM PUBLIC API
 async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if (!wrapper) return;
 
-    let newsFeedPool = [
-        { title: "Union Budget Focuses on Tech Infrastructure and AI Hub Expansion", source: "Financial Express", time: "JUST NOW", link: "https://news.google.com" },
-        { title: "भारत का विदेशी मुद्रा भंडार रिकॉर्ड स्तर पर पहुंचा, अर्थव्यवस्था मजबूत", source: "Dainik Jagran", time: "LIVE 🔴", link: "https://news.google.com" },
-        { title: "ISRO Prepares for Next-Gen Satellite Launch From Sriharikota", source: "NDTV Science", time: "5m AGO", link: "https://news.google.com" },
-        { title: "भारतीय IT कंपनियों ने क्लाउड और AI गवर्नेंस प्रोजेक्ट्स में बढ़ाई हायरिंग", source: "Amar Ujala Tech", time: "12m AGO", link: "https://news.google.com" }
-    ];
+    wrapper.innerHTML = `<div class="news-card fade-in" style="padding: 12px 0; color: var(--accent-glow); font-size: 0.85rem;"><i class="fas fa-spinner fa-spin"></i> Fetching live feeds from global servers...</div>`;
 
-    let newsIndex = 0;
+    try {
+        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en');
+        const data = await response.json();
 
-    function renderNextNewsCard() {
-        if (newsFeedPool.length === 0) return;
-        const item = newsFeedPool[newsIndex];
-        wrapper.innerHTML = `
-            <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                    <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE BROADCAST 🔴</span>
-                    <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">${item.time}</span>
-                </div>
-                <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${item.title}</h4>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-                    <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> ${item.source}</span>
-                    <a href="${item.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read News →</a>
-                </div>
-            </div>
-        `;
-        newsIndex = (newsIndex + 1) % newsFeedPool.length;
+        if (data && data.items && data.items.length > 0) {
+            let articles = data.items.slice(0, 8);
+            let currentIndex = 0;
+
+            function displayCurrentNews() {
+                const article = articles[currentIndex];
+                wrapper.innerHTML = `
+                    <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE FEED 🔴</span>
+                            <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">REAL-TIME</span>
+                        </div>
+                        <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${article.title}</h4>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                            <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> ${article.author || 'Google News Live'}</span>
+                            <a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read News →</a>
+                        </div>
+                    </div>
+                `;
+                currentIndex = (currentIndex + 1) % articles.length;
+            }
+
+            displayCurrentNews();
+            setInterval(displayCurrentNews, 6000);
+        } else {
+            throw new Error("No live feeds");
+        }
+    } catch (error) {
+        wrapper.innerHTML = `<div class="news-card" style="padding: 12px 0; color: #ef4444; font-size: 0.85rem;">⚠️ Live Ticker Connection Offline. Showing Cached Secure Node.</div>`;
     }
-
-    renderNextNewsCard();
-    setInterval(renderNextNewsCard, 5000);
 }
 
 function toggleCyberSecurityPanel() {
@@ -572,7 +602,7 @@ if (document.readyState === "loading") {
 
 
 /* =======================================================
-   8. DYNAMIC LOGIN & SIGNUP HANDLER ENGINE
+   8. DYNAMIC LOGIN, SIGNUP & GREETING HOLOGRAM ENGINE
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
@@ -609,8 +639,8 @@ function handleSignupSubmit(e) {
     const userData = { name, email, password };
     localStorage.setItem("matrixUser", JSON.stringify(userData));
 
-    triggerSystemToast(`Access Code Created! Welcome, ${name} ⚡`);
     toggleAuthModal(false);
+    throwShivajiGreetingHologram(`Welcome, ${name}! Access Granted ⚡`);
 }
 
 function handleLoginSubmit(e) {
@@ -621,19 +651,16 @@ function handleLoginSubmit(e) {
     const savedUser = JSON.parse(localStorage.getItem("matrixUser"));
 
     if (savedUser && savedUser.email === email && savedUser.password === password) {
-        triggerSystemToast(`Authentication Granted! Welcome Back ${savedUser.name} 🚀`);
         toggleAuthModal(false);
+        throwShivajiGreetingHologram(`Authentication Granted! Welcome Back ${savedUser.name} 🚀`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
     } else {
         triggerSystemToast("Invalid Security Credentials! Access Denied ❌");
     }
 }
-/* =======================================================
-   SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
-======================================================= */
-function triggerMatrixAccess(type) {
-    // Create Greeting Hologram Element dynamically if not present
+
+function throwShivajiGreetingHologram(msg) {
     let hologram = document.getElementById("matrixGreetingHologram");
     if (!hologram) {
         hologram = document.createElement("div");
@@ -641,52 +668,11 @@ function triggerMatrixAccess(type) {
         document.body.appendChild(hologram);
     }
 
-    if (type === 'auth') {
-        hologram.innerHTML = `
-            <div class="greeting-icon-pulse"><i class="fas fa-shield-alt"></i></div>
-            <h2>ACCESS GATEWAY UNLOCKED</h2>
-            <p>Thanks for choosing Matrix Authentication! Securing connection protocols for Ayush's Node...</p>
-            <button class="ai-btn" onclick="closeGreetingAndOpenAuth()">PROCEED TO LOGIN ⚡</button>
-        `;
-    } else {
-        hologram.innerHTML = `
-            <div class="greeting-icon-pulse"><i class="fas fa-bolt"></i></div>
-            <h2>GUEST ACCESS GRANTED</h2>
-            <p>Thanks for visiting! Skipping authentication matrix. Initializing full portfolio dashboard...</p>
-            <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO 🚀</button>
-        `;
-    }
-
+    hologram.innerHTML = `
+        <div class="greeting-icon-pulse"><i class="fas fa-shield-alt"></i></div>
+        <h2>SECURITY CLEARED</h2>
+        <p>${msg}</p>
+        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO MATRIX ⚡</button>
+    `;
     hologram.classList.add("active-greeting");
-}
-
-function closeGreetingAndEnterPortfolio() {
-    const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.remove("active-greeting");
-
-    const overlay = document.getElementById("aiEntranceOverlay");
-    if (overlay) overlay.classList.add("terminate");
-
-    setTimeout(() => {
-        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
-        startCounterAnimation();
-        initLiveNewsTickerSystem(); 
-        initVoiceCommandGateway(); 
-    }, 600);
-}
-
-function closeGreetingAndOpenAuth() {
-    const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.remove("active-greeting");
-
-    const overlay = document.getElementById("aiEntranceOverlay");
-    if (overlay) overlay.classList.add("terminate");
-
-    setTimeout(() => {
-        toggleAuthModal(true); // Opens the login/signup modal popup
-        triggerSystemToast("Please login or sign up to establish secure session.");
-        startCounterAnimation();
-        initLiveNewsTickerSystem(); 
-        initVoiceCommandGateway(); 
-    }, 600);
 }
