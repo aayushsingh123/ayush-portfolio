@@ -454,3 +454,162 @@ function getLanguageName(code) {
     };
     return names[code] || 'Selected Language';
 }
+/* =======================================================
+   CYBER SECURITY LOCK & CONTINUOUS CIRCUIT STREAM ENGINE
+======================================================= */
+(function initCyberCanvasEngine() {
+    const canvas = document.getElementById("cyberBackgroundCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    // Node Networks Setup
+    const particleCount = Math.min(Math.floor(width / 25), 60);
+    const particles = [];
+    const circuitStreams = [];
+
+    const orangeColor = "rgba(255, 140, 0, ";
+    const cyanColor = "rgba(76, 201, 255, ";
+
+    // Initialize Network Floating Nodes
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.9,
+            vy: (Math.random() - 0.5) * 0.9,
+            radius: Math.random() * 2 + 1.2,
+            isOrange: Math.random() > 0.45
+        });
+    }
+
+    // Initialize Moving Circuit Rays (Energy Streams)
+    for (let i = 0; i < 15; i++) {
+        circuitStreams.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            length: Math.random() * 80 + 40,
+            speed: Math.random() * 2 + 1,
+            isOrange: Math.random() > 0.5,
+            horizontal: Math.random() > 0.5
+        });
+    }
+
+    let lockPulse = 0;
+
+    // Draw Subtle Cyber Padlock Hologram in Background
+    function drawHologramPadlock(centerX, centerY, scale, alpha) {
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.strokeStyle = cyanColor + (alpha * 0.45) + ")";
+        ctx.lineWidth = 2;
+        ctx.shadowColor = "#4cc9ff";
+        ctx.shadowBlur = 15;
+
+        // Lock Shackle
+        ctx.beginPath();
+        ctx.arc(0, -20 * scale, 30 * scale, Math.PI, 0, false);
+        ctx.lineTo(30 * scale, 10 * scale);
+        ctx.lineTo(-30 * scale, 10 * scale);
+        ctx.stroke();
+
+        // Lock Body
+        ctx.fillStyle = "rgba(5, 12, 30, " + (alpha * 0.7) + ")";
+        ctx.strokeStyle = orangeColor + (alpha * 0.6) + ")";
+        ctx.fillRect(-45 * scale, 0, 90 * scale, 70 * scale);
+        ctx.strokeRect(-45 * scale, 0, 90 * scale, 70 * scale);
+
+        // Keyhole
+        ctx.beginPath();
+        ctx.fillStyle = orangeColor + (alpha * 0.9) + ")";
+        ctx.arc(0, 25 * scale, 7 * scale, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(-4 * scale, 28 * scale);
+        ctx.lineTo(4 * scale, 28 * scale);
+        ctx.lineTo(6 * scale, 48 * scale);
+        ctx.lineTo(-6 * scale, 48 * scale);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    // Main Continuous Animation Loop
+    function renderCyberFrame() {
+        ctx.clearRect(0, 0, width, height);
+
+        lockPulse += 0.015;
+        const pulseAlpha = Math.sin(lockPulse) * 0.15 + 0.35;
+
+        // 1. Render Center Cyber Lock Hologram
+        drawHologramPadlock(width / 2, height / 2, Math.min(width, height) / 800, pulseAlpha);
+
+        // 2. Draw Connected Particle Network Nodes
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 140) {
+                    const lineAlpha = (1 - dist / 140) * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = (particles[i].isOrange && particles[j].isOrange) 
+                        ? orangeColor + lineAlpha + ")" 
+                        : cyanColor + lineAlpha + ")";
+                    ctx.lineWidth = 0.9;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Update Particle Positions
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.isOrange ? orangeColor + "0.85)" : cyanColor + "0.85)";
+            ctx.fill();
+        });
+
+        // 3. Render Continuous Horizontal & Vertical Circuit Data Rays
+        circuitStreams.forEach(stream => {
+            ctx.beginPath();
+            ctx.lineWidth = 1.8;
+            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.6)" : cyanColor + "0.6)";
+
+            if (stream.horizontal) {
+                ctx.moveTo(stream.x, stream.y);
+                ctx.lineTo(stream.x + stream.length, stream.y);
+                stream.x += stream.speed;
+                if (stream.x > width) stream.x = -stream.length;
+            } else {
+                ctx.moveTo(stream.x, stream.y);
+                ctx.lineTo(stream.x, stream.y + stream.length);
+                stream.y += stream.speed;
+                if (stream.y > height) stream.y = -stream.length;
+            }
+            ctx.stroke();
+        });
+
+        requestAnimationFrame(renderCyberFrame);
+    }
+
+    renderCyberFrame();
+})();
