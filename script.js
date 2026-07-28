@@ -546,3 +546,61 @@ if (document.readyState === "loading") {
 } else {
     startCyberCanvas();
 }
+/* =======================================================
+   DYNAMIC LOGIN & SIGNUP HANDLER ENGINE
+======================================================= */
+function toggleAuthModal(show) {
+    const modal = document.getElementById("authModalOverlay");
+    if (!modal) return;
+    if (show) modal.classList.add("open");
+    else modal.classList.remove("open");
+}
+
+function switchAuthTab(tab) {
+    const loginBtn = document.getElementById("loginTabBtn");
+    const signupBtn = document.getElementById("signupTabBtn");
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+
+    if (tab === 'login') {
+        loginBtn.classList.add("active");
+        signupBtn.classList.remove("active");
+        loginForm.classList.add("active-form");
+        signupForm.classList.remove("active-form");
+    } else {
+        signupBtn.classList.add("active");
+        loginBtn.classList.remove("active");
+        signupForm.classList.add("active-form");
+        loginForm.classList.remove("active-form");
+    }
+}
+
+function handleSignupSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    const userData = { name, email, password };
+    localStorage.setItem("matrixUser", JSON.stringify(userData));
+
+    triggerSystemToast(`Access Code Created! Welcome, ${name} ⚡`);
+    toggleAuthModal(false);
+}
+
+function handleLoginSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const savedUser = JSON.parse(localStorage.getItem("matrixUser"));
+
+    if (savedUser && savedUser.email === email && savedUser.password === password) {
+        triggerSystemToast(`Authentication Granted! Welcome Back ${savedUser.name} 🚀`);
+        toggleAuthModal(false);
+    } else if (!savedUser) {
+        triggerSystemToast("No account found! Please Sign Up first. ⚠️");
+    } else {
+        triggerSystemToast("Invalid Security Credentials! Access Denied ❌");
+    }
+}
