@@ -629,3 +629,64 @@ function handleLoginSubmit(e) {
         triggerSystemToast("Invalid Security Credentials! Access Denied ❌");
     }
 }
+/* =======================================================
+   SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
+======================================================= */
+function triggerMatrixAccess(type) {
+    // Create Greeting Hologram Element dynamically if not present
+    let hologram = document.getElementById("matrixGreetingHologram");
+    if (!hologram) {
+        hologram = document.createElement("div");
+        hologram.id = "matrixGreetingHologram";
+        document.body.appendChild(hologram);
+    }
+
+    if (type === 'auth') {
+        hologram.innerHTML = `
+            <div class="greeting-icon-pulse"><i class="fas fa-shield-alt"></i></div>
+            <h2>ACCESS GATEWAY UNLOCKED</h2>
+            <p>Thanks for choosing Matrix Authentication! Securing connection protocols for Ayush's Node...</p>
+            <button class="ai-btn" onclick="closeGreetingAndOpenAuth()">PROCEED TO LOGIN ⚡</button>
+        `;
+    } else {
+        hologram.innerHTML = `
+            <div class="greeting-icon-pulse"><i class="fas fa-bolt"></i></div>
+            <h2>GUEST ACCESS GRANTED</h2>
+            <p>Thanks for visiting! Skipping authentication matrix. Initializing full portfolio dashboard...</p>
+            <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO 🚀</button>
+        `;
+    }
+
+    hologram.classList.add("active-greeting");
+}
+
+function closeGreetingAndEnterPortfolio() {
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.remove("active-greeting");
+
+    const overlay = document.getElementById("aiEntranceOverlay");
+    if (overlay) overlay.classList.add("terminate");
+
+    setTimeout(() => {
+        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
+        startCounterAnimation();
+        initLiveNewsTickerSystem(); 
+        initVoiceCommandGateway(); 
+    }, 600);
+}
+
+function closeGreetingAndOpenAuth() {
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.remove("active-greeting");
+
+    const overlay = document.getElementById("aiEntranceOverlay");
+    if (overlay) overlay.classList.add("terminate");
+
+    setTimeout(() => {
+        toggleAuthModal(true); // Opens the login/signup modal popup
+        triggerSystemToast("Please login or sign up to establish secure session.");
+        startCounterAnimation();
+        initLiveNewsTickerSystem(); 
+        initVoiceCommandGateway(); 
+    }, 600);
+}
