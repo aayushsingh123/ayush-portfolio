@@ -155,7 +155,7 @@ if(semanticHubSearch) {
 
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & BULLETPROOF LIVE NEWS ENGINE
+   4. DASHBOARD TERMINAL & LIVE TICKER ENGINE
 ======================================================= */
 
 function switchDashboardTab(tabId) {
@@ -184,77 +184,27 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// 100% UNSTOPPABLE REAL-TIME DYNAMIC NEWS STREAMER (ENGLISH + HINDI)
+// REAL-TIME DYNAMIC LIVE NEWS TICKER
 async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if (!wrapper) return;
 
-    // Backup Live Headlines Stream Array (Ensures instant loading never gets stuck)
     let newsFeedPool = [
-        {
-            title: "Union Budget 2026 Focuses on Infrastructure and Tech Hub Expansion",
-            source: "Financial Express",
-            time: "JUST NOW",
-            link: "https://news.google.com"
-        },
-        {
-            title: "भारत का विदेशी मुद्रा भंडार रिकॉर्ड स्तर पर पहुंचा, अर्थव्यवस्था मजबूत",
-            source: "Dainik Jagran",
-            time: "LIVE 🔴",
-            link: "https://news.google.com"
-        },
-        {
-            title: "ISRO Prepares for Next-Gen Satellite Launch From Sriharikota Cluster",
-            source: "NDTV Science",
-            time: "5m AGO",
-            link: "https://news.google.com"
-        },
-        {
-            title: "भारतीय IT कंपनियों ने क्लाउड और AI गवर्नेंस प्रोजेक्ट्स में बढ़ाई हायरिंग",
-            source: "Amar Ujala Tech",
-            time: "12m AGO",
-            link: "https://news.google.com"
-        },
-        {
-            title: "Global Tech Giants Expand R&D Engineering Centres in Hyderabad and Bengaluru",
-            source: "Economic Times",
-            time: "LIVE 🔴",
-            link: "https://news.google.com"
-        }
+        { title: "Union Budget Focuses on Tech Infrastructure and AI Hub Expansion", source: "Financial Express", time: "JUST NOW", link: "https://news.google.com" },
+        { title: "भारत का विदेशी मुद्रा भंडार रिकॉर्ड स्तर पर पहुंचा, अर्थव्यवस्था मजबूत", source: "Dainik Jagran", time: "LIVE 🔴", link: "https://news.google.com" },
+        { title: "ISRO Prepares for Next-Gen Satellite Launch From Sriharikota", source: "NDTV Science", time: "5m AGO", link: "https://news.google.com" },
+        { title: "भारतीय IT कंपनियों ने क्लाउड और AI गवर्नेंस प्रोजेक्ट्स में बढ़ाई हायरिंग", source: "Amar Ujala Tech", time: "12m AGO", link: "https://news.google.com" }
     ];
 
     let newsIndex = 0;
 
-    // Background fetch from live Google News RSS
-    async function fetchExternalGoogleNews() {
-        try {
-            const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen");
-            const data = await res.json();
-            if (data.status === 'ok' && data.items && data.items.length > 0) {
-                const freshFetched = data.items.slice(0, 10).map(item => ({
-                    title: item.title,
-                    source: item.author || 'Google News',
-                    time: item.pubDate ? new Date(item.pubDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'LIVE',
-                    link: item.link
-                }));
-                newsFeedPool = freshFetched.concat(newsFeedPool); // Prepend fresh live items
-            }
-        } catch (e) {
-            console.log("Using cached live stream pool.");
-        }
-    }
-
-    fetchExternalGoogleNews(); // Trigger background fetch
-
     function renderNextNewsCard() {
         if (newsFeedPool.length === 0) return;
-
         const item = newsFeedPool[newsIndex];
-
         wrapper.innerHTML = `
-            <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0; transition: all 0.5s ease;">
+            <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                    <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold; letter-spacing:0.5px;">LIVE BROADCAST 🔴</span>
+                    <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE BROADCAST 🔴</span>
                     <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">${item.time}</span>
                 </div>
                 <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${item.title}</h4>
@@ -264,27 +214,24 @@ async function initLiveNewsTickerSystem() {
                 </div>
             </div>
         `;
-
         newsIndex = (newsIndex + 1) % newsFeedPool.length;
     }
 
     renderNextNewsCard();
-    setInterval(renderNextNewsCard, 5000); // Rotates every 5 seconds continuously
+    setInterval(renderNextNewsCard, 5000);
 }
 
-// CYBER SECURITY LEDGER TOGGLE FUNCTION (FIXED)
 function toggleCyberSecurityPanel() {
     const content = document.getElementById("cyberDropdownContentPane");
     const icon = document.getElementById("cyberChevronIcon");
     if(!content) return;
-    
     content.classList.toggle("open");
     if(icon) icon.classList.toggle("rotate-active");
 }
 
 
 /* =======================================================
-   5. ADVANCED AI INTERACTIVE CHATBOT ENGINE
+   5. ADVANCED AI CHATBOT ENGINE
 ======================================================= */
 
 const chatBadge = document.getElementById("chatBadge");
@@ -308,9 +255,7 @@ const chatBody = document.getElementById("chatBody");
 
 function scrollChatToBottom() {
     if(!chatBody) return;
-    setTimeout(() => {
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }, 50);
+    setTimeout(() => { chatBody.scrollTop = chatBody.scrollHeight; }, 50);
 }
 
 function triggerQuickChatAction(type) {
@@ -319,11 +264,11 @@ function triggerQuickChatAction(type) {
     botBubble.className = "chat-msg bot";
 
     if(type === 'skills') {
-        botBubble.innerHTML = "Ayush is an expert in <b>Java 21, Spring Boot, Microservices, Kafka, Redis, SQL, and System Design</b>. Check out the Skills section! 🚀";
+        botBubble.innerHTML = "Ayush is an expert in <b>Java 21, Spring Boot, Microservices, Kafka, Redis, SQL, and System Design</b>! 🚀";
     } else if(type === 'projects') {
-        botBubble.innerHTML = "Ayush has engineered Auth Platforms, High-Throughput Data Pipelines, and API Sandboxes. Test them directly in the Projects section! 🛠️";
+        botBubble.innerHTML = "Ayush has engineered Auth Platforms, High-Throughput Data Pipelines, and API Sandboxes! 🛠️";
     } else if(type === 'contact') {
-        botBubble.innerHTML = "Direct email: <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a>. You can also leave your message here! 📧";
+        botBubble.innerHTML = "Direct email: <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a> 📧";
     }
     chatBody.appendChild(botBubble);
     scrollChatToBottom();
@@ -331,66 +276,30 @@ function triggerQuickChatAction(type) {
 
 function generateSmartAiResponse(userText) {
     const text = userText.toLowerCase().trim();
-
-    const profanityRegex = /(gaali|abuse|fuck|bitch|shit|stupid|idiot|chutiya|bakwas|pagal|crap|harami|bkl|mc|bc|gandu|saale|kamina)/i;
-    if (profanityRegex.test(text)) {
-        return "I request you to please maintain a respectful and professional tone! 🙏 I am here to assist you politely regarding Ayush's work, tech stack, or engineering inquiries. How can I help you nicely?";
+    if (/(gaali|abuse|fuck|bitch|shit|stupid|idiot|chutiya|bakwas|pagal|harami|mc|bc)/i.test(text)) {
+        return "I request you to please maintain a respectful and professional tone! 🙏 How can I assist you politely?";
     }
-
-    const affectionRegex = /(love|pyar|pyaar|sweet|cute|awesome|great|amazing|like you|marry|handsome|smart|dil|best|love you|heart|dil se)/i;
-    if (affectionRegex.test(text)) {
-        return "Aww, thank you so much for such warm and sweet words! ❤️ I really appreciate your kindness. Feel free to ask anything about Ayush's skills, experience, or projects!";
+    if (/(love|pyar|pyaar|sweet|cute|awesome|great|amazing|like you)/i.test(text)) {
+        return "Aww, thank you so much for such warm and sweet words! ❤️";
     }
-
-    const angerRegex = /(angry|gussa|hate|worst|useless|bekar|problem|frustrated|furious|annoyed)/i;
-    if (angerRegex.test(text)) {
-        return "I am truly sorry if something didn't meet your expectation! 😔 Please let me know what went wrong or what information you are looking for—I will gladly help you out right away.";
+    if (/^(hi|hello|hey|heyy|namaste|hlo)/i.test(text)) {
+        return "Hello! 👋 Welcome! How can I assist you today?";
     }
-
-    const religionRegex = /(god|bhagwan|allah|jesus|religion|dharam|mandir|masjid|ram|krishna|waheguru|faith)/i;
-    if (religionRegex.test(text)) {
-        return "Ayush believes in hard work, technical excellence, unity, and mutual respect for all cultures and faiths! 🙏 How can I help you explore his backend development journey today?";
+    if (text.includes("skill") || text.includes("java") || text.includes("spring")) {
+        return "Ayush has 5+ years of experience in Java 21, Spring Boot, Microservices, Kafka, Redis, and SQL! ⚡";
     }
-
-    const greetingRegex = /^(hi|hello|hey|heyy|namaste|hlo|good morning|good evening|good afternoon|ssup|whats up|kaise ho|kaise)/i;
-    if (greetingRegex.test(text)) {
-        return "Hello! 👋 Welcome! I am Ayush's AI representative. How can I assist you today?";
-    }
-
-    if (text.includes("skill") || text.includes("java") || text.includes("spring") || text.includes("stack") || text.includes("technology") || text.includes("tech")) {
-        return "Ayush has 5+ years of core experience specializing in Java 21, Spring Boot, Microservices Architecture, Kafka Event Streams, Redis Caching, and SQL Performance Tuning! ⚡";
-    }
-
-    if (text.includes("experience") || text.includes("work") || text.includes("job") || text.includes("role") || text.includes("company") || text.includes("career")) {
-        return "Ayush is a Senior Software Developer building high-performance, enterprise-grade distributed backend systems with 99.99% availability benchmarks! 💼";
-    }
-
-    if (text.includes("project") || text.includes("auth") || text.includes("sandbox") || text.includes("pipeline") || text.includes("api")) {
-        return "Ayush has built Enterprise Auth Platforms, High-Volume Data Pipelines, and OpenAPI Mock Sandboxes. You can interactively test them above in the Projects section! 🛠️";
-    }
-
-    if (text.includes("contact") || text.includes("email") || text.includes("hire") || text.includes("reach") || text.includes("call") || text.includes("phone") || text.includes("number")) {
-        return "You can email Ayush directly at <b>aayushs821@gmail.com</b> 📧. Or type your email/phone number right here and I will save your message!";
-    }
-
-    if (text.includes("salary") || text.includes("location") || text.includes("hyderabad") || text.includes("notice") || text.includes("available")) {
-        return "Ayush is based out of Hyderabad, India, and is open to high-impact Senior Backend/Microservices roles. Feel free to send an email to discuss details! 📍";
-    }
-
-    return `Thanks for your message: "${userText}"! I'm constantly learning. To discuss this directly with Ayush, feel free to drop an email to aayushs821@gmail.com or leave your contact details here! ✉️`;
+    return `Thanks for your message! You can reach Ayush directly at aayushs821@gmail.com ✉️`;
 }
 
 if(sendChatBtn && chatInput && chatBody) {
     const sendClientMessage = () => {
         const userText = chatInput.value.trim();
         if(userText === "") return;
-        
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
         userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px; font-family: 'Poppins';";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
-        
         chatInput.value = "";
         scrollChatToBottom();
 
@@ -398,28 +307,18 @@ if(sendChatBtn && chatInput && chatBody) {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
             botBubble.style.cssText = "background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-main); max-width: 85%; padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; font-family: 'Poppins';";
-            
             botBubble.innerHTML = generateSmartAiResponse(userText);
-
             chatBody.appendChild(botBubble);
             scrollChatToBottom();
         }, 600);
     };
 
     sendChatBtn.addEventListener("click", sendClientMessage);
-    chatInput.addEventListener("keypress", (e) => {
-        if(e.key === 'Enter') sendClientMessage();
-    });
+    chatInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') sendClientMessage(); });
 }
 
-const backToTopBtn = document.getElementById("top");
-if(backToTopBtn) {
-    backToTopBtn.onclick = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-}
 /* =======================================================
-   NEURAL MULTI-LANGUAGE TRANSLATION DRIVER ENGINE
+   6. MULTI-LANGUAGE TRANSLATOR DRIVER ENGINE
 ======================================================= */
 
 function googleTranslateElementInit() {
@@ -431,33 +330,21 @@ function googleTranslateElementInit() {
 }
 
 function changePortfolioLanguage(langCode) {
-    // 1. Check if Google Translate Select Combo is initialized
     const googleCombo = document.querySelector('.goog-te-combo');
-    
     if (googleCombo) {
         googleCombo.value = (langCode === 'hi-HR') ? 'hi' : langCode; 
         googleCombo.dispatchEvent(new Event('change'));
-        triggerSystemToast(`Language Updated to ${getLanguageName(langCode)}! 🌐`);
+        triggerSystemToast(`Language Updated! 🌐`);
     } else {
-        // Safe Cookie Fallback
         document.cookie = `googtrans=/en/${(langCode === 'hi-HR') ? 'hi' : langCode}; path=/;`;
         location.reload();
     }
 }
 
-function getLanguageName(code) {
-    const names = {
-        'en': 'English', 'hi': 'Hindi', 'bho': 'Bhojpuri',
-        'pa': 'Punjabi', 'hi-HR': 'Haryanvi', 'sd': 'Sindhi',
-        'gu': 'Gujarati', 'te': 'Telugu', 'ta': 'Tamil',
-        'ml': 'Malayalam', 'kn': 'Kannada'
-    };
-    return names[code] || 'Selected Language';
-}
 /* =======================================================
-   CYBER SECURITY LOCK & CONTINUOUS CIRCUIT STREAM ENGINE
+   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION
 ======================================================= */
-(function initCyberCanvasEngine() {
+window.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("cyberBackgroundCanvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -470,33 +357,29 @@ function getLanguageName(code) {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Node Networks Setup
-    const particleCount = Math.min(Math.floor(width / 25), 60);
     const particles = [];
     const circuitStreams = [];
 
     const orangeColor = "rgba(255, 140, 0, ";
     const cyanColor = "rgba(76, 201, 255, ";
 
-    // Initialize Network Floating Nodes
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < 45; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.9,
-            vy: (Math.random() - 0.5) * 0.9,
-            radius: Math.random() * 2 + 1.2,
-            isOrange: Math.random() > 0.45
+            vx: (Math.random() - 0.5) * 1.2,
+            vy: (Math.random() - 0.5) * 1.2,
+            radius: Math.random() * 2 + 1,
+            isOrange: Math.random() > 0.5
         });
     }
 
-    // Initialize Moving Circuit Rays (Energy Streams)
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 18; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            length: Math.random() * 80 + 40,
-            speed: Math.random() * 2 + 1,
+            length: Math.random() * 100 + 50,
+            speed: Math.random() * 2.5 + 1.2,
             isOrange: Math.random() > 0.5,
             horizontal: Math.random() > 0.5
         });
@@ -504,77 +387,61 @@ function getLanguageName(code) {
 
     let lockPulse = 0;
 
-    // Draw Subtle Cyber Padlock Hologram in Background
     function drawHologramPadlock(centerX, centerY, scale, alpha) {
         ctx.save();
         ctx.translate(centerX, centerY);
-        ctx.strokeStyle = cyanColor + (alpha * 0.45) + ")";
+        ctx.strokeStyle = cyanColor + (alpha * 0.5) + ")";
         ctx.lineWidth = 2;
         ctx.shadowColor = "#4cc9ff";
-        ctx.shadowBlur = 15;
+        ctx.shadowBlur = 12;
 
-        // Lock Shackle
         ctx.beginPath();
         ctx.arc(0, -20 * scale, 30 * scale, Math.PI, 0, false);
         ctx.lineTo(30 * scale, 10 * scale);
         ctx.lineTo(-30 * scale, 10 * scale);
         ctx.stroke();
 
-        // Lock Body
         ctx.fillStyle = "rgba(5, 12, 30, " + (alpha * 0.7) + ")";
-        ctx.strokeStyle = orangeColor + (alpha * 0.6) + ")";
+        ctx.strokeStyle = orangeColor + (alpha * 0.7) + ")";
         ctx.fillRect(-45 * scale, 0, 90 * scale, 70 * scale);
         ctx.strokeRect(-45 * scale, 0, 90 * scale, 70 * scale);
 
-        // Keyhole
         ctx.beginPath();
         ctx.fillStyle = orangeColor + (alpha * 0.9) + ")";
         ctx.arc(0, 25 * scale, 7 * scale, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.beginPath();
-        ctx.moveTo(-4 * scale, 28 * scale);
-        ctx.lineTo(4 * scale, 28 * scale);
-        ctx.lineTo(6 * scale, 48 * scale);
-        ctx.lineTo(-6 * scale, 48 * scale);
-        ctx.closePath();
-        ctx.fill();
-
         ctx.restore();
     }
 
-    // Main Continuous Animation Loop
     function renderCyberFrame() {
         ctx.clearRect(0, 0, width, height);
 
-        lockPulse += 0.015;
-        const pulseAlpha = Math.sin(lockPulse) * 0.15 + 0.35;
+        lockPulse += 0.02;
+        const pulseAlpha = Math.sin(lockPulse) * 0.2 + 0.4;
 
-        // 1. Render Center Cyber Lock Hologram
-        drawHologramPadlock(width / 2, height / 2, Math.min(width, height) / 800, pulseAlpha);
+        drawHologramPadlock(width / 2, height / 2, Math.min(width, height) / 750, pulseAlpha);
 
-        // 2. Draw Connected Particle Network Nodes
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < 140) {
-                    const lineAlpha = (1 - dist / 140) * 0.3;
+                if (dist < 150) {
+                    const lineAlpha = (1 - dist / 150) * 0.35;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.strokeStyle = (particles[i].isOrange && particles[j].isOrange) 
                         ? orangeColor + lineAlpha + ")" 
                         : cyanColor + lineAlpha + ")";
-                    ctx.lineWidth = 0.9;
+                    ctx.lineWidth = 1;
                     ctx.stroke();
                 }
             }
         }
 
-        // Update Particle Positions
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -584,15 +451,14 @@ function getLanguageName(code) {
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.isOrange ? orangeColor + "0.85)" : cyanColor + "0.85)";
+            ctx.fillStyle = p.isOrange ? orangeColor + "0.9)" : cyanColor + "0.9)";
             ctx.fill();
         });
 
-        // 3. Render Continuous Horizontal & Vertical Circuit Data Rays
         circuitStreams.forEach(stream => {
             ctx.beginPath();
-            ctx.lineWidth = 1.8;
-            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.6)" : cyanColor + "0.6)";
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.7)" : cyanColor + "0.7)";
 
             if (stream.horizontal) {
                 ctx.moveTo(stream.x, stream.y);
@@ -612,4 +478,4 @@ function getLanguageName(code) {
     }
 
     renderCyberFrame();
-})();
+});
