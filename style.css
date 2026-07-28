@@ -1,5 +1,5 @@
 /* ========================================================
-   AYUSH PORTFOLIO ORIGINAL SYSTEM ARCHITECTURE SPECIFICATIONS
+   AYUSH PORTFOLIO COMPLETE SYSTEM ARCHITECTURE SPECIFICATIONS
 ======================================================== */
 *{
     margin:0;
@@ -29,11 +29,49 @@ body.light {
     --sm-footer-dark: #f1f5f9;
 }
 
+html {
+    position: relative !important;
+    min-height: 100% !important;
+}
+
 body {
-    background: var(--bg-primary) !important;
+    position: relative !important;
+    background: #050816 !important;
     color: var(--text-main) !important;
-    overflow-x:hidden;
+    overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
+    top: 0px !important;
+}
+
+/* ========================================================
+   FULL PAGE CANVAS ANIMATION OVERRIDE (TOP TO BOTTOM)
+======================================================== */
+#cyberBackgroundCanvas {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -999 !important;
+    pointer-events: none !important;
+}
+
+section, 
+header, 
+footer, 
+.hero, 
+.about, 
+.skills, 
+.experience, 
+.projects, 
+.achievements, 
+.learning-hub-section, 
+.feedback-section, 
+.contact, 
+#live-dashboard, 
+#cyber-vault-section, 
+.sm-footer-global-container {
+    background-color: transparent !important;
 }
 
 .aurora{
@@ -43,12 +81,12 @@ body {
     top:0;
     left:0;
     background:
-        radial-gradient(circle at 20% 20%,rgba(0,183,255,.18),transparent 35%),
-        radial-gradient(circle at 80% 20%,rgba(140,0,255,.18),transparent 35%),
-        radial-gradient(circle at 50% 80%,rgba(0,255,200,.18),transparent 40%);
+        radial-gradient(circle at 20% 20%,rgba(0,183,255,.12),transparent 35%),
+        radial-gradient(circle at 80% 20%,rgba(140,0,255,.12),transparent 35%),
+        radial-gradient(circle at 50% 80%,rgba(0,255,200,.12),transparent 40%);
     filter:blur(70px);
     animation:auroraMove 15s infinite alternate;
-    z-index:-1;
+    z-index:-1000;
 }
 
 @keyframes auroraMove{
@@ -66,7 +104,7 @@ nav{
     justify-content:space-between;
     align-items:center;
     padding:22px 5% !important;
-    background:rgba(255,255,255,.05);
+    background:rgba(5, 8, 22, 0.85) !important;
     backdrop-filter:blur(20px);
     border-bottom:1px solid rgba(255,255,255,.08);
     z-index:999;
@@ -86,9 +124,7 @@ nav ul{
     align-items: center;
 }
 
-/* ========================================================
-   NAVIGATION HOVER DROPDOWN CSS RULES
-======================================================== */
+/* NAVIGATION HOVER DROPDOWN */
 nav ul li.dropdown-item {
     position: relative !important;
     padding: 10px 0;
@@ -307,7 +343,7 @@ nav ul li.dropdown-item > a:hover {
 .tags{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:25px; }
 .tags span{ padding:8px 15px; background:#1E293B; border-radius:30px; font-size:14px; color:#fff; }
 
-.learning-hub-section { padding: 120px 9%; background: linear-gradient(to right, #020b14, #0b0716, #11051c); }
+.learning-hub-section { padding: 120px 9%; }
 .learning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 70px; }
 .hub-card { padding: 35px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s ease; }
 .hub-card h3 { font-size: 24px; margin-bottom: 15px; }
@@ -364,8 +400,6 @@ nav ul li.dropdown-item > a:hover {
 .contact-card{ padding:45px; border-radius:20px; text-align:center; transition:.4s; }
 .contact-card i{ font-size:60px; color:#4cc9ff; margin-bottom:20px; }
 .contact-card a{ display:inline-block; padding:14px 30px; background:#2563eb; border-radius:40px; text-decoration:none; color:white; transition:.3s; }
-.quote{ padding:140px 20px; text-align:center; }
-.quote h2{ font-size:48px; background:linear-gradient(90deg,#00d4ff,#2563eb,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; }
 
 #top{ position:fixed; right:30px; bottom:30px; width:55px; height:55px; border-radius:50%; background:#2563eb; display:flex; justify-content:center; align-items:center; cursor:pointer; font-size:20px; transition:.35s; z-index:998; }
 
@@ -456,33 +490,11 @@ nav ul li.dropdown-item > a:hover {
 }
 
 .cyber-dropdown-content.open {
-    max-height: 2500px !important; /* Full expansion for all grid items */
+    max-height: 2500px !important;
     opacity: 1 !important;
     visibility: visible !important;
     border-top: 1px solid var(--border-color);
     overflow-y: auto !important;
-}
-
-.cyber-animated-bg-container {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('./image_419fed.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.22;
-    z-index: 1;
-    animation: liveGraphicPulse 8s infinite ease-in-out alternate;
-}
-
-@keyframes liveGraphicPulse {
-    0% { transform: scale(1); filter: hue-rotate(0deg) brightness(0.8); }
-    100% { transform: scale(1.08); filter: hue-rotate(15deg) brightness(1.2); }
-}
-
-.cyber-matrix-grid-overlay {
-    width: 100%; height: 100%;
-    background: linear-gradient(rgba(5,8,22,0.85), rgba(5,8,22,0.92));
-    position: absolute; top: 0; left: 0;
 }
 
 .cyber-info-grid-matrix {
@@ -492,7 +504,7 @@ nav ul li.dropdown-item > a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 18px;
-    max-height: 550px; /* Internal scroll fallback */
+    max-height: 550px;
     overflow-y: auto;
 }
 
@@ -525,6 +537,43 @@ nav ul li.dropdown-item > a:hover {
     font-family: monospace;
 }
 
+/* ========================================================
+   MULTI-LANGUAGE DROPDOWN BOX
+======================================================== */
+.sm-lang-select-box {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.sm-lang-select-box:hover, .sm-lang-select-box:focus {
+    border-color: var(--accent-glow);
+    background: rgba(76, 201, 255, 0.1);
+    box-shadow: 0 0 12px rgba(76, 201, 255, 0.2);
+}
+
+.sm-lang-select-box option {
+    background: #050816;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+/* ========================================================
+   FOOTER STYLING
+======================================================== */
 .sm-footer-global-container {
     background: var(--sm-footer-dark);
     padding: 80px 5% 30px 5%;
@@ -570,10 +619,9 @@ nav ul li.dropdown-item > a:hover {
 .sm-lower-left-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .sm-lower-left-links a { color: var(--text-muted); text-decoration: none; transition: 0.2s; }
 .sm-lower-left-links a:hover { color: var(--accent-glow); }
-.sm-lang-selector-trigger { color: var(--text-main); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
 /* ========================================================
-   FUTURISTIC FLOATING VEKTOR ROBOT CHAT COMPONENT
+   FUTURISTIC FLOATING CHATBOT WIDGET & AUTO-SCROLL
 ======================================================== */
 .chat-badge-pulse {
     position: fixed; 
@@ -634,9 +682,6 @@ nav ul li.dropdown-item > a:hover {
     z-index: 10;
 }
 
-/* ========================================================
-   CHATBOT FLEXBOX & AUTO-SCROLL FIXED CSS
-======================================================== */
 .chat-widget {
     position: fixed; 
     bottom: -600px; 
@@ -724,77 +769,4 @@ nav ul li.dropdown-item > a:hover {
 }
 .chat-footer button:hover {
     background: #1d4ed8;
-}
-/* ========================================================
-   STYLISH MULTI-LANGUAGE DROPDOWN BOX
-======================================================== */
-.sm-lang-select-box {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.sm-lang-select-box:hover, .sm-lang-select-box:focus {
-    border-color: var(--accent-glow);
-    background: rgba(76, 201, 255, 0.1);
-    box-shadow: 0 0 12px rgba(76, 201, 255, 0.2);
-}
-
-.sm-lang-select-box option {
-    background: #050816;
-    color: #ffffff;
-    padding: 10px;
-}
-
-/* Hide Google Translate top banner bar */
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
-body {
-    top: 0px !important;
-}
-/* ========================================================
-   ABSOLUTE FULL-PAGE (TOP TO BOTTOM) CANVAS OVERRIDE
-======================================================== */
-#cyberBackgroundCanvas {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: -999 !important; /* Always locked behind every single element */
-    pointer-events: none !important;
-}
-
-/* Force body and ALL sections to be transparent so canvas never hides on scroll */
-html, body {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-section, 
-header, 
-footer, 
-.hero, 
-.about, 
-.skills, 
-.experience, 
-.projects, 
-.achievements, 
-.learning-hub-section, 
-.feedback-section, 
-.contact, 
-#live-dashboard, 
-#cyber-vault-section, 
-.sm-footer-global-container {
-    background-color: transparent !important;
 }
