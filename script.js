@@ -370,38 +370,8 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. NATURAL & FRIENDLY CONVERSATIONAL CHATBOT ENGINE
+   ADVANCED AI INTERACTIVE CHATBOT ENGINE (INFINITE LOOP & EMOTIONS)
 ======================================================= */
-
-function toggleCyberSecurityPanel() {
-    const content = document.getElementById("cyberDropdownContentPane");
-    const icon = document.getElementById("cyberChevronIcon");
-    if(!content || !icon) return;
-    
-    content.classList.toggle("open");
-    icon.classList.toggle("rotate-active");
-}
-
-const reviewForm = document.getElementById("portfolioFeedbackForm");
-const reviewsContainerStack = document.getElementById("reviewsContainerStack");
-
-if(reviewForm && reviewsContainerStack) {
-    reviewForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const clientName = document.getElementById("feedbackName").value;
-        const clientReview = document.getElementById("feedbackMessage").value;
-        const designation = document.getElementById("feedbackDesignation").value;
-        
-        const reviewCard = document.createElement("div");
-        reviewCard.className = "review-compiled-card";
-        reviewCard.innerHTML = `<h4><i class="fas fa-user-circle"></i> ${clientName} (${designation})</h4>
-                                <p style="margin-top: 8px;">${clientReview}</p>`;
-        
-        reviewsContainerStack.prepend(reviewCard);
-        triggerSystemToast(`Success: Feedback submitted for ${clientName}! ✨`);
-        reviewForm.reset();
-    });
-}
 
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
@@ -420,82 +390,118 @@ if(chatBadge && chatWidget && chatHeader) {
 const sendChatBtn = document.getElementById("sendChatBtn");
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
-let awaitingUserEmail = false;
 
+// Quick Pill Click Handler
 function triggerQuickChatAction(type) {
     if(!chatBody) return;
     const botBubble = document.createElement("div");
     botBubble.className = "chat-msg bot";
 
     if(type === 'skills') {
-        botBubble.innerHTML = "Ayush specializes in <b>Java 21, Spring Boot, Microservices, Kafka, Redis, and SQL</b>. Check the Skills section above for more details!";
+        botBubble.innerHTML = "Ayush is an expert in <b>Java 21, Spring Boot, Microservices, Kafka, Redis, SQL, and System Design</b>. Check out the Skills section! 🚀";
     } else if(type === 'projects') {
-        botBubble.innerHTML = "Ayush has built enterprise Authentication Platforms & Data Processing Engines. You can test them in the <b>Projects</b> section!";
+        botBubble.innerHTML = "Ayush has engineered Auth Platforms, High-Throughput Data Pipelines, and API Sandboxes. Test them directly in the Projects section! 🛠️";
     } else if(type === 'contact') {
-        botBubble.innerHTML = "You can reach Ayush directly via email at <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a> 📧";
+        botBubble.innerHTML = "Direct email: <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a>. You can also leave your message here! 📧";
     }
     chatBody.appendChild(botBubble);
     chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+// Smart AI Intent Detection Engine
+function generateSmartAiResponse(userText) {
+    const text = userText.toLowerCase().trim();
+
+    // 1. PROFANITY & ABUSE FILTER (Gaali / Rude Behavior)
+    const profanityRegex = /(gaali|abuse|fuck|bitch|shit|stupid|idiot|chutiya|bakwas|pagal|crap|harami|bkl|mc|bc|gandu|saale|kamina)/i;
+    if (profanityRegex.test(text)) {
+        return "I request you to please maintain a respectful and professional tone! 🙏 I am here to assist you politely regarding Ayush's work, tech stack, or engineering inquiries. How can I help you nicely?";
+    }
+
+    // 2. LOVE, AFFECTION & COMPLIMENTS (Pyaar / Sweet Talk)
+    const affectionRegex = /(love|pyar|pyaar|sweet|cute|awesome|great|amazing|like you|marry|handsome|smart|dil|best|love you|heart|dil se)/i;
+    if (affectionRegex.test(text)) {
+        return "Aww, thank you so much for such warm and sweet words! ❤️ I really appreciate your kindness. Feel free to ask anything about Ayush's skills, experience, or projects!";
+    }
+
+    // 3. ANGER & FRUSTRATION (Gussa)
+    const angerRegex = /(angry|gussa|hate|worst|useless|bekar|problem|frustrated|furious|annoyed)/i;
+    if (angerRegex.test(text)) {
+        return "I am truly sorry if something didn't meet your expectation! 😔 Please let me know what went wrong or what information you are looking for—I will gladly help you out right away.";
+    }
+
+    // 4. RELIGION & FAITH (Dharmik Queries)
+    const religionRegex = /(god|bhagwan|allah|jesus|religion|dharam|mandir|masjid|ram|krishna|waheguru|faith)/i;
+    if (religionRegex.test(text)) {
+        return "Ayush believes in hard work, technical excellence, unity, and mutual respect for all cultures and faiths! 🙏 How can I help you explore his backend development journey today?";
+    }
+
+    // 5. GREETINGS & SMALL TALK
+    const greetingRegex = /^(hi|hello|hey|heyy|namaste|hlo|good morning|good evening|good afternoon|ssup|whats up|kaise ho|kaise)/i;
+    if (greetingRegex.test(text)) {
+        return "Hello! 👋 Welcome! I am Ayush's AI representative. How can I assist you today?";
+    }
+
+    // 6. TECHNICAL SKILLS & STACK
+    if (text.includes("skill") || text.includes("java") || text.includes("spring") || text.includes("stack") || text.includes("technology") || text.includes("tech")) {
+        return "Ayush has 5+ years of core experience specializing in Java 21, Spring Boot, Microservices Architecture, Kafka Event Streams, Redis Caching, and SQL Performance Tuning! ⚡";
+    }
+
+    // 7. EXPERIENCE & CAREER
+    if (text.includes("experience") || text.includes("work") || text.includes("job") || text.includes("role") || text.includes("company") || text.includes("career")) {
+        return "Ayush is a Senior Software Developer building high-performance, enterprise-grade distributed backend systems with 99.99% availability benchmarks! 💼";
+    }
+
+    // 8. PROJECTS & SANDBOX
+    if (text.includes("project") || text.includes("auth") || text.includes("sandbox") || text.includes("pipeline") || text.includes("api")) {
+        return "Ayush has built Enterprise Auth Platforms, High-Volume Data Pipelines, and OpenAPI Mock Sandboxes. You can interactively test them above in the Projects section! 🛠️";
+    }
+
+    // 9. CONTACT, EMAIL & HIRING
+    if (text.includes("contact") || text.includes("email") || text.includes("hire") || text.includes("reach") || text.includes("call") || text.includes("phone") || text.includes("number")) {
+        return "You can email Ayush directly at <b>aayushs821@gmail.com</b> 📧. Or type your email/phone number right here and I will save your message!";
+    }
+
+    // 10. SALARY / AVAILABILITY / LOCATION
+    if (text.includes("salary") || text.includes("location") || text.includes("hyderabad") || text.includes("notice") || text.includes("available")) {
+        return "Ayush is based out of Hyderabad, India, and is open to high-impact Senior Backend/Microservices roles. Feel free to send an email to discuss details! 📍";
+    }
+
+    // 11. GENERAL SMART FALLBACK (Infinite Loop Solution)
+    return `Thanks for your message: "${userText}"! I'm constantly learning. To discuss this directly with Ayush, feel free to drop an email to aayushs821@gmail.com or leave your contact details here! ✉️`;
+}
+
+// Forward Message Function
 if(sendChatBtn && chatInput && chatBody) {
     const sendClientMessage = () => {
-        if(chatInput.value.trim() === "") return;
-        
         const userText = chatInput.value.trim();
+        if(userText === "") return;
+        
+        // Render User Message
         const userBubble = document.createElement("div");
         userBubble.className = "chat-msg user";
-        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px;";
+        userBubble.style.cssText = "background: #2563eb; color: white; align-self: flex-end; max-width: 80%; padding: 10px 14px; border-radius: 14px; margin-bottom: 8px; font-size: 13px; font-family: 'Poppins';";
         userBubble.innerText = userText;
         chatBody.appendChild(userBubble);
         
         chatInput.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
+        // Render AI Bot Response dynamically
         setTimeout(() => {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
-            const lowerMsg = userText.toLowerCase();
-
-            if (awaitingUserEmail) {
-                awaitingUserEmail = false;
-                botBubble.innerText = "Thanks! I've noted down your contact info. Ayush will connect with you soon! 😊";
-            }
-            else if (lowerMsg.includes("hi") || lowerMsg.includes("hello") || lowerMsg.includes("hey")) {
-                botBubble.innerText = "Hello! 👋 Thanks for reaching out. How can I help you with Ayush's profile today?";
-            }
-            else if (lowerMsg.includes("skill") || lowerMsg.includes("java") || lowerMsg.includes("spring") || lowerMsg.includes("stack")) {
-                botBubble.innerText = "Ayush has 5+ years of experience specializing in Java 21, Spring Boot, Microservices, Kafka, Redis, and SQL optimization! 🚀";
-            }
-            else if (lowerMsg.includes("experience") || lowerMsg.includes("work") || lowerMsg.includes("job") || lowerMsg.includes("role")) {
-                botBubble.innerText = "Ayush is currently a Senior Software Developer working on scalable enterprise backend applications. Check out the Experience timeline above!";
-            }
-            else if (lowerMsg.includes("contact") || lowerMsg.includes("email") || lowerMsg.includes("hire") || lowerMsg.includes("reach") || lowerMsg.includes("call")) {
-                botBubble.innerText = "You can email Ayush directly at aayushs821@gmail.com. Or please leave your Email ID here, and he will get in touch with you!";
-                awaitingUserEmail = true;
-            }
-            else if (lowerMsg.includes("project") || lowerMsg.includes("auth") || lowerMsg.includes("sandbox")) {
-                botBubble.innerText = "Ayush has built Auth Platforms and Data Pipelines. Feel free to test out the OpenAPI Sandboxes in the Projects section! 🛠️";
-            }
-            else {
-                botBubble.innerText = "Thanks for your message! If you want to connect directly, please leave your Email ID or drop a message to aayushs821@gmail.com ✉️";
-                awaitingUserEmail = true;
-            }
+            botBubble.style.cssText = "background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-main); max-width: 85%; padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; font-family: 'Poppins';";
+            
+            botBubble.innerHTML = generateSmartAiResponse(userText);
 
             chatBody.appendChild(botBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 750);
+        }, 600);
     };
 
     sendChatBtn.addEventListener("click", sendClientMessage);
     chatInput.addEventListener("keypress", (e) => {
         if(e.key === 'Enter') sendClientMessage();
     });
-}
-
-const backToTopBtn = document.getElementById("top");
-if(backToTopBtn) {
-    backToTopBtn.onclick = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
 }
