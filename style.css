@@ -692,30 +692,96 @@ nav ul li.dropdown-item > a:hover {
     100% { transform: scale(1.3); opacity: 0; }
 }
 
-/* Quick Action Pills for Natural Chatbot UI */
-.chat-action-pills {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-}
-.chat-action-pills button {
-    background: rgba(76, 201, 255, 0.1);
-    border: 1px solid var(--accent-glow);
-    color: var(--accent-glow);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: 0.25s ease;
-    font-family: 'Poppins';
-}
-.chat-action-pills button:hover {
-    background: var(--accent-glow);
-    color: #000;
+/* ========================================================
+   CHATBOT PERFECT INNER SCROLL FIX
+======================================================== */
+.chat-widget {
+    position: fixed; 
+    bottom: -600px; 
+    left: 30px; 
+    width: 350px; 
+    height: 480px; /* Fixed Container Height */
+    background: rgba(5, 8, 22, 0.98); 
+    backdrop-filter: blur(25px); 
+    border: 1px solid var(--accent-glow); 
+    border-radius: 16px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    z-index: 10000; 
+    opacity: 0; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-@media (max-width: 768px) {
-    .chat-widget { width: 300px; height: 400px; left: 15px; }
-    .chat-badge-pulse { left: 15px; }
+.chat-widget.active { 
+    bottom: 110px; 
+    opacity: 1; 
+}
+
+.chat-header {
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0; /* Header stays fixed */
+}
+
+.chat-body {
+    flex: 1 1 auto;
+    min-height: 0 !important; /* CRITICAL: Enables smooth internal scrolling */
+    overflow-y: auto !important; /* Forces vertical scroll */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+/* Custom Sleek Cyan Scrollbar for Chat Window */
+.chat-body::-webkit-scrollbar {
+    width: 5px;
+}
+.chat-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+.chat-body::-webkit-scrollbar-thumb {
+    background: var(--accent-glow);
+    border-radius: 10px;
+}
+
+.chat-footer {
+    padding: 12px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 8px;
+    background: rgba(5, 8, 22, 0.95);
+    flex-shrink: 0; /* Input box stays locked at bottom */
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 0.85rem;
+}
+
+.chat-footer button {
+    background: #2563eb;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.chat-footer button:hover {
+    background: #1d4ed8;
 }
