@@ -370,7 +370,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   5. ADVANCED AI INTERACTIVE CHATBOT ENGINE (SMOOTH SCROLL)
+   5. ADVANCED AI INTERACTIVE CHATBOT ENGINE (AUTO-SCROLL FIXED)
 ======================================================= */
 
 const chatBadge = document.getElementById("chatBadge");
@@ -380,7 +380,7 @@ const chatHeader = document.getElementById("chatHeader");
 if(chatBadge && chatWidget && chatHeader) {
     chatBadge.addEventListener("click", () => {
         chatWidget.classList.add("active");
-        scrollToLatestChatMessage();
+        scrollChatToBottom();
     });
     chatHeader.querySelector(".fa-chevron-down").addEventListener("click", (e) => {
         e.stopPropagation();
@@ -392,14 +392,11 @@ const sendChatBtn = document.getElementById("sendChatBtn");
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
 
-// Smart Auto-Scroll Helper
-function scrollToLatestChatMessage() {
+// Robust Auto-Scroll Helper
+function scrollChatToBottom() {
     if(!chatBody) return;
     setTimeout(() => {
-        chatBody.scrollTo({
-            top: chatBody.scrollHeight,
-            behavior: 'smooth'
-        });
+        chatBody.scrollTop = chatBody.scrollHeight;
     }, 50);
 }
 
@@ -417,7 +414,7 @@ function triggerQuickChatAction(type) {
         botBubble.innerHTML = "Direct email: <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a>. You can also leave your message here! 📧";
     }
     chatBody.appendChild(botBubble);
-    scrollToLatestChatMessage();
+    scrollChatToBottom();
 }
 
 // Smart AI Intent Detection Engine
@@ -483,7 +480,7 @@ function generateSmartAiResponse(userText) {
     return `Thanks for your message: "${userText}"! I'm constantly learning. To discuss this directly with Ayush, feel free to drop an email to aayushs821@gmail.com or leave your contact details here! ✉️`;
 }
 
-// Forward Message Function with Auto-Scroll
+// Message Send Handler
 if(sendChatBtn && chatInput && chatBody) {
     const sendClientMessage = () => {
         const userText = chatInput.value.trim();
@@ -497,9 +494,9 @@ if(sendChatBtn && chatInput && chatBody) {
         chatBody.appendChild(userBubble);
         
         chatInput.value = "";
-        scrollToLatestChatMessage();
+        scrollChatToBottom();
 
-        // Render AI Bot Response dynamically
+        // Render AI Response
         setTimeout(() => {
             const botBubble = document.createElement("div");
             botBubble.className = "chat-msg bot";
@@ -508,7 +505,7 @@ if(sendChatBtn && chatInput && chatBody) {
             botBubble.innerHTML = generateSmartAiResponse(userText);
 
             chatBody.appendChild(botBubble);
-            scrollToLatestChatMessage();
+            scrollChatToBottom();
         }, 600);
     };
 
@@ -516,4 +513,11 @@ if(sendChatBtn && chatInput && chatBody) {
     chatInput.addEventListener("keypress", (e) => {
         if(e.key === 'Enter') sendClientMessage();
     });
+}
+
+const backToTopBtn = document.getElementById("top");
+if(backToTopBtn) {
+    backToTopBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 }
