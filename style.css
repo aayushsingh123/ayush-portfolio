@@ -44,14 +44,14 @@ body {
 }
 
 /* ========================================================
-   FULL PAGE CANVAS ANIMATION OVERRIDE (TOP TO BOTTOM)
+   FIXED FULL SCREEN BACKGROUND CANVAS SPECIFICATIONS
 ======================================================== */
 #cyberBackgroundCanvas {
-    position: absolute !important;
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    width: 100vw !important;
+    height: 100vh !important;
     z-index: -999 !important;
     pointer-events: none !important;
 }
