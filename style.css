@@ -693,21 +693,21 @@ nav ul li.dropdown-item > a:hover {
 }
 
 /* ========================================================
-   CHATBOT PERFECT INNER SCROLL FIX
+   CHATBOT FLEXBOX & AUTO-SCROLL FIXED CSS
 ======================================================== */
 .chat-widget {
     position: fixed; 
     bottom: -600px; 
     left: 30px; 
     width: 350px; 
-    height: 480px; /* Fixed Container Height */
+    height: 480px; 
     background: rgba(5, 8, 22, 0.98); 
     backdrop-filter: blur(25px); 
     border: 1px solid var(--accent-glow); 
     border-radius: 16px; 
-    display: flex; 
-    flex-direction: column; 
-    overflow: hidden; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    overflow: hidden !important; 
     z-index: 10000; 
     opacity: 0; 
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); 
@@ -726,21 +726,20 @@ nav ul li.dropdown-item > a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-shrink: 0; /* Header stays fixed */
+    flex-shrink: 0 !important; /* Header locked at top */
 }
 
 .chat-body {
-    flex: 1 1 auto;
-    min-height: 0 !important; /* CRITICAL: Enables smooth internal scrolling */
-    overflow-y: auto !important; /* Forces vertical scroll */
+    flex: 1 1 0% !important; /* Forces flex container to shrink correctly */
+    min-height: 0 !important; /* Prevents overflow pushing the input box out */
+    overflow-y: auto !important; /* Enables scrollbar */
     padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    scroll-behavior: smooth;
 }
 
-/* Custom Sleek Cyan Scrollbar for Chat Window */
+/* Custom Scrollbar for Chat Window */
 .chat-body::-webkit-scrollbar {
     width: 5px;
 }
@@ -758,7 +757,7 @@ nav ul li.dropdown-item > a:hover {
     display: flex;
     gap: 8px;
     background: rgba(5, 8, 22, 0.95);
-    flex-shrink: 0; /* Input box stays locked at bottom */
+    flex-shrink: 0 !important; /* Input box locked at bottom */
 }
 
 .chat-footer input {
