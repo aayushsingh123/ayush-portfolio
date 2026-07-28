@@ -342,7 +342,7 @@ function changePortfolioLanguage(langCode) {
 }
 
 /* =======================================================
-   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION
+   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION (FULL PAGE)
 ======================================================= */
 window.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -363,7 +363,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const orangeColor = "rgba(255, 140, 0, ";
     const cyanColor = "rgba(76, 201, 255, ";
 
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 55; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -374,11 +374,11 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 22; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            length: Math.random() * 100 + 50,
+            length: Math.random() * 120 + 60,
             speed: Math.random() * 2.5 + 1.2,
             isOrange: Math.random() > 0.5,
             horizontal: Math.random() > 0.5
@@ -415,7 +415,13 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderCyberFrame() {
-        ctx.clearRect(0, 0, width, height);
+        // Draw Dark Cyber Matrix Base Background across full viewport
+        const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+        bgGrad.addColorStop(0, '#050816');
+        bgGrad.addColorStop(0.5, '#020b14');
+        bgGrad.addColorStop(1, '#0b0716');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, width, height);
 
         lockPulse += 0.02;
         const pulseAlpha = Math.sin(lockPulse) * 0.2 + 0.4;
