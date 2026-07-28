@@ -545,7 +545,25 @@
 
         <div class="sm-footer-lower-bar-wrapper">
             <div class="sm-lower-left-links">
-                <div class="sm-lang-selector-trigger">English <i class="fas fa-caret-down"></i></div>
+                <!-- DYNAMIC NEURAL MULTI-LANGUAGE TRANSLATION SELECTOR -->
+                <div class="sm-lang-dropdown-wrapper" style="position: relative; display: inline-block;">
+                    <select id="portfolioLanguageSelector" class="sm-lang-select-box" onchange="changePortfolioLanguage(this.value)">
+                        <option value="en" selected>English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="bho">भोजपुरी (Bhojpuri)</option>
+                        <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                        <option value="hi-HR">हरियाणवी (Haryanvi)</option>
+                        <option value="sd">सिंधी (Sindhi)</option>
+                        <option value="gu">ગુજરાતી (Gujarati)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="ta">தமிழ் (Tamil)</option>
+                        <option value="ml">മലയാളം (Malayalam)</option>
+                        <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    </select>
+                </div>
+                <div id="google_translate_element" style="display:none;"></div>
+                <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
                 <a href="#">Categories</a>
                 <a href="#">Countries</a>
                 <a href="#">Privacy</a>
@@ -599,6 +617,6 @@
             <p id="notificationText" class="toast-desc">Configuration sync protocol finalized.</p>
         </div>
     </div>
-<script src="script.js?v=6.0"></script>
+<script src="script.js?v=9.0"></script>
 </body>
 </html>
