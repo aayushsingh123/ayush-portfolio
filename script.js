@@ -418,3 +418,39 @@ if(backToTopBtn) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 }
+/* =======================================================
+   NEURAL MULTI-LANGUAGE TRANSLATION DRIVER ENGINE
+======================================================= */
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,bho,pa,sd,gu,te,ta,ml,kn',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+function changePortfolioLanguage(langCode) {
+    // 1. Check if Google Translate Select Combo is initialized
+    const googleCombo = document.querySelector('.goog-te-combo');
+    
+    if (googleCombo) {
+        googleCombo.value = (langCode === 'hi-HR') ? 'hi' : langCode; 
+        googleCombo.dispatchEvent(new Event('change'));
+        triggerSystemToast(`Language Updated to ${getLanguageName(langCode)}! 🌐`);
+    } else {
+        // Safe Cookie Fallback
+        document.cookie = `googtrans=/en/${(langCode === 'hi-HR') ? 'hi' : langCode}; path=/;`;
+        location.reload();
+    }
+}
+
+function getLanguageName(code) {
+    const names = {
+        'en': 'English', 'hi': 'Hindi', 'bho': 'Bhojpuri',
+        'pa': 'Punjabi', 'hi-HR': 'Haryanvi', 'sd': 'Sindhi',
+        'gu': 'Gujarati', 'te': 'Telugu', 'ta': 'Tamil',
+        'ml': 'Malayalam', 'kn': 'Kannada'
+    };
+    return names[code] || 'Selected Language';
+}
