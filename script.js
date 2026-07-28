@@ -370,7 +370,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   ADVANCED AI INTERACTIVE CHATBOT ENGINE (INFINITE LOOP & EMOTIONS)
+   5. ADVANCED AI INTERACTIVE CHATBOT ENGINE (SMOOTH SCROLL)
 ======================================================= */
 
 const chatBadge = document.getElementById("chatBadge");
@@ -380,6 +380,7 @@ const chatHeader = document.getElementById("chatHeader");
 if(chatBadge && chatWidget && chatHeader) {
     chatBadge.addEventListener("click", () => {
         chatWidget.classList.add("active");
+        scrollToLatestChatMessage();
     });
     chatHeader.querySelector(".fa-chevron-down").addEventListener("click", (e) => {
         e.stopPropagation();
@@ -390,6 +391,17 @@ if(chatBadge && chatWidget && chatHeader) {
 const sendChatBtn = document.getElementById("sendChatBtn");
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
+
+// Smart Auto-Scroll Helper
+function scrollToLatestChatMessage() {
+    if(!chatBody) return;
+    setTimeout(() => {
+        chatBody.scrollTo({
+            top: chatBody.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 50);
+}
 
 // Quick Pill Click Handler
 function triggerQuickChatAction(type) {
@@ -405,7 +417,7 @@ function triggerQuickChatAction(type) {
         botBubble.innerHTML = "Direct email: <a href='mailto:aayushs821@gmail.com' style='color:#4cc9ff;'>aayushs821@gmail.com</a>. You can also leave your message here! 📧";
     }
     chatBody.appendChild(botBubble);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    scrollToLatestChatMessage();
 }
 
 // Smart AI Intent Detection Engine
@@ -467,11 +479,11 @@ function generateSmartAiResponse(userText) {
         return "Ayush is based out of Hyderabad, India, and is open to high-impact Senior Backend/Microservices roles. Feel free to send an email to discuss details! 📍";
     }
 
-    // 11. GENERAL SMART FALLBACK (Infinite Loop Solution)
+    // 11. GENERAL SMART FALLBACK
     return `Thanks for your message: "${userText}"! I'm constantly learning. To discuss this directly with Ayush, feel free to drop an email to aayushs821@gmail.com or leave your contact details here! ✉️`;
 }
 
-// Forward Message Function
+// Forward Message Function with Auto-Scroll
 if(sendChatBtn && chatInput && chatBody) {
     const sendClientMessage = () => {
         const userText = chatInput.value.trim();
@@ -485,7 +497,7 @@ if(sendChatBtn && chatInput && chatBody) {
         chatBody.appendChild(userBubble);
         
         chatInput.value = "";
-        chatBody.scrollTop = chatBody.scrollHeight;
+        scrollToLatestChatMessage();
 
         // Render AI Bot Response dynamically
         setTimeout(() => {
@@ -496,7 +508,7 @@ if(sendChatBtn && chatInput && chatBody) {
             botBubble.innerHTML = generateSmartAiResponse(userText);
 
             chatBody.appendChild(botBubble);
-            chatBody.scrollTop = chatBody.scrollHeight;
+            scrollToLatestChatMessage();
         }, 600);
     };
 
