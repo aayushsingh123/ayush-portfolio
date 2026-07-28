@@ -602,8 +602,22 @@ if (document.readyState === "loading") {
 
 
 /* =======================================================
-   8. DYNAMIC LOGIN, SIGNUP & GREETING HOLOGRAM ENGINE
+   8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
 ======================================================= */
+function triggerMatrixAccess(type) {
+    if (type === 'auth') {
+        // Modal khulega aur entrance overlay hide hoga
+        const overlay = document.getElementById("aiEntranceOverlay");
+        if (overlay) overlay.style.display = "none";
+        toggleAuthModal(true);
+        // Default Signup tab select karein ya login
+        switchAuthTab('signup');
+    } else {
+        // Skip option -> AI Style Congrats Hologram throw karein
+        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
+    }
+}
+
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
     if (!modal) return;
@@ -639,8 +653,14 @@ function handleSignupSubmit(e) {
     const userData = { name, email, password };
     localStorage.setItem("matrixUser", JSON.stringify(userData));
 
-    toggleAuthModal(false);
-    throwShivajiGreetingHologram(`Welcome, ${name}! Access Granted ⚡`);
+    // Signup complete hone ke baad direct grant nahi karna, login ke liye kehna hai
+    triggerSystemToast(`Account created for ${name}! Please Login now. ⚡`);
+    switchAuthTab('login');
+    
+    // Clear signup fields
+    document.getElementById("signupName").value = "";
+    document.getElementById("signupEmail").value = "";
+    document.getElementById("signupPassword").value = "";
 }
 
 function handleLoginSubmit(e) {
@@ -652,7 +672,8 @@ function handleLoginSubmit(e) {
 
     if (savedUser && savedUser.email === email && savedUser.password === password) {
         toggleAuthModal(false);
-        throwShivajiGreetingHologram(`Authentication Granted! Welcome Back ${savedUser.name} 🚀`);
+        // Sahi details daalne par AI-style congrats animation throw karein
+        throwAiCongratsHologram(`Authentication Granted! Welcome Back, ${savedUser.name} 🚀`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
     } else {
@@ -660,7 +681,7 @@ function handleLoginSubmit(e) {
     }
 }
 
-function throwShivajiGreetingHologram(msg) {
+function throwAiCongratsHologram(msg) {
     let hologram = document.getElementById("matrixGreetingHologram");
     if (!hologram) {
         hologram = document.createElement("div");
@@ -669,10 +690,25 @@ function throwShivajiGreetingHologram(msg) {
     }
 
     hologram.innerHTML = `
-        <div class="greeting-icon-pulse"><i class="fas fa-shield-alt"></i></div>
-        <h2>SECURITY CLEARED</h2>
+        <div class="greeting-icon-pulse"><i class="fas fa-brain" style="color: #00ffcc;"></i></div>
+        <h2 style="color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.6);">🎉 CONGRATULATIONS! 🎉</h2>
         <p>${msg}</p>
-        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO MATRIX ⚡</button>
+        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()" style="border-color: #00ffcc; color: #00ffcc;">ENTER PORTFOLIO MATRIX ⚡</button>
     `;
     hologram.classList.add("active-greeting");
+}
+
+function closeGreetingAndEnterPortfolio() {
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.remove("active-greeting");
+
+    const overlay = document.getElementById("aiEntranceOverlay");
+    if (overlay) overlay.classList.add("terminate");
+
+    setTimeout(() => {
+        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
+        startCounterAnimation();
+        initLiveNewsTickerSystem(); 
+        initVoiceCommandGateway(); 
+    }, 600);
 }
