@@ -15,12 +15,17 @@
     <!-- DYNAMIC LIVE CYBER SECURITY BACKGROUND ANIMATION CANVAS -->
     <canvas id="cyberBackgroundCanvas"></canvas>
 
+    <!-- UPGRADED MATRIX ENTRANCE GATEWAY (LOGIN/SIGNUP & SKIP) -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
             <h1>WELCOME TO AYUSH PORTFOLIO</h1>
             <p>Initialize Interactive Matrix Node for Ayush Singh</p>
-            <button id="initializeAiSystemBtn" class="ai-btn" onclick="document.getElementById('aiEntranceOverlay').classList.add('terminate'); setTimeout(() => { if(typeof startCounterAnimation === 'function') startCounterAnimation(); }, 600);">ENTER PORTFOLIO MATRIX ⚡</button>
+            
+            <div class="entrance-action-row">
+                <button class="ai-btn" onclick="triggerMatrixAccess('auth')">LOGIN / SIGN UP ⚡</button>
+                <button class="ai-btn skip-btn" onclick="triggerMatrixAccess('skip')">SKIP NODE 🚀</button>
+            </div>
         </div>
     </div>
 
@@ -669,6 +674,6 @@
         </div>
     </div>
 
-<script src="script.js?v=18.0"></script>
+<script src="script.js?v=19.0"></script>
 </body>
 </html>
