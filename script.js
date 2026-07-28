@@ -342,7 +342,7 @@ function changePortfolioLanguage(langCode) {
 }
 
 /* =======================================================
-   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION (FULL SCROLL FIX)
+   7. LIVE BACKGROUND CYBER SECURITY CANVAS (TRUE FULL PAGE HEIGHT)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -350,11 +350,22 @@ function startCyberCanvas() {
     const ctx = canvas.getContext("2d");
 
     let width, height;
+
+    // Full Document Height Calculation
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        // Entire scrollable page height
+        height = canvas.height = Math.max(
+            document.body.scrollHeight, 
+            document.body.offsetHeight, 
+            document.documentElement.clientHeight, 
+            document.documentElement.scrollHeight, 
+            document.documentElement.offsetHeight
+        );
     }
+    
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("load", resizeCanvas);
     resizeCanvas();
 
     const particles = [];
@@ -363,8 +374,9 @@ function startCyberCanvas() {
     const orangeColor = "rgba(255, 140, 0, ";
     const cyanColor = "rgba(76, 201, 255, ";
 
-    // Initialize 60 Floating Network Nodes
-    for (let i = 0; i < 60; i++) {
+    // Density scaled according to total page height
+    const totalNodes = Math.floor(height / 80);
+    for (let i = 0; i < totalNodes; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -375,8 +387,8 @@ function startCyberCanvas() {
         });
     }
 
-    // Initialize 25 Moving Circuit Data Rays
-    for (let i = 0; i < 25; i++) {
+    const totalRays = Math.floor(height / 150);
+    for (let i = 0; i < totalRays; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -417,29 +429,24 @@ function startCyberCanvas() {
     }
 
     function renderCyberFrame() {
-        // Draw Constant Dark Background directly on canvas to cover full screen
-        const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-        bgGrad.addColorStop(0, '#050816');
-        bgGrad.addColorStop(0.5, '#020b14');
-        bgGrad.addColorStop(1, '#0b0716');
-        ctx.fillStyle = bgGrad;
-        ctx.fillRect(0, 0, width, height);
+        ctx.clearRect(0, 0, width, height);
 
         lockPulse += 0.02;
         const pulseAlpha = Math.sin(lockPulse) * 0.2 + 0.4;
 
-        // Render Holographic Lock Centerpiece
-        drawHologramPadlock(width / 2, height / 2, Math.min(width, height) / 750, pulseAlpha);
+        // Render Padlock Hologram in Hero & Footer centers
+        drawHologramPadlock(width / 2, window.innerHeight / 2, 1, pulseAlpha);
+        drawHologramPadlock(width / 2, height - (window.innerHeight / 2), 1, pulseAlpha);
 
-        // Render Connecting Mesh Lines
+        // Draw connections
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < 150) {
-                    const lineAlpha = (1 - dist / 150) * 0.35;
+                if (dist < 140) {
+                    const lineAlpha = (1 - dist / 140) * 0.35;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -452,7 +459,6 @@ function startCyberCanvas() {
             }
         }
 
-        // Move Nodes
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -466,7 +472,6 @@ function startCyberCanvas() {
             ctx.fill();
         });
 
-        // Move Circuit Data Lines
         circuitStreams.forEach(stream => {
             ctx.beginPath();
             ctx.lineWidth = 2;
@@ -492,7 +497,6 @@ function startCyberCanvas() {
     renderCyberFrame();
 }
 
-// Immediate execution trigger
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", startCyberCanvas);
 } else {
