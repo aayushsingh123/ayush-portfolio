@@ -155,7 +155,7 @@ if(semanticHubSearch) {
 
 
 /* =======================================================
-   4. DASHBOARD TERMINAL & UTILITIES
+   4. DASHBOARD TERMINAL & REAL-TIME LIVE NEWS ENGINE
 ======================================================= */
 
 function switchDashboardTab(tabId) {
@@ -184,33 +184,81 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-function initLiveNewsTickerSystem() {
+// REAL-TIME DYNAMIC LIVE NEWS CHANNEL STREAMER (HINDI + ENGLISH)
+async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
-    if(!wrapper) return;
+    if (!wrapper) return;
 
-    const rotatingFeeds = [
-        { tag: "Global Tech", title: "OpenAI Releases GPT-5.6 Execution Context", desc: "Native token pipelines stream architectural logic rules instantly." },
-        { tag: "National Infrastructure", title: "BSNL Live Satellite Nodes Deployed Across Clusters", desc: "Establishes secure telemetry backup links for critical grid operations." },
-        { tag: "Silicon Matrix", title: "Meta Finalizes 14GW Custom Compute Architecture", desc: "Hardware accelerators scale cluster loop speeds to absolute peak efficiency." },
-        { tag: "Open Source Nodes", title: "Spring Framework 7.0 Alpha Commits Verified", desc: "Integrates direct native compile strategies for Java 25 paradigms." }
-    ];
+    let allLiveNews = [];
+    let activeNewsIndex = 0;
 
-    let currentIndex = 0;
+    wrapper.innerHTML = `
+        <div class="news-card" style="padding:15px 0;">
+            <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem;">LIVE SATELLITE FEED ⚡</span>
+            <h4 style="font-size:0.9rem; margin-top:8px; color:var(--text-main);">Fetching live breaking headlines from Google News...</h4>
+        </div>
+    `;
 
-    function renderActiveTickerCard() {
-        wrapper.innerHTML = "";
-        const item = rotatingFeeds[currentIndex];
+    async function fetchDynamicLiveFeeds() {
+        const rssFeeds = [
+            'https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en',  // Live English India
+            'https://news.google.com/rss?hl=hi&gl=IN&ceid=IN:hi'       // Live Hindi Bharat
+        ];
 
-        const card = document.createElement("div");
-        card.className = "news-card fade-in";
-        card.innerHTML = `<span class="news-tag">${item.tag}</span><h4 style='margin-top:5px;'>${item.title}</h4><p style='margin-top:5px; font-size:0.85rem;'>${item.desc}</p>`;
-        
-        wrapper.appendChild(card);
-        currentIndex = (currentIndex + 1) % rotatingFeeds.length;
+        let fetchedArticles = [];
+
+        for (let url of rssFeeds) {
+            try {
+                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+                
+                if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    data.items.slice(0, 10).forEach(item => {
+                        fetchedArticles.push({
+                            title: item.title,
+                            link: item.link,
+                            pubDate: item.pubDate ? new Date(item.pubDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'LIVE',
+                            source: item.author || 'Google News'
+                        });
+                    });
+                }
+            } catch (err) {
+                console.log("Live stream fetch issue, retrying...", err);
+            }
+        }
+
+        if (fetchedArticles.length > 0) {
+            allLiveNews = fetchedArticles.sort(() => Math.random() - 0.5);
+        }
     }
 
-    renderActiveTickerCard();
-    setInterval(renderActiveTickerCard, 4500); 
+    await fetchDynamicLiveFeeds();
+
+    function displayNextNewsHeadline() {
+        if (allLiveNews.length === 0) return;
+
+        const currentStory = allLiveNews[activeNewsIndex];
+
+        wrapper.innerHTML = `
+            <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0; transition: all 0.5s ease;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold; letter-spacing:0.5px;">LIVE NEWS CHANNEL 🔴</span>
+                    <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">${currentStory.pubDate}</span>
+                </div>
+                <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${currentStory.title}</h4>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                    <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> ${currentStory.source}</span>
+                    <a href="${currentStory.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read Full News →</a>
+                </div>
+            </div>
+        `;
+
+        activeNewsIndex = (activeNewsIndex + 1) % allLiveNews.length;
+    }
+
+    displayNextNewsHeadline();
+    setInterval(displayNextNewsHeadline, 5000); // Cycles headlines every 5 seconds
+    setInterval(fetchDynamicLiveFeeds, 300000);  // Refreshes RSS feeds every 5 minutes
 }
 
 let currentActiveMockEndpoint = "";
