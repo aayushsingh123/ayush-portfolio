@@ -114,7 +114,12 @@
                     </ul>
                 </li>
             </ul>
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- ACCESS PORTAL LOGIN/SIGNUP BUTTON -->
+                <button class="auth-modal-btn" onclick="toggleAuthModal(true)">
+                    <i class="fas fa-user-lock"></i> Access Portal
+                </button>
+
                 <div id="voiceCommandBtn" title="Speak Command (e.g. 'Go to Skills', 'Light Mode')">
                     <i class="fas fa-microphone"></i>
                 </div>
@@ -620,49 +625,50 @@
             <p id="notificationText" class="toast-desc">Configuration sync protocol finalized.</p>
         </div>
     </div>
-<script src="script.js?v=16.0"></script>
+
+    <!-- FUTURISTIC AUTHENTICATION MODAL -->
+    <div id="authModalOverlay" class="auth-overlay">
+        <div class="auth-card-box">
+            <span class="auth-close-btn" onclick="toggleAuthModal(false)">&times;</span>
+            
+            <!-- Tab Switcher -->
+            <div class="auth-tabs">
+                <button id="loginTabBtn" class="auth-tab active" onclick="switchAuthTab('login')">LOGIN</button>
+                <button id="signupTabBtn" class="auth-tab" onclick="switchAuthTab('signup')">SIGN UP</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active-form" onsubmit="handleLoginSubmit(event)">
+                <div class="auth-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="Enter Matrix Email" required>
+                </div>
+                <div class="auth-field">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="loginPassword" placeholder="Enter Access Code" required>
+                </div>
+                <button type="submit" class="btn style-submit-btn auth-submit">AUTHENTICATE ⚡</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form" onsubmit="handleSignupSubmit(event)">
+                <div class="auth-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signupName" placeholder="Full Identity Name" required>
+                </div>
+                <div class="auth-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signupEmail" placeholder="Matrix Email" required>
+                </div>
+                <div class="auth-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupPassword" placeholder="Create Security Code" required>
+                </div>
+                <button type="submit" class="btn style-submit-btn auth-submit">GENERATE ACCESS NODE 🚀</button>
+            </form>
+        </div>
+    </div>
+
+<script src="script.js?v=18.0"></script>
 </body>
 </html>
-
-<!-- FUTURISTIC AUTHENTICATION MODAL -->
-<div id="authModalOverlay" class="auth-overlay">
-    <div class="auth-card-box">
-        <span class="auth-close-btn" onclick="toggleAuthModal(false)">&times;</span>
-        
-        <!-- Tab Switcher -->
-        <div class="auth-tabs">
-            <button id="loginTabBtn" class="auth-tab active" onclick="switchAuthTab('login')">LOGIN</button>
-            <button id="signupTabBtn" class="auth-tab" onclick="switchAuthTab('signup')">SIGN UP</button>
-        </div>
-
-        <!-- Login Form -->
-        <form id="loginForm" class="auth-form active-form" onsubmit="handleLoginSubmit(event)">
-            <div class="auth-field">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="loginEmail" placeholder="Enter Matrix Email" required>
-            </div>
-            <div class="auth-field">
-                <i class="fas fa-key"></i>
-                <input type="password" id="loginPassword" placeholder="Enter Access Code" required>
-            </div>
-            <button type="submit" class="btn style-submit-btn auth-submit">AUTHENTICATE ⚡</button>
-        </form>
-
-        <!-- Signup Form -->
-        <form id="signupForm" class="auth-form" onsubmit="handleSignupSubmit(event)">
-            <div class="auth-field">
-                <i class="fas fa-user"></i>
-                <input type="text" id="signupName" placeholder="Full Identity Name" required>
-            </div>
-            <div class="auth-field">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="signupEmail" placeholder="Matrix Email" required>
-            </div>
-            <div class="auth-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="signupPassword" placeholder="Create Security Code" required>
-            </div>
-            <button type="submit" class="btn style-submit-btn auth-submit">GENERATE ACCESS NODE 🚀</button>
-        </form>
-    </div>
-</div>
