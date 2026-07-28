@@ -398,57 +398,71 @@ nav ul li.dropdown-item > a:hover {
     transform: translateY(-2px);
 }
 
+/* ========================================================
+   CYBER SECURITY LEDGER EXPAND & SCROLL FIXED
+======================================================== */
 .cyber-dropdown-wrapper {
     max-width: 900px;
     margin: 0 auto;
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    background: rgba(5, 8, 22, 0.6);
+    background: rgba(5, 8, 22, 0.7);
     backdrop-filter: blur(10px);
     overflow: hidden;
 }
+
 .cyber-dropdown-header {
     padding: 24px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     transition: background 0.3s ease;
+    user-select: none;
 }
+
 .cyber-dropdown-header:hover {
-    background: rgba(76, 201, 255, 0.05);
+    background: rgba(76, 201, 255, 0.08);
 }
+
 .cyber-dropdown-header .header-left {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: var(--accent-glow);
 }
+
 #cyberChevronIcon {
     transition: transform 0.4s ease;
     color: var(--text-muted);
 }
+
 #cyberChevronIcon.rotate-active {
     transform: rotate(180deg);
     color: var(--accent-glow);
 }
+
 .cyber-dropdown-content {
     max-height: 0;
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
     position: relative;
-    transition: max-height 0.5s cubic-bezier(1, 0, 0, 1), opacity 0.4s ease, visibility 0.4s;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0.4s;
 }
+
 .cyber-dropdown-content.open {
-    max-height: 800px;
-    opacity: 1;
-    visibility: visible;
+    max-height: 2500px !important; /* Full expansion for all grid items */
+    opacity: 1 !important;
+    visibility: visible !important;
     border-top: 1px solid var(--border-color);
+    overflow-y: auto !important;
 }
+
 .cyber-animated-bg-container {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -459,23 +473,37 @@ nav ul li.dropdown-item > a:hover {
     z-index: 1;
     animation: liveGraphicPulse 8s infinite ease-in-out alternate;
 }
+
 @keyframes liveGraphicPulse {
     0% { transform: scale(1); filter: hue-rotate(0deg) brightness(0.8); }
     100% { transform: scale(1.08); filter: hue-rotate(15deg) brightness(1.2); }
 }
+
 .cyber-matrix-grid-overlay {
     width: 100%; height: 100%;
     background: linear-gradient(rgba(5,8,22,0.85), rgba(5,8,22,0.92));
     position: absolute; top: 0; left: 0;
 }
+
 .cyber-info-grid-matrix {
     position: relative;
     z-index: 2;
-    padding: 40px;
+    padding: 30px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    gap: 18px;
+    max-height: 550px; /* Internal scroll fallback */
+    overflow-y: auto;
 }
+
+.cyber-info-grid-matrix::-webkit-scrollbar {
+    width: 5px;
+}
+.cyber-info-grid-matrix::-webkit-scrollbar-thumb {
+    background: var(--accent-glow);
+    border-radius: 10px;
+}
+
 .cyber-info-card-item {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--border-color);
@@ -483,10 +511,12 @@ nav ul li.dropdown-item > a:hover {
     border-radius: 12px;
     transition: all 0.3s ease;
 }
+
 .cyber-info-card-item:hover {
     border-color: var(--accent-glow);
     transform: translateY(-4px);
 }
+
 .cyber-info-card-item span {
     display: block;
     color: var(--accent-glow);
@@ -503,6 +533,7 @@ nav ul li.dropdown-item > a:hover {
     position: relative;
     z-index: 10;
 }
+
 .sm-footer-grid-wrapper {
     max-width: 1400px;
     margin: 0 auto;
@@ -510,6 +541,7 @@ nav ul li.dropdown-item > a:hover {
     grid-template-columns: 1.5fr repeat(6, 1fr);
     gap: 40px;
 }
+
 @media (max-width: 1200px) { .sm-footer-grid-wrapper { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 768px) { .sm-footer-grid-wrapper { grid-template-columns: 1fr; } }
 
@@ -520,6 +552,7 @@ nav ul li.dropdown-item > a:hover {
 .sm-brand-social-row a { color: var(--text-muted); transition: color 0.25s; }
 .sm-brand-social-row a:hover { color: var(--accent-glow); }
 .sm-brand-address-text { font-size: 0.8rem; line-height: 1.5; opacity: 0.7; }
+
 .sm-footer-ext-button {
     background: #2563eb; color: white !important; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; width: max-content; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.25s;
 }
@@ -533,6 +566,7 @@ nav ul li.dropdown-item > a:hover {
 .sm-footer-lower-bar-wrapper {
     max-width: 1400px; margin: 60px auto 0 auto; padding-top: 30px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 0.85rem; color: var(--text-muted);
 }
+
 .sm-lower-left-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .sm-lower-left-links a { color: var(--text-muted); text-decoration: none; transition: 0.2s; }
 .sm-lower-left-links a:hover { color: var(--accent-glow); }
@@ -600,98 +634,6 @@ nav ul li.dropdown-item > a:hover {
     z-index: 10;
 }
 
-.chat-widget {
-    position: fixed; 
-    bottom: -600px; 
-    left: 30px; 
-    width: 340px; 
-    height: 450px; 
-    background: rgba(5, 8, 22, 0.98); 
-    backdrop-filter: blur(25px); 
-    border: 1px solid var(--accent-glow); 
-    border-radius: 16px; 
-    display: flex; 
-    flex-direction: column; 
-    overflow: hidden; 
-    z-index: 10000; 
-    opacity: 0; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15); 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.chat-widget.active { 
-    bottom: 110px; 
-    opacity: 1; 
-}
-
-.chat-robot-avatar-container {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    margin: 15px auto; 
-    position: relative; 
-    width: 85px; 
-    height: 85px;
-}
-
-.chat-robot-fallback-mesh-face {
-    width: 75px;
-    height: 65px;
-    background: linear-gradient(135deg, #091e3a, #0284c7);
-    border: 2px solid #4cc9ff;
-    border-radius: 18px;
-    position: relative;
-    z-index: 5;
-    box-shadow: 0 0 20px rgba(76,201,255,0.5);
-    animation: floatingRobotMesh 3s infinite ease-in-out;
-}
-
-.chat-robot-fallback-mesh-face::before {
-    content: '';
-    position: absolute;
-    top: 20px; left: 16px; width: 10px; height: 10px;
-    background: #4cc9ff; border-radius: 50%;
-    box-shadow: 28px 0 #4cc9ff, 0 0 12px #4cc9ff, 28px 0 12px #4cc9ff;
-    animation: robotEyeBlinkCycle 4s infinite linear;
-}
-
-.chat-robot-fallback-mesh-face::after {
-    content: '';
-    position: absolute;
-    bottom: 14px; left: 24px; width: 24px; height: 10px;
-    border-bottom: 3px solid #4cc9ff;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 3px 10px rgba(76,201,255,0.6);
-}
-
-@keyframes robotEyeBlinkCycle {
-    0%, 45%, 55%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.1); }
-}
-
-@keyframes floatingRobotMesh {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-.chat-ping-ring {
-    position: absolute; 
-    top: -5px; 
-    left: 5px; 
-    width: 75px; 
-    height: 70px; 
-    border-radius: 18px; 
-    border: 2px solid var(--accent-glow); 
-    opacity: 0.4; 
-    z-index: 1;
-    animation: ringExpansion 2s infinite linear;
-}
-
-@keyframes ringExpansion {
-    0% { transform: scale(0.9); opacity: 0.6; }
-    100% { transform: scale(1.3); opacity: 0; }
-}
-
 /* ========================================================
    CHATBOT FLEXBOX & AUTO-SCROLL FIXED CSS
 ======================================================== */
@@ -726,20 +668,19 @@ nav ul li.dropdown-item > a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-shrink: 0 !important; /* Header locked at top */
+    flex-shrink: 0 !important;
 }
 
 .chat-body {
-    flex: 1 1 0% !important; /* Forces flex container to shrink correctly */
-    min-height: 0 !important; /* Prevents overflow pushing the input box out */
-    overflow-y: auto !important; /* Enables scrollbar */
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
     padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* Custom Scrollbar for Chat Window */
 .chat-body::-webkit-scrollbar {
     width: 5px;
 }
@@ -757,7 +698,7 @@ nav ul li.dropdown-item > a:hover {
     display: flex;
     gap: 8px;
     background: rgba(5, 8, 22, 0.95);
-    flex-shrink: 0 !important; /* Input box locked at bottom */
+    flex-shrink: 0 !important;
 }
 
 .chat-footer input {
