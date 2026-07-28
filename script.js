@@ -342,9 +342,9 @@ function changePortfolioLanguage(langCode) {
 }
 
 /* =======================================================
-   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION (FULL PAGE)
+   7. LIVE BACKGROUND CYBER SECURITY CANVAS ANIMATION (FULL SCROLL FIX)
 ======================================================= */
-window.addEventListener("DOMContentLoaded", () => {
+function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -363,7 +363,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const orangeColor = "rgba(255, 140, 0, ";
     const cyanColor = "rgba(76, 201, 255, ";
 
-    for (let i = 0; i < 55; i++) {
+    // Initialize 60 Floating Network Nodes
+    for (let i = 0; i < 60; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -374,7 +375,8 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    for (let i = 0; i < 22; i++) {
+    // Initialize 25 Moving Circuit Data Rays
+    for (let i = 0; i < 25; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -415,7 +417,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderCyberFrame() {
-        // Draw Dark Cyber Matrix Base Background across full viewport
+        // Draw Constant Dark Background directly on canvas to cover full screen
         const bgGrad = ctx.createLinearGradient(0, 0, width, height);
         bgGrad.addColorStop(0, '#050816');
         bgGrad.addColorStop(0.5, '#020b14');
@@ -426,8 +428,10 @@ window.addEventListener("DOMContentLoaded", () => {
         lockPulse += 0.02;
         const pulseAlpha = Math.sin(lockPulse) * 0.2 + 0.4;
 
+        // Render Holographic Lock Centerpiece
         drawHologramPadlock(width / 2, height / 2, Math.min(width, height) / 750, pulseAlpha);
 
+        // Render Connecting Mesh Lines
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -448,6 +452,7 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        // Move Nodes
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -461,6 +466,7 @@ window.addEventListener("DOMContentLoaded", () => {
             ctx.fill();
         });
 
+        // Move Circuit Data Lines
         circuitStreams.forEach(stream => {
             ctx.beginPath();
             ctx.lineWidth = 2;
@@ -484,4 +490,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     renderCyberFrame();
-});
+}
+
+// Immediate execution trigger
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startCyberCanvas);
+} else {
+    startCyberCanvas();
+}
