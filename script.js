@@ -184,7 +184,6 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// REAL-TIME DYNAMIC LIVE NEWS TICKER
 async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if (!wrapper) return;
@@ -317,8 +316,9 @@ if(sendChatBtn && chatInput && chatBody) {
     chatInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') sendClientMessage(); });
 }
 
+
 /* =======================================================
-   6. MULTI-LANGUAGE TRANSLATOR DRIVER ENGINE
+   6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE
 ======================================================= */
 
 function googleTranslateElementInit() {
@@ -341,6 +341,44 @@ function changePortfolioLanguage(langCode) {
     }
 }
 
+function initVoiceCommandGateway() {
+    const micBtn = document.getElementById("voiceCommandBtn");
+    if (!micBtn) return;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+
+    micBtn.addEventListener("click", () => {
+        try {
+            recognition.start();
+            micBtn.classList.add("listening-active");
+            triggerSystemToast("Listening for voice command... Speak now 🎤");
+        } catch (e) {
+            console.log("Mic active");
+        }
+    });
+
+    recognition.onresult = (event) => {
+        const text = event.results[0][0].transcript.toLowerCase();
+        micBtn.classList.remove("listening-active");
+        triggerSystemToast(`Command: "${text}"`);
+
+        if (text.includes("skills")) window.location.href = "#skills";
+        else if (text.includes("projects")) window.location.href = "#projects";
+        else if (text.includes("contact")) window.location.href = "#contact";
+        else if (text.includes("light")) document.body.classList.add("light");
+        else if (text.includes("dark")) document.body.classList.remove("light");
+    };
+
+    recognition.onerror = () => micBtn.classList.remove("listening-active");
+    recognition.onend = () => micBtn.classList.remove("listening-active");
+}
+
+
 /* =======================================================
    7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (CENTER LOCKED)
 ======================================================= */
@@ -359,7 +397,6 @@ function startCyberCanvas() {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Fast-moving Network Particles
     const particleCount = 40;
     const particles = [];
     const circuitStreams = [];
@@ -371,20 +408,19 @@ function startCyberCanvas() {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 2.5, // Faster speed
+            vx: (Math.random() - 0.5) * 2.5,
             vy: (Math.random() - 0.5) * 2.5,
             radius: Math.random() * 2 + 1,
             isOrange: Math.random() > 0.4
         });
     }
 
-    // High-speed Laser Circuits
     for (let i = 0; i < 20; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
             length: Math.random() * 140 + 70,
-            speed: Math.random() * 5 + 3, // Fast flow
+            speed: Math.random() * 5 + 3,
             isOrange: Math.random() > 0.5,
             horizontal: Math.random() > 0.5
         });
@@ -392,17 +428,14 @@ function startCyberCanvas() {
 
     let rotAngle = 0;
 
-    // Draw Futuristic Shield Padlock HUD Emblem (Perfect Center)
     function drawCyberShieldEmblem(centerX, centerY, scale) {
         ctx.save();
         ctx.translate(centerX, centerY);
 
-        // 1. Outer Rotating Tech HUD Rings
         ctx.save();
         ctx.rotate(rotAngle);
         ctx.lineWidth = 1.5;
         
-        // Outer Arc Ring
         ctx.strokeStyle = cyanColor + "0.4)";
         ctx.beginPath();
         ctx.arc(0, 0, 110 * scale, 0, Math.PI * 1.5);
@@ -414,7 +447,6 @@ function startCyberCanvas() {
         ctx.stroke();
         ctx.restore();
 
-        // 2. Counter-Rotating Inner HUD Ring
         ctx.save();
         ctx.rotate(-rotAngle * 1.5);
         ctx.strokeStyle = cyanColor + "0.6)";
@@ -425,7 +457,6 @@ function startCyberCanvas() {
         ctx.stroke();
         ctx.restore();
 
-        // 3. Center Shield Blueprint
         ctx.beginPath();
         ctx.moveTo(0, -60 * scale);
         ctx.bezierCurveTo(45 * scale, -60 * scale, 55 * scale, -20 * scale, 50 * scale, 20 * scale);
@@ -439,23 +470,19 @@ function startCyberCanvas() {
         ctx.strokeStyle = cyanColor + "0.95)";
         ctx.stroke();
 
-        // 4. Padlock Inside Shield
         ctx.strokeStyle = orangeColor + "0.9)";
         ctx.lineWidth = 2;
 
-        // Lock Shackle
         ctx.beginPath();
         ctx.arc(0, -12 * scale, 16 * scale, Math.PI, 0, false);
         ctx.lineTo(16 * scale, 5 * scale);
         ctx.lineTo(-16 * scale, 5 * scale);
         ctx.stroke();
 
-        // Lock Body
         ctx.fillStyle = "rgba(10, 15, 30, 0.85)";
         ctx.fillRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
         ctx.strokeRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
 
-        // Keyhole
         ctx.fillStyle = cyanColor + "1)";
         ctx.beginPath();
         ctx.arc(0, 18 * scale, 4 * scale, 0, Math.PI * 2);
@@ -474,13 +501,11 @@ function startCyberCanvas() {
     function renderCyberFrame() {
         ctx.clearRect(0, 0, width, height);
 
-        rotAngle += 0.025; // Speeded up HUD rotation
+        rotAngle += 0.025;
 
-        // Lock Emblem always fixed at exact center of screen viewport
         const centerScale = Math.min(width, height) / 700;
         drawCyberShieldEmblem(width / 2, height / 2, Math.max(centerScale, 0.65));
 
-        // Network Mesh Connections
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -501,7 +526,6 @@ function startCyberCanvas() {
             }
         }
 
-        // Particle Movement Update
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -515,7 +539,6 @@ function startCyberCanvas() {
             ctx.fill();
         });
 
-        // Fast Circuit Laser Streams Movement
         circuitStreams.forEach(stream => {
             ctx.beginPath();
             ctx.lineWidth = 2;
@@ -546,8 +569,10 @@ if (document.readyState === "loading") {
 } else {
     startCyberCanvas();
 }
+
+
 /* =======================================================
-   DYNAMIC LOGIN & SIGNUP HANDLER ENGINE
+   8. DYNAMIC LOGIN & SIGNUP HANDLER ENGINE
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
