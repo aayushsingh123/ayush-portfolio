@@ -762,3 +762,39 @@ nav ul li.dropdown-item > a:hover {
 body {
     top: 0px !important;
 }
+/* ========================================================
+   ABSOLUTE FULL-PAGE (TOP TO BOTTOM) CANVAS OVERRIDE
+======================================================== */
+#cyberBackgroundCanvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -999 !important; /* Always locked behind every single element */
+    pointer-events: none !important;
+}
+
+/* Force body and ALL sections to be transparent so canvas never hides on scroll */
+html, body {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+section, 
+header, 
+footer, 
+.hero, 
+.about, 
+.skills, 
+.experience, 
+.projects, 
+.achievements, 
+.learning-hub-section, 
+.feedback-section, 
+.contact, 
+#live-dashboard, 
+#cyber-vault-section, 
+.sm-footer-global-container {
+    background-color: transparent !important;
+}
