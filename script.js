@@ -385,7 +385,7 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   7. EXACT SINGLE CENTERED SCI-FI HUD TECH INTERFACE
+   7. CENTER-LOCKED FULL SCREEN SCI-FI HUD TECH INTERFACE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -408,41 +408,42 @@ function startCyberCanvas() {
     resizeCanvas();
     setTimeout(resizeCanvas, 500);
 
-    let r1 = 0, r2 = 0, r3 = 0;
+    let r1 = 0, r2 = 0, r3 = 0, sweepAngle = 0;
 
     function renderSciFiHud() {
         ctx.clearRect(0, 0, width, height);
 
-        r1 += 0.025; 
-        r2 -= 0.035;
-        r3 += 0.045;
+        r1 += 0.02; 
+        r2 -= 0.03;
+        r3 += 0.04;
+        sweepAngle += 0.03;
 
-        // Exactly screen ke ek specific central position par set karein (Web aur Mobile dono ke liye)
-        const cx = width < 768 ? width * 0.5 : width * 0.25;
-        const cy = width < 768 ? height * 0.3 : height * 0.45;
-        const scale = width < 768 ? 0.85 : 1.25;
+        // Har section / scroll position par exact CENTER mein lock karne ke liye
+        const cx = width / 2;
+        const cy = height / 2;
+        const scale = Math.min(width, height) / 450; // Screen ke hisaab se responsive scale
 
         ctx.save();
         ctx.translate(cx, cy);
 
         // --- 1. OUTER SPINNING DASHED RINGS ---
-        ctx.strokeStyle = "#00f0ff";
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.5)";
         ctx.lineWidth = 2.5;
 
         ctx.save();
         ctx.rotate(r1);
-        ctx.setLineDash([12 * scale, 8 * scale]);
+        ctx.setLineDash([15 * scale, 10 * scale]);
         ctx.beginPath();
-        ctx.arc(0, 0, 180 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 220 * scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
 
         ctx.save();
         ctx.rotate(r2);
-        ctx.setLineDash([35 * scale, 15 * scale, 8 * scale, 15 * scale]);
+        ctx.setLineDash([40 * scale, 15 * scale, 10 * scale, 15 * scale]);
         ctx.lineWidth = 3.5;
         ctx.beginPath();
-        ctx.arc(0, 0, 150 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 180 * scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
 
@@ -450,63 +451,54 @@ function startCyberCanvas() {
         ctx.setLineDash([]);
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.arc(0, 0, 125 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 140 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.arc(0, 0, 100 * scale, 0, Math.PI * 1.6);
+        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 1.6);
         ctx.stroke();
 
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.7)";
+        // Radar Sweep Cone Effect in Center
+        let gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 100 * scale);
+        gradient.addColorStop(0, "rgba(0, 255, 255, 0.25)");
+        gradient.addColorStop(1, "rgba(0, 220, 255, 0.0)");
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(0, 0, 70 * scale, 0, Math.PI * 2);
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, 100 * scale, sweepAngle, sweepAngle + 0.7);
+        ctx.lineTo(0, 0);
+        ctx.fill();
+
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.8)";
+        ctx.beginPath();
+        ctx.arc(0, 0, 75 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(0, 0, 40 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Crosshairs inside center
+        // Center Crosshairs
         ctx.beginPath();
         ctx.moveTo(-25 * scale, 0); ctx.lineTo(25 * scale, 0);
         ctx.moveTo(0, -25 * scale); ctx.lineTo(0, 25 * scale);
         ctx.stroke();
 
-        // --- 3. SUB-HUD OVERLAPPING SMALL CIRCLE (jaise screenshot mein niche right side hai) ---
+        // --- 3. SUB-HUD ORBITING RINGS ---
         ctx.save();
-        ctx.translate(65 * scale, 120 * scale);
+        ctx.translate(90 * scale, 130 * scale);
         ctx.rotate(r3);
-        ctx.strokeStyle = "#00f0ff";
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.6)";
         ctx.lineWidth = 2;
-        ctx.setLineDash([6 * scale, 6 * scale]);
+        ctx.setLineDash([8 * scale, 6 * scale]);
         ctx.beginPath();
-        ctx.arc(0, 0, 45 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 50 * scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
 
         ctx.restore();
-
-        // --- 4. CONNECTOR LINE & DATA METRICS (jaise screenshot mein right side box ki taraf ja raha hai) ---
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.85)";
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(cx + 150 * scale, cy - 40);
-        ctx.lineTo(cx + 270 * scale, cy - 40);
-        ctx.lineTo(cx + 300 * scale, cy - 10);
-        ctx.stroke();
-
-        // Data node dot
-        ctx.fillStyle = "#00f0ff";
-        ctx.beginPath();
-        ctx.arc(cx + 300 * scale, cy - 10, 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Loading blocks indicator at line bottom
-        for (let b = 0; b < 6; b++) {
-            ctx.fillRect(cx + 280 * scale + (b * 8), cy, 5, 12);
-        }
 
         requestAnimationFrame(renderSciFiHud);
     }
