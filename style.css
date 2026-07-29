@@ -36,11 +36,21 @@ html {
 
 body {
     position: relative !important;
-    background: #050816 !important;
+    background: #020208 !important;
     color: var(--text-main) !important;
     overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
     top: 0px !important;
+}
+
+/* Background readability dark overlay taaki text padhne mein dikkat na ho */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(3, 5, 14, 0.82); 
+    z-index: -998;
+    pointer-events: none;
 }
 
 /* DESKTOP & MOBILE SECURE SCROLL LOCK CLASS */
@@ -58,17 +68,18 @@ body.auth-locked {
 }
 
 /* ========================================================
-   FULL DOCUMENT BACKGROUND CANVAS FIX
+   FIXED FULL-SCREEN BACKGROUND CANVAS (START TO END COVER)
 ======================================================== */
 #cyberBackgroundCanvas {
-    position: absolute !important;
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100% !important;
-    min-height: 100vh !important;
+    height: 100vh !important;
+    height: 100dvh !important;
     z-index: -999 !important;
     pointer-events: none !important;
+    background: #020208 !important;
 }
 
 section, 
