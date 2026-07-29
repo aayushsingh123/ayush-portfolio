@@ -385,7 +385,7 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   7. EXACT SCI-FI HUD TECH INTERFACE ANIMATION ENGINE
+   7. EXACT SINGLE CENTERED SCI-FI HUD TECH INTERFACE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -408,79 +408,75 @@ function startCyberCanvas() {
     resizeCanvas();
     setTimeout(resizeCanvas, 500);
 
-    // Fast rotation angles for reference style animation
-    let r1 = 0, r2 = 0, r3 = 0, pulse = 0;
+    let r1 = 0, r2 = 0, r3 = 0;
 
     function renderSciFiHud() {
         ctx.clearRect(0, 0, width, height);
 
-        r1 += 0.03;  // Fast rotation speed
-        r2 -= 0.04;
-        r3 += 0.05;
-        pulse += 0.05;
+        r1 += 0.025; 
+        r2 -= 0.035;
+        r3 += 0.045;
 
-        const cx = width < 768 ? width * 0.5 : width * 0.28;
-        const cy = width < 768 ? height * 0.22 : height * 0.35;
-        const scale = width < 768 ? 0.8 : 1.2;
+        // Exactly screen ke ek specific central position par set karein (Web aur Mobile dono ke liye)
+        const cx = width < 768 ? width * 0.5 : width * 0.25;
+        const cy = width < 768 ? height * 0.3 : height * 0.45;
+        const scale = width < 768 ? 0.85 : 1.25;
 
         ctx.save();
         ctx.translate(cx, cy);
 
-        // --- 1. MAIN LARGE CONCENTRIC TECH RINGS (Left side primary HUD) ---
+        // --- 1. OUTER SPINNING DASHED RINGS ---
         ctx.strokeStyle = "#00f0ff";
         ctx.lineWidth = 2.5;
 
-        // Outer spinning dashed gear ring
         ctx.save();
         ctx.rotate(r1);
-        ctx.setLineDash([10 * scale, 6 * scale]);
+        ctx.setLineDash([12 * scale, 8 * scale]);
         ctx.beginPath();
-        ctx.arc(0, 0, 160 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 180 * scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
 
-        // Second solid rotating ring with gaps
         ctx.save();
         ctx.rotate(r2);
-        ctx.setLineDash([40 * scale, 20 * scale, 10 * scale, 20 * scale]);
-        ctx.lineWidth = 4;
+        ctx.setLineDash([35 * scale, 15 * scale, 8 * scale, 15 * scale]);
+        ctx.lineWidth = 3.5;
         ctx.beginPath();
-        ctx.arc(0, 0, 135 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 150 * scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
 
-        // Inner glowing precise rings
+        // --- 2. INNER SOLID & TARGET RINGS ---
         ctx.setLineDash([]);
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 125 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.arc(0, 0, 90 * scale, 0, Math.PI * 1.5);
+        ctx.arc(0, 0, 100 * scale, 0, Math.PI * 1.6);
         ctx.stroke();
 
-        // Center target radar rings
         ctx.lineWidth = 1.5;
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.6)";
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.7)";
         ctx.beginPath();
-        ctx.arc(0, 0, 60 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 70 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(0, 0, 35 * scale, 0, Math.PI * 2);
+        ctx.arc(0, 0, 40 * scale, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Crosshairs & Center target
+        // Crosshairs inside center
         ctx.beginPath();
-        ctx.moveTo(-20 * scale, 0); ctx.lineTo(20 * scale, 0);
-        ctx.moveTo(0, -20 * scale); ctx.lineTo(0, 20 * scale);
+        ctx.moveTo(-25 * scale, 0); ctx.lineTo(25 * scale, 0);
+        ctx.moveTo(0, -25 * scale); ctx.lineTo(0, 25 * scale);
         ctx.stroke();
 
-        // --- 2. SECONDARY SUB-HUD RINGS (Bottom & Right matching reference) ---
+        // --- 3. SUB-HUD OVERLAPPING SMALL CIRCLE (jaise screenshot mein niche right side hai) ---
         ctx.save();
-        ctx.translate(50 * scale, 130 * scale);
+        ctx.translate(65 * scale, 120 * scale);
         ctx.rotate(r3);
         ctx.strokeStyle = "#00f0ff";
         ctx.lineWidth = 2;
@@ -492,39 +488,24 @@ function startCyberCanvas() {
 
         ctx.restore();
 
-        // --- 3. TECH DATA GRIDS & PIXEL BLOCKS (Reference bottom/top corner grids) ---
-        ctx.fillStyle = "rgba(0, 240, 255, 0.6)";
-        let gridCols = 12;
-        let gridRows = 4;
-        
-        // Draw digital matrix blocks at bottom-left and bottom-right
-        for (let gx = 40; gx < width - 40; gx += 25) {
-            for (let gy = height - 120; gy < height - 50; gy += 15) {
-                if ((gx + gy) % 3 === 0) {
-                    ctx.fillRect(gx, gy, 12, 6);
-                }
-            }
-        }
-
-        // --- 4. HUD CONNECTOR LINES & DATA NODES ---
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.8)";
+        // --- 4. CONNECTOR LINE & DATA METRICS (jaise screenshot mein right side box ki taraf ja raha hai) ---
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.85)";
         ctx.lineWidth = 1.5;
         ctx.beginPath();
-        // Connecting line from main HUD to right panel info
-        ctx.moveTo(cx + 160 * scale, cy - 50);
-        ctx.lineTo(cx + 280 * scale, cy - 50);
-        ctx.lineTo(cx + 310 * scale, cy - 20);
+        ctx.moveTo(cx + 150 * scale, cy - 40);
+        ctx.lineTo(cx + 270 * scale, cy - 40);
+        ctx.lineTo(cx + 300 * scale, cy - 10);
         ctx.stroke();
 
-        // Data nodes dots at line ends
+        // Data node dot
         ctx.fillStyle = "#00f0ff";
         ctx.beginPath();
-        ctx.arc(cx + 310 * scale, cy - 20, 4, 0, Math.PI * 2);
+        ctx.arc(cx + 300 * scale, cy - 10, 4, 0, Math.PI * 2);
         ctx.fill();
 
-        // Little data loading bars (reference style)
+        // Loading blocks indicator at line bottom
         for (let b = 0; b < 6; b++) {
-            ctx.fillRect(cx + 290 * scale + (b * 8), cy - 10, 5, 12);
+            ctx.fillRect(cx + 280 * scale + (b * 8), cy, 5, 12);
         }
 
         requestAnimationFrame(renderSciFiHud);
