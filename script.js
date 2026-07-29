@@ -386,7 +386,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE
+   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (FULL HEIGHT MOBILE FIX)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -397,13 +397,16 @@ function startCyberCanvas() {
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        height = canvas.height = Math.max(window.innerHeight, document.documentElement.clientHeight, window.outerHeight || 0);
     }
     
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("orientationchange", () => {
+        setTimeout(resizeCanvas, 300);
+    });
     resizeCanvas();
 
-    const particleCount = 40;
+    const particleCount = 45;
     const particles = [];
     const circuitStreams = [];
 
@@ -421,7 +424,7 @@ function startCyberCanvas() {
         });
     }
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 25; i++) {
         circuitStreams.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -675,7 +678,6 @@ function closeGreetingAndEnterPortfolio() {
     const overlay = document.getElementById("aiEntranceOverlay");
     if (overlay) overlay.classList.add("terminate");
 
-    // UNLOCK SCROLLING WHEN ENTERING PORTFOLIO
     document.body.classList.remove("auth-locked");
 
     setTimeout(() => {
