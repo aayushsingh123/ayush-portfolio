@@ -386,7 +386,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (FULL DOCUMENT HEIGHT FIX)
+   7. SCI-FI HUD TECH CIRCLE ANIMATION ENGINE (MOBILE & WEB CENTER LOCKED)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -400,8 +400,6 @@ function startCyberCanvas() {
         height = canvas.height = Math.max(
             document.body.scrollHeight, 
             document.documentElement.scrollHeight, 
-            document.body.offsetHeight, 
-            document.documentElement.offsetHeight, 
             window.innerHeight
         );
     }
@@ -411,78 +409,131 @@ function startCyberCanvas() {
     resizeCanvas();
     setTimeout(resizeCanvas, 500);
 
-    const particleCount = 45;
-    const particles = [];
-    const circuitStreams = [];
+    // Tech HUD angles & rotation speeds
+    let angle1 = 0;
+    let angle2 = 0;
+    let angle3 = 0;
+    let sweepAngle = 0;
 
-    const orangeColor = "rgba(255, 75, 40, ";
-    const cyanColor = "rgba(0, 220, 255, ";
-
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 2.5,
-            vy: (Math.random() - 0.5) * 2.5,
-            radius: Math.random() * 2 + 1,
-            isOrange: Math.random() > 0.4
+    // Background matrix data grids or tech floating pixels
+    const dataGrids = [];
+    for (let i = 0; i < 40; i++) {
+        dataGrids.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight * 2,
+            size: Math.random() * 3 + 1,
+            speed: Math.random() * 0.8 + 0.2
         });
     }
 
-    for (let i = 0; i < 25; i++) {
-        circuitStreams.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            length: Math.random() * 140 + 70,
-            speed: Math.random() * 5 + 3,
-            isOrange: Math.random() > 0.5,
-            horizontal: Math.random() > 0.5
-        });
-    }
-
-    let rotAngle = 0;
-
-    function renderCyberFrame() {
+    function renderSciFiHudBackground() {
+        // Clear screen with deep tech dark tint
         ctx.clearRect(0, 0, width, height);
 
-        rotAngle += 0.025;
+        // Update rotation angles continuously
+        angle1 += 0.01;
+        angle2 -= 0.015;
+        angle3 += 0.02;
+        sweepAngle += 0.03;
 
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
+        // Render multiple Sci-Fi HUD Hubs across the page (Center locked on screens / background)
+        let hudCenters = [
+            { x: width * 0.25, y: height * 0.2 },
+            { x: width * 0.75, y: height * 0.5 },
+            { x: width * 0.3,  y: height * 0.8 },
+            { x: width * 0.7,  y: height * 0.95 }
+        ];
 
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
+        // If screen is mobile, center the main HUD element nicely
+        if (width < 768) {
+            hudCenters = [
+                { x: width * 0.5, y: height * 0.15 },
+                { x: width * 0.5, y: height * 0.5 },
+                { x: width * 0.5, y: height * 0.85 }
+            ];
+        }
 
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.isOrange ? orangeColor + "0.85)" : cyanColor + "0.85)";
-            ctx.fill();
-        });
+        hudCenters.forEach((center, index) => {
+            ctx.save();
+            ctx.translate(center.x, center.y);
 
-        circuitStreams.forEach(stream => {
-            ctx.beginPath();
+            let scale = width < 768 ? 0.75 : 1.1;
+
+            // 1. Outer Tech Ring (Dashed & Rotating)
+            ctx.save();
+            ctx.rotate(index % 2 === 0 ? angle1 : -angle1);
+            ctx.strokeStyle = "rgba(0, 220, 255, 0.35)";
             ctx.lineWidth = 2;
-            ctx.strokeStyle = stream.isOrange ? orangeColor + "0.75)" : cyanColor + "0.75)";
-
-            if (stream.horizontal) {
-                ctx.moveTo(stream.x, stream.y);
-                ctx.lineTo(stream.x + stream.length, stream.y);
-                stream.x += stream.speed;
-                if (stream.x > width) stream.x = -stream.length;
-            } else {
-                ctx.moveTo(stream.x, stream.y);
-                ctx.lineTo(stream.x, stream.y + stream.length);
-                stream.y += stream.speed;
-                if (stream.y > height) stream.y = -stream.length;
-            }
+            ctx.setLineDash([8 * scale, 12 * scale]);
+            ctx.beginPath();
+            ctx.arc(0, 0, 110 * scale, 0, Math.PI * 2);
             ctx.stroke();
+            ctx.restore();
+
+            // 2. Inner Solid Rotating Target Ring
+            ctx.save();
+            ctx.rotate(angle2);
+            ctx.strokeStyle = "rgba(0, 255, 200, 0.5)";
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.arc(0, 0, 85 * scale, 0, Math.PI * 1.5);
+            ctx.stroke();
+            ctx.restore();
+
+            // 3. Counter-Rotating Tech Tick Marks
+            ctx.save();
+            ctx.rotate(angle3);
+            ctx.strokeStyle = "rgba(0, 220, 255, 0.7)";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(0, 0, 60 * scale, 0, Math.PI * 0.8);
+            ctx.stroke();
+            ctx.restore();
+
+            // 4. Center Radar Sweep Cone Effect
+            ctx.save();
+            let gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 50 * scale);
+            gradient.addColorStop(0, "rgba(0, 255, 255, 0.4)");
+            gradient.addColorStop(1, "rgba(0, 220, 255, 0.0)");
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, 50 * scale, sweepAngle, sweepAngle + 0.8);
+            ctx.lineTo(0, 0);
+            ctx.fill();
+            ctx.restore();
+
+            // 5. Center Core Dot & Crosshair
+            ctx.strokeStyle = "rgba(0, 255, 255, 0.9)";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-10 * scale, 0); ctx.lineTo(10 * scale, 0);
+            ctx.moveTo(0, -10 * scale); ctx.lineTo(0, 10 * scale);
+            ctx.stroke();
+
+            ctx.fillStyle = "#00ffcc";
+            ctx.beginPath();
+            ctx.arc(0, 0, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
         });
 
-        requestAnimationFrame(renderCyberFrame);
+        // Draw floating digital tech data matrix blocks (as seen in reference image corners/bottom)
+        ctx.fillStyle = "rgba(0, 220, 255, 0.25)";
+        dataGrids.forEach(p => {
+            p.y -= p.speed;
+            if (p.y < 0) p.y = height;
+
+            ctx.fillRect(p.x, p.y, p.size * 3, p.size);
+            ctx.fillRect(p.x + 5, p.y + 4, p.size, p.size);
+        });
+
+        requestAnimationFrame(renderSciFiHudBackground);
     }
 
-    renderCyberFrame();
+    renderSciFiHudBackground();
 }
 
 if (document.readyState === "loading") {
@@ -490,7 +541,6 @@ if (document.readyState === "loading") {
 } else {
     startCyberCanvas();
 }
-
 
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
