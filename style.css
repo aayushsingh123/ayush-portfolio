@@ -36,19 +36,19 @@ html {
 
 body {
     position: relative !important;
-    background: #020208 !important;
+    background: #04091f !important;
     color: var(--text-main) !important;
     overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
     top: 0px !important;
 }
 
-/* Background readability dark overlay taaki text padhne mein dikkat na ho */
+/* Background readability dark overlay - balanced for vivid glowing effect */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(3, 5, 14, 0.82); 
+    background: rgba(4, 10, 30, 0.45); 
     z-index: -998;
     pointer-events: none;
 }
@@ -68,7 +68,7 @@ body.auth-locked {
 }
 
 /* ========================================================
-   FIXED FULL-SCREEN BACKGROUND CANVAS (START TO END COVER)
+   FIXED FULL-SCREEN BACKGROUND CANVAS (BRIGHT VIBRANT GLOW)
 ======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
@@ -79,7 +79,7 @@ body.auth-locked {
     height: 100dvh !important;
     z-index: -999 !important;
     pointer-events: none !important;
-    background: #020208 !important;
+    background: radial-gradient(circle at center, #0a194f 0%, #03081e 100%) !important;
 }
 
 section, 
