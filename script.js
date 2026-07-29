@@ -40,7 +40,6 @@ function startCounterAnimation() {
     });
 }
 
-
 /* =======================================================
    2. SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
 ======================================================= */
@@ -55,11 +54,9 @@ function triggerMatrixAccess(type) {
     }
 }
 
-
 /* =======================================================
    3. CORE UI ANIMATIONS & TYPING EFFECT
 ======================================================= */
-
 const words = ["Senior Java Backend Engineer", "Spring Boot Developer", "Microservices Architect", "Kafka & Redis Enthusiast", "Problem Solver"];
 let wordIndex = 0, charIndex = 0, isDeleting = false;
 const typing = document.getElementById("typing");
@@ -152,11 +149,9 @@ if(semanticHubSearch) {
     });
 }
 
-
 /* =======================================================
    4. DASHBOARD TERMINAL & AUTOMATIC LIVE NEWS API ENGINE
 ======================================================= */
-
 function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
     panels.forEach(panel => {
@@ -183,7 +178,6 @@ if(breathTxtNode) {
     }, 4000);
 }
 
-// AUTOMATIC REAL-TIME LIVE NEWS FETCHER FROM PUBLIC API
 async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if (!wrapper) return;
@@ -234,11 +228,9 @@ function toggleCyberSecurityPanel() {
     if(icon) icon.classList.toggle("rotate-active");
 }
 
-
 /* =======================================================
    5. ADVANCED AI CHATBOT ENGINE
 ======================================================= */
-
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -322,11 +314,9 @@ if(sendChatBtn && chatInput && chatBody) {
     chatInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') sendClientMessage(); });
 }
 
-
 /* =======================================================
    6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE
 ======================================================= */
-
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
@@ -384,9 +374,8 @@ function initVoiceCommandGateway() {
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
-
 /* =======================================================
-   7. FULL-SCREEN FIXED HIGH-BRIGHTNESS CIRCUIT & NUMBER MATRIX ENGINE
+   7. ORIGINAL WORKING BACKGROUND ANIMATION ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -398,75 +387,66 @@ function startCyberCanvas() {
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = Math.max(
-            window.innerHeight,
-            document.documentElement.clientHeight,
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
+            document.body.scrollHeight, 
+            document.documentElement.scrollHeight, 
+            window.innerHeight
         );
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 300);
-    });
+    window.addEventListener("scroll", resizeCanvas);
     resizeCanvas();
 
     const circuits = [];
-    const circuitCount = window.innerWidth < 768 ? 35 : 60;
-
-    for (let i = 0; i < circuitCount; i++) {
+    for (let i = 0; i < 35; i++) {
         circuits.push({
             x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            length: Math.random() * 220 + 120,
-            speed: Math.random() * 1.5 + 0.6,
+            y: Math.random() * window.innerHeight * 2,
+            length: Math.random() * 180 + 80,
+            speed: Math.random() * 2 + 1,
             isVertical: Math.random() > 0.5,
             isRed: Math.random() > 0.75
         });
     }
 
     const numbers = [];
-    const numberCount = window.innerWidth < 768 ? 40 : 65;
-
-    for (let i = 0; i < numberCount; i++) {
+    for (let i = 0; i < 50; i++) {
         numbers.push({
             x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            text: Math.floor(Math.random() * 9000000 + 1000000).toString(),
-            speed: Math.random() * 1.2 + 0.4
+            y: Math.random() * window.innerHeight * 2,
+            text: Math.floor(Math.random() * 900000 + 100000).toString(),
+            speed: Math.random() * 1.5 + 0.5
         });
     }
 
     function renderCircuitMatrix() {
         ctx.clearRect(0, 0, width, height);
 
-        // --- 1. DRAW BRIGHT GLOWING CIRCUIT PATHWAYS ---
         circuits.forEach(c => {
             c.y -= c.speed;
             if (c.y < -c.length) c.y = height + c.length;
 
             ctx.beginPath();
-            ctx.lineWidth = 2.5; 
-            ctx.strokeStyle = c.isRed ? "rgba(255, 70, 70, 0.95)" : "rgba(0, 235, 255, 0.95)"; 
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = c.isRed ? "rgba(255, 50, 50, 0.7)" : "rgba(0, 200, 255, 0.7)";
             ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
-            ctx.shadowBlur = 12;
+            ctx.shadowBlur = 10;
 
             if (c.isVertical) {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x, c.y + c.length);
-                ctx.lineTo(c.x + 40, c.y + c.length);
+                ctx.lineTo(c.x + 30, c.y + c.length);
             } else {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x + c.length, c.y);
-                ctx.lineTo(c.x + c.length, c.y + 35);
+                ctx.lineTo(c.x + c.length, c.y + 25);
             }
             ctx.stroke();
             ctx.shadowBlur = 0;
         });
 
-        // --- 2. DRAW BRIGHT DIGITAL NUMBER BLOCKS ---
-        ctx.fillStyle = "rgba(0, 245, 255, 0.9)"; 
-        ctx.font = "bold 13px monospace";
+        ctx.fillStyle = "rgba(0, 220, 255, 0.65)";
+        ctx.font = "11px monospace";
 
         numbers.forEach(n => {
             n.y -= n.speed;
@@ -487,21 +467,9 @@ if (document.readyState === "loading") {
     startCyberCanvas();
 }
 
-
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
 ======================================================= */
-function triggerMatrixAccess(type) {
-    if (type === 'auth') {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.style.display = "none";
-        toggleAuthModal(true);
-        switchAuthTab('signup');
-    } else {
-        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
-    }
-}
-
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
     if (!modal) return;
@@ -539,10 +507,6 @@ function handleSignupSubmit(e) {
 
     triggerSystemToast(`Account created for ${name}! Please Login now. ⚡`);
     switchAuthTab('login');
-    
-    document.getElementById("signupName").value = "";
-    document.getElementById("signupEmail").value = "";
-    document.getElementById("signupPassword").value = "";
 }
 
 function handleLoginSubmit(e) {
