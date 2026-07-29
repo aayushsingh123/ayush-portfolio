@@ -1,6 +1,9 @@
 /* =======================================================
-   1. GLOBAL SYSTEM CONFIGURATIONS
+   1. GLOBAL SYSTEM CONFIGURATIONS & INITIAL LOCK
 ======================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("auth-locked");
+});
 
 function triggerSystemToast(msg) {
     const box = document.getElementById("alertNotificationBox");
@@ -383,7 +386,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (MOBILE RESIZE FIX)
+   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -398,9 +401,6 @@ function startCyberCanvas() {
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 200);
-    });
     resizeCanvas();
 
     const particleCount = 40;
@@ -674,6 +674,9 @@ function closeGreetingAndEnterPortfolio() {
 
     const overlay = document.getElementById("aiEntranceOverlay");
     if (overlay) overlay.classList.add("terminate");
+
+    // UNLOCK SCROLLING WHEN ENTERING PORTFOLIO
+    document.body.classList.remove("auth-locked");
 
     setTimeout(() => {
         triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
