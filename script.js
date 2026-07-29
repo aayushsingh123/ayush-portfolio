@@ -386,7 +386,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (FULL HEIGHT MOBILE FIX)
+   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (FULL DOCUMENT HEIGHT FIX)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -397,14 +397,19 @@ function startCyberCanvas() {
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        height = canvas.height = Math.max(window.innerHeight, document.documentElement.clientHeight, window.outerHeight || 0);
+        height = canvas.height = Math.max(
+            document.body.scrollHeight, 
+            document.documentElement.scrollHeight, 
+            document.body.offsetHeight, 
+            document.documentElement.offsetHeight, 
+            window.innerHeight
+        );
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 300);
-    });
+    window.addEventListener("scroll", resizeCanvas);
     resizeCanvas();
+    setTimeout(resizeCanvas, 500);
 
     const particleCount = 45;
     const particles = [];
@@ -437,103 +442,10 @@ function startCyberCanvas() {
 
     let rotAngle = 0;
 
-    function drawCyberShieldEmblem(centerX, centerY, scale) {
-        ctx.save();
-        ctx.translate(centerX, centerY);
-
-        ctx.save();
-        ctx.rotate(rotAngle);
-        ctx.lineWidth = 1.5;
-        
-        ctx.strokeStyle = cyanColor + "0.4)";
-        ctx.beginPath();
-        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 1.5);
-        ctx.stroke();
-
-        ctx.strokeStyle = orangeColor + "0.5)";
-        ctx.beginPath();
-        ctx.arc(0, 0, 125 * scale, Math.PI, Math.PI * 1.8);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.save();
-        ctx.rotate(-rotAngle * 1.5);
-        ctx.strokeStyle = cyanColor + "0.6)";
-        ctx.lineWidth = 2;
-        ctx.setLineDash([12 * scale, 8 * scale]);
-        ctx.beginPath();
-        ctx.arc(0, 0, 90 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.beginPath();
-        ctx.moveTo(0, -60 * scale);
-        ctx.bezierCurveTo(45 * scale, -60 * scale, 55 * scale, -20 * scale, 50 * scale, 20 * scale);
-        ctx.bezierCurveTo(40 * scale, 55 * scale, 0 * scale, 75 * scale, 0 * scale, 75 * scale);
-        ctx.bezierCurveTo(0 * scale, 75 * scale, -40 * scale, 55 * scale, -50 * scale, 20 * scale);
-        ctx.bezierCurveTo(-55 * scale, -20 * scale, -45 * scale, -60 * scale, 0, -60 * scale);
-        ctx.closePath();
-        ctx.fillStyle = "rgba(5, 20, 45, 0.6)";
-        ctx.fill();
-        ctx.lineWidth = 2.5;
-        ctx.strokeStyle = cyanColor + "0.95)";
-        ctx.stroke();
-
-        ctx.strokeStyle = orangeColor + "0.9)";
-        ctx.lineWidth = 2;
-
-        ctx.beginPath();
-        ctx.arc(0, -12 * scale, 16 * scale, Math.PI, 0, false);
-        ctx.lineTo(16 * scale, 5 * scale);
-        ctx.lineTo(-16 * scale, 5 * scale);
-        ctx.stroke();
-
-        ctx.fillStyle = "rgba(10, 15, 30, 0.85)";
-        ctx.fillRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
-        ctx.strokeRect(-22 * scale, 5 * scale, 44 * scale, 35 * scale);
-
-        ctx.fillStyle = cyanColor + "1)";
-        ctx.beginPath();
-        ctx.arc(0, 18 * scale, 4 * scale, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(-2.5 * scale, 20 * scale);
-        ctx.lineTo(2.5 * scale, 20 * scale);
-        ctx.lineTo(3.5 * scale, 32 * scale);
-        ctx.lineTo(-3.5 * scale, 32 * scale);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.restore();
-    }
-
     function renderCyberFrame() {
         ctx.clearRect(0, 0, width, height);
 
         rotAngle += 0.025;
-
-        const centerScale = Math.min(width, height) / 700;
-        drawCyberShieldEmblem(width / 2, height / 2, Math.max(centerScale, 0.65));
-
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < 130) {
-                    const lineAlpha = (1 - dist / 130) * 0.35;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = (particles[i].isOrange && particles[j].isOrange) 
-                        ? orangeColor + lineAlpha + ")" 
-                        : cyanColor + lineAlpha + ")";
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
 
         particles.forEach(p => {
             p.x += p.vx;
