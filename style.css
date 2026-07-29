@@ -58,15 +58,15 @@ body.auth-locked {
 }
 
 /* ========================================================
-   FIXED FULL SCREEN BACKGROUND CANVAS (DESKTOP & MOBILE FULL FIX)
+   FULL DOCUMENT BACKGROUND CANVAS FIX
 ======================================================== */
 #cyberBackgroundCanvas {
-    position: fixed !important;
+    position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
-    min-height: 100dvh !important;
+    height: 100% !important;
+    min-height: 100vh !important;
     z-index: -999 !important;
     pointer-events: none !important;
 }
