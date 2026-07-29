@@ -589,3 +589,18 @@ function closeGreetingAndEnterPortfolio() {
         initVoiceCommandGateway(); 
     }, 600);
 }
+/* =======================================================
+   WELCOME & MATRIX GATEWAY FIX
+======================================================= */
+function triggerMatrixAccess(type) {
+    if (type === 'auth') {
+        const overlay = document.getElementById("aiEntranceOverlay");
+        if (overlay) overlay.style.display = "none";
+        toggleAuthModal(true);
+        switchAuthTab('signup');
+    } else {
+        const overlay = document.getElementById("aiEntranceOverlay");
+        if (overlay) overlay.classList.add("terminate");
+        document.body.classList.remove("auth-locked");
+    }
+}
