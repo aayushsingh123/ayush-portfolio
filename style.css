@@ -43,12 +43,12 @@ body {
     top: 0px !important;
 }
 
-/* Background readability dark overlay - balanced for vivid glowing effect */
+/* Background readability dark overlay */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(4, 10, 30, 0.45); 
+    background: rgba(2, 6, 18, 0.35); 
     z-index: -998;
     pointer-events: none;
 }
@@ -68,7 +68,7 @@ body.auth-locked {
 }
 
 /* ========================================================
-   FIXED FULL-SCREEN BACKGROUND CANVAS (BRIGHT VIBRANT GLOW)
+   FIXED FULL-SCREEN BACKGROUND CANVAS (MOBILE & WEB FULL COVER)
 ======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
@@ -77,9 +77,10 @@ body.auth-locked {
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
+    min-height: 100% !important;
     z-index: -999 !important;
     pointer-events: none !important;
-    background: radial-gradient(circle at center, #0a194f 0%, #03081e 100%) !important;
+    background: radial-gradient(circle at center, #0b2259 0%, #01040f 100%) !important;
 }
 
 section, 
