@@ -15,7 +15,7 @@
     <!-- DYNAMIC LIVE CYBER SECURITY BACKGROUND ANIMATION CANVAS -->
     <canvas id="cyberBackgroundCanvas"></canvas>
 
-    <!-- UPGRADED MATRIX ENTRANCE GATEWAY (LOGIN/SIGNUP & SKIP) -->
+    <!-- UPGRADED MATRIX ENTRANCE GATEWAY -->
     <div id="aiEntranceOverlay">
         <div class="ai-box">
             <div class="ai-scanner"></div>
@@ -30,7 +30,6 @@
     </div>
 
     <div id="progressBar"></div>
-
     <div class="aurora"></div>
 
     <header>
@@ -73,7 +72,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#projects"><i class="fas fa-shield-alt"></i> Auth Platform</a></li>
                         <li><a href="#projects"><i class="fas fa-exchange-alt"></i> Data Pipeline</a></li>
-                        <li><a href="#projects" onclick="simulateSwaggerSandbox('/api/v1/auth/verify');"><i class="fas fa-code-branch"></i> API Sandbox</a></li>
+                        <li><a href="#projects"><i class="fas fa-code-branch"></i> API Sandbox</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-item">
@@ -631,13 +630,11 @@
         <div class="auth-card-box">
             <span class="auth-close-btn" onclick="toggleAuthModal(false)">&times;</span>
             
-            <!-- Tab Switcher -->
             <div class="auth-tabs">
                 <button id="loginTabBtn" class="auth-tab active" onclick="switchAuthTab('login')">LOGIN</button>
                 <button id="signupTabBtn" class="auth-tab" onclick="switchAuthTab('signup')">SIGN UP</button>
             </div>
 
-            <!-- Login Form -->
             <form id="loginForm" class="auth-form active-form" onsubmit="handleLoginSubmit(event)">
                 <div class="auth-field">
                     <i class="fas fa-envelope"></i>
@@ -650,7 +647,6 @@
                 <button type="submit" class="btn style-submit-btn auth-submit">AUTHENTICATE ⚡</button>
             </form>
 
-            <!-- Signup Form -->
             <form id="signupForm" class="auth-form" onsubmit="handleSignupSubmit(event)">
                 <div class="auth-field">
                     <i class="fas fa-user"></i>
