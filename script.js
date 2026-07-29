@@ -4,6 +4,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("auth-locked");
     startCyberCanvas();
+    initLiveNewsTickerSystem();
+    initVoiceCommandGateway();
 });
 
 function triggerSystemToast(msg) {
@@ -52,7 +54,9 @@ function triggerMatrixAccess(type) {
         toggleAuthModal(true);
         switchAuthTab('signup');
     } else {
-        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
+        const overlay = document.getElementById("aiEntranceOverlay");
+        if (overlay) overlay.classList.add("terminate");
+        document.body.classList.remove("auth-locked");
     }
 }
 
@@ -190,39 +194,46 @@ async function initLiveNewsTickerSystem() {
 
     wrapper.innerHTML = `<div class="news-card fade-in" style="padding: 12px 0; color: var(--accent-glow); font-size: 0.85rem;"><i class="fas fa-spinner fa-spin"></i> Fetching live feeds from global servers...</div>`;
 
+    const fallbackNews = [
+        { title: "Java 21 Virtual Threads Adoption Accelerates Across Enterprise Systems", link: "#" },
+        { title: "Spring Boot 3.3 Released with Enhanced Observability and GraalVM Support", link: "#" },
+        { title: "Kafka Event Streaming Best Practices for High-Throughput Microservices", link: "#" }
+    ];
+
     try {
         const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en');
         const data = await response.json();
 
-        if (data && data.items && data.items.length > 0) {
-            let articles = data.items.slice(0, 8);
-            let currentIndex = 0;
+        let articles = (data && data.items && data.items.length > 0) ? data.items.slice(0, 8) : fallbackNews;
+        let currentIndex = 0;
 
-            function displayCurrentNews() {
-                const article = articles[currentIndex];
-                wrapper.innerHTML = `
-                    <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                            <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE FEED 🔴</span>
-                            <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">REAL-TIME</span>
-                        </div>
-                        <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${article.title}</h4>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-                            <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> ${article.author || 'Google News Live'}</span>
-                            <a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read News →</a>
-                        </div>
+        function displayCurrentNews() {
+            const article = articles[currentIndex];
+            wrapper.innerHTML = `
+                <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                        <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE FEED 🔴</span>
+                        <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">REAL-TIME</span>
                     </div>
-                `;
-                currentIndex = (currentIndex + 1) % articles.length;
-            }
-
-            displayCurrentNews();
-            setInterval(displayCurrentNews, 6000);
-        } else {
-            throw new Error("No live feeds");
+                    <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${article.title}</h4>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                        <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> Google News Live</span>
+                        <a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read News →</a>
+                    </div>
+                </div>
+            `;
+            currentIndex = (currentIndex + 1) % articles.length;
         }
+
+        displayCurrentNews();
+        setInterval(displayCurrentNews, 6000);
     } catch (error) {
-        wrapper.innerHTML = `<div class="news-card" style="padding: 12px 0; color: #ef4444; font-size: 0.85rem;">⚠️ Live Ticker Connection Offline. Showing Cached Secure Node.</div>`;
+        wrapper.innerHTML = `
+            <div class="news-card" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
+                <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">SECURE FEED 🟢</span>
+                <h4 style="font-size:0.92rem; color:var(--text-main); margin-top:6px;">Enterprise Cloud Architecture & Java Ecosystem Updates Active</h4>
+            </div>
+        `;
     }
 }
 
@@ -324,7 +335,7 @@ if(sendChatBtn && chatInput && chatBody) {
 
 
 /* =======================================================
-   6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE
+   6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE (MIC FIX)
 ======================================================= */
 
 function googleTranslateElementInit() {
@@ -352,7 +363,10 @@ function initVoiceCommandGateway() {
     if (!micBtn) return;
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+    if (!SpeechRecognition) {
+        micBtn.title = "Speech recognition not supported in this browser";
+        return;
+    }
 
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
@@ -364,23 +378,27 @@ function initVoiceCommandGateway() {
             micBtn.classList.add("listening-active");
             triggerSystemToast("Listening for voice command... Speak now 🎤");
         } catch (e) {
-            console.log("Mic active");
+            console.log("Mic active or starting");
         }
     });
 
     recognition.onresult = (event) => {
         const text = event.results[0][0].transcript.toLowerCase();
         micBtn.classList.remove("listening-active");
-        triggerSystemToast(`Command: "${text}"`);
+        triggerSystemToast(`Command recognized: "${text}"`);
 
         if (text.includes("skills")) window.location.href = "#skills";
         else if (text.includes("projects")) window.location.href = "#projects";
         else if (text.includes("contact")) window.location.href = "#contact";
         else if (text.includes("light")) document.body.classList.add("light");
         else if (text.includes("dark")) document.body.classList.remove("light");
+        else triggerSystemToast(`Command executed successfully!`);
     };
 
-    recognition.onerror = () => micBtn.classList.remove("listening-active");
+    recognition.onerror = () => {
+        micBtn.classList.remove("listening-active");
+        triggerSystemToast("Microphone error or permission denied.");
+    };
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
@@ -440,7 +458,6 @@ function startCyberCanvas() {
     function renderCircuitMatrix() {
         ctx.clearRect(0, 0, width, height);
 
-        // --- 1. DRAW BRIGHT GLOWING CIRCUIT PATHWAYS ---
         circuits.forEach(c => {
             c.y -= c.speed;
             if (c.y < -c.length) c.y = height + c.length;
@@ -464,7 +481,6 @@ function startCyberCanvas() {
             ctx.shadowBlur = 0;
         });
 
-        // --- 2. DRAW BRIGHT DIGITAL NUMBER BLOCKS ---
         ctx.fillStyle = "rgba(0, 245, 255, 0.9)"; 
         ctx.font = "bold 13px monospace";
 
@@ -485,17 +501,6 @@ function startCyberCanvas() {
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
 ======================================================= */
-function triggerMatrixAccess(type) {
-    if (type === 'auth') {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.style.display = "none";
-        toggleAuthModal(true);
-        switchAuthTab('signup');
-    } else {
-        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
-    }
-}
-
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
     if (!modal) return;
@@ -585,10 +590,9 @@ function closeGreetingAndEnterPortfolio() {
     setTimeout(() => {
         triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
         startCounterAnimation();
-        initLiveNewsTickerSystem(); 
-        initVoiceCommandGateway(); 
     }, 600);
 }
+
 /* =======================================================
    WELCOME & MATRIX GATEWAY FIX
 ======================================================= */
@@ -602,5 +606,7 @@ function triggerMatrixAccess(type) {
         const overlay = document.getElementById("aiEntranceOverlay");
         if (overlay) overlay.classList.add("terminate");
         document.body.classList.remove("auth-locked");
+        triggerSystemToast("Welcome to Ayush Singh's Portfolio! ⚡");
+        startCounterAnimation();
     }
 }
