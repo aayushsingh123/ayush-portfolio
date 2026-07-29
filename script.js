@@ -404,89 +404,75 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. FULL-SCREEN FIXED HIGH-BRIGHTNESS CIRCUIT & NUMBER MATRIX ENGINE
+   FIXED FULL-SCREEN RESPONSIVE CANVAS ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    let width, height;
-
     function resizeCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = Math.max(
-            window.innerHeight,
-            document.documentElement.clientHeight,
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-        );
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 300);
-    });
     resizeCanvas();
 
     const circuits = [];
-    const circuitCount = window.innerWidth < 768 ? 35 : 60;
-
-    for (let i = 0; i < circuitCount; i++) {
+    for (let i = 0; i < 50; i++) {
         circuits.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
-            length: Math.random() * 220 + 120,
-            speed: Math.random() * 1.5 + 0.6,
+            length: Math.random() * 180 + 80,
+            speed: Math.random() * 1.2 + 0.4,
             isVertical: Math.random() > 0.5,
             isRed: Math.random() > 0.75
         });
     }
 
     const numbers = [];
-    const numberCount = window.innerWidth < 768 ? 40 : 65;
-
-    for (let i = 0; i < numberCount; i++) {
+    for (let i = 0; i < 60; i++) {
         numbers.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
-            text: Math.floor(Math.random() * 9000000 + 1000000).toString(),
-            speed: Math.random() * 1.2 + 0.4
+            text: Math.floor(Math.random() * 900000 + 100000).toString(),
+            speed: Math.random() * 0.9 + 0.3
         });
     }
 
     function renderCircuitMatrix() {
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         circuits.forEach(c => {
             c.y -= c.speed;
-            if (c.y < -c.length) c.y = height + c.length;
+            if (c.y < -c.length) c.y = canvas.height + c.length;
 
             ctx.beginPath();
-            ctx.lineWidth = 2.5; 
-            ctx.strokeStyle = c.isRed ? "rgba(255, 70, 70, 0.95)" : "rgba(0, 235, 255, 0.95)"; 
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = c.isRed ? "rgba(255, 50, 50, 0.85)" : "rgba(0, 200, 255, 0.85)";
             ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
-            ctx.shadowBlur = 12;
+            ctx.shadowBlur = 10;
 
             if (c.isVertical) {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x, c.y + c.length);
-                ctx.lineTo(c.x + 40, c.y + c.length);
+                ctx.lineTo(c.x + 30, c.y + c.length);
             } else {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x + c.length, c.y);
-                ctx.lineTo(c.x + c.length, c.y + 35);
+                ctx.lineTo(c.x + c.length, c.y + 25);
             }
             ctx.stroke();
             ctx.shadowBlur = 0;
         });
 
-        ctx.fillStyle = "rgba(0, 245, 255, 0.9)"; 
-        ctx.font = "bold 13px monospace";
+        ctx.fillStyle = "rgba(0, 220, 255, 0.85)";
+        ctx.font = "12px monospace";
 
         numbers.forEach(n => {
             n.y -= n.speed;
-            if (n.y < 0) n.y = height;
+            if (n.y < 0) n.y = canvas.height;
 
             ctx.fillText(n.text, n.x, n.y);
         });
@@ -496,7 +482,6 @@ function startCyberCanvas() {
 
     renderCircuitMatrix();
 }
-
 
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
