@@ -44,14 +44,14 @@ body {
 }
 
 /* ========================================================
-   FIXED FULL SCREEN BACKGROUND CANVAS SPECIFICATIONS
+   FIXED FULL SCREEN BACKGROUND CANVAS (MOBILE DYNAMIC FIX)
 ======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100dvh !important;
     z-index: -999 !important;
     pointer-events: none !important;
 }
@@ -218,59 +218,6 @@ nav ul li.dropdown-item > a:hover {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
 }
-
-#aiEntranceOverlay {
-    position: fixed;
-    top:0; left:0; width:100%; height:100vh;
-    background: #02020a;
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-}
-#aiEntranceOverlay.terminate {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-}
-.ai-box {
-    text-align: center;
-    padding: 40px;
-    border: 1px solid rgba(76, 201, 255, 0.3);
-    background: rgba(5, 8, 22, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    position: relative;
-    max-width: 90%;
-    width: 480px;
-}
-.ai-box h1 { font-size: 24px; letter-spacing: 1px; margin-bottom: 10px; }
-.ai-scanner {
-    width: 100%; height: 2px;
-    background: #4cc9ff;
-    position: absolute; top:0; left:0;
-    animation: scanningLine 3s infinite linear;
-    box-shadow: 0 0 15px #4cc9ff;
-}
-@keyframes scanningLine {
-    0% { top: 0%; }
-    50% { top: 100%; }
-    100% { top: 0%; }
-}
-.ai-btn {
-    margin-top: 25px;
-    background: transparent;
-    border: 1px solid #4cc9ff;
-    color: #4cc9ff;
-    padding: 14px 28px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: 0.3s;
-    letter-spacing: 1px;
-}
-.ai-btn:hover { background: #4cc9ff; color: #000; box-shadow: 0 0 25px #4cc9ff; }
 
 .about, .skills, .experience, .projects, .achievements, .contact, nav, .section-title h2, .timeline-content h3, .news-sidebar h3, #cyber-vault-section h2 {
     color: var(--text-main) !important;
@@ -770,6 +717,7 @@ nav ul li.dropdown-item > a:hover {
 .chat-footer button:hover {
     background: #1d4ed8;
 }
+
 /* ========================================================
    FIXED FUTURISTIC AUTH MODAL STYLING
 ======================================================== */
@@ -796,7 +744,7 @@ nav ul li.dropdown-item > a:hover {
     top: 0; 
     left: 0; 
     width: 100vw; 
-    height: 100vh;
+    height: 100dvh;
     background: rgba(2, 2, 10, 0.85);
     backdrop-filter: blur(12px);
     z-index: 999999;
@@ -919,91 +867,16 @@ nav ul li.dropdown-item > a:hover {
 .auth-submit:hover {
     background: #1d4ed8 !important;
 }
+
 /* ========================================================
-   ENTRANCE GATEWAY & SHIVAJI-STYLE SECURITY GREETING CARD
-======================================================== */
-.entrance-action-row {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.ai-box .ai-btn {
-    margin-top: 0 !important;
-    padding: 12px 24px;
-    font-size: 0.9rem;
-}
-
-.ai-box .skip-btn {
-    border-color: #10b981 !important;
-    color: #10b981 !important;
-}
-.ai-box .skip-btn:hover {
-    background: #10b981 !important;
-    color: #000 !important;
-    box-shadow: 0 0 25px #10b981 !important;
-}
-
-/* SHIVAJI MOVIE STYLE CYBER GREETING CARD HOLOGRAM */
-#matrixGreetingHologram {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
-    width: 90%; max-width: 450px;
-    background: rgba(5, 12, 30, 0.98);
-    border: 2px solid #00ffcc;
-    box-shadow: 0 0 50px rgba(0, 255, 204, 0.4);
-    border-radius: 16px;
-    padding: 35px;
-    text-align: center;
-    z-index: 9999999;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#matrixGreetingHologram.active-greeting {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    pointer-events: all;
-}
-
-.greeting-icon-pulse {
-    font-size: 3rem;
-    color: #00ffcc;
-    margin-bottom: 15px;
-    animation: greetingPulseIcon 1.5s infinite ease-in-out;
-}
-
-@keyframes greetingPulseIcon {
-    0%, 100% { transform: scale(1); text-shadow: 0 0 10px #00ffcc; }
-    50% { transform: scale(1.15); text-shadow: 0 0 25px #00ffcc; }
-}
-
-#matrixGreetingHologram h2 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-family: 'Poppins';
-}
-
-#matrixGreetingHologram p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-/* ========================================================
-   FUTURISTIC CYBERPUNK 3D WELCOME ENTRANCE OVERLAY
+   FUTURISTIC CYBERPUNK 3D WELCOME ENTRANCE OVERLAY (100dvh FIX)
 ======================================================== */
 #aiEntranceOverlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100dvh !important;
     background: radial-gradient(circle at center, #0a0618 0%, #030208 100%) !important;
     z-index: 999999 !important;
     display: flex !important;
@@ -1045,7 +918,7 @@ nav ul li.dropdown-item > a:hover {
     border: 1px solid rgba(168, 85, 247, 0.3) !important;
     box-shadow: 0 0 50px rgba(140, 0, 255, 0.2), inset 0 0 20px rgba(168, 85, 247, 0.1) !important;
     border-radius: 24px !important;
-    padding: 50px 45px !important;
+    padding: 45px 30px !important;
     text-align: center;
     max-width: 580px;
     width: 90%;
@@ -1075,7 +948,7 @@ nav ul li.dropdown-item > a:hover {
 }
 
 .ai-box h1 {
-    font-size: 2.2rem !important;
+    font-size: 2rem !important;
     font-weight: 800 !important;
     letter-spacing: 2px;
     margin-bottom: 12px;
@@ -1087,8 +960,8 @@ nav ul li.dropdown-item > a:hover {
 
 .ai-box p {
     color: #94a3b8 !important;
-    font-size: 0.95rem;
-    margin-bottom: 30px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
     letter-spacing: 0.5px;
 }
 
@@ -1103,7 +976,7 @@ nav ul li.dropdown-item > a:hover {
     background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
     border: 1px solid rgba(168, 85, 247, 0.5) !important;
     color: #ffffff !important;
-    padding: 14px 28px !important;
+    padding: 12px 24px !important;
     font-weight: 700 !important;
     border-radius: 12px !important;
     cursor: pointer !important;
