@@ -43,28 +43,9 @@ function startCounterAnimation() {
     });
 }
 
-
 /* =======================================================
-   2. SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
+   2. CORE UI ANIMATIONS & TYPING EFFECT
 ======================================================= */
-function triggerMatrixAccess(type) {
-    if (type === 'auth') {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.style.display = "none";
-        toggleAuthModal(true);
-        switchAuthTab('signup');
-    } else {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.classList.add("terminate");
-        document.body.classList.remove("auth-locked");
-    }
-}
-
-
-/* =======================================================
-   3. CORE UI ANIMATIONS & TYPING EFFECT
-======================================================= */
-
 const words = ["Senior Java Backend Engineer", "Spring Boot Developer", "Microservices Architect", "Kafka & Redis Enthusiast", "Problem Solver"];
 let wordIndex = 0, charIndex = 0, isDeleting = false;
 const typing = document.getElementById("typing");
@@ -100,18 +81,6 @@ window.addEventListener("scroll", () => {
         stickyNav.style.background = "rgba(255,255,255,.05)";
         stickyNav.style.boxShadow = "none";
     }
-});
-
-const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
-});
-document.querySelectorAll("section").forEach(sec => {
-    sec.classList.add("hidden");
-    revealObserver.observe(sec);
 });
 
 window.addEventListener("scroll", () => {
@@ -157,11 +126,9 @@ if(semanticHubSearch) {
     });
 }
 
-
 /* =======================================================
-   4. DASHBOARD TERMINAL & AUTOMATIC LIVE NEWS API ENGINE
+   3. DASHBOARD TERMINAL & LIVE NEWS API ENGINE
 ======================================================= */
-
 function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
     panels.forEach(panel => {
@@ -192,11 +159,11 @@ async function initLiveNewsTickerSystem() {
     const wrapper = document.getElementById("liveNewsWrapper");
     if (!wrapper) return;
 
-    wrapper.innerHTML = `<div class="news-card fade-in" style="padding: 12px 0; color: var(--accent-glow); font-size: 0.85rem;"><i class="fas fa-spinner fa-spin"></i> Fetching live feeds from global servers...</div>`;
+    wrapper.innerHTML = `<div class="news-card fade-in" style="padding: 12px 0; color: var(--accent-glow); font-size: 0.85rem;"><i class="fas fa-spinner fa-spin"></i> Fetching live feeds...</div>`;
 
     const fallbackNews = [
-        { title: "Java 21 Virtual Threads Adoption Accelerates Across Enterprise Systems", link: "#" },
-        { title: "Spring Boot 3.3 Released with Enhanced Observability and GraalVM Support", link: "#" },
+        { title: "Java 21 Virtual Threads Adoption Accelerates Across Enterprise Cloud Architectures", link: "#" },
+        { title: "Spring Boot 3.3 Released with Enhanced Observability Support", link: "#" },
         { title: "Kafka Event Streaming Best Practices for High-Throughput Microservices", link: "#" }
     ];
 
@@ -213,12 +180,10 @@ async function initLiveNewsTickerSystem() {
                 <div class="news-card fade-in" style="border-bottom: 1px solid var(--border-color); padding: 12px 0;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                         <span class="news-tag" style="color:var(--accent-glow); font-size:0.75rem; font-weight:bold;">LIVE FEED 🔴</span>
-                        <span style="font-size:0.7rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444; padding:2px 8px; border-radius:10px; font-weight:bold;">REAL-TIME</span>
                     </div>
                     <h4 style="font-size:0.92rem; color:var(--text-main); margin-bottom:6px; line-height:1.4; font-weight:600;">${article.title}</h4>
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-                        <span style="font-size:0.75rem; color:var(--text-muted);"><i class="fas fa-satellite-dish"></i> Google News Live</span>
-                        <a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read News →</a>
+                        <a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow); font-size:0.78rem; text-decoration:none; font-weight:bold;">Read Feed →</a>
                     </div>
                 </div>
             `;
@@ -245,11 +210,9 @@ function toggleCyberSecurityPanel() {
     if(icon) icon.classList.toggle("rotate-active");
 }
 
-
 /* =======================================================
-   5. ADVANCED AI CHATBOT ENGINE
+   4. AI CHATBOT ENGINE
 ======================================================= */
-
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -292,12 +255,6 @@ function triggerQuickChatAction(type) {
 
 function generateSmartAiResponse(userText) {
     const text = userText.toLowerCase().trim();
-    if (/(gaali|abuse|fuck|bitch|shit|stupid|idiot|chutiya|bakwas|pagal|harami|mc|bc)/i.test(text)) {
-        return "I request you to please maintain a respectful and professional tone! 🙏 How can I assist you politely?";
-    }
-    if (/(love|pyar|pyaar|sweet|cute|awesome|great|amazing|like you)/i.test(text)) {
-        return "Aww, thank you so much for such warm and sweet words! ❤️";
-    }
     if (/^(hi|hello|hey|heyy|namaste|hlo)/i.test(text)) {
         return "Hello! 👋 Welcome! How can I assist you today?";
     }
@@ -333,11 +290,9 @@ if(sendChatBtn && chatInput && chatBody) {
     chatInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') sendClientMessage(); });
 }
 
-
 /* =======================================================
-   6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE (MIC FIX)
+   5. TRANSLATOR & VOICE COMMAND ENGINE (MIC FIX)
 ======================================================= */
-
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
@@ -378,7 +333,7 @@ function initVoiceCommandGateway() {
             micBtn.classList.add("listening-active");
             triggerSystemToast("Listening for voice command... Speak now 🎤");
         } catch (e) {
-            console.log("Mic active or starting");
+            console.log("Mic active");
         }
     });
 
@@ -392,7 +347,7 @@ function initVoiceCommandGateway() {
         else if (text.includes("contact")) window.location.href = "#contact";
         else if (text.includes("light")) document.body.classList.add("light");
         else if (text.includes("dark")) document.body.classList.remove("light");
-        else triggerSystemToast(`Command executed successfully!`);
+        else triggerSystemToast(`Command executed!`);
     };
 
     recognition.onerror = () => {
@@ -402,9 +357,8 @@ function initVoiceCommandGateway() {
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
-
 /* =======================================================
-   FIXED FULL-SCREEN RESPONSIVE CANVAS ENGINE
+   6. FULL-SCREEN BACKGROUND CANVAS ANIMATION ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -420,7 +374,7 @@ function startCyberCanvas() {
     resizeCanvas();
 
     const circuits = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 45; i++) {
         circuits.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -432,7 +386,7 @@ function startCyberCanvas() {
     }
 
     const numbers = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 50; i++) {
         numbers.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -484,7 +438,7 @@ function startCyberCanvas() {
 }
 
 /* =======================================================
-   8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
+   7. AUTHENTICATION & WELCOME GATEWAY HANDLER
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
@@ -578,9 +532,6 @@ function closeGreetingAndEnterPortfolio() {
     }, 600);
 }
 
-/* =======================================================
-   WELCOME & MATRIX GATEWAY FIX
-======================================================= */
 function triggerMatrixAccess(type) {
     if (type === 'auth') {
         const overlay = document.getElementById("aiEntranceOverlay");
