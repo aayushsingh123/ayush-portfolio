@@ -384,9 +384,8 @@ function initVoiceCommandGateway() {
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
-
 /* =======================================================
-   7. SCI-FI HUD TECH CIRCLE ANIMATION ENGINE (MOBILE & WEB CENTER LOCKED)
+   7. EXACT SCI-FI HUD TECH INTERFACE ANIMATION ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -409,131 +408,129 @@ function startCyberCanvas() {
     resizeCanvas();
     setTimeout(resizeCanvas, 500);
 
-    // Tech HUD angles & rotation speeds
-    let angle1 = 0;
-    let angle2 = 0;
-    let angle3 = 0;
-    let sweepAngle = 0;
+    // Fast rotation angles for reference style animation
+    let r1 = 0, r2 = 0, r3 = 0, pulse = 0;
 
-    // Background matrix data grids or tech floating pixels
-    const dataGrids = [];
-    for (let i = 0; i < 40; i++) {
-        dataGrids.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 2,
-            size: Math.random() * 3 + 1,
-            speed: Math.random() * 0.8 + 0.2
-        });
-    }
-
-    function renderSciFiHudBackground() {
-        // Clear screen with deep tech dark tint
+    function renderSciFiHud() {
         ctx.clearRect(0, 0, width, height);
 
-        // Update rotation angles continuously
-        angle1 += 0.01;
-        angle2 -= 0.015;
-        angle3 += 0.02;
-        sweepAngle += 0.03;
+        r1 += 0.03;  // Fast rotation speed
+        r2 -= 0.04;
+        r3 += 0.05;
+        pulse += 0.05;
 
-        // Render multiple Sci-Fi HUD Hubs across the page (Center locked on screens / background)
-        let hudCenters = [
-            { x: width * 0.25, y: height * 0.2 },
-            { x: width * 0.75, y: height * 0.5 },
-            { x: width * 0.3,  y: height * 0.8 },
-            { x: width * 0.7,  y: height * 0.95 }
-        ];
+        const cx = width < 768 ? width * 0.5 : width * 0.28;
+        const cy = width < 768 ? height * 0.22 : height * 0.35;
+        const scale = width < 768 ? 0.8 : 1.2;
 
-        // If screen is mobile, center the main HUD element nicely
-        if (width < 768) {
-            hudCenters = [
-                { x: width * 0.5, y: height * 0.15 },
-                { x: width * 0.5, y: height * 0.5 },
-                { x: width * 0.5, y: height * 0.85 }
-            ];
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        // --- 1. MAIN LARGE CONCENTRIC TECH RINGS (Left side primary HUD) ---
+        ctx.strokeStyle = "#00f0ff";
+        ctx.lineWidth = 2.5;
+
+        // Outer spinning dashed gear ring
+        ctx.save();
+        ctx.rotate(r1);
+        ctx.setLineDash([10 * scale, 6 * scale]);
+        ctx.beginPath();
+        ctx.arc(0, 0, 160 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // Second solid rotating ring with gaps
+        ctx.save();
+        ctx.rotate(r2);
+        ctx.setLineDash([40 * scale, 20 * scale, 10 * scale, 20 * scale]);
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(0, 0, 135 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // Inner glowing precise rings
+        ctx.setLineDash([]);
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(0, 0, 90 * scale, 0, Math.PI * 1.5);
+        ctx.stroke();
+
+        // Center target radar rings
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.6)";
+        ctx.beginPath();
+        ctx.arc(0, 0, 60 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 35 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Crosshairs & Center target
+        ctx.beginPath();
+        ctx.moveTo(-20 * scale, 0); ctx.lineTo(20 * scale, 0);
+        ctx.moveTo(0, -20 * scale); ctx.lineTo(0, 20 * scale);
+        ctx.stroke();
+
+        // --- 2. SECONDARY SUB-HUD RINGS (Bottom & Right matching reference) ---
+        ctx.save();
+        ctx.translate(50 * scale, 130 * scale);
+        ctx.rotate(r3);
+        ctx.strokeStyle = "#00f0ff";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6 * scale, 6 * scale]);
+        ctx.beginPath();
+        ctx.arc(0, 0, 45 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.restore();
+
+        // --- 3. TECH DATA GRIDS & PIXEL BLOCKS (Reference bottom/top corner grids) ---
+        ctx.fillStyle = "rgba(0, 240, 255, 0.6)";
+        let gridCols = 12;
+        let gridRows = 4;
+        
+        // Draw digital matrix blocks at bottom-left and bottom-right
+        for (let gx = 40; gx < width - 40; gx += 25) {
+            for (let gy = height - 120; gy < height - 50; gy += 15) {
+                if ((gx + gy) % 3 === 0) {
+                    ctx.fillRect(gx, gy, 12, 6);
+                }
+            }
         }
 
-        hudCenters.forEach((center, index) => {
-            ctx.save();
-            ctx.translate(center.x, center.y);
+        // --- 4. HUD CONNECTOR LINES & DATA NODES ---
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.8)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        // Connecting line from main HUD to right panel info
+        ctx.moveTo(cx + 160 * scale, cy - 50);
+        ctx.lineTo(cx + 280 * scale, cy - 50);
+        ctx.lineTo(cx + 310 * scale, cy - 20);
+        ctx.stroke();
 
-            let scale = width < 768 ? 0.75 : 1.1;
+        // Data nodes dots at line ends
+        ctx.fillStyle = "#00f0ff";
+        ctx.beginPath();
+        ctx.arc(cx + 310 * scale, cy - 20, 4, 0, Math.PI * 2);
+        ctx.fill();
 
-            // 1. Outer Tech Ring (Dashed & Rotating)
-            ctx.save();
-            ctx.rotate(index % 2 === 0 ? angle1 : -angle1);
-            ctx.strokeStyle = "rgba(0, 220, 255, 0.35)";
-            ctx.lineWidth = 2;
-            ctx.setLineDash([8 * scale, 12 * scale]);
-            ctx.beginPath();
-            ctx.arc(0, 0, 110 * scale, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.restore();
+        // Little data loading bars (reference style)
+        for (let b = 0; b < 6; b++) {
+            ctx.fillRect(cx + 290 * scale + (b * 8), cy - 10, 5, 12);
+        }
 
-            // 2. Inner Solid Rotating Target Ring
-            ctx.save();
-            ctx.rotate(angle2);
-            ctx.strokeStyle = "rgba(0, 255, 200, 0.5)";
-            ctx.lineWidth = 3;
-            ctx.setLineDash([]);
-            ctx.beginPath();
-            ctx.arc(0, 0, 85 * scale, 0, Math.PI * 1.5);
-            ctx.stroke();
-            ctx.restore();
-
-            // 3. Counter-Rotating Tech Tick Marks
-            ctx.save();
-            ctx.rotate(angle3);
-            ctx.strokeStyle = "rgba(0, 220, 255, 0.7)";
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.arc(0, 0, 60 * scale, 0, Math.PI * 0.8);
-            ctx.stroke();
-            ctx.restore();
-
-            // 4. Center Radar Sweep Cone Effect
-            ctx.save();
-            let gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 50 * scale);
-            gradient.addColorStop(0, "rgba(0, 255, 255, 0.4)");
-            gradient.addColorStop(1, "rgba(0, 220, 255, 0.0)");
-            ctx.fillStyle = gradient;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.arc(0, 0, 50 * scale, sweepAngle, sweepAngle + 0.8);
-            ctx.lineTo(0, 0);
-            ctx.fill();
-            ctx.restore();
-
-            // 5. Center Core Dot & Crosshair
-            ctx.strokeStyle = "rgba(0, 255, 255, 0.9)";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(-10 * scale, 0); ctx.lineTo(10 * scale, 0);
-            ctx.moveTo(0, -10 * scale); ctx.lineTo(0, 10 * scale);
-            ctx.stroke();
-
-            ctx.fillStyle = "#00ffcc";
-            ctx.beginPath();
-            ctx.arc(0, 0, 3, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.restore();
-        });
-
-        // Draw floating digital tech data matrix blocks (as seen in reference image corners/bottom)
-        ctx.fillStyle = "rgba(0, 220, 255, 0.25)";
-        dataGrids.forEach(p => {
-            p.y -= p.speed;
-            if (p.y < 0) p.y = height;
-
-            ctx.fillRect(p.x, p.y, p.size * 3, p.size);
-            ctx.fillRect(p.x + 5, p.y + 4, p.size, p.size);
-        });
-
-        requestAnimationFrame(renderSciFiHudBackground);
+        requestAnimationFrame(renderSciFiHud);
     }
 
-    renderSciFiHudBackground();
+    renderSciFiHud();
 }
 
 if (document.readyState === "loading") {
@@ -541,7 +538,6 @@ if (document.readyState === "loading") {
 } else {
     startCyberCanvas();
 }
-
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
 ======================================================= */
