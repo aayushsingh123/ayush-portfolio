@@ -386,7 +386,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. FULL-SCREEN FIXED CIRCUIT & NUMBER MATRIX ENGINE
+   7. FULL-SCREEN FIXED HIGH-BRIGHTNESS CIRCUIT & NUMBER MATRIX ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -397,67 +397,76 @@ function startCyberCanvas() {
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        height = canvas.height = Math.max(
+            window.innerHeight,
+            document.documentElement.clientHeight,
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+        );
     }
     
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 200);
+        setTimeout(resizeCanvas, 300);
     });
     resizeCanvas();
 
     const circuits = [];
-    for (let i = 0; i < 45; i++) {
+    const circuitCount = window.innerWidth < 768 ? 35 : 60;
+
+    for (let i = 0; i < circuitCount; i++) {
         circuits.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
-            length: Math.random() * 220 + 100,
-            speed: Math.random() * 1.2 + 0.4,
+            length: Math.random() * 220 + 120,
+            speed: Math.random() * 1.5 + 0.6,
             isVertical: Math.random() > 0.5,
             isRed: Math.random() > 0.75
         });
     }
 
     const numbers = [];
-    for (let i = 0; i < 50; i++) {
+    const numberCount = window.innerWidth < 768 ? 40 : 65;
+
+    for (let i = 0; i < numberCount; i++) {
         numbers.push({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
             text: Math.floor(Math.random() * 9000000 + 1000000).toString(),
-            speed: Math.random() * 1 + 0.3
+            speed: Math.random() * 1.2 + 0.4
         });
     }
 
     function renderCircuitMatrix() {
         ctx.clearRect(0, 0, width, height);
 
-        // --- 1. DRAW GLOWING CIRCUIT PATHWAYS ---
+        // --- 1. DRAW BRIGHT GLOWING CIRCUIT PATHWAYS ---
         circuits.forEach(c => {
             c.y -= c.speed;
             if (c.y < -c.length) c.y = height + c.length;
 
             ctx.beginPath();
-            ctx.lineWidth = 1.8;
-            ctx.strokeStyle = c.isRed ? "rgba(255, 60, 60, 0.6)" : "rgba(0, 210, 255, 0.6)";
+            ctx.lineWidth = 2.5; 
+            ctx.strokeStyle = c.isRed ? "rgba(255, 70, 70, 0.95)" : "rgba(0, 235, 255, 0.95)"; 
             ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
-            ctx.shadowBlur = 9;
+            ctx.shadowBlur = 12;
 
             if (c.isVertical) {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x, c.y + c.length);
-                ctx.lineTo(c.x + 35, c.y + c.length);
+                ctx.lineTo(c.x + 40, c.y + c.length);
             } else {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x + c.length, c.y);
-                ctx.lineTo(c.x + c.length, c.y + 30);
+                ctx.lineTo(c.x + c.length, c.y + 35);
             }
             ctx.stroke();
             ctx.shadowBlur = 0;
         });
 
-        // --- 2. DRAW DIGITAL NUMBER BLOCKS ---
-        ctx.fillStyle = "rgba(0, 230, 255, 0.55)";
-        ctx.font = "12px monospace";
+        // --- 2. DRAW BRIGHT DIGITAL NUMBER BLOCKS ---
+        ctx.fillStyle = "rgba(0, 245, 255, 0.9)"; 
+        ctx.font = "bold 13px monospace";
 
         numbers.forEach(n => {
             n.y -= n.speed;
