@@ -41,6 +41,7 @@ function startCounterAnimation() {
     });
 }
 
+
 /* =======================================================
    2. SHIVAJI MOVIE STYLE HOLOGRAM GREETING & ENTRANCE HANDLER
 ======================================================= */
@@ -55,9 +56,11 @@ function triggerMatrixAccess(type) {
     }
 }
 
+
 /* =======================================================
    3. CORE UI ANIMATIONS & TYPING EFFECT
 ======================================================= */
+
 const words = ["Senior Java Backend Engineer", "Spring Boot Developer", "Microservices Architect", "Kafka & Redis Enthusiast", "Problem Solver"];
 let wordIndex = 0, charIndex = 0, isDeleting = false;
 const typing = document.getElementById("typing");
@@ -150,9 +153,11 @@ if(semanticHubSearch) {
     });
 }
 
+
 /* =======================================================
    4. DASHBOARD TERMINAL & AUTOMATIC LIVE NEWS API ENGINE
 ======================================================= */
+
 function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
     panels.forEach(panel => {
@@ -229,9 +234,11 @@ function toggleCyberSecurityPanel() {
     if(icon) icon.classList.toggle("rotate-active");
 }
 
+
 /* =======================================================
    5. ADVANCED AI CHATBOT ENGINE
 ======================================================= */
+
 const chatBadge = document.getElementById("chatBadge");
 const chatWidget = document.getElementById("chatWidget");
 const chatHeader = document.getElementById("chatHeader");
@@ -315,9 +322,11 @@ if(sendChatBtn && chatInput && chatBody) {
     chatInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') sendClientMessage(); });
 }
 
+
 /* =======================================================
    6. MULTI-LANGUAGE TRANSLATOR & VOICE COMMAND ENGINE
 ======================================================= */
+
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
@@ -375,6 +384,7 @@ function initVoiceCommandGateway() {
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
+
 /* =======================================================
    7. FULL-SCREEN FIXED HIGH-BRIGHTNESS CIRCUIT & NUMBER MATRIX ENGINE
 ======================================================= */
@@ -430,6 +440,7 @@ function startCyberCanvas() {
     function renderCircuitMatrix() {
         ctx.clearRect(0, 0, width, height);
 
+        // --- 1. DRAW BRIGHT GLOWING CIRCUIT PATHWAYS ---
         circuits.forEach(c => {
             c.y -= c.speed;
             if (c.y < -c.length) c.y = height + c.length;
@@ -453,6 +464,7 @@ function startCyberCanvas() {
             ctx.shadowBlur = 0;
         });
 
+        // --- 2. DRAW BRIGHT DIGITAL NUMBER BLOCKS ---
         ctx.fillStyle = "rgba(0, 245, 255, 0.9)"; 
         ctx.font = "bold 13px monospace";
 
@@ -468,6 +480,7 @@ function startCyberCanvas() {
 
     renderCircuitMatrix();
 }
+
 
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
