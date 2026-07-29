@@ -384,8 +384,9 @@ function initVoiceCommandGateway() {
     recognition.onend = () => micBtn.classList.remove("listening-active");
 }
 
+
 /* =======================================================
-   7. MATRIX CIRCUIT BOARD & GLOWING DATA STREAMS ANIMATION
+   7. FULL-SCREEN FIXED CIRCUIT & NUMBER MATRIX ENGINE
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -396,39 +397,34 @@ function startCyberCanvas() {
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
-        height = canvas.height = Math.max(
-            document.body.scrollHeight, 
-            document.documentElement.scrollHeight, 
-            window.innerHeight
-        );
+        height = canvas.height = window.innerHeight;
     }
     
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("scroll", resizeCanvas);
+    window.addEventListener("orientationchange", () => {
+        setTimeout(resizeCanvas, 200);
+    });
     resizeCanvas();
-    setTimeout(resizeCanvas, 500);
 
-    // Glowing data nodes & circuit lines parameters
     const circuits = [];
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 45; i++) {
         circuits.push({
             x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 2,
-            length: Math.random() * 180 + 80,
-            speed: Math.random() * 2 + 1,
+            y: Math.random() * window.innerHeight,
+            length: Math.random() * 220 + 100,
+            speed: Math.random() * 1.2 + 0.4,
             isVertical: Math.random() > 0.5,
-            isRed: Math.random() > 0.75 // Thodi red glowing lines reference image ki tarah
+            isRed: Math.random() > 0.75
         });
     }
 
-    // Floating digital numbers matrix like screenshot
     const numbers = [];
     for (let i = 0; i < 50; i++) {
         numbers.push({
             x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 2,
-            text: Math.floor(Math.random() * 900000 + 100000).toString(),
-            speed: Math.random() * 1.5 + 0.5
+            y: Math.random() * window.innerHeight,
+            text: Math.floor(Math.random() * 9000000 + 1000000).toString(),
+            speed: Math.random() * 1 + 0.3
         });
     }
 
@@ -441,28 +437,27 @@ function startCyberCanvas() {
             if (c.y < -c.length) c.y = height + c.length;
 
             ctx.beginPath();
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = c.isRed ? "rgba(255, 50, 50, 0.7)" : "rgba(0, 200, 255, 0.7)";
+            ctx.lineWidth = 1.8;
+            ctx.strokeStyle = c.isRed ? "rgba(255, 60, 60, 0.6)" : "rgba(0, 210, 255, 0.6)";
             ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
-            ctx.shadowBlur = 10;
+            ctx.shadowBlur = 9;
 
             if (c.isVertical) {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x, c.y + c.length);
-                // Circuit turn / elbow node
-                ctx.lineTo(c.x + 30, c.y + c.length);
+                ctx.lineTo(c.x + 35, c.y + c.length);
             } else {
                 ctx.moveTo(c.x, c.y);
                 ctx.lineTo(c.x + c.length, c.y);
-                ctx.lineTo(c.x + c.length, c.y + 25);
+                ctx.lineTo(c.x + c.length, c.y + 30);
             }
             ctx.stroke();
-            ctx.shadowBlur = 0; // Reset shadow
+            ctx.shadowBlur = 0;
         });
 
-        // --- 2. DRAW FLOATING DIGITAL NUMBERS MATRIX (Screenshot style) ---
-        ctx.fillStyle = "rgba(0, 220, 255, 0.65)";
-        ctx.font = "11px monospace";
+        // --- 2. DRAW DIGITAL NUMBER BLOCKS ---
+        ctx.fillStyle = "rgba(0, 230, 255, 0.55)";
+        ctx.font = "12px monospace";
 
         numbers.forEach(n => {
             n.y -= n.speed;
@@ -482,6 +477,8 @@ if (document.readyState === "loading") {
 } else {
     startCyberCanvas();
 }
+
+
 /* =======================================================
    8. DYNAMIC LOGIN, SIGNUP & AI CONGRATS HOLOGRAM ENGINE
 ======================================================= */
