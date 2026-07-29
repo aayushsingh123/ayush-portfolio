@@ -385,7 +385,7 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   7. CENTER-LOCKED FULL SCREEN SCI-FI HUD TECH INTERFACE
+   7. MATRIX CIRCUIT BOARD & GLOWING DATA STREAMS ANIMATION
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -408,102 +408,73 @@ function startCyberCanvas() {
     resizeCanvas();
     setTimeout(resizeCanvas, 500);
 
-    let r1 = 0, r2 = 0, r3 = 0, sweepAngle = 0;
-
-    function renderSciFiHud() {
-        ctx.clearRect(0, 0, width, height);
-
-        r1 += 0.02; 
-        r2 -= 0.03;
-        r3 += 0.04;
-        sweepAngle += 0.03;
-
-        // Har section / scroll position par exact CENTER mein lock karne ke liye
-        const cx = width / 2;
-        const cy = height / 2;
-        const scale = Math.min(width, height) / 450; // Screen ke hisaab se responsive scale
-
-        ctx.save();
-        ctx.translate(cx, cy);
-
-        // --- 1. OUTER SPINNING DASHED RINGS ---
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.5)";
-        ctx.lineWidth = 2.5;
-
-        ctx.save();
-        ctx.rotate(r1);
-        ctx.setLineDash([15 * scale, 10 * scale]);
-        ctx.beginPath();
-        ctx.arc(0, 0, 220 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.save();
-        ctx.rotate(r2);
-        ctx.setLineDash([40 * scale, 15 * scale, 10 * scale, 15 * scale]);
-        ctx.lineWidth = 3.5;
-        ctx.beginPath();
-        ctx.arc(0, 0, 180 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        // --- 2. INNER SOLID & TARGET RINGS ---
-        ctx.setLineDash([]);
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(0, 0, 140 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(0, 0, 110 * scale, 0, Math.PI * 1.6);
-        ctx.stroke();
-
-        // Radar Sweep Cone Effect in Center
-        let gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 100 * scale);
-        gradient.addColorStop(0, "rgba(0, 255, 255, 0.25)");
-        gradient.addColorStop(1, "rgba(0, 220, 255, 0.0)");
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.arc(0, 0, 100 * scale, sweepAngle, sweepAngle + 0.7);
-        ctx.lineTo(0, 0);
-        ctx.fill();
-
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.8)";
-        ctx.beginPath();
-        ctx.arc(0, 0, 75 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(0, 0, 40 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Center Crosshairs
-        ctx.beginPath();
-        ctx.moveTo(-25 * scale, 0); ctx.lineTo(25 * scale, 0);
-        ctx.moveTo(0, -25 * scale); ctx.lineTo(0, 25 * scale);
-        ctx.stroke();
-
-        // --- 3. SUB-HUD ORBITING RINGS ---
-        ctx.save();
-        ctx.translate(90 * scale, 130 * scale);
-        ctx.rotate(r3);
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.6)";
-        ctx.lineWidth = 2;
-        ctx.setLineDash([8 * scale, 6 * scale]);
-        ctx.beginPath();
-        ctx.arc(0, 0, 50 * scale, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.restore();
-
-        requestAnimationFrame(renderSciFiHud);
+    // Glowing data nodes & circuit lines parameters
+    const circuits = [];
+    for (let i = 0; i < 35; i++) {
+        circuits.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight * 2,
+            length: Math.random() * 180 + 80,
+            speed: Math.random() * 2 + 1,
+            isVertical: Math.random() > 0.5,
+            isRed: Math.random() > 0.75 // Thodi red glowing lines reference image ki tarah
+        });
     }
 
-    renderSciFiHud();
+    // Floating digital numbers matrix like screenshot
+    const numbers = [];
+    for (let i = 0; i < 50; i++) {
+        numbers.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight * 2,
+            text: Math.floor(Math.random() * 900000 + 100000).toString(),
+            speed: Math.random() * 1.5 + 0.5
+        });
+    }
+
+    function renderCircuitMatrix() {
+        ctx.clearRect(0, 0, width, height);
+
+        // --- 1. DRAW GLOWING CIRCUIT PATHWAYS ---
+        circuits.forEach(c => {
+            c.y -= c.speed;
+            if (c.y < -c.length) c.y = height + c.length;
+
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = c.isRed ? "rgba(255, 50, 50, 0.7)" : "rgba(0, 200, 255, 0.7)";
+            ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
+            ctx.shadowBlur = 10;
+
+            if (c.isVertical) {
+                ctx.moveTo(c.x, c.y);
+                ctx.lineTo(c.x, c.y + c.length);
+                // Circuit turn / elbow node
+                ctx.lineTo(c.x + 30, c.y + c.length);
+            } else {
+                ctx.moveTo(c.x, c.y);
+                ctx.lineTo(c.x + c.length, c.y);
+                ctx.lineTo(c.x + c.length, c.y + 25);
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0; // Reset shadow
+        });
+
+        // --- 2. DRAW FLOATING DIGITAL NUMBERS MATRIX (Screenshot style) ---
+        ctx.fillStyle = "rgba(0, 220, 255, 0.65)";
+        ctx.font = "11px monospace";
+
+        numbers.forEach(n => {
+            n.y -= n.speed;
+            if (n.y < 0) n.y = height;
+
+            ctx.fillText(n.text, n.x, n.y);
+        });
+
+        requestAnimationFrame(renderCircuitMatrix);
+    }
+
+    renderCircuitMatrix();
 }
 
 if (document.readyState === "loading") {
