@@ -46,37 +46,10 @@ function triggerMatrixAccess(type) {
         const overlay = document.getElementById("aiEntranceOverlay");
         if (overlay) overlay.style.display = "none";
         toggleAuthModal(true);
+        switchAuthTab('signup');
     } else {
-        let hologram = document.getElementById("matrixGreetingHologram");
-        if (!hologram) {
-            hologram = document.createElement("div");
-            hologram.id = "matrixGreetingHologram";
-            document.body.appendChild(hologram);
-        }
-
-        hologram.innerHTML = `
-            <div class="greeting-icon-pulse"><i class="fas fa-bolt"></i></div>
-            <h2>GUEST ACCESS GRANTED</h2>
-            <p>Thanks for visiting! Skipping authentication matrix. Initializing full portfolio dashboard...</p>
-            <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO 🚀</button>
-        `;
-        hologram.classList.add("active-greeting");
+        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
     }
-}
-
-function closeGreetingAndEnterPortfolio() {
-    const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.remove("active-greeting");
-
-    const overlay = document.getElementById("aiEntranceOverlay");
-    if (overlay) overlay.classList.add("terminate");
-
-    setTimeout(() => {
-        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
-        startCounterAnimation();
-        initLiveNewsTickerSystem(); 
-        initVoiceCommandGateway(); 
-    }, 600);
 }
 
 
@@ -410,7 +383,7 @@ function initVoiceCommandGateway() {
 
 
 /* =======================================================
-   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (CENTER LOCKED)
+   7. HIGH-SPEED CYBER SHIELD HUD CANVAS ENGINE (MOBILE RESIZE FIX)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -425,6 +398,9 @@ function startCyberCanvas() {
     }
     
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("orientationchange", () => {
+        setTimeout(resizeCanvas, 200);
+    });
     resizeCanvas();
 
     const particleCount = 40;
@@ -606,14 +582,11 @@ if (document.readyState === "loading") {
 ======================================================= */
 function triggerMatrixAccess(type) {
     if (type === 'auth') {
-        // Modal khulega aur entrance overlay hide hoga
         const overlay = document.getElementById("aiEntranceOverlay");
         if (overlay) overlay.style.display = "none";
         toggleAuthModal(true);
-        // Default Signup tab select karein ya login
         switchAuthTab('signup');
     } else {
-        // Skip option -> AI Style Congrats Hologram throw karein
         throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
     }
 }
@@ -653,11 +626,9 @@ function handleSignupSubmit(e) {
     const userData = { name, email, password };
     localStorage.setItem("matrixUser", JSON.stringify(userData));
 
-    // Signup complete hone ke baad direct grant nahi karna, login ke liye kehna hai
     triggerSystemToast(`Account created for ${name}! Please Login now. ⚡`);
     switchAuthTab('login');
     
-    // Clear signup fields
     document.getElementById("signupName").value = "";
     document.getElementById("signupEmail").value = "";
     document.getElementById("signupPassword").value = "";
@@ -672,7 +643,6 @@ function handleLoginSubmit(e) {
 
     if (savedUser && savedUser.email === email && savedUser.password === password) {
         toggleAuthModal(false);
-        // Sahi details daalne par AI-style congrats animation throw karein
         throwAiCongratsHologram(`Authentication Granted! Welcome Back, ${savedUser.name} 🚀`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
