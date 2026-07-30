@@ -30,7 +30,7 @@ body.light {
 }
 
 /* ========================================================
-   FUTURISTIC HIGH-TECH BLUE DATA NETWORK BACKGROUND (FORCE FIX)
+   FUTURISTIC HIGH-TECH BLUE DATA NETWORK BACKGROUND
 ======================================================== */
 html, body {
     width: 100% !important;
@@ -38,7 +38,7 @@ html, body {
     position: relative !important;
     min-height: 100vh;
     min-height: 100dvh;
-    background-color: #02050e !important;
+    background: #02050e !important;
     color: var(--text-main) !important;
     transition: background 0.3s ease, color 0.3s ease;
 }
@@ -53,7 +53,9 @@ body.auth-locked {
     left: 0 !important;
 }
 
-/* Forcing High-Tech Background Design directly on Canvas element */
+/* ========================================================
+   ABSOLUTE BACKGROUND FORCE FIX (NO JS NEEDED)
+======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
     top: 0 !important;
@@ -65,11 +67,11 @@ body.auth-locked {
     pointer-events: none !important;
     background-color: #02050e !important;
     background-image: 
-        radial-gradient(circle at 30% 30%, rgba(0, 150, 255, 0.22) 0%, transparent 50%),
-        radial-gradient(circle at 75% 70%, rgba(76, 201, 255, 0.18) 0%, transparent 50%),
-        linear-gradient(to right, rgba(76, 201, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(76, 201, 255, 0.04) 1px, transparent 1px) !important;
-    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px !important;
+        radial-gradient(circle at 30% 25%, rgba(0, 149, 255, 0.28) 0%, transparent 55%),
+        radial-gradient(circle at 75% 75%, rgba(76, 201, 255, 0.22) 0%, transparent 60%),
+        linear-gradient(to right, rgba(76, 201, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(76, 201, 255, 0.06) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 45px 45px, 45px 45px !important;
 }
 
 section, 
