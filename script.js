@@ -358,17 +358,7 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   6. BACKGROUND IMAGE LAYER INITIALIZER (HACK.JPEG FIX)
-======================================================= */
-function startCyberCanvas() {
-    const canvas = document.getElementById("cyberBackgroundCanvas");
-    if (!canvas) return;
-    canvas.style.background = "url('hack.jpeg') no-repeat center center fixed";
-    canvas.style.backgroundSize = "cover";
-}
-
-/* =======================================================
-   7. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY (FIXED)
+   6. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY (FIXED)
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
@@ -510,3 +500,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+/* =======================================================
+   BACKGROUND MATRIX CANVAS ENGINE
+======================================================= */
+function startCyberCanvas() {
+    const canvas = document.getElementById("cyberBackgroundCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const streams = [];
+    for (let i = 0; i < 40; i++) {
+        streams.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            speed: Math.random() * 1.5 + 0.5,
+            length: Math.random() * 100 + 50
+        });
+    }
+
+    function drawMatrix() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0, 240, 255, 0.75)";
+        ctx.font = "14px monospace";
+
+        streams.forEach(s => {
+            s.y += s.speed;
+            if (s.y > canvas.height) s.y = -s.length;
+            ctx.fillText(Math.floor(Math.random() * 90000 + 10000), s.x, s.y);
+        });
+
+        requestAnimationFrame(drawMatrix);
+    }
+
+    drawMatrix();
+}
