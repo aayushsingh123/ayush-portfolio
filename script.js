@@ -358,83 +358,13 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   6. FULL-SCREEN BACKGROUND CANVAS ANIMATION ENGINE (FIXED)
+   6. BACKGROUND IMAGE LAYER INITIALIZER (HACK.JPEG FIX)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    const circuits = [];
-    for (let i = 0; i < 45; i++) {
-        circuits.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            length: Math.random() * 180 + 80,
-            speed: Math.random() * 1.2 + 0.4,
-            isVertical: Math.random() > 0.5,
-            isRed: Math.random() > 0.75
-        });
-    }
-
-    const numbers = [];
-    for (let i = 0; i < 50; i++) {
-        numbers.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            text: Math.floor(Math.random() * 900000 + 100000).toString(),
-            speed: Math.random() * 0.9 + 0.3
-        });
-    }
-
-    function renderCircuitMatrix() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        circuits.forEach(c => {
-            c.y -= c.speed;
-            if (c.y < -c.length) c.y = canvas.height + c.length;
-
-            ctx.beginPath();
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = c.isRed ? "rgba(255, 50, 50, 0.85)" : "rgba(0, 200, 255, 0.85)";
-            ctx.shadowColor = c.isRed ? "#ff3333" : "#00f0ff";
-            ctx.shadowBlur = 10;
-
-            if (c.isVertical) {
-                ctx.moveTo(c.x, c.y);
-                ctx.lineTo(c.x, c.y + c.length);
-                ctx.lineTo(c.x + 30, c.y + c.length);
-            } else {
-                ctx.moveTo(c.x, c.y);
-                ctx.lineTo(c.x + c.length, c.y);
-                ctx.lineTo(c.x + c.length, c.y + 25);
-            }
-            ctx.stroke();
-            ctx.shadowBlur = 0;
-        });
-
-        ctx.fillStyle = "rgba(0, 220, 255, 0.85)";
-        ctx.font = "12px monospace";
-
-        numbers.forEach(n => {
-            n.y -= n.speed;
-            if (n.y < 0) n.y = canvas.height;
-
-            ctx.fillText(n.text, n.x, n.y);
-        });
-
-        requestAnimationFrame(renderCircuitMatrix);
-    }
-
-    renderCircuitMatrix();
+    canvas.style.background = "url('hack.jpeg') no-repeat center center fixed";
+    canvas.style.backgroundSize = "cover";
 }
 
 /* =======================================================
@@ -447,7 +377,6 @@ function toggleAuthModal(show) {
         modal.classList.add("open");
     } else {
         modal.classList.remove("open");
-        // Ensure background body lock and canvas remain properly interactive when closed via X
         document.body.classList.remove("auth-locked");
     }
 }
