@@ -62,7 +62,7 @@ body.auth-locked {
     height: 100dvh !important;
     z-index: -1 !important;
     pointer-events: none !important;
-    background: url('/hack.jpeg') no-repeat center center fixed !important;
+    background: url('./hack.jpeg') no-repeat center center fixed !important;
     background-size: cover !important;
     animation: backgroundPulseZoom 20s infinite alternate ease-in-out !important;
 }
