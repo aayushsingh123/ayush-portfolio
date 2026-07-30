@@ -40,6 +40,7 @@ body {
     color: var(--text-main) !important;
     overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
+    top: 0 !important;
 }
 
 body.auth-locked {
@@ -704,7 +705,8 @@ nav ul li.dropdown-item > a:hover {
 .sm-footer-global-container {
     background: #070a14 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 80px 9% 30px 9% !important;
+    padding: 50px 9% 20px 9% !important;
+    margin-bottom: 0 !important;
     color: var(--text-muted);
     position: relative;
     z-index: 10;
@@ -714,7 +716,7 @@ nav ul li.dropdown-item > a:hover {
     display: grid !important;
     grid-template-columns: 1.5fr repeat(6, 1fr) !important;
     gap: 30px !important;
-    margin-bottom: 50px !important;
+    margin-bottom: 30px !important;
 }
 
 @media (max-width: 1200px) {
@@ -820,7 +822,8 @@ nav ul li.dropdown-item > a:hover {
 
 .sm-footer-lower-bar-wrapper {
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    padding-top: 25px !important;
+    padding-top: 20px !important;
+    margin-bottom: 0 !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -846,13 +849,24 @@ nav ul li.dropdown-item > a:hover {
 }
 
 .sm-lang-select-box {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: #050816 !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     color: #ffffff !important;
-    padding: 6px 12px !important;
-    border-radius: 6px !important;
-    font-family: 'Poppins' !important;
+    padding: 8px 14px !important;
+    border-radius: 8px !important;
+    outline: none !important;
+    font-family: 'Poppins', sans-serif !important;
     cursor: pointer !important;
+}
+
+.sm-lang-select-box option {
+    background: #050816 !important;
+    color: #ffffff !important;
+    padding: 10px !important;
+}
+
+.goog-te-banner-frame, .skiptranslate {
+    display: none !important;
 }
 
 .sm-lower-right-copyright {
