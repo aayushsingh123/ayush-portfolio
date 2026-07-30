@@ -358,7 +358,7 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   6. FULL-SCREEN BACKGROUND CANVAS ANIMATION ENGINE
+   6. FULL-SCREEN BACKGROUND CANVAS ANIMATION ENGINE (FIXED)
 ======================================================= */
 function startCyberCanvas() {
     const canvas = document.getElementById("cyberBackgroundCanvas");
@@ -438,13 +438,18 @@ function startCyberCanvas() {
 }
 
 /* =======================================================
-   7. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY
+   7. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY (FIXED)
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
     if (!modal) return;
-    if (show) modal.classList.add("open");
-    else modal.classList.remove("open");
+    if (show) {
+        modal.classList.add("open");
+    } else {
+        modal.classList.remove("open");
+        // Ensure background body lock and canvas remain properly interactive when closed via X
+        document.body.classList.remove("auth-locked");
+    }
 }
 
 function switchAuthTab(tab) {
@@ -554,9 +559,14 @@ function closeGreetingAndEnterPortfolio() {
 
     setTimeout(() => {
         triggerSystemToast("Portfolio Matrix Node Initialized Successfully! ⚡");
-        startCounterAnimation();
+        startCounterAnalytics();
     }, 400);
 }
+
+function startCounterAnalytics() {
+    startCounterAnimation();
+}
+
 /* =======================================================
    TOP SCROLL BUTTON FUNCTIONALITY FIX
 ======================================================= */
