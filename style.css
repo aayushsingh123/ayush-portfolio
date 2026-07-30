@@ -848,10 +848,11 @@ nav ul li.dropdown-item > a:hover {
     color: #4cc9ff !important;
 }
 
+/* CUSTOM DARK THEME HACK FOR GOOGLE TRANSLATE DROPDOWN BOX */
 .sm-lang-select-box {
     background: #050816 !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #00ffcc !important;
     padding: 8px 14px !important;
     border-radius: 8px !important;
     outline: none !important;
@@ -865,10 +866,65 @@ nav ul li.dropdown-item > a:hover {
     padding: 10px !important;
 }
 
+/* Google Translate Global Popup / White Box Overrides */
+.goog-te-menu-frame {
+    max-height: 300px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid #4cc9ff !important;
+}
+
+.goog-te-menu2 {
+    background: #050816 !important;
+    border: none !important;
+}
+
+.goog-te-menu2 td a:hover {
+    background: rgba(76, 201, 255, 0.15) !important;
+    color: #4cc9ff !important;
+}
+
 .goog-te-banner-frame, .skiptranslate {
     display: none !important;
 }
 
 .sm-lower-right-copyright {
     color: #CBD5E1 !important;
+}
+
+/* ========================================================
+   HACKER STYLE HOLOGRAM & AUTHENTICATION OVERLAYS
+======================================================== */
+#matrixGreetingHologram {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(5, 12, 30, 0.95);
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.4);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 1000000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#matrixGreetingHologram.active-greeting {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: all;
+}
+
+.greeting-icon-pulse {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: iconPulsingGlow 2s infinite ease-in-out;
+}
+
+@keyframes iconPulsingGlow {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 10px #00ffcc; }
+    50% { transform: scale(1.15); text-shadow: 0 0 25px #00ffcc; }
 }
