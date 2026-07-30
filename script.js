@@ -517,12 +517,39 @@ function throwAiCongratsHologram(msg) {
     hologram.classList.add("active-greeting");
 }
 
+/* =======================================================
+   WELCOME GATEWAY FIX (STUCK ISSUE RESOLVED)
+======================================================= */
+function triggerMatrixAccess(type) {
+    const overlay = document.getElementById("aiEntranceOverlay");
+    
+    if (type === 'auth') {
+        if (overlay) {
+            overlay.classList.add("terminate");
+            setTimeout(() => { overlay.style.display = "none"; }, 500);
+        }
+        toggleAuthModal(true);
+        switchAuthTab('signup');
+    } else {
+        if (overlay) {
+            overlay.classList.add("terminate");
+            setTimeout(() => { overlay.style.display = "none"; }, 500);
+        }
+        document.body.classList.remove("auth-locked");
+        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
+        startCounterAnimation();
+    }
+}
+
 function closeGreetingAndEnterPortfolio() {
     const hologram = document.getElementById("matrixGreetingHologram");
     if (hologram) hologram.classList.remove("active-greeting");
 
     const overlay = document.getElementById("aiEntranceOverlay");
-    if (overlay) overlay.classList.add("terminate");
+    if (overlay) {
+        overlay.classList.add("terminate");
+        setTimeout(() => { overlay.style.display = "none"; }, 500);
+    }
 
     document.body.classList.remove("auth-locked");
 
@@ -530,15 +557,4 @@ function closeGreetingAndEnterPortfolio() {
         triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
         startCounterAnimation();
     }, 600);
-}
-
-function triggerMatrixAccess(type) {
-    if (type === 'auth') {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.style.display = "none";
-        toggleAuthModal(true);
-        switchAuthTab('signup');
-    } else {
-        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
-    }
 }
