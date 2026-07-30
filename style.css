@@ -29,16 +29,13 @@ body.light {
     --sm-footer-dark: #f1f5f9;
 }
 
-/* ========================================================
-   FUTURISTIC HACKER THEME BACKGROUND IMAGE WITH ANIMATION
-======================================================== */
 html, body {
     width: 100% !important;
     overflow-x: hidden !important;
     position: relative !important;
     min-height: 100vh;
     min-height: 100dvh;
-    background-color: #02050e !important;
+    background: #02050e !important;
     color: var(--text-main) !important;
     transition: background 0.3s ease, color 0.3s ease;
 }
@@ -53,7 +50,9 @@ body.auth-locked {
     left: 0 !important;
 }
 
-/* Background Image Engine with Animation for Web & Mobile */
+/* ========================================================
+   PURE CSS ANIMATED CYBER HACKER MATRIX BACKGROUND
+======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
     top: 0 !important;
@@ -63,29 +62,22 @@ body.auth-locked {
     height: 100dvh !important;
     z-index: -1 !important;
     pointer-events: none !important;
-    background: url('hack.jpeg') no-repeat center center fixed !important;
-    background-size: cover !important;
-    animation: backgroundPulseZoom 20s infinite alternate ease-in-out !important;
+    background-color: #030308 !important;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 0, 60, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 20% 20%, rgba(0, 149, 255, 0.15) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 0, 60, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 149, 255, 0.05) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px !important;
+    animation: cyberGridGlow 4s infinite alternate ease-in-out !important;
 }
 
-/* Optional dark overlay so text and cards remain readable */
-#cyberBackgroundCanvas::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(2, 5, 14, 0.55);
-    z-index: 1;
-}
-
-@keyframes backgroundPulseZoom {
+@keyframes cyberGridGlow {
     0% {
-        transform: scale(1);
+        filter: brightness(0.9) contrast(1);
     }
     100% {
-        transform: scale(1.08);
+        filter: brightness(1.3) contrast(1.2);
     }
 }
 
