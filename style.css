@@ -928,3 +928,95 @@ nav ul li.dropdown-item > a:hover {
     0%, 100% { transform: scale(1); text-shadow: 0 0 10px #00ffcc; }
     50% { transform: scale(1.15); text-shadow: 0 0 25px #00ffcc; }
 }
+/* ========================================================
+   CUSTOM WELCOME LETTER CARD STYLING (REFERENCE MATCH)
+======================================================== */
+#matrixGreetingHologram {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(2, 5, 14, 0.9) !important;
+    backdrop-filter: blur(15px) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 99999999 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.5s ease !important;
+}
+
+#matrixGreetingHologram.active-greeting {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.welcome-card-box-container {
+    background: #ffffff !important;
+    color: #111111 !important;
+    width: 90% !important;
+    max-width: 500px !important;
+    padding: 45px 40px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 20px 50px rgba(0, 240, 255, 0.3) !important;
+    position: relative !important;
+    text-align: left !important;
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#matrixGreetingHologram.active-greeting .welcome-card-box-container {
+    transform: translateY(0) scale(1);
+}
+
+.welcome-heart-icon {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 28px;
+    color: #111111;
+    animation: heartBeatPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes heartBeatPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); color: #ff3366; }
+}
+
+.welcome-script-title {
+    font-family: 'Poppins', cursive, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+.welcome-letter-body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.signature-text {
+    margin-top: 15px;
+    font-style: italic;
+    font-weight: 600;
+    color: #222222;
+}
+
+.enter-matrix-final-btn {
+    margin-top: 30px !important;
+    width: 100% !important;
+    background: #2563eb !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3) !important;
+}
