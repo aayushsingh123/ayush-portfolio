@@ -893,43 +893,7 @@ nav ul li.dropdown-item > a:hover {
 }
 
 /* ========================================================
-   HACKER STYLE HOLOGRAM & AUTHENTICATION OVERLAYS
-======================================================== */
-#matrixGreetingHologram {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(5, 12, 30, 0.95);
-    border: 2px solid #00ffcc;
-    box-shadow: 0 0 40px rgba(0, 255, 204, 0.4);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 1000000;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#matrixGreetingHologram.active-greeting {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: all;
-}
-
-.greeting-icon-pulse {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    animation: iconPulsingGlow 2s infinite ease-in-out;
-}
-
-@keyframes iconPulsingGlow {
-    0%, 100% { transform: scale(1); text-shadow: 0 0 10px #00ffcc; }
-    50% { transform: scale(1.15); text-shadow: 0 0 25px #00ffcc; }
-}
-/* ========================================================
-   CUSTOM WELCOME LETTER CARD STYLING (REFERENCE MATCH)
+   FIXED PERFECT CENTER ALIGNMENT FOR WELCOME CARD
 ======================================================== */
 #matrixGreetingHologram {
     position: fixed !important;
@@ -937,7 +901,8 @@ nav ul li.dropdown-item > a:hover {
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(2, 5, 14, 0.9) !important;
+    height: 100dvh !important;
+    background: rgba(2, 5, 14, 0.85) !important;
     backdrop-filter: blur(15px) !important;
     display: flex !important;
     justify-content: center !important;
@@ -945,7 +910,7 @@ nav ul li.dropdown-item > a:hover {
     z-index: 99999999 !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    transition: opacity 0.5s ease !important;
+    transition: opacity 0.4s ease !important;
 }
 
 #matrixGreetingHologram.active-greeting {
@@ -957,18 +922,19 @@ nav ul li.dropdown-item > a:hover {
     background: #ffffff !important;
     color: #111111 !important;
     width: 90% !important;
-    max-width: 500px !important;
-    padding: 45px 40px !important;
+    max-width: 480px !important;
+    padding: 40px 35px !important;
     border-radius: 24px !important;
-    box-shadow: 0 20px 50px rgba(0, 240, 255, 0.3) !important;
+    box-shadow: 0 25px 60px rgba(0, 240, 255, 0.4) !important;
     position: relative !important;
     text-align: left !important;
-    transform: translateY(30px) scale(0.95);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: auto !important;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #matrixGreetingHologram.active-greeting .welcome-card-box-container {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
 }
 
 .welcome-heart-icon {
