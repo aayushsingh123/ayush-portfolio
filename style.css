@@ -478,6 +478,9 @@ nav ul li.dropdown-item > a:hover {
     font-family: monospace;
 }
 
+/* ========================================================
+   ROBOT IMAGE STYLING FOR CHAT BADGE
+======================================================== */
 .chat-badge-pulse {
     position: fixed; 
     bottom: 30px; 
@@ -493,7 +496,7 @@ nav ul li.dropdown-item > a:hover {
     z-index: 9999; 
     transition: .35s; 
     background: #000; 
-    overflow: visible;
+    overflow: hidden;
     animation: chatBadgePulseGlow 2s infinite ease-in-out;
 }
 
@@ -502,25 +505,50 @@ nav ul li.dropdown-item > a:hover {
     50% { box-shadow: 0 0 15px 4px rgba(76, 201, 255, 0.6); transform: scale(1.05); }
 }
 
-.chat-badge-fallback-inner-icon {
-    width: 28px;
-    height: 24px;
-    background: linear-gradient(135deg, #0284c7, #00d4ff);
-    border-radius: 6px;
-    position: relative;
-    box-shadow: 0 0 10px #4cc9ff;
+.chat-robot-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .badge-online-glow {
     position: absolute; 
     top: 2px; 
     right: 2px; 
-    width: 12px; 
-    height: 12px; 
+    width: 10px; 
+    height: 10px; 
     background: #10b981; 
     border-radius: 50%; 
     border: 2px solid #000;
     z-index: 10;
+}
+
+/* ========================================================
+   TOP SCROLL BUTTON FIX
+======================================================== */
+#top {
+    position: fixed !important;
+    right: 30px !important;
+    bottom: 30px !important;
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    background: #2563eb !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    font-size: 20px !important;
+    color: #ffffff !important;
+    transition: 0.35s !important;
+    z-index: 9998 !important;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+}
+
+#top:hover {
+    background: #1d4ed8 !important;
+    transform: translateY(-4px);
 }
 
 .chat-widget {
