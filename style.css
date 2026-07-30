@@ -29,18 +29,18 @@ body.light {
     --sm-footer-dark: #f1f5f9;
 }
 
+/* ========================================================
+   FUTURISTIC HIGH-TECH BLUE DATA NETWORK BACKGROUND
+======================================================== */
 html, body {
     width: 100% !important;
     overflow-x: hidden !important;
     position: relative !important;
-    min-height: 100% !important;
-}
-
-body {
+    min-height: 100vh;
+    min-height: 100dvh;
     background: #02050e !important;
     color: var(--text-main) !important;
     transition: background 0.3s ease, color 0.3s ease;
-    top: 0 !important;
 }
 
 body.auth-locked {
@@ -53,9 +53,7 @@ body.auth-locked {
     left: 0 !important;
 }
 
-/* ========================================================
-   FIXED FULL-SCREEN BACKGROUND CANVAS
-======================================================== */
+/* Fullscreen High-Tech Glowing Canvas Background */
 #cyberBackgroundCanvas {
     position: fixed !important;
     top: 0 !important;
@@ -65,7 +63,7 @@ body.auth-locked {
     height: 100dvh !important;
     z-index: -1 !important;
     pointer-events: none !important;
-    background: #050816 !important;
+    background: radial-gradient(circle at 70% 40%, #03102b 0%, #02050e 70%, #010206 100%) !important;
 }
 
 section, 
@@ -691,7 +689,7 @@ nav ul li.dropdown-item > a:hover {
     width: 100vw !important; 
     height: 100vh !important;
     height: 100dvh !important;
-    background: radial-gradient(circle at center, #0a0618 0%, #030208 100%) !important;
+    background: radial-gradient(circle at center, #04122f 0%, #02050e 100%) !important;
     z-index: 99999999 !important; 
     display: flex !important;
     align-items: center !important; 
