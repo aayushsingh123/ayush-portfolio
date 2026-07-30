@@ -127,7 +127,7 @@ if(semanticHubSearch) {
 }
 
 /* =======================================================
-   3. DASHBOARD TERMINAL & LIVE NEWS API ENGINE
+   3. DASHBOARD & LIVE NEWS API ENGINE
 ======================================================= */
 function switchDashboardTab(tabId) {
     const panels = document.querySelectorAll(".hub-content-panel");
@@ -438,7 +438,7 @@ function startCyberCanvas() {
 }
 
 /* =======================================================
-   7. AUTHENTICATION & WELCOME GATEWAY HANDLER
+   7. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY
 ======================================================= */
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
@@ -512,7 +512,7 @@ function throwAiCongratsHologram(msg) {
         <div class="greeting-icon-pulse"><i class="fas fa-brain" style="color: #00ffcc;"></i></div>
         <h2 style="color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.6);">🎉 CONGRATULATIONS! 🎉</h2>
         <p>${msg}</p>
-        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()" style="border-color: #00ffcc; color: #00ffcc;">ENTER PORTFOLIO MATRIX ⚡</button>
+        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()" style="border-color: #00ffcc; color: #00ffcc; padding: 12px 24px; border-radius: 12px; cursor: pointer; background: rgba(0,255,204,0.1); font-weight: bold; margin-top: 15px;">ENTER PORTFOLIO MATRIX ⚡</button>
     `;
     hologram.classList.add("active-greeting");
 }
@@ -539,10 +539,6 @@ function triggerMatrixAccess(type) {
         toggleAuthModal(true);
         switchAuthTab('signup');
     } else {
-        const overlay = document.getElementById("aiEntranceOverlay");
-        if (overlay) overlay.classList.add("terminate");
-        document.body.classList.remove("auth-locked");
-        triggerSystemToast("Welcome to Ayush Singh's Portfolio! ⚡");
-        startCounterAnimation();
+        throwAiCongratsHologram("Guest Access Node Verified. Initializing portfolio...");
     }
 }
