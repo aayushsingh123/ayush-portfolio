@@ -483,6 +483,9 @@ function handleSignupSubmit(e) {
     document.getElementById("signupPassword").value = "";
 }
 
+/* =======================================================
+   CUSTOM WELCOME LETTER HOLOGRAM & AUTHENTICATION FLOW
+======================================================= */
 function handleLoginSubmit(e) {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
@@ -492,7 +495,7 @@ function handleLoginSubmit(e) {
 
     if (savedUser && savedUser.email === email && savedUser.password === password) {
         toggleAuthModal(false);
-        throwAiCongratsHologram(`Authentication Granted! Welcome Back, ${savedUser.name} 🚀`);
+        throwAiWelcomeCard(`Dear ${savedUser.name},`, `Welcome! We're so happy you arrived safely and successfully authenticated into the system! Consider this portfolio your digital home away from home. We hope you have a wonderful exploration!`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
     } else {
@@ -500,26 +503,6 @@ function handleLoginSubmit(e) {
     }
 }
 
-function throwAiCongratsHologram(msg) {
-    let hologram = document.getElementById("matrixGreetingHologram");
-    if (!hologram) {
-        hologram = document.createElement("div");
-        hologram.id = "matrixGreetingHologram";
-        document.body.appendChild(hologram);
-    }
-
-    hologram.innerHTML = `
-        <div class="greeting-icon-pulse"><i class="fas fa-brain" style="color: #00ffcc;"></i></div>
-        <h2 style="color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.6);">🎉 CONGRATULATIONS! 🎉</h2>
-        <p>${msg}</p>
-        <button class="ai-btn" onclick="closeGreetingAndEnterPortfolio()" style="border-color: #00ffcc; color: #00ffcc; padding: 12px 24px; border-radius: 12px; cursor: pointer; background: rgba(0,255,204,0.1); font-weight: bold; margin-top: 15px;">ENTER PORTFOLIO MATRIX ⚡</button>
-    `;
-    hologram.classList.add("active-greeting");
-}
-
-/* =======================================================
-   WELCOME GATEWAY FIX (STUCK ISSUE RESOLVED)
-======================================================= */
 function triggerMatrixAccess(type) {
     const overlay = document.getElementById("aiEntranceOverlay");
     
@@ -535,26 +518,42 @@ function triggerMatrixAccess(type) {
             overlay.classList.add("terminate");
             setTimeout(() => { overlay.style.display = "none"; }, 500);
         }
-        document.body.classList.remove("auth-locked");
-        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
-        startCounterAnimation();
+        throwAiWelcomeCard("Dear Guest,", "Welcome! We're so happy you arrived safely and had no troubles in your travels here! You chose fast-track access via skip node, so please consider this portal your digital home away from home. Enjoy exploring the portfolio!");
     }
+}
+
+function throwAiWelcomeCard(salutation, messageBody) {
+    let hologram = document.getElementById("matrixGreetingHologram");
+    if (!hologram) {
+        hologram = document.createElement("div");
+        hologram.id = "matrixGreetingHologram";
+        document.body.appendChild(hologram);
+    }
+
+    hologram.innerHTML = `
+        <div class="welcome-card-box-container">
+            <div class="welcome-heart-icon"><i class="fas fa-heart"></i></div>
+            <h1 class="welcome-script-title">Welcome</h1>
+            <div class="welcome-letter-body">
+                <p class="salutation-text">${salutation}</p>
+                <p class="message-text">${messageBody}</p>
+                <p class="closing-wish">We hope you have a wonderful stay !</p>
+                <p class="signature-text">sincerely , Ayush Singh</p>
+            </div>
+            <button class="btn style-submit-btn enter-matrix-final-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO ⚡</button>
+        </div>
+    `;
+    hologram.classList.add("active-greeting");
 }
 
 function closeGreetingAndEnterPortfolio() {
     const hologram = document.getElementById("matrixGreetingHologram");
     if (hologram) hologram.classList.remove("active-greeting");
 
-    const overlay = document.getElementById("aiEntranceOverlay");
-    if (overlay) {
-        overlay.classList.add("terminate");
-        setTimeout(() => { overlay.style.display = "none"; }, 500);
-    }
-
     document.body.classList.remove("auth-locked");
 
     setTimeout(() => {
-        triggerSystemToast("Welcome to Ayush Singh's Portfolio Matrix Node! ⚡");
+        triggerSystemToast("Portfolio Matrix Node Initialized Successfully! ⚡");
         startCounterAnimation();
-    }, 600);
+    }, 400);
 }
