@@ -51,7 +51,7 @@ body.auth-locked {
 }
 
 /* ========================================================
-   FULLSCREEN HACKER CYBER MATRIX BACKGROUND (100% MOBILE & WEB COVER)
+   FULLSCREEN HACKER BACKGROUND IMAGE ENGINE (HACK.JPEG)
 ======================================================== */
 #cyberBackgroundCanvas {
     position: fixed !important;
@@ -62,22 +62,28 @@ body.auth-locked {
     height: 100dvh !important;
     z-index: -1 !important;
     pointer-events: none !important;
-    background-color: #030308 !important;
-    background-image: 
-        radial-gradient(circle at 50% 50%, rgba(255, 0, 60, 0.18) 0%, transparent 60%),
-        radial-gradient(circle at 20% 20%, rgba(0, 149, 255, 0.18) 0%, transparent 50%),
-        linear-gradient(to right, rgba(255, 0, 60, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 149, 255, 0.06) 1px, transparent 1px) !important;
-    background-size: 100% 100%, 100% 100%, 45px 45px, 45px 45px !important;
-    animation: cyberGridGlow 4s infinite alternate ease-in-out !important;
+    background: url('hack.jpeg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    animation: backgroundPulseZoom 20s infinite alternate ease-in-out !important;
 }
 
-@keyframes cyberGridGlow {
+#cyberBackgroundCanvas::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 5, 14, 0.45);
+    z-index: 1;
+}
+
+@keyframes backgroundPulseZoom {
     0% {
-        filter: brightness(0.9) contrast(1);
+        transform: scale(1);
     }
     100% {
-        filter: brightness(1.3) contrast(1.2);
+        transform: scale(1.08);
     }
 }
 
