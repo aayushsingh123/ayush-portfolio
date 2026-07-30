@@ -65,7 +65,7 @@ body.auth-locked {
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
-    z-index: 1 !important;
+    z-index: -1 !important;
     pointer-events: none !important;
     background: #050816 !important;
 }
@@ -696,4 +696,165 @@ nav ul li.dropdown-item > a:hover {
     border: 1px solid rgba(168, 85, 247, 0.5) !important;
     color: #ffffff !important; padding: 12px 24px !important;
     font-weight: 700 !important; border-radius: 12px !important; cursor: pointer !important;
+}
+
+/* ========================================================
+   FIXED FOOTER LAYOUT & ALIGNMENT FIX
+======================================================== */
+.sm-footer-global-container {
+    background: #070a14 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 80px 9% 30px 9% !important;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 10;
+}
+
+.sm-footer-grid-wrapper {
+    display: grid !important;
+    grid-template-columns: 1.5fr repeat(6, 1fr) !important;
+    gap: 30px !important;
+    margin-bottom: 50px !important;
+}
+
+@media (max-width: 1200px) {
+    .sm-footer-grid-wrapper {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .sm-footer-grid-wrapper {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.sm-footer-columnbrand {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+.sm-brand-logo-text {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.sm-brand-follow-label {
+    font-size: 0.9rem !important;
+    color: #CBD5E1 !important;
+    margin: 0 !important;
+}
+
+.sm-brand-social-row {
+    display: flex !important;
+    gap: 12px !important;
+}
+
+.sm-brand-social-row a {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transition: 0.3s !important;
+}
+
+.sm-brand-social-row a:hover {
+    background: #4cc9ff !important;
+    color: #000000 !important;
+}
+
+.sm-brand-address-text {
+    font-size: 0.9rem !important;
+    color: #CBD5E1 !important;
+}
+
+.sm-footer-ext-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 16px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px !important;
+    color: #4cc9ff !important;
+    text-decoration: none !important;
+    font-size: 0.85rem !important;
+    width: fit-content !important;
+}
+
+.sm-footer-nav-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.sm-footer-nav-column h3 {
+    font-size: 1rem !important;
+    color: #ffffff !important;
+    margin-bottom: 5px !important;
+    font-weight: 600 !important;
+}
+
+.sm-footer-nav-column a {
+    color: #CBD5E1 !important;
+    text-decoration: none !important;
+    font-size: 0.85rem !important;
+    transition: 0.2s !important;
+}
+
+.sm-footer-nav-column a:hover {
+    color: #4cc9ff !important;
+    padding-left: 4px !important;
+}
+
+.sm-footer-lower-bar-wrapper {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-top: 25px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    font-size: 0.85rem !important;
+}
+
+.sm-lower-left-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    align-items: center !important;
+}
+
+.sm-lower-left-links a {
+    color: #CBD5E1 !important;
+    text-decoration: none !important;
+}
+
+.sm-lower-left-links a:hover {
+    color: #4cc9ff !important;
+}
+
+.sm-lang-select-box {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    font-family: 'Poppins' !important;
+    cursor: pointer !important;
+}
+
+.sm-lower-right-copyright {
+    color: #CBD5E1 !important;
 }
