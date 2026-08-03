@@ -454,7 +454,6 @@ function triggerMatrixAccess(type) {
         toggleAuthModal(true);
         switchAuthTab('signup');
     } else {
-        // SKIP NODE grants direct access and shows original greeting hologram
         isUserAuthenticated = true;
         if (overlay) {
             overlay.classList.add("terminate");
@@ -486,7 +485,7 @@ function closeGreetingAndEnterPortfolio() {
     if (sessionTimer) clearTimeout(sessionTimer);
     sessionTimer = setTimeout(() => {
         alert("Your session time has expired! Please click OK to log in again.");
-        location.reload(); // Refreshes page to return to the initial login/signup modal state
+        location.reload(); 
     }, 1 * 60 * 1000); 
 }
 
