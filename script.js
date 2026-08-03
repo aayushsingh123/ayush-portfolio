@@ -358,8 +358,10 @@ function initVoiceCommandGateway() {
 }
 
 /* =======================================================
-   6. AUTHENTICATION & HACKER STYLE HOLOGRAM GATEWAY (FIXED)
+   6. AUTHENTICATION & STRICT RESTRICTION GATEWAY (UPDATED)
 ======================================================= */
+let isUserAuthenticated = false;
+
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
     if (!modal) return;
@@ -367,8 +369,23 @@ function toggleAuthModal(show) {
         modal.classList.add("open");
     } else {
         modal.classList.remove("open");
-        document.body.classList.remove("auth-locked");
+        if (!isUserAuthenticated) {
+            // Keep locked and show strict restriction message if closed via cross without login!
+            document.body.classList.add("auth-locked");
+            showAccessDeniedPopup();
+        }
     }
+}
+
+function showAccessDeniedPopup() {
+    const popup = document.getElementById("accessDeniedPopup");
+    if (popup) popup.classList.add("active-popup");
+}
+
+function reopenAuthModalFromPopup() {
+    const popup = document.getElementById("accessDeniedPopup");
+    if (popup) popup.classList.remove("active-popup");
+    toggleAuthModal(true);
 }
 
 function switchAuthTab(tab) {
@@ -407,9 +424,6 @@ function handleSignupSubmit(e) {
     document.getElementById("signupPassword").value = "";
 }
 
-/* =======================================================
-   CUSTOM WELCOME LETTER HOLOGRAM & AUTHENTICATION FLOW
-======================================================= */
 function handleLoginSubmit(e) {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
@@ -418,8 +432,10 @@ function handleLoginSubmit(e) {
     const savedUser = JSON.parse(localStorage.getItem("matrixUser"));
 
     if (savedUser && savedUser.email === email && savedUser.password === password) {
+        isUserAuthenticated = true;
         toggleAuthModal(false);
-        throwAiWelcomeCard(`Dear ${savedUser.name},`, `Welcome! We're so happy you arrived safely and successfully authenticated into the system! Consider this portfolio your digital home away from home. We hope you have a wonderful exploration!`);
+        unlockPortfolioMatrix();
+        triggerSystemToast(`Welcome back, ${savedUser.name}! Access Granted ⚡`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
     } else {
@@ -438,51 +454,19 @@ function triggerMatrixAccess(type) {
         toggleAuthModal(true);
         switchAuthTab('signup');
     } else {
+        // SKIP NODE grants direct access as requested
+        isUserAuthenticated = true;
         if (overlay) {
             overlay.classList.add("terminate");
             setTimeout(() => { overlay.style.display = "none"; }, 500);
         }
-        throwAiWelcomeCard("Dear Guest,", "Welcome! We're so happy you arrived safely and had no troubles in your travels here! You chose fast-track access via skip node, so please consider this portal your digital home away from home. Enjoy exploring the portfolio!");
+        unlockPortfolioMatrix();
+        triggerSystemToast("Fast-track node initialized successfully! 🚀");
     }
 }
 
-function throwAiWelcomeCard(salutation, messageBody) {
-    let hologram = document.getElementById("matrixGreetingHologram");
-    if (!hologram) {
-        hologram = document.createElement("div");
-        hologram.id = "matrixGreetingHologram";
-        document.body.appendChild(hologram);
-    }
-
-    hologram.innerHTML = `
-        <div class="welcome-card-box-container">
-            <div class="welcome-heart-icon"><i class="fas fa-heart"></i></div>
-            <h1 class="welcome-script-title">Welcome</h1>
-            <div class="welcome-letter-body">
-                <p class="salutation-text">${salutation}</p>
-                <p class="message-text">${messageBody}</p>
-                <p class="closing-wish">We hope you have a wonderful stay !</p>
-                <p class="signature-text">sincerely , Ayush Singh</p>
-            </div>
-            <button class="btn style-submit-btn enter-matrix-final-btn" onclick="closeGreetingAndEnterPortfolio()">ENTER PORTFOLIO ⚡</button>
-        </div>
-    `;
-    hologram.classList.add("active-greeting");
-}
-
-function closeGreetingAndEnterPortfolio() {
-    const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.remove("active-greeting");
-
+function unlockPortfolioMatrix() {
     document.body.classList.remove("auth-locked");
-
-    setTimeout(() => {
-        triggerSystemToast("Portfolio Matrix Node Initialized Successfully! ⚡");
-        startCounterAnalytics();
-    }, 400);
-}
-
-function startCounterAnalytics() {
     startCounterAnimation();
 }
 
