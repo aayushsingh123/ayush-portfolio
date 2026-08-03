@@ -470,12 +470,12 @@ function showGreetingHologram(salutation, msg) {
     if(msgText) msgText.innerText = msg;
 
     const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.add("active-greeting");
+    if (hologram) hologram.classList.add("active-popup");
 }
 
 function closeGreetingAndEnterPortfolio() {
     const hologram = document.getElementById("matrixGreetingHologram");
-    if (hologram) hologram.classList.remove("active-greeting");
+    if (hologram) hologram.classList.remove("active-popup");
 
     document.body.classList.remove("auth-locked");
     triggerSystemToast("Portfolio Matrix Node Initialized Successfully! ⚡");
@@ -484,7 +484,7 @@ function closeGreetingAndEnterPortfolio() {
     // Session Timer: Set to 1 minute for testing (Change to 20 * 60 * 1000 for 20 minutes)
     if (sessionTimer) clearTimeout(sessionTimer);
     sessionTimer = setTimeout(() => {
-        alert("Your session time has expired! Please click OK to log in again.");
+        alert("Your 20-minute session has expired! Please click OK to log in again.");
         location.reload(); 
     }, 1 * 60 * 1000); 
 }
