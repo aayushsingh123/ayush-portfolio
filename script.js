@@ -361,6 +361,7 @@ function initVoiceCommandGateway() {
    6. AUTHENTICATION & STRICT RESTRICTION GATEWAY (UPDATED)
 ======================================================= */
 let isUserAuthenticated = false;
+let sessionTimer = null;
 
 function toggleAuthModal(show) {
     const modal = document.getElementById("authModalOverlay");
@@ -370,7 +371,6 @@ function toggleAuthModal(show) {
     } else {
         modal.classList.remove("open");
         if (!isUserAuthenticated) {
-            // Keep locked and show strict restriction message if closed via cross without login!
             document.body.classList.add("auth-locked");
             showAccessDeniedPopup();
         }
@@ -434,7 +434,7 @@ function handleLoginSubmit(e) {
     if (savedUser && savedUser.email === email && savedUser.password === password) {
         isUserAuthenticated = true;
         toggleAuthModal(false);
-        unlockPortfolioMatrix();
+        showGreetingHologram(`Dear ${savedUser.name},`, `Welcome back! We're so happy you arrived safely and successfully authenticated into the system! Consider this portfolio your digital home away from home. Enjoy exploring the portfolio! 🚀`);
         triggerSystemToast(`Welcome back, ${savedUser.name}! Access Granted ⚡`);
     } else if (!savedUser) {
         triggerSystemToast("No account found! Please Sign Up first. ⚠️");
@@ -454,20 +454,40 @@ function triggerMatrixAccess(type) {
         toggleAuthModal(true);
         switchAuthTab('signup');
     } else {
-        // SKIP NODE grants direct access as requested
+        // SKIP NODE grants direct access and shows original greeting hologram
         isUserAuthenticated = true;
         if (overlay) {
             overlay.classList.add("terminate");
             setTimeout(() => { overlay.style.display = "none"; }, 500);
         }
-        unlockPortfolioMatrix();
-        triggerSystemToast("Fast-track node initialized successfully! 🚀");
+        showGreetingHologram("Dear Guest,", "Welcome! We're so happy you arrived safely and had no troubles in your travels here! You chose fast-track access via skip node, so please consider this portal your digital home away from home. Enjoy exploring the portfolio! 🚀");
     }
 }
 
-function unlockPortfolioMatrix() {
+function showGreetingHologram(salutation, msg) {
+    const salText = document.getElementById("greetingSalutationText");
+    const msgText = document.getElementById("greetingMessageBodyText");
+    if(salText) salText.innerText = salutation;
+    if(msgText) msgText.innerText = msg;
+
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.add("active-greeting");
+}
+
+function closeGreetingAndEnterPortfolio() {
+    const hologram = document.getElementById("matrixGreetingHologram");
+    if (hologram) hologram.classList.remove("active-greeting");
+
     document.body.classList.remove("auth-locked");
+    triggerSystemToast("Portfolio Matrix Node Initialized Successfully! ⚡");
     startCounterAnimation();
+
+    // Session Timer: Set to 1 minute for testing (Change to 20 * 60 * 1000 for 20 minutes)
+    if (sessionTimer) clearTimeout(sessionTimer);
+    sessionTimer = setTimeout(() => {
+        alert("Your session time has expired! Please click OK to log in again.");
+        location.reload(); // Refreshes page to return to the initial login/signup modal state
+    }, 1 * 60 * 1000); 
 }
 
 /* =======================================================
