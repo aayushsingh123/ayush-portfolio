@@ -752,6 +752,81 @@ nav ul li.dropdown-item > a:hover {
 }
 
 /* ========================================================
+   STRICT ACCESS RESTRICTION POPUP STYLING
+======================================================== */
+.welcome-popup-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: rgba(2, 5, 14, 0.92) !important;
+    backdrop-filter: blur(15px) !important;
+    z-index: 999999999 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.4s ease !important;
+}
+
+.welcome-popup-overlay.active-popup {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.welcome-popup-card {
+    background: linear-gradient(135deg, #070b19, #0f172a) !important;
+    border: 2px solid #ef4444 !important;
+    box-shadow: 0 0 50px rgba(239, 68, 68, 0.4) !important;
+    width: 90% !important;
+    max-width: 480px !important;
+    padding: 40px 30px !important;
+    border-radius: 24px !important;
+    text-align: center !important;
+    position: relative !important;
+    transform: scale(0.85);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.welcome-popup-overlay.active-popup .welcome-popup-card {
+    transform: scale(1) !important;
+}
+
+.popup-icon-badge {
+    font-size: 45px;
+    margin-bottom: 15px;
+    animation: bounceBadge 2s infinite ease-in-out;
+}
+@keyframes bounceBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.welcome-popup-card h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.popup-main-text {
+    font-size: 0.96rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.popup-sub-text {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* ========================================================
    FIXED FOOTER LAYOUT & ALIGNMENT FIX
 ======================================================== */
 .sm-footer-global-container {
@@ -942,99 +1017,4 @@ nav ul li.dropdown-item > a:hover {
 
 .sm-lower-right-copyright {
     color: #CBD5E1 !important;
-}
-
-/* ========================================================
-   FIXED PERFECT CENTER ALIGNMENT FOR WELCOME CARD
-======================================================== */
-#matrixGreetingHologram {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    background: rgba(2, 5, 14, 0.85) !important;
-    backdrop-filter: blur(15px) !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    z-index: 99999999 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity 0.4s ease !important;
-}
-
-#matrixGreetingHologram.active-greeting {
-    opacity: 1 !important;
-    pointer-events: all !important;
-}
-
-.welcome-card-box-container {
-    background: #ffffff !important;
-    color: #111111 !important;
-    width: 90% !important;
-    max-width: 480px !important;
-    padding: 40px 35px !important;
-    border-radius: 24px !important;
-    box-shadow: 0 25px 60px rgba(0, 240, 255, 0.4) !important;
-    position: relative !important;
-    text-align: left !important;
-    margin: auto !important;
-    transform: scale(0.9);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#matrixGreetingHologram.active-greeting .welcome-card-box-container {
-    transform: scale(1);
-}
-
-.welcome-heart-icon {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 28px;
-    color: #111111;
-    animation: heartBeatPulse 1.5s infinite ease-in-out;
-}
-
-@keyframes heartBeatPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); color: #ff3366; }
-}
-
-.welcome-script-title {
-    font-family: 'Poppins', cursive, sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #111111;
-    line-height: 1;
-    margin-bottom: 25px;
-    letter-spacing: -1px;
-}
-
-.welcome-letter-body {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #333333;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.signature-text {
-    margin-top: 15px;
-    font-style: italic;
-    font-weight: 600;
-    color: #222222;
-}
-
-.enter-matrix-final-btn {
-    margin-top: 30px !important;
-    width: 100% !important;
-    background: #2563eb !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    border-radius: 50px !important;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3) !important;
 }
